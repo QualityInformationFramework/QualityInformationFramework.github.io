@@ -1,0 +1,602 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component FeatureNominal</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_FeatureNominal');
+var usedByBoxes= new Array('usedBy_FeatureNominal');
+var sourceBoxes= new Array('source_FeatureNominal');
+var instanceBoxes= new Array('instance_FeatureNominal');
+var diagramBoxes= new Array('diagram_FeatureNominal');
+var annotationBoxes= new Array('annotations_FeatureNominal');
+var attributesBoxes= new Array('attributes_FeatureNominal');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="FeatureNominal"></a><div class="componentTitle">Element <span class="qname">FeatureNominal</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_FeatureNominal" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_FeatureNominal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_FeatureNominal" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The abstract global FeatureNominal element is the head of a substitution group. Any element that is a member of the group may be substituted for the FeatureNominal element anywhere the FeatureNominal element could be used in an instance file if it were not abstract.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_FeatureNominal" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_FeatureNominal');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_FeatureNominal" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_FeatureNominal.jpeg" usemap="#Features_xsd_Element_FeatureNominal" /><map name="Features_xsd_Element_FeatureNominal" id="Features_xsd_Element_FeatureNominal">
+                                 <area alt="Features_xsd_Complex_Type_FeatureBaseType.tmp#FeatureBaseType_id" href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType_id" coords="231,136,312,165" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="300,240,394,269" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureBaseType.tmp#FeatureBaseType" href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType" coords="202,49,467,75" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_Name" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_Name" coords="284,406,356,435" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_UUID" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_UUID" coords="284,497,352,526" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_FeatureDefinitionId" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_FeatureDefinitionId" coords="284,604,429,633" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_ParentFeatureNominalId" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_ParentFeatureNominalId" coords="284,695,461,724" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_EntityInternalIds" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_EntityInternalIds" coords="284,786,415,815" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_EntityExternalIds" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_EntityExternalIds" coords="284,893,421,922" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType" coords="186,3,398,29" />
+                                 <area alt="Features_xsd_Element_CircleFeatureNominal.tmp#CircleFeatureNominal" href="Features_xsd_Element_CircleFeatureNominal.html#CircleFeatureNominal" coords="199,1103,361,1132" />
+                                 <area alt="Features_xsd_Element_CircularArcFeatureNominal.tmp#CircularArcFeatureNominal" href="Features_xsd_Element_CircularArcFeatureNominal.html#CircularArcFeatureNominal" coords="199,1194,392,1223" />
+                                 <area alt="Features_xsd_Element_ConeFeatureNominal.tmp#ConeFeatureNominal" href="Features_xsd_Element_ConeFeatureNominal.html#ConeFeatureNominal" coords="199,1285,358,1314" />
+                                 <area alt="Features_xsd_Element_ConicalSegmentFeatureNominal.tmp#ConicalSegmentFeatureNominal" href="Features_xsd_Element_ConicalSegmentFeatureNominal.html#ConicalSegmentFeatureNominal" coords="199,1376,423,1405" />
+                                 <area alt="Features_xsd_Element_CylinderFeatureNominal.tmp#CylinderFeatureNominal" href="Features_xsd_Element_CylinderFeatureNominal.html#CylinderFeatureNominal" coords="199,1467,375,1496" />
+                                 <area alt="Features_xsd_Element_CylindricalSegmentFeatureNominal.tmp#CylindricalSegmentFeatureNominal" href="Features_xsd_Element_CylindricalSegmentFeatureNominal.html#CylindricalSegmentFeatureNominal" coords="199,1558,440,1587" />
+                                 <area alt="Features_xsd_Element_EdgePointFeatureNominal.tmp#EdgePointFeatureNominal" href="Features_xsd_Element_EdgePointFeatureNominal.html#EdgePointFeatureNominal" coords="199,1649,388,1678" />
+                                 <area alt="Features_xsd_Element_EllipseFeatureNominal.tmp#EllipseFeatureNominal" href="Features_xsd_Element_EllipseFeatureNominal.html#EllipseFeatureNominal" coords="199,1740,367,1769" />
+                                 <area alt="Features_xsd_Element_EllipticalArcFeatureNominal.tmp#EllipticalArcFeatureNominal" href="Features_xsd_Element_EllipticalArcFeatureNominal.html#EllipticalArcFeatureNominal" coords="199,1831,397,1860" />
+                                 <area alt="Features_xsd_Element_ElongatedCircleFeatureNominal.tmp#ElongatedCircleFeatureNominal" href="Features_xsd_Element_ElongatedCircleFeatureNominal.html#ElongatedCircleFeatureNominal" coords="199,1922,419,1951" />
+                                 <area alt="Features_xsd_Element_ElongatedCylinderFeatureNominal.tmp#ElongatedCylinderFeatureNominal" href="Features_xsd_Element_ElongatedCylinderFeatureNominal.html#ElongatedCylinderFeatureNominal" coords="199,2013,433,2042" />
+                                 <area alt="Features_xsd_Element_ExtrudedCrossSectionFeatureNominal.tmp#ExtrudedCrossSectionFeatureNominal" href="Features_xsd_Element_ExtrudedCrossSectionFeatureNominal.html#ExtrudedCrossSectionFeatureNominal" coords="199,2104,458,2133" />
+                                 <area alt="Features_xsd_Element_GroupFeatureNominal.tmp#GroupFeatureNominal" href="Features_xsd_Element_GroupFeatureNominal.html#GroupFeatureNominal" coords="199,2195,363,2224" />
+                                 <area alt="Features_xsd_Element_LineFeatureNominal.tmp#LineFeatureNominal" href="Features_xsd_Element_LineFeatureNominal.html#LineFeatureNominal" coords="199,2286,352,2315" />
+                                 <area alt="Features_xsd_Element_MarkingFeatureNominal.tmp#MarkingFeatureNominal" href="Features_xsd_Element_MarkingFeatureNominal.html#MarkingFeatureNominal" coords="199,2377,374,2406" />
+                                 <area alt="Features_xsd_Element_OppositeAngledLinesFeatureNominal.tmp#OppositeAngledLinesFeatureNominal" href="Features_xsd_Element_OppositeAngledLinesFeatureNominal.html#OppositeAngledLinesFeatureNominal" coords="199,2468,451,2497" />
+                                 <area alt="Features_xsd_Element_OppositeAngledPlanesFeatureNominal.tmp#OppositeAngledPlanesFeatureNominal" href="Features_xsd_Element_OppositeAngledPlanesFeatureNominal.html#OppositeAngledPlanesFeatureNominal" coords="199,2559,460,2588" />
+                                 <area alt="Features_xsd_Element_OppositeParallelLinesFeatureNominal.tmp#OppositeParallelLinesFeatureNominal" href="Features_xsd_Element_OppositeParallelLinesFeatureNominal.html#OppositeParallelLinesFeatureNominal" coords="199,2650,454,2679" />
+                                 <area alt="Features_xsd_Element_OppositeParallelPlanesFeatureNominal.tmp#OppositeParallelPlanesFeatureNominal" href="Features_xsd_Element_OppositeParallelPlanesFeatureNominal.html#OppositeParallelPlanesFeatureNominal" coords="199,2741,463,2770" />
+                                 <area alt="Features_xsd_Element_OtherCurveFeatureNominal.tmp#OtherCurveFeatureNominal" href="Features_xsd_Element_OtherCurveFeatureNominal.html#OtherCurveFeatureNominal" coords="199,2832,392,2861" />
+                                 <area alt="Features_xsd_Element_OtherNonShapeFeatureNominal.tmp#OtherNonShapeFeatureNominal" href="Features_xsd_Element_OtherNonShapeFeatureNominal.html#OtherNonShapeFeatureNominal" coords="199,2923,420,2952" />
+                                 <area alt="Features_xsd_Element_OtherShapeFeatureNominal.tmp#OtherShapeFeatureNominal" href="Features_xsd_Element_OtherShapeFeatureNominal.html#OtherShapeFeatureNominal" coords="199,3014,397,3043" />
+                                 <area alt="Features_xsd_Element_OtherSurfaceFeatureNominal.tmp#OtherSurfaceFeatureNominal" href="Features_xsd_Element_OtherSurfaceFeatureNominal.html#OtherSurfaceFeatureNominal" coords="199,3105,404,3134" />
+                                 <area alt="Features_xsd_Element_PatternFeatureCircleNominal.tmp#PatternFeatureCircleNominal" href="Features_xsd_Element_PatternFeatureCircleNominal.html#PatternFeatureCircleNominal" coords="199,3196,403,3225" />
+                                 <area alt="Features_xsd_Element_PatternFeatureCircularArcNominal.tmp#PatternFeatureCircularArcNominal" href="Features_xsd_Element_PatternFeatureCircularArcNominal.html#PatternFeatureCircularArcNominal" coords="199,3287,434,3316" />
+                                 <area alt="Features_xsd_Element_PatternFeatureLinearNominal.tmp#PatternFeatureLinearNominal" href="Features_xsd_Element_PatternFeatureLinearNominal.html#PatternFeatureLinearNominal" coords="199,3378,405,3407" />
+                                 <area alt="Features_xsd_Element_PatternFeatureParallelogramNominal.tmp#PatternFeatureParallelogramNominal" href="Features_xsd_Element_PatternFeatureParallelogramNominal.html#PatternFeatureParallelogramNominal" coords="199,3469,449,3498" />
+                                 <area alt="Features_xsd_Element_PlaneFeatureNominal.tmp#PlaneFeatureNominal" href="Features_xsd_Element_PlaneFeatureNominal.html#PlaneFeatureNominal" coords="199,3560,361,3589" />
+                                 <area alt="Features_xsd_Element_PointDefinedCurveFeatureNominal.tmp#PointDefinedCurveFeatureNominal" href="Features_xsd_Element_PointDefinedCurveFeatureNominal.html#PointDefinedCurveFeatureNominal" coords="199,3651,433,3680" />
+                                 <area alt="Features_xsd_Element_PointDefinedSurfaceFeatureNominal.tmp#PointDefinedSurfaceFeatureNominal" href="Features_xsd_Element_PointDefinedSurfaceFeatureNominal.html#PointDefinedSurfaceFeatureNominal" coords="199,3742,445,3771" />
+                                 <area alt="Features_xsd_Element_PointFeatureNominal.tmp#PointFeatureNominal" href="Features_xsd_Element_PointFeatureNominal.html#PointFeatureNominal" coords="199,3833,358,3862" />
+                                 <area alt="Features_xsd_Element_SphereFeatureNominal.tmp#SphereFeatureNominal" href="Features_xsd_Element_SphereFeatureNominal.html#SphereFeatureNominal" coords="199,3924,369,3953" />
+                                 <area alt="Features_xsd_Element_SphericalSegmentFeatureNominal.tmp#SphericalSegmentFeatureNominal" href="Features_xsd_Element_SphericalSegmentFeatureNominal.html#SphericalSegmentFeatureNominal" coords="199,4015,434,4044" />
+                                 <area alt="Features_xsd_Element_SurfaceOfRevolutionFeatureNominal.tmp#SurfaceOfRevolutionFeatureNominal" href="Features_xsd_Element_SurfaceOfRevolutionFeatureNominal.html#SurfaceOfRevolutionFeatureNominal" coords="199,4106,444,4135" />
+                                 <area alt="Features_xsd_Element_ThreadedFeatureNominal.tmp#ThreadedFeatureNominal" href="Features_xsd_Element_ThreadedFeatureNominal.html#ThreadedFeatureNominal" coords="199,4197,381,4226" />
+                                 <area alt="Features_xsd_Element_ToroidalSegmentFeatureNominal.tmp#ToroidalSegmentFeatureNominal" href="Features_xsd_Element_ToroidalSegmentFeatureNominal.html#ToroidalSegmentFeatureNominal" coords="199,4288,425,4317" />
+                                 <area alt="Features_xsd_Element_TorusFeatureNominal.tmp#TorusFeatureNominal" href="Features_xsd_Element_TorusFeatureNominal.html#TorusFeatureNominal" coords="199,4379,360,4408" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureNominalBaseType')">FeatureNominalBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureBaseType')">FeatureBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureNominalBaseType')">FeatureNominalBaseType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_FeatureNominal" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_FeatureNominal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_FeatureNominal" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">abstract</td>
+                                    <td><b>true</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Substitution Group</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Element_CircleFeatureNominal.html#CircleFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleFeatureNominal')">CircleFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_CircularArcFeatureNominal.html#CircularArcFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcFeatureNominal')">CircularArcFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_ConeFeatureNominal.html#ConeFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConeFeatureNominal')">ConeFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_ConicalSegmentFeatureNominal.html#ConicalSegmentFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConicalSegmentFeatureNominal')">ConicalSegmentFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_CylinderFeatureNominal.html#CylinderFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylinderFeatureNominal')">CylinderFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_CylindricalSegmentFeatureNominal.html#CylindricalSegmentFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylindricalSegmentFeatureNominal')">CylindricalSegmentFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_EdgePointFeatureNominal.html#EdgePointFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointFeatureNominal')">EdgePointFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_EllipseFeatureNominal.html#EllipseFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseFeatureNominal')">EllipseFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_EllipticalArcFeatureNominal.html#EllipticalArcFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcFeatureNominal')">EllipticalArcFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_ElongatedCircleFeatureNominal.html#ElongatedCircleFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCircleFeatureNominal')">ElongatedCircleFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_ElongatedCylinderFeatureNominal.html#ElongatedCylinderFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCylinderFeatureNominal')">ElongatedCylinderFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_ExtrudedCrossSectionFeatureNominal.html#ExtrudedCrossSectionFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ExtrudedCrossSectionFeatureNominal')">ExtrudedCrossSectionFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_GroupFeatureNominal.html#GroupFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component GroupFeatureNominal')">GroupFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_LineFeatureNominal.html#LineFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineFeatureNominal')">LineFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_MarkingFeatureNominal.html#MarkingFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MarkingFeatureNominal')">MarkingFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_OppositeAngledLinesFeatureNominal.html#OppositeAngledLinesFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesFeatureNominal')">OppositeAngledLinesFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_OppositeAngledPlanesFeatureNominal.html#OppositeAngledPlanesFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesFeatureNominal')">OppositeAngledPlanesFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_OppositeParallelLinesFeatureNominal.html#OppositeParallelLinesFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesFeatureNominal')">OppositeParallelLinesFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_OppositeParallelPlanesFeatureNominal.html#OppositeParallelPlanesFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelPlanesFeatureNominal')">OppositeParallelPlanesFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_OtherCurveFeatureNominal.html#OtherCurveFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherCurveFeatureNominal')">OtherCurveFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_OtherNonShapeFeatureNominal.html#OtherNonShapeFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherNonShapeFeatureNominal')">OtherNonShapeFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_OtherShapeFeatureNominal.html#OtherShapeFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherShapeFeatureNominal')">OtherShapeFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_OtherSurfaceFeatureNominal.html#OtherSurfaceFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherSurfaceFeatureNominal')">OtherSurfaceFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_PatternFeatureCircleNominal.html#PatternFeatureCircleNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PatternFeatureCircleNominal')">PatternFeatureCircleNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_PatternFeatureCircularArcNominal.html#PatternFeatureCircularArcNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PatternFeatureCircularArcNominal')">PatternFeatureCircularArcNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_PatternFeatureLinearNominal.html#PatternFeatureLinearNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PatternFeatureLinearNominal')">PatternFeatureLinearNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_PatternFeatureParallelogramNominal.html#PatternFeatureParallelogramNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PatternFeatureParallelogramNominal')">PatternFeatureParallelogramNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_PlaneFeatureNominal.html#PlaneFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneFeatureNominal')">PlaneFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_PointDefinedCurveFeatureNominal.html#PointDefinedCurveFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedCurveFeatureNominal')">PointDefinedCurveFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_PointDefinedSurfaceFeatureNominal.html#PointDefinedSurfaceFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedSurfaceFeatureNominal')">PointDefinedSurfaceFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_PointFeatureNominal.html#PointFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureNominal')">PointFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_SphereFeatureNominal.html#SphereFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphereFeatureNominal')">SphereFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_SphericalSegmentFeatureNominal.html#SphericalSegmentFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphericalSegmentFeatureNominal')">SphericalSegmentFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_SurfaceOfRevolutionFeatureNominal.html#SurfaceOfRevolutionFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionFeatureNominal')">SurfaceOfRevolutionFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_ThreadedFeatureNominal.html#ThreadedFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadedFeatureNominal')">ThreadedFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_ToroidalSegmentFeatureNominal.html#ToroidalSegmentFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentFeatureNominal')">ToroidalSegmentFeatureNominal</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_TorusFeatureNominal.html#TorusFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TorusFeatureNominal')">TorusFeatureNominal</a></b></li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_FeatureNominal" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_FeatureNominal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_FeatureNominal" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="Features_xsd_Complex_Type_FeatureNominalsType.html#FeatureNominalsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureNominalsType')">FeatureNominalsType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_EntityExternalIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EntityExternalIds')">EntityExternalIds</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_EntityInternalIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EntityInternalIds')">EntityInternalIds</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_FeatureDefinitionId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureDefinitionId')">FeatureDefinitionId</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_ParentFeatureNominalId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ParentFeatureNominalId')">ParentFeatureNominalId</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_UUID" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UUID')">UUID</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_FeatureNominal" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_FeatureNominal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_FeatureNominal" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;FeatureNominal</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Name&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UUID</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/UUID&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;FeatureDefinitionId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/FeatureDefinitionId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ParentFeatureNominalId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ParentFeatureNominalId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;EntityInternalIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/EntityInternalIds&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;EntityExternalIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/EntityExternalIds&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/FeatureNominal&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_FeatureNominal" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_FeatureNominal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_FeatureNominal" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the feature, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_FeatureNominal" type="image" src="img/btM.gif" value="-" onclick="switchState('source_FeatureNominal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_FeatureNominal" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FeatureNominal"</span><span class="tAN"> type=</span><span class="tAV">"FeatureNominalBaseType"</span><span class="tAN"> abstract=</span><span class="tAV">"true"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The abstract global FeatureNominal element is the head of a substitution group. Any element that is a member of the group may be substituted for the FeatureNominal element anywhere the FeatureNominal element could be used in an instance file if it were not abstract.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

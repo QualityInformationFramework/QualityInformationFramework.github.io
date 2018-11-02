@@ -1,0 +1,1374 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Type</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_ProductDataQualityCheckType_Type', 
+				'properties_ProductDataQualityCheckType_Description', 
+				'properties_ProductDataQualityCheckType_Requirements', 
+				'properties_ProductDataQualityCheckType_SourceOfRequiredness', 
+				'properties_ProductDataQualityCheckType_ApplicationTool', 
+				'properties_ProductDataQualityCheckType_XsltFile', 
+				'properties_ProductDataQualityCheckType_ResultStatement', 
+				'properties_ProductDataQualityCheckType_ResultStatus');
+var facetsBoxes= new Array('facets_ProductDataQualityCheckType_ResultStatus');
+var usedByBoxes= new Array('usedBy_ProductDataQualityCheckType');
+var sourceBoxes= new Array('source_ProductDataQualityCheckType_Type', 
+				'source_ProductDataQualityCheckType_Description', 
+				'source_ProductDataQualityCheckType_Requirements', 
+				'source_ProductDataQualityCheckType_SourceOfRequiredness', 
+				'source_ProductDataQualityCheckType_ApplicationTool', 
+				'source_ProductDataQualityCheckType_XsltFile', 
+				'source_ProductDataQualityCheckType_ResultStatement', 
+				'source_ProductDataQualityCheckType_ResultStatus', 
+				'source_ProductDataQualityCheckType');
+var instanceBoxes= new Array('instance_ProductDataQualityCheckType_Type', 
+				'instance_ProductDataQualityCheckType_ApplicationTool');
+var diagramBoxes= new Array('diagram_ProductDataQualityCheckType_Type', 
+				'diagram_ProductDataQualityCheckType_Description', 
+				'diagram_ProductDataQualityCheckType_Requirements', 
+				'diagram_ProductDataQualityCheckType_SourceOfRequiredness', 
+				'diagram_ProductDataQualityCheckType_ApplicationTool', 
+				'diagram_ProductDataQualityCheckType_XsltFile', 
+				'diagram_ProductDataQualityCheckType_ResultStatement', 
+				'diagram_ProductDataQualityCheckType_ResultStatus', 
+				'diagram_ProductDataQualityCheckType');
+var annotationBoxes= new Array('annotations_ProductDataQualityCheckType_Type', 
+				'annotations_ProductDataQualityCheckType_Description', 
+				'annotations_ProductDataQualityCheckType_Requirements', 
+				'annotations_ProductDataQualityCheckType_SourceOfRequiredness', 
+				'annotations_ProductDataQualityCheckType_ApplicationTool', 
+				'annotations_ProductDataQualityCheckType_XsltFile', 
+				'annotations_ProductDataQualityCheckType_ResultStatement', 
+				'annotations_ProductDataQualityCheckType_ResultStatus', 
+				'annotations_ProductDataQualityCheckType');
+var attributesBoxes= new Array('attributes_ProductDataQualityCheckType_ApplicationTool');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="ProductDataQualityCheckType_Type"></a><div class="componentTitle">Element <span class="qname"><b><a href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProductDataQualityCheckType')">ProductDataQualityCheckType</a></b> / Type</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ProductDataQualityCheckType_Type" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ProductDataQualityCheckType_Type');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ProductDataQualityCheckType_Type" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Type element defines the area to which this product data quality verification and validation check applies.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ProductDataQualityCheckType_Type" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ProductDataQualityCheckType_Type');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ProductDataQualityCheckType_Type" style="display:block"><img alt="Diagram" border="0" src="img/Traceability_xsd_Element_Type.jpeg" usemap="#Traceability_xsd_Element_Type" /><map name="Traceability_xsd_Element_Type" id="Traceability_xsd_Element_Type">
+                                 <area alt="Traceability_xsd_Complex_Type_ProductDataQualityAreaType.tmp#ProductDataQualityAreaType_AreaEnum" href="Traceability_xsd_Complex_Type_ProductDataQualityAreaType.html#ProductDataQualityAreaType_AreaEnum" coords="306,46,405,75" />
+                                 <area alt="Traceability_xsd_Complex_Type_ProductDataQualityAreaType.tmp#ProductDataQualityAreaType_OtherArea" href="Traceability_xsd_Complex_Type_ProductDataQualityAreaType.html#ProductDataQualityAreaType_OtherArea" coords="306,137,403,166" />
+                                 <area alt="Traceability_xsd_Complex_Type_ProductDataQualityAreaType.tmp#ProductDataQualityAreaType" href="Traceability_xsd_Complex_Type_ProductDataQualityAreaType.html#ProductDataQualityAreaType" coords="123,3,354,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Traceability_xsd_Complex_Type_ProductDataQualityAreaType.html#ProductDataQualityAreaType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProductDataQualityAreaType')">ProductDataQualityAreaType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ProductDataQualityCheckType_Type" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ProductDataQualityCheckType_Type');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ProductDataQualityCheckType_Type" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Traceability_xsd_Complex_Type_ProductDataQualityAreaType.html#ProductDataQualityAreaType_AreaEnum" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AreaEnum')">AreaEnum</a></b>, <b><a href="Traceability_xsd_Complex_Type_ProductDataQualityAreaType.html#ProductDataQualityAreaType_OtherArea" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherArea')">OtherArea</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_ProductDataQualityCheckType_Type" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_ProductDataQualityCheckType_Type');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_ProductDataQualityCheckType_Type" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Type</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;AreaEnum</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/AreaEnum&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;OtherArea</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/OtherArea&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Type&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ProductDataQualityCheckType_Type" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProductDataQualityCheckType_Type');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ProductDataQualityCheckType_Type" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Type"</span><span class="tAN"> type=</span><span class="tAV">"ProductDataQualityAreaType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Type element defines the area to which this product data quality verification and validation check applies.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Traceability.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ProductDataQualityCheckType_Description"></a><div class="componentTitle">Element <span class="qname"><b><a href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProductDataQualityCheckType')">ProductDataQualityCheckType</a></b> / Description</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ProductDataQualityCheckType_Description" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ProductDataQualityCheckType_Description');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ProductDataQualityCheckType_Description" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Description element describes this particular product data quality verification and validation check.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ProductDataQualityCheckType_Description" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ProductDataQualityCheckType_Description');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ProductDataQualityCheckType_Description" style="display:block"><img alt="Diagram" border="0" src="img/Traceability_xsd_Element_Description.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ProductDataQualityCheckType_Description" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ProductDataQualityCheckType_Description');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ProductDataQualityCheckType_Description" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ProductDataQualityCheckType_Description" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProductDataQualityCheckType_Description');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ProductDataQualityCheckType_Description" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Description"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Description element describes this particular product data quality verification and validation check.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Traceability.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ProductDataQualityCheckType_Requirements"></a><div class="componentTitle">Element <span class="qname"><b><a href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProductDataQualityCheckType')">ProductDataQualityCheckType</a></b> / Requirements</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ProductDataQualityCheckType_Requirements" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ProductDataQualityCheckType_Requirements');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ProductDataQualityCheckType_Requirements" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Requirements element defines the requirements of this product data quality check in natural language.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ProductDataQualityCheckType_Requirements" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ProductDataQualityCheckType_Requirements');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ProductDataQualityCheckType_Requirements" style="display:block"><img alt="Diagram" border="0" src="img/Traceability_xsd_Element_Requirements.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ProductDataQualityCheckType_Requirements" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ProductDataQualityCheckType_Requirements');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ProductDataQualityCheckType_Requirements" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ProductDataQualityCheckType_Requirements" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProductDataQualityCheckType_Requirements');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ProductDataQualityCheckType_Requirements" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Requirements"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Requirements element defines the requirements of this product data quality check in natural language.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Traceability.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ProductDataQualityCheckType_SourceOfRequiredness"></a><div class="componentTitle">Element <span class="qname"><b><a href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProductDataQualityCheckType')">ProductDataQualityCheckType</a></b> / SourceOfRequiredness</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ProductDataQualityCheckType_SourceOfRequiredness" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ProductDataQualityCheckType_SourceOfRequiredness');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ProductDataQualityCheckType_SourceOfRequiredness" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional SourceOfRequiredness element defines why this product data quality check is requires, i.e., by citing an external customer requirement such as MilStd.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ProductDataQualityCheckType_SourceOfRequiredness" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ProductDataQualityCheckType_SourceOfRequiredness');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ProductDataQualityCheckType_SourceOfRequiredness" style="display:block"><img alt="Diagram" border="0" src="img/Traceability_xsd_Element_SourceOfRequiredness.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ProductDataQualityCheckType_SourceOfRequiredness" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ProductDataQualityCheckType_SourceOfRequiredness');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ProductDataQualityCheckType_SourceOfRequiredness" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ProductDataQualityCheckType_SourceOfRequiredness" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProductDataQualityCheckType_SourceOfRequiredness');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ProductDataQualityCheckType_SourceOfRequiredness" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SourceOfRequiredness"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional SourceOfRequiredness element defines why this product data quality check is requires, i.e., by citing an external customer requirement such as MilStd.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Traceability.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ProductDataQualityCheckType_ApplicationTool"></a><div class="componentTitle">Element <span class="qname"><b><a href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProductDataQualityCheckType')">ProductDataQualityCheckType</a></b> / ApplicationTool</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ProductDataQualityCheckType_ApplicationTool" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ProductDataQualityCheckType_ApplicationTool');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ProductDataQualityCheckType_ApplicationTool" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional ApplicationTool element gives information about the software application used to perform this product data quality check.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ProductDataQualityCheckType_ApplicationTool" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ProductDataQualityCheckType_ApplicationTool');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ProductDataQualityCheckType_ApplicationTool" style="display:block"><img alt="Diagram" border="0" src="img/Traceability_xsd_Element_ApplicationTool.jpeg" usemap="#Traceability_xsd_Element_ApplicationTool" /><map name="Traceability_xsd_Element_ApplicationTool" id="Traceability_xsd_Element_ApplicationTool">
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_SoftwareType.tmp#SoftwareType_id" href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType_id" coords="212,90,293,119" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="281,190,375,219" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_SoftwareType.tmp#SoftwareType_VendorName" href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType_VendorName" coords="281,297,394,326" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_SoftwareType.tmp#SoftwareType_ApplicationName" href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType_ApplicationName" coords="281,388,417,417" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_SoftwareType.tmp#SoftwareType_Version" href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType_Version" coords="281,479,363,508" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_SoftwareType.tmp#SoftwareType_Description" href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType_Description" coords="281,570,384,599" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_SoftwareType.tmp#SoftwareType_URI" href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType_URI" coords="281,661,340,690" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_SoftwareType.tmp#SoftwareType_ReferencedStandardIds" href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType_ReferencedStandardIds" coords="281,768,453,797" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_SoftwareType.tmp#SoftwareType" href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType" coords="183,3,324,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SoftwareType')">SoftwareType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ProductDataQualityCheckType_ApplicationTool" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ProductDataQualityCheckType_ApplicationTool');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ProductDataQualityCheckType_ApplicationTool" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType_ApplicationName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ApplicationName')">ApplicationName</a></b>, <b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType_ReferencedStandardIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReferencedStandardIds')">ReferencedStandardIds</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType_URI" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component URI')">URI</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType_VendorName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component VendorName')">VendorName</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType_Version" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Version')">Version</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_ProductDataQualityCheckType_ApplicationTool" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_ProductDataQualityCheckType_ApplicationTool');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_ProductDataQualityCheckType_ApplicationTool" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;ApplicationTool</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;VendorName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/VendorName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ApplicationName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ApplicationName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Version</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Version&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Description</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Description&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;URI</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/URI&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ReferencedStandardIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ReferencedStandardIds&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/ApplicationTool&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ProductDataQualityCheckType_ApplicationTool" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ProductDataQualityCheckType_ApplicationTool');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ProductDataQualityCheckType_ApplicationTool" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the software, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ProductDataQualityCheckType_ApplicationTool" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProductDataQualityCheckType_ApplicationTool');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ProductDataQualityCheckType_ApplicationTool" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ApplicationTool"</span><span class="tAN"> type=</span><span class="tAV">"SoftwareType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ApplicationTool element gives information about the software application used to perform this product data quality check.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Traceability.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ProductDataQualityCheckType_XsltFile"></a><div class="componentTitle">Element <span class="qname"><b><a href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProductDataQualityCheckType')">ProductDataQualityCheckType</a></b> / XsltFile</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ProductDataQualityCheckType_XsltFile" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ProductDataQualityCheckType_XsltFile');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ProductDataQualityCheckType_XsltFile" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional XsltFile element is the URI for an XSLT file used or to be used in a QIF document XSLT check.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ProductDataQualityCheckType_XsltFile" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ProductDataQualityCheckType_XsltFile');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ProductDataQualityCheckType_XsltFile" style="display:block"><img alt="Diagram" border="0" src="img/Traceability_xsd_Element_XsltFile.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:anyURI</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ProductDataQualityCheckType_XsltFile" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ProductDataQualityCheckType_XsltFile');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ProductDataQualityCheckType_XsltFile" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ProductDataQualityCheckType_XsltFile" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProductDataQualityCheckType_XsltFile');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ProductDataQualityCheckType_XsltFile" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"XsltFile"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional XsltFile element is the URI for an XSLT file used or to be used in a QIF document XSLT check.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Traceability.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ProductDataQualityCheckType_ResultStatement"></a><div class="componentTitle">Element <span class="qname"><b><a href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProductDataQualityCheckType')">ProductDataQualityCheckType</a></b> / ResultStatement</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ProductDataQualityCheckType_ResultStatement" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ProductDataQualityCheckType_ResultStatement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ProductDataQualityCheckType_ResultStatement" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The ResultStatement element makes a statement about the result of this product data quality check in natural language.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ProductDataQualityCheckType_ResultStatement" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ProductDataQualityCheckType_ResultStatement');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ProductDataQualityCheckType_ResultStatement" style="display:block"><img alt="Diagram" border="0" src="img/Traceability_xsd_Element_ResultStatement.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ProductDataQualityCheckType_ResultStatement" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ProductDataQualityCheckType_ResultStatement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ProductDataQualityCheckType_ResultStatement" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ProductDataQualityCheckType_ResultStatement" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProductDataQualityCheckType_ResultStatement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ProductDataQualityCheckType_ResultStatement" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ResultStatement"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ResultStatement element makes a statement about the result of this product data quality check in natural language.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Traceability.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ProductDataQualityCheckType_ResultStatus"></a><div class="componentTitle">Element <span class="qname"><b><a href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProductDataQualityCheckType')">ProductDataQualityCheckType</a></b> / ResultStatus</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ProductDataQualityCheckType_ResultStatus" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ProductDataQualityCheckType_ResultStatus');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ProductDataQualityCheckType_ResultStatus" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The ResultStatus element is the status of this product data quality check.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ProductDataQualityCheckType_ResultStatus" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ProductDataQualityCheckType_ResultStatus');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ProductDataQualityCheckType_ResultStatus" style="display:block"><img alt="Diagram" border="0" src="img/Traceability_xsd_Element_ResultStatus.jpeg" usemap="#Traceability_xsd_Element_ResultStatus" /><map name="Traceability_xsd_Element_ResultStatus" id="Traceability_xsd_Element_ResultStatus">
+                                 <area alt="Traceability_xsd_Simple_Type_CheckStatusEnumType.tmp#CheckStatusEnumType" href="Traceability_xsd_Simple_Type_CheckStatusEnumType.html#CheckStatusEnumType" coords="167,0,372,31" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Traceability_xsd_Simple_Type_CheckStatusEnumType.html#CheckStatusEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CheckStatusEnumType')">CheckStatusEnumType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ProductDataQualityCheckType_ResultStatus" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ProductDataQualityCheckType_ResultStatus');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ProductDataQualityCheckType_ResultStatus" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_ProductDataQualityCheckType_ResultStatus" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_ProductDataQualityCheckType_ResultStatus');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_ProductDataQualityCheckType_ResultStatus" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>PASS</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>FAIL</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>PENDING</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ProductDataQualityCheckType_ResultStatus" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProductDataQualityCheckType_ResultStatus');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ProductDataQualityCheckType_ResultStatus" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ResultStatus"</span><span class="tAN"> type=</span><span class="tAV">"CheckStatusEnumType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ResultStatus element is the status of this product data quality check.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Traceability.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ProductDataQualityCheckType"></a><div class="componentTitle">Complex Type <span class="qname">ProductDataQualityCheckType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ProductDataQualityCheckType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ProductDataQualityCheckType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ProductDataQualityCheckType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The ProductDataQualityCheckType contains information about a product data quality verification and validation check and its result.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ProductDataQualityCheckType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ProductDataQualityCheckType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ProductDataQualityCheckType" style="display:block"><img alt="Diagram" border="0" src="img/Traceability_xsd_Complex_Type_ProductDataQualityCheckType.jpeg" usemap="#Traceability_xsd_Complex_Type_ProductDataQualityCheckType" /><map name="Traceability_xsd_Complex_Type_ProductDataQualityCheckType" id="Traceability_xsd_Complex_Type_ProductDataQualityCheckType">
+                                 <area alt="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.tmp#ProductDataQualityCheckType_Type" href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType_Type" coords="385,0,451,29" />
+                                 <area alt="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.tmp#ProductDataQualityCheckType_Description" href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType_Description" coords="385,107,488,136" />
+                                 <area alt="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.tmp#ProductDataQualityCheckType_Requirements" href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType_Requirements" coords="385,214,503,243" />
+                                 <area alt="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.tmp#ProductDataQualityCheckType_SourceOfRequiredness" href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType_SourceOfRequiredness" coords="385,321,556,350" />
+                                 <area alt="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.tmp#ProductDataQualityCheckType_ApplicationTool" href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType_ApplicationTool" coords="385,412,511,441" />
+                                 <area alt="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.tmp#ProductDataQualityCheckType_XsltFile" href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType_XsltFile" coords="385,519,465,548" />
+                                 <area alt="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.tmp#ProductDataQualityCheckType_ResultStatement" href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType_ResultStatement" coords="385,626,520,655" />
+                                 <area alt="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.tmp#ProductDataQualityCheckType_ResultStatus" href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType_ResultStatus" coords="385,733,498,762" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_ProductDataQualityCheckType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ProductDataQualityCheckType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_ProductDataQualityCheckType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Traceability_xsd_Complex_Type_ProductDataQualityChecksType.html#ProductDataQualityChecksType_ProductDataQualityCheck" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProductDataQualityChecksType/ProductDataQualityCheck')">ProductDataQualityChecksType/ProductDataQualityCheck</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType_ApplicationTool" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ApplicationTool')">ApplicationTool</a></b>, <b><a href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType_Requirements" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Requirements')">Requirements</a></b>, <b><a href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType_ResultStatement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ResultStatement')">ResultStatement</a></b>, <b><a href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType_ResultStatus" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ResultStatus')">ResultStatus</a></b>, <b><a href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType_SourceOfRequiredness" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SourceOfRequiredness')">SourceOfRequiredness</a></b>, <b><a href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType_Type" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Type')">Type</a></b>, <b><a href="Traceability_xsd_Complex_Type_ProductDataQualityCheckType.html#ProductDataQualityCheckType_XsltFile" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component XsltFile')">XsltFile</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ProductDataQualityCheckType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProductDataQualityCheckType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ProductDataQualityCheckType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ProductDataQualityCheckType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ProductDataQualityCheckType contains information about a product data quality verification and validation check and its result.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Type"</span><span class="tAN"> type=</span><span class="tAV">"ProductDataQualityAreaType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Type element defines the area to which this product data quality verification and validation check applies.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Description"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Description element describes this particular product data quality verification and validation check.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Requirements"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Requirements element defines the requirements of this product data quality check in natural language.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SourceOfRequiredness"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional SourceOfRequiredness element defines why this product data quality check is requires, i.e., by citing an external customer requirement such as MilStd.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ApplicationTool"</span><span class="tAN"> type=</span><span class="tAV">"SoftwareType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ApplicationTool element gives information about the software application used to perform this product data quality check.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"XsltFile"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional XsltFile element is the URI for an XSLT file used or to be used in a QIF document XSLT check.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ResultStatement"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ResultStatement element makes a statement about the result of this product data quality check in natural language.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ResultStatus"</span><span class="tAN"> type=</span><span class="tAV">"CheckStatusEnumType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ResultStatus element is the status of this product data quality check.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Traceability.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

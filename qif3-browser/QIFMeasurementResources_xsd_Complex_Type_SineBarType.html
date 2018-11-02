@@ -1,0 +1,1638 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component NominalBallCenterToBallCenterLength</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_SineBarType_NominalBallCenterToBallCenterLength', 
+				'properties_SineBarType_CylinderCenterToCylinderCenterAccuracy', 
+				'properties_SineBarType_Parallelism', 
+				'properties_SineBarType_OverallLength', 
+				'properties_SineBarType_Material', 
+				'properties_SineBarType_Magnetic', 
+				'properties_SineBarType_Width');
+var usedByBoxes= new Array('usedBy_SineBarType');
+var sourceBoxes= new Array('source_SineBarType_NominalBallCenterToBallCenterLength', 
+				'source_SineBarType_CylinderCenterToCylinderCenterAccuracy', 
+				'source_SineBarType_Parallelism', 
+				'source_SineBarType_OverallLength', 
+				'source_SineBarType_Material', 
+				'source_SineBarType_Magnetic', 
+				'source_SineBarType_Width', 
+				'source_SineBarType');
+var diagramBoxes= new Array('diagram_SineBarType_NominalBallCenterToBallCenterLength', 
+				'diagram_SineBarType_CylinderCenterToCylinderCenterAccuracy', 
+				'diagram_SineBarType_Parallelism', 
+				'diagram_SineBarType_OverallLength', 
+				'diagram_SineBarType_Material', 
+				'diagram_SineBarType_Magnetic', 
+				'diagram_SineBarType_Width', 
+				'diagram_SineBarType');
+var annotationBoxes= new Array('annotations_SineBarType_NominalBallCenterToBallCenterLength', 
+				'annotations_SineBarType_CylinderCenterToCylinderCenterAccuracy', 
+				'annotations_SineBarType_Parallelism', 
+				'annotations_SineBarType_OverallLength', 
+				'annotations_SineBarType_Material', 
+				'annotations_SineBarType_Magnetic', 
+				'annotations_SineBarType_Width', 
+				'annotations_SineBarType');
+var attributesBoxes= new Array('attributes_SineBarType_NominalBallCenterToBallCenterLength', 
+				'attributes_SineBarType_CylinderCenterToCylinderCenterAccuracy', 
+				'attributes_SineBarType_Parallelism', 
+				'attributes_SineBarType_OverallLength', 
+				'attributes_SineBarType_Width', 
+				'attributes_SineBarType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="SineBarType_NominalBallCenterToBallCenterLength"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SineBarType')">SineBarType</a></b> / NominalBallCenterToBallCenterLength</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SineBarType_NominalBallCenterToBallCenterLength" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SineBarType_NominalBallCenterToBallCenterLength');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SineBarType_NominalBallCenterToBallCenterLength" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional NominalBallCenterToBallCenterLength element defines the nominal distance between the two sine bar balls.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SineBarType_NominalBallCenterToBallCenterLength" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SineBarType_NominalBallCenterToBallCenterLength');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SineBarType_NominalBallCenterToBallCenterLength" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_NominalBallCenterToBallCenterLength.jpeg" usemap="#QIFMeasurementResources_xsd_Element_NominalBallCenterToBallCenterLength" /><map name="QIFMeasurementResources_xsd_Element_NominalBallCenterToBallCenterLength" id="QIFMeasurementResources_xsd_Element_NominalBallCenterToBallCenterLength">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="360,229,506,258" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="360,304,522,333" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="331,49,622,75" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType_linearUnit" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" coords="344,507,459,536" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" coords="315,3,474,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_SineBarType_NominalBallCenterToBallCenterLength" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_SineBarType_NominalBallCenterToBallCenterLength');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_SineBarType_NominalBallCenterToBallCenterLength" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_SineBarType_NominalBallCenterToBallCenterLength" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_SineBarType_NominalBallCenterToBallCenterLength');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_SineBarType_NominalBallCenterToBallCenterLength" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the UnitName for the LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SineBarType_NominalBallCenterToBallCenterLength" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SineBarType_NominalBallCenterToBallCenterLength');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SineBarType_NominalBallCenterToBallCenterLength" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"NominalBallCenterToBallCenterLength"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional NominalBallCenterToBallCenterLength element defines the nominal distance between the two sine bar balls.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="SineBarType_CylinderCenterToCylinderCenterAccuracy"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SineBarType')">SineBarType</a></b> / CylinderCenterToCylinderCenterAccuracy</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SineBarType_CylinderCenterToCylinderCenterAccuracy" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SineBarType_CylinderCenterToCylinderCenterAccuracy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SineBarType_CylinderCenterToCylinderCenterAccuracy" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional CylinderCenterToCylinderCenterAccuracy element defines the accuracy between the two sine bar cylinder centers.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SineBarType_CylinderCenterToCylinderCenterAccuracy" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SineBarType_CylinderCenterToCylinderCenterAccuracy');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SineBarType_CylinderCenterToCylinderCenterAccuracy" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_CylinderCenterToCylinderCenterAccuracy.jpeg" usemap="#QIFMeasurementResources_xsd_Element_CylinderCenterToCylinderCenterAccuracy" /><map name="QIFMeasurementResources_xsd_Element_CylinderCenterToCylinderCenterAccuracy" id="QIFMeasurementResources_xsd_Element_CylinderCenterToCylinderCenterAccuracy">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="379,229,525,258" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="379,304,541,333" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="350,49,641,75" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType_linearUnit" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" coords="363,507,478,536" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" coords="334,3,493,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_SineBarType_CylinderCenterToCylinderCenterAccuracy" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_SineBarType_CylinderCenterToCylinderCenterAccuracy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_SineBarType_CylinderCenterToCylinderCenterAccuracy" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_SineBarType_CylinderCenterToCylinderCenterAccuracy" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_SineBarType_CylinderCenterToCylinderCenterAccuracy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_SineBarType_CylinderCenterToCylinderCenterAccuracy" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the UnitName for the LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SineBarType_CylinderCenterToCylinderCenterAccuracy" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SineBarType_CylinderCenterToCylinderCenterAccuracy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SineBarType_CylinderCenterToCylinderCenterAccuracy" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CylinderCenterToCylinderCenterAccuracy"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional CylinderCenterToCylinderCenterAccuracy element defines the accuracy between the two sine bar cylinder centers.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="SineBarType_Parallelism"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SineBarType')">SineBarType</a></b> / Parallelism</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SineBarType_Parallelism" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SineBarType_Parallelism');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SineBarType_Parallelism" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Parallelism element is the parallelism between the upper and lower planes of a sine bar.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SineBarType_Parallelism" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SineBarType_Parallelism');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SineBarType_Parallelism" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_Parallelism.jpeg" usemap="#QIFMeasurementResources_xsd_Element_Parallelism" /><map name="QIFMeasurementResources_xsd_Element_Parallelism" id="QIFMeasurementResources_xsd_Element_Parallelism">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="204,229,350,258" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="204,304,366,333" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="175,49,466,75" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType_linearUnit" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" coords="188,507,303,536" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" coords="159,3,318,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_SineBarType_Parallelism" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_SineBarType_Parallelism');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_SineBarType_Parallelism" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_SineBarType_Parallelism" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_SineBarType_Parallelism');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_SineBarType_Parallelism" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the UnitName for the LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SineBarType_Parallelism" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SineBarType_Parallelism');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SineBarType_Parallelism" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Parallelism"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Parallelism element is the parallelism between the upper and lower planes of a sine bar.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="SineBarType_OverallLength"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SineBarType')">SineBarType</a></b> / OverallLength</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SineBarType_OverallLength" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SineBarType_OverallLength');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SineBarType_OverallLength" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional OverallLength element is the overall length of a sine bar.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SineBarType_OverallLength" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SineBarType_OverallLength');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SineBarType_OverallLength" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_OverallLength.jpeg" usemap="#QIFMeasurementResources_xsd_Element_OverallLength" /><map name="QIFMeasurementResources_xsd_Element_OverallLength" id="QIFMeasurementResources_xsd_Element_OverallLength">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="218,229,364,258" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="218,304,380,333" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="189,49,480,75" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType_linearUnit" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" coords="202,507,317,536" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" coords="173,3,332,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_SineBarType_OverallLength" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_SineBarType_OverallLength');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_SineBarType_OverallLength" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_SineBarType_OverallLength" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_SineBarType_OverallLength');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_SineBarType_OverallLength" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the UnitName for the LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SineBarType_OverallLength" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SineBarType_OverallLength');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SineBarType_OverallLength" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"OverallLength"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional OverallLength element is the overall length of a sine bar.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="SineBarType_Material"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SineBarType')">SineBarType</a></b> / Material</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SineBarType_Material" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SineBarType_Material');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SineBarType_Material" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Material element is the material that a sine bar is made.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SineBarType_Material" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SineBarType_Material');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SineBarType_Material" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_Material.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_SineBarType_Material" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_SineBarType_Material');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_SineBarType_Material" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SineBarType_Material" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SineBarType_Material');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SineBarType_Material" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Material"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Material element is the material that a sine bar is made.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="SineBarType_Magnetic"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SineBarType')">SineBarType</a></b> / Magnetic</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SineBarType_Magnetic" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SineBarType_Magnetic');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SineBarType_Magnetic" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Magnetic element is the magnetic capability of a sine bar.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SineBarType_Magnetic" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SineBarType_Magnetic');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SineBarType_Magnetic" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_Magnetic.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:boolean</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_SineBarType_Magnetic" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_SineBarType_Magnetic');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_SineBarType_Magnetic" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SineBarType_Magnetic" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SineBarType_Magnetic');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SineBarType_Magnetic" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Magnetic"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Magnetic element is the magnetic capability of a sine bar.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="SineBarType_Width"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SineBarType')">SineBarType</a></b> / Width</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SineBarType_Width" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SineBarType_Width');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SineBarType_Width" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Width element is the width of a sine bar.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SineBarType_Width" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SineBarType_Width');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SineBarType_Width" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_Width.jpeg" usemap="#QIFMeasurementResources_xsd_Element_Width" /><map name="QIFMeasurementResources_xsd_Element_Width" id="QIFMeasurementResources_xsd_Element_Width">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="174,229,320,258" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="174,304,336,333" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="145,49,436,75" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType_linearUnit" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" coords="158,507,273,536" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" coords="129,3,288,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_SineBarType_Width" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_SineBarType_Width');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_SineBarType_Width" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_SineBarType_Width" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_SineBarType_Width');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_SineBarType_Width" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the UnitName for the LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SineBarType_Width" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SineBarType_Width');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SineBarType_Width" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Width"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Width element is the width of a sine bar.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="SineBarType"></a><div class="componentTitle">Complex Type <span class="qname">SineBarType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SineBarType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SineBarType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SineBarType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The SineBarType defines a sine bar.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SineBarType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SineBarType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SineBarType" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Complex_Type_SineBarType.jpeg" usemap="#QIFMeasurementResources_xsd_Complex_Type_SineBarType" /><map name="QIFMeasurementResources_xsd_Complex_Type_SineBarType" id="QIFMeasurementResources_xsd_Complex_Type_SineBarType">
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_id" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_id" coords="260,182,341,211" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Name" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Name" coords="329,282,401,311" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Description" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Description" coords="329,373,432,402" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Manufacturer" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Manufacturer" coords="329,464,442,493" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_ModelNumber" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_ModelNumber" coords="329,555,447,584" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_SerialNumber" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_SerialNumber" coords="329,662,445,691" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Mass" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Mass" coords="329,769,399,798" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Size" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Size" coords="329,860,393,889" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_LocationId" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_LocationId" coords="434,967,531,996" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Location" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Location" coords="434,1074,521,1103" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="329,1260,423,1289" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType" coords="231,95,586,121" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.tmp#MeasurementDeviceType_Calibrations" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.html#MeasurementDeviceType_Calibrations" coords="313,1426,419,1455" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.tmp#MeasurementDeviceType_EnvironmentalRange" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.html#MeasurementDeviceType_EnvironmentalRange" coords="313,1517,469,1546" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.tmp#MeasurementDeviceType" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.html#MeasurementDeviceType" coords="215,49,523,75" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_ManualMeasurementDeviceType.tmp#ManualMeasurementDeviceType_MinMeasuringDistance" href="QIFMeasurementResources_xsd_Complex_Type_ManualMeasurementDeviceType.html#ManualMeasurementDeviceType_MinMeasuringDistance" coords="297,1667,467,1696" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_ManualMeasurementDeviceType.tmp#ManualMeasurementDeviceType_MaxMeasuringDistance" href="QIFMeasurementResources_xsd_Complex_Type_ManualMeasurementDeviceType.html#ManualMeasurementDeviceType_MaxMeasuringDistance" coords="297,1758,471,1787" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_ManualMeasurementDeviceType.tmp#ManualMeasurementDeviceType" href="QIFMeasurementResources_xsd_Complex_Type_ManualMeasurementDeviceType.html#ManualMeasurementDeviceType" coords="199,3,549,29" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_SineBarType.tmp#SineBarType_NominalBallCenterToBallCenterLength" href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType_NominalBallCenterToBallCenterLength" coords="281,1908,539,1937" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_SineBarType.tmp#SineBarType_CylinderCenterToCylinderCenterAccuracy" href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType_CylinderCenterToCylinderCenterAccuracy" coords="281,1999,558,2028" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_SineBarType.tmp#SineBarType_Parallelism" href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType_Parallelism" coords="281,2090,383,2119" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_SineBarType.tmp#SineBarType_OverallLength" href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType_OverallLength" coords="281,2197,397,2226" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_SineBarType.tmp#SineBarType_Material" href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType_Material" coords="281,2288,365,2317" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_SineBarType.tmp#SineBarType_Magnetic" href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType_Magnetic" coords="281,2379,372,2408" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_SineBarType.tmp#SineBarType_Width" href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType_Width" coords="281,2470,353,2499" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="QIFMeasurementResources_xsd_Complex_Type_ManualMeasurementDeviceType.html#ManualMeasurementDeviceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ManualMeasurementDeviceType')">ManualMeasurementDeviceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementResourceBaseType')">MeasurementResourceBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.html#MeasurementDeviceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementDeviceType')">MeasurementDeviceType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_ManualMeasurementDeviceType.html#ManualMeasurementDeviceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ManualMeasurementDeviceType')">ManualMeasurementDeviceType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SineBarType')">SineBarType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_SineBarType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_SineBarType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_SineBarType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="QIFMeasurementResources_xsd_Element_SineBar.html#SineBar" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SineBar')">SineBar</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.html#MeasurementDeviceType_Calibrations" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Calibrations')">Calibrations</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType_CylinderCenterToCylinderCenterAccuracy" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylinderCenterToCylinderCenterAccuracy')">CylinderCenterToCylinderCenterAccuracy</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.html#MeasurementDeviceType_EnvironmentalRange" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EnvironmentalRange')">EnvironmentalRange</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Location" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Location')">Location</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_LocationId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LocationId')">LocationId</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType_Magnetic" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Magnetic')">Magnetic</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Manufacturer" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Manufacturer')">Manufacturer</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Mass" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Mass')">Mass</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType_Material" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Material')">Material</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_ManualMeasurementDeviceType.html#ManualMeasurementDeviceType_MaxMeasuringDistance" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MaxMeasuringDistance')">MaxMeasuringDistance</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_ManualMeasurementDeviceType.html#ManualMeasurementDeviceType_MinMeasuringDistance" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MinMeasuringDistance')">MinMeasuringDistance</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_ModelNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ModelNumber')">ModelNumber</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType_NominalBallCenterToBallCenterLength" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalBallCenterToBallCenterLength')">NominalBallCenterToBallCenterLength</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType_OverallLength" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OverallLength')">OverallLength</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType_Parallelism" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Parallelism')">Parallelism</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_SerialNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SerialNumber')">SerialNumber</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Size" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Size')">Size</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_SineBarType.html#SineBarType_Width" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Width')">Width</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_SineBarType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_SineBarType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_SineBarType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required id attribute is the QIF id of the measurement resource, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SineBarType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SineBarType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SineBarType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"SineBarType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The SineBarType defines a sine bar.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"ManualMeasurementDeviceType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"NominalBallCenterToBallCenterLength"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional NominalBallCenterToBallCenterLength element defines the nominal distance between the two sine bar balls.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CylinderCenterToCylinderCenterAccuracy"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional CylinderCenterToCylinderCenterAccuracy element defines the accuracy between the two sine bar cylinder centers.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Parallelism"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Parallelism element is the parallelism between the upper and lower planes of a sine bar.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"OverallLength"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional OverallLength element is the overall length of a sine bar.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Material"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Material element is the material that a sine bar is made.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Magnetic"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Magnetic element is the magnetic capability of a sine bar.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Width"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Width element is the width of a sine bar.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

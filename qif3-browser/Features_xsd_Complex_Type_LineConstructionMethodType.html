@@ -1,0 +1,2276 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component BestFit</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_LineConstructionMethodType_BestFit', 
+				'properties_LineConstructionMethodType_Recompensated', 
+				'properties_LineConstructionMethodType_Midline', 
+				'properties_LineConstructionMethodType_Intersection', 
+				'properties_LineConstructionMethodType_Projection', 
+				'properties_LineConstructionMethodType_Perpendicular', 
+				'properties_LineConstructionMethodType_Parallel', 
+				'properties_LineConstructionMethodType_Copy', 
+				'properties_LineConstructionMethodType_Cast', 
+				'properties_LineConstructionMethodType_TangentThrough', 
+				'properties_LineConstructionMethodType_Transform', 
+				'properties_LineConstructionMethodType_Extract', 
+				'properties_LineConstructionMethodType_FromScan');
+var usedByBoxes= new Array('usedBy_LineConstructionMethodType');
+var sourceBoxes= new Array('source_LineConstructionMethodType_BestFit', 
+				'source_LineConstructionMethodType_Recompensated', 
+				'source_LineConstructionMethodType_Midline', 
+				'source_LineConstructionMethodType_Intersection', 
+				'source_LineConstructionMethodType_Projection', 
+				'source_LineConstructionMethodType_Perpendicular', 
+				'source_LineConstructionMethodType_Parallel', 
+				'source_LineConstructionMethodType_Copy', 
+				'source_LineConstructionMethodType_Cast', 
+				'source_LineConstructionMethodType_TangentThrough', 
+				'source_LineConstructionMethodType_Transform', 
+				'source_LineConstructionMethodType_Extract', 
+				'source_LineConstructionMethodType_FromScan', 
+				'source_LineConstructionMethodType');
+var instanceBoxes= new Array('instance_LineConstructionMethodType_BestFit', 
+				'instance_LineConstructionMethodType_Recompensated', 
+				'instance_LineConstructionMethodType_Midline', 
+				'instance_LineConstructionMethodType_Intersection', 
+				'instance_LineConstructionMethodType_Projection', 
+				'instance_LineConstructionMethodType_Perpendicular', 
+				'instance_LineConstructionMethodType_Parallel', 
+				'instance_LineConstructionMethodType_Copy', 
+				'instance_LineConstructionMethodType_Cast', 
+				'instance_LineConstructionMethodType_TangentThrough', 
+				'instance_LineConstructionMethodType_Transform', 
+				'instance_LineConstructionMethodType_Extract', 
+				'instance_LineConstructionMethodType_FromScan');
+var diagramBoxes= new Array('diagram_LineConstructionMethodType_BestFit', 
+				'diagram_LineConstructionMethodType_Recompensated', 
+				'diagram_LineConstructionMethodType_Midline', 
+				'diagram_LineConstructionMethodType_Intersection', 
+				'diagram_LineConstructionMethodType_Projection', 
+				'diagram_LineConstructionMethodType_Perpendicular', 
+				'diagram_LineConstructionMethodType_Parallel', 
+				'diagram_LineConstructionMethodType_Copy', 
+				'diagram_LineConstructionMethodType_Cast', 
+				'diagram_LineConstructionMethodType_TangentThrough', 
+				'diagram_LineConstructionMethodType_Transform', 
+				'diagram_LineConstructionMethodType_Extract', 
+				'diagram_LineConstructionMethodType_FromScan', 
+				'diagram_LineConstructionMethodType');
+var annotationBoxes= new Array('annotations_LineConstructionMethodType_BestFit', 
+				'annotations_LineConstructionMethodType_Recompensated', 
+				'annotations_LineConstructionMethodType_Midline', 
+				'annotations_LineConstructionMethodType_Intersection', 
+				'annotations_LineConstructionMethodType_Projection', 
+				'annotations_LineConstructionMethodType_Perpendicular', 
+				'annotations_LineConstructionMethodType_Parallel', 
+				'annotations_LineConstructionMethodType_Copy', 
+				'annotations_LineConstructionMethodType_Cast', 
+				'annotations_LineConstructionMethodType_TangentThrough', 
+				'annotations_LineConstructionMethodType_Transform', 
+				'annotations_LineConstructionMethodType_Extract', 
+				'annotations_LineConstructionMethodType_FromScan', 
+				'annotations_LineConstructionMethodType');
+var attributesBoxes= new Array('attributes_LineConstructionMethodType_BestFit');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="LineConstructionMethodType_BestFit"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineConstructionMethodType')">LineConstructionMethodType</a></b> / BestFit</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_LineConstructionMethodType_BestFit" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_LineConstructionMethodType_BestFit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_LineConstructionMethodType_BestFit" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The BestFit element describes the best-fit construction of a line from 2 or more point-reducible base features. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_LineConstructionMethodType_BestFit" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_LineConstructionMethodType_BestFit');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_LineConstructionMethodType_BestFit" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_BestFit_11.jpeg" usemap="#Features_xsd_Element_BestFit_11" /><map name="Features_xsd_Element_BestFit_11" id="Features_xsd_Element_BestFit_11">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="251,96,404,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="153,49,490,75" />
+                                 <area alt="Features_xsd_Complex_Type_LineBestFitType.tmp#LineBestFitType_n" href="Features_xsd_Complex_Type_LineBestFitType.html#LineBestFitType_n" coords="166,306,247,335" />
+                                 <area alt="Features_xsd_Complex_Type_LineBestFitType.tmp#LineBestFitType_BaseFeature" href="Features_xsd_Complex_Type_LineBestFitType.html#LineBestFitType_BaseFeature" coords="260,410,372,439" />
+                                 <area alt="Features_xsd_Complex_Type_LineBestFitType.tmp#LineBestFitType" href="Features_xsd_Complex_Type_LineBestFitType.html#LineBestFitType" coords="137,3,294,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineBestFitType.html#LineBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineBestFitType')">LineBestFitType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_LineBestFitType.html#LineBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineBestFitType')">LineBestFitType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_LineConstructionMethodType_BestFit" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_LineConstructionMethodType_BestFit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_LineConstructionMethodType_BestFit" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineBestFitType.html#LineBestFitType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseFeature')">BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_LineConstructionMethodType_BestFit" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_LineConstructionMethodType_BestFit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_LineConstructionMethodType_BestFit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;BestFit</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BaseFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{2,unbounded}</span><span class="tEl">&lt;/BaseFeature&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/BestFit&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_LineConstructionMethodType_BestFit" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_LineConstructionMethodType_BestFit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_LineConstructionMethodType_BestFit" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Features_xsd_Complex_Type_LineBestFitType.html#LineBestFitType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of base features used in the construction.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_LineConstructionMethodType_BestFit" type="image" src="img/btM.gif" value="-" onclick="switchState('source_LineConstructionMethodType_BestFit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_LineConstructionMethodType_BestFit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"BestFit"</span><span class="tAN"> type=</span><span class="tAV">"LineBestFitType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The BestFit element describes the best-fit construction of a line from 2 or more point-reducible base features. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="LineConstructionMethodType_Recompensated"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineConstructionMethodType')">LineConstructionMethodType</a></b> / Recompensated</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_LineConstructionMethodType_Recompensated" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_LineConstructionMethodType_Recompensated');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_LineConstructionMethodType_Recompensated" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Recompensated element describes the re-compensated-for- probe-size best-fit construction of a line from 2 or more base feature points. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_LineConstructionMethodType_Recompensated" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_LineConstructionMethodType_Recompensated');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_LineConstructionMethodType_Recompensated" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Recompensated_11.jpeg" usemap="#Features_xsd_Element_Recompensated_11" /><map name="Features_xsd_Element_Recompensated_11" id="Features_xsd_Element_Recompensated_11">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="303,96,456,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="205,49,542,75" />
+                                 <area alt="Features_xsd_Complex_Type_LineRecompType.tmp#LineRecompType_BaseFeaturePointList" href="Features_xsd_Complex_Type_LineRecompType.html#LineRecompType_BaseFeaturePointList" coords="287,266,450,295" />
+                                 <area alt="Features_xsd_Complex_Type_LineRecompType.tmp#LineRecompType" href="Features_xsd_Complex_Type_LineRecompType.html#LineRecompType" coords="189,3,352,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineRecompType.html#LineRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineRecompType')">LineRecompType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_LineRecompType.html#LineRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineRecompType')">LineRecompType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_LineConstructionMethodType_Recompensated" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_LineConstructionMethodType_Recompensated');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_LineConstructionMethodType_Recompensated" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineRecompType.html#LineRecompType_BaseFeaturePointList" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseFeaturePointList')">BaseFeaturePointList</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_LineConstructionMethodType_Recompensated" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_LineConstructionMethodType_Recompensated');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_LineConstructionMethodType_Recompensated" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Recompensated</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BaseFeaturePointList</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BaseFeaturePointList&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Recompensated&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_LineConstructionMethodType_Recompensated" type="image" src="img/btM.gif" value="-" onclick="switchState('source_LineConstructionMethodType_Recompensated');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_LineConstructionMethodType_Recompensated" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Recompensated"</span><span class="tAN"> type=</span><span class="tAV">"LineRecompType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Recompensated element describes the re-compensated-for- probe-size best-fit construction of a line from 2 or more base feature points. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="LineConstructionMethodType_Midline"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineConstructionMethodType')">LineConstructionMethodType</a></b> / Midline</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_LineConstructionMethodType_Midline" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_LineConstructionMethodType_Midline');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_LineConstructionMethodType_Midline" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Midline element describes the construction of a line that is everywhere at equal distance from each of a pair of base lines. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_LineConstructionMethodType_Midline" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_LineConstructionMethodType_Midline');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_LineConstructionMethodType_Midline" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Midline.jpeg" usemap="#Features_xsd_Element_Midline" /><map name="Features_xsd_Element_Midline" id="Features_xsd_Element_Midline">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="250,96,403,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="152,49,489,75" />
+                                 <area alt="Features_xsd_Complex_Type_LineMidlineType.tmp#LineMidlineType_BaseLine" href="Features_xsd_Complex_Type_LineMidlineType.html#LineMidlineType_BaseLine" coords="239,266,331,295" />
+                                 <area alt="Features_xsd_Complex_Type_LineMidlineType.tmp#LineMidlineType" href="Features_xsd_Complex_Type_LineMidlineType.html#LineMidlineType" coords="136,3,292,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineMidlineType.html#LineMidlineType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineMidlineType')">LineMidlineType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_LineMidlineType.html#LineMidlineType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineMidlineType')">LineMidlineType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_LineConstructionMethodType_Midline" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_LineConstructionMethodType_Midline');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_LineConstructionMethodType_Midline" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineMidlineType.html#LineMidlineType_BaseLine" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseLine')">BaseLine</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_LineConstructionMethodType_Midline" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_LineConstructionMethodType_Midline');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_LineConstructionMethodType_Midline" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Midline</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BaseLine</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{2,2}</span><span class="tEl">&lt;/BaseLine&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Midline&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_LineConstructionMethodType_Midline" type="image" src="img/btM.gif" value="-" onclick="switchState('source_LineConstructionMethodType_Midline');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_LineConstructionMethodType_Midline" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Midline"</span><span class="tAN"> type=</span><span class="tAV">"LineMidlineType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Midline element describes the construction of a line that is everywhere at equal distance from each of a pair of base lines. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="LineConstructionMethodType_Intersection"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineConstructionMethodType')">LineConstructionMethodType</a></b> / Intersection</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_LineConstructionMethodType_Intersection" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_LineConstructionMethodType_Intersection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_LineConstructionMethodType_Intersection" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Intersection element describes the construction of a line by the intersection of two features. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_LineConstructionMethodType_Intersection" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_LineConstructionMethodType_Intersection');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_LineConstructionMethodType_Intersection" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Intersection_4.jpeg" usemap="#Features_xsd_Element_Intersection_4" /><map name="Features_xsd_Element_Intersection_4" id="Features_xsd_Element_Intersection_4">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="276,96,429,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="178,49,515,75" />
+                                 <area alt="Features_xsd_Complex_Type_LineIntersectionType.tmp#LineIntersectionType_IntersectionFeature" href="Features_xsd_Complex_Type_LineIntersectionType.html#LineIntersectionType_IntersectionFeature" coords="265,266,414,295" />
+                                 <area alt="Features_xsd_Complex_Type_LineIntersectionType.tmp#LineIntersectionType" href="Features_xsd_Complex_Type_LineIntersectionType.html#LineIntersectionType" coords="162,3,344,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineIntersectionType.html#LineIntersectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineIntersectionType')">LineIntersectionType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_LineIntersectionType.html#LineIntersectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineIntersectionType')">LineIntersectionType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_LineConstructionMethodType_Intersection" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_LineConstructionMethodType_Intersection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_LineConstructionMethodType_Intersection" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineIntersectionType.html#LineIntersectionType_IntersectionFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component IntersectionFeature')">IntersectionFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_LineConstructionMethodType_Intersection" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_LineConstructionMethodType_Intersection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_LineConstructionMethodType_Intersection" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Intersection</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;IntersectionFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{2,2}</span><span class="tEl">&lt;/IntersectionFeature&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Intersection&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_LineConstructionMethodType_Intersection" type="image" src="img/btM.gif" value="-" onclick="switchState('source_LineConstructionMethodType_Intersection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_LineConstructionMethodType_Intersection" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Intersection"</span><span class="tAN"> type=</span><span class="tAV">"LineIntersectionType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Intersection element describes the construction of a line by the intersection of two features. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="LineConstructionMethodType_Projection"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineConstructionMethodType')">LineConstructionMethodType</a></b> / Projection</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_LineConstructionMethodType_Projection" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_LineConstructionMethodType_Projection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_LineConstructionMethodType_Projection" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Projection element describes the construction of a line by the projection of a base line onto a plane. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_LineConstructionMethodType_Projection" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_LineConstructionMethodType_Projection');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_LineConstructionMethodType_Projection" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Projection_4.jpeg" usemap="#Features_xsd_Element_Projection_4" /><map name="Features_xsd_Element_Projection_4" id="Features_xsd_Element_Projection_4">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="267,96,420,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="169,49,506,75" />
+                                 <area alt="Features_xsd_Complex_Type_LineProjectionType.tmp#LineProjectionType_ProjectionPlane" href="Features_xsd_Complex_Type_LineProjectionType.html#LineProjectionType_ProjectionPlane" coords="251,262,380,291" />
+                                 <area alt="Features_xsd_Complex_Type_LineProjectionType.tmp#LineProjectionType_ProjectionLine" href="Features_xsd_Complex_Type_LineProjectionType.html#LineProjectionType_ProjectionLine" coords="251,353,371,382" />
+                                 <area alt="Features_xsd_Complex_Type_LineProjectionType.tmp#LineProjectionType" href="Features_xsd_Complex_Type_LineProjectionType.html#LineProjectionType" coords="153,3,326,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineProjectionType.html#LineProjectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineProjectionType')">LineProjectionType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_LineProjectionType.html#LineProjectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineProjectionType')">LineProjectionType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_LineConstructionMethodType_Projection" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_LineConstructionMethodType_Projection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_LineConstructionMethodType_Projection" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b>, <b><a href="Features_xsd_Complex_Type_LineProjectionType.html#LineProjectionType_ProjectionLine" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProjectionLine')">ProjectionLine</a></b>, <b><a href="Features_xsd_Complex_Type_LineProjectionType.html#LineProjectionType_ProjectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProjectionPlane')">ProjectionPlane</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_LineConstructionMethodType_Projection" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_LineConstructionMethodType_Projection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_LineConstructionMethodType_Projection" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Projection</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ProjectionPlane</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ProjectionPlane&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ProjectionLine</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ProjectionLine&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Projection&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_LineConstructionMethodType_Projection" type="image" src="img/btM.gif" value="-" onclick="switchState('source_LineConstructionMethodType_Projection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_LineConstructionMethodType_Projection" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Projection"</span><span class="tAN"> type=</span><span class="tAV">"LineProjectionType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Projection element describes the construction of a line by the projection of a base line onto a plane. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="LineConstructionMethodType_Perpendicular"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineConstructionMethodType')">LineConstructionMethodType</a></b> / Perpendicular</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_LineConstructionMethodType_Perpendicular" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_LineConstructionMethodType_Perpendicular');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_LineConstructionMethodType_Perpendicular" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Perpendicular element describes the construction of a line perpendicular to one base feature and passing through a point feature. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_LineConstructionMethodType_Perpendicular" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_LineConstructionMethodType_Perpendicular');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_LineConstructionMethodType_Perpendicular" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Perpendicular.jpeg" usemap="#Features_xsd_Element_Perpendicular" /><map name="Features_xsd_Element_Perpendicular" id="Features_xsd_Element_Perpendicular">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="288,96,441,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="190,49,527,75" />
+                                 <area alt="Features_xsd_Complex_Type_LinePerpendicularType.tmp#LinePerpendicularType_PerpendicularFeature" href="Features_xsd_Complex_Type_LinePerpendicularType.html#LinePerpendicularType_PerpendicularFeature" coords="272,262,433,291" />
+                                 <area alt="Features_xsd_Complex_Type_LinePerpendicularType.tmp#LinePerpendicularType_PointFeature" href="Features_xsd_Complex_Type_LinePerpendicularType.html#LinePerpendicularType_PointFeature" coords="272,353,384,382" />
+                                 <area alt="Features_xsd_Complex_Type_LinePerpendicularType.tmp#LinePerpendicularType" href="Features_xsd_Complex_Type_LinePerpendicularType.html#LinePerpendicularType" coords="174,3,368,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LinePerpendicularType.html#LinePerpendicularType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinePerpendicularType')">LinePerpendicularType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_LinePerpendicularType.html#LinePerpendicularType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinePerpendicularType')">LinePerpendicularType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_LineConstructionMethodType_Perpendicular" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_LineConstructionMethodType_Perpendicular');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_LineConstructionMethodType_Perpendicular" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b>, <b><a href="Features_xsd_Complex_Type_LinePerpendicularType.html#LinePerpendicularType_PerpendicularFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PerpendicularFeature')">PerpendicularFeature</a></b>, <b><a href="Features_xsd_Complex_Type_LinePerpendicularType.html#LinePerpendicularType_PointFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeature')">PointFeature</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_LineConstructionMethodType_Perpendicular" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_LineConstructionMethodType_Perpendicular');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_LineConstructionMethodType_Perpendicular" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Perpendicular</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;PerpendicularFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/PerpendicularFeature&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;PointFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/PointFeature&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Perpendicular&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_LineConstructionMethodType_Perpendicular" type="image" src="img/btM.gif" value="-" onclick="switchState('source_LineConstructionMethodType_Perpendicular');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_LineConstructionMethodType_Perpendicular" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Perpendicular"</span><span class="tAN"> type=</span><span class="tAV">"LinePerpendicularType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Perpendicular element describes the construction of a line perpendicular to one base feature and passing through a point feature. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="LineConstructionMethodType_Parallel"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineConstructionMethodType')">LineConstructionMethodType</a></b> / Parallel</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_LineConstructionMethodType_Parallel" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_LineConstructionMethodType_Parallel');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_LineConstructionMethodType_Parallel" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Parallel element describes the construction of a line parallel to a base feature and passing through a point feature. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_LineConstructionMethodType_Parallel" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_LineConstructionMethodType_Parallel');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_LineConstructionMethodType_Parallel" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Parallel.jpeg" usemap="#Features_xsd_Element_Parallel" /><map name="Features_xsd_Element_Parallel" id="Features_xsd_Element_Parallel">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="252,96,405,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="154,49,491,75" />
+                                 <area alt="Features_xsd_Complex_Type_LineParallelType.tmp#LineParallelType_ParallelFeature" href="Features_xsd_Complex_Type_LineParallelType.html#LineParallelType_ParallelFeature" coords="236,262,361,291" />
+                                 <area alt="Features_xsd_Complex_Type_LineParallelType.tmp#LineParallelType_PointFeature" href="Features_xsd_Complex_Type_LineParallelType.html#LineParallelType_PointFeature" coords="236,353,348,382" />
+                                 <area alt="Features_xsd_Complex_Type_LineParallelType.tmp#LineParallelType" href="Features_xsd_Complex_Type_LineParallelType.html#LineParallelType" coords="138,3,296,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineParallelType.html#LineParallelType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineParallelType')">LineParallelType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_LineParallelType.html#LineParallelType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineParallelType')">LineParallelType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_LineConstructionMethodType_Parallel" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_LineConstructionMethodType_Parallel');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_LineConstructionMethodType_Parallel" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b>, <b><a href="Features_xsd_Complex_Type_LineParallelType.html#LineParallelType_ParallelFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ParallelFeature')">ParallelFeature</a></b>, <b><a href="Features_xsd_Complex_Type_LineParallelType.html#LineParallelType_PointFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeature')">PointFeature</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_LineConstructionMethodType_Parallel" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_LineConstructionMethodType_Parallel');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_LineConstructionMethodType_Parallel" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Parallel</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ParallelFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ParallelFeature&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;PointFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/PointFeature&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Parallel&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_LineConstructionMethodType_Parallel" type="image" src="img/btM.gif" value="-" onclick="switchState('source_LineConstructionMethodType_Parallel');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_LineConstructionMethodType_Parallel" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Parallel"</span><span class="tAN"> type=</span><span class="tAV">"LineParallelType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Parallel element describes the construction of a line parallel to a base feature and passing through a point feature. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="LineConstructionMethodType_Copy"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineConstructionMethodType')">LineConstructionMethodType</a></b> / Copy</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_LineConstructionMethodType_Copy" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_LineConstructionMethodType_Copy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_LineConstructionMethodType_Copy" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Copy element describes the construction of a line by the copying of a base line. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_LineConstructionMethodType_Copy" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_LineConstructionMethodType_Copy');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_LineConstructionMethodType_Copy" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Copy_12.jpeg" usemap="#Features_xsd_Element_Copy_12" /><map name="Features_xsd_Element_Copy_12" id="Features_xsd_Element_Copy_12">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="239,96,392,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="141,49,478,75" />
+                                 <area alt="Features_xsd_Complex_Type_LineCopyType.tmp#LineCopyType_BaseLine" href="Features_xsd_Complex_Type_LineCopyType.html#LineCopyType_BaseLine" coords="223,266,315,295" />
+                                 <area alt="Features_xsd_Complex_Type_LineCopyType.tmp#LineCopyType" href="Features_xsd_Complex_Type_LineCopyType.html#LineCopyType" coords="125,3,270,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineCopyType.html#LineCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineCopyType')">LineCopyType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_LineCopyType.html#LineCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineCopyType')">LineCopyType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_LineConstructionMethodType_Copy" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_LineConstructionMethodType_Copy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_LineConstructionMethodType_Copy" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineCopyType.html#LineCopyType_BaseLine" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseLine')">BaseLine</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_LineConstructionMethodType_Copy" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_LineConstructionMethodType_Copy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_LineConstructionMethodType_Copy" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Copy</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BaseLine</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BaseLine&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Copy&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_LineConstructionMethodType_Copy" type="image" src="img/btM.gif" value="-" onclick="switchState('source_LineConstructionMethodType_Copy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_LineConstructionMethodType_Copy" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Copy"</span><span class="tAN"> type=</span><span class="tAV">"LineCopyType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Copy element describes the construction of a line by the copying of a base line. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="LineConstructionMethodType_Cast"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineConstructionMethodType')">LineConstructionMethodType</a></b> / Cast</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_LineConstructionMethodType_Cast" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_LineConstructionMethodType_Cast');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_LineConstructionMethodType_Cast" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Cast element describes the construction of a line by the casting of a base feature. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_LineConstructionMethodType_Cast" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_LineConstructionMethodType_Cast');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_LineConstructionMethodType_Cast" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Cast_12.jpeg" usemap="#Features_xsd_Element_Cast_12" /><map name="Features_xsd_Element_Cast_12" id="Features_xsd_Element_Cast_12">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="236,96,389,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="138,49,475,75" />
+                                 <area alt="Features_xsd_Complex_Type_LineCastType.tmp#LineCastType_BaseFeature" href="Features_xsd_Complex_Type_LineCastType.html#LineCastType_BaseFeature" coords="220,266,332,295" />
+                                 <area alt="Features_xsd_Complex_Type_LineCastType.tmp#LineCastType" href="Features_xsd_Complex_Type_LineCastType.html#LineCastType" coords="122,3,264,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineCastType.html#LineCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineCastType')">LineCastType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_LineCastType.html#LineCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineCastType')">LineCastType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_LineConstructionMethodType_Cast" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_LineConstructionMethodType_Cast');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_LineConstructionMethodType_Cast" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineCastType.html#LineCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseFeature')">BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_LineConstructionMethodType_Cast" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_LineConstructionMethodType_Cast');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_LineConstructionMethodType_Cast" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Cast</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BaseFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BaseFeature&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Cast&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_LineConstructionMethodType_Cast" type="image" src="img/btM.gif" value="-" onclick="switchState('source_LineConstructionMethodType_Cast');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_LineConstructionMethodType_Cast" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Cast"</span><span class="tAN"> type=</span><span class="tAV">"LineCastType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Cast element describes the construction of a line by the casting of a base feature. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="LineConstructionMethodType_TangentThrough"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineConstructionMethodType')">LineConstructionMethodType</a></b> / TangentThrough</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_LineConstructionMethodType_TangentThrough" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_LineConstructionMethodType_TangentThrough');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_LineConstructionMethodType_TangentThrough" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The TangentThrough element describes the construction of a line tangent to a base feature and passing through a point feature. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_LineConstructionMethodType_TangentThrough" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_LineConstructionMethodType_TangentThrough');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_LineConstructionMethodType_TangentThrough" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_TangentThrough_1.jpeg" usemap="#Features_xsd_Element_TangentThrough_1" /><map name="Features_xsd_Element_TangentThrough_1" id="Features_xsd_Element_TangentThrough_1">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="301,96,454,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="203,49,540,75" />
+                                 <area alt="Features_xsd_Complex_Type_LineTangentThroughType.tmp#LineTangentThroughType_TangentFeature" href="Features_xsd_Complex_Type_LineTangentThroughType.html#LineTangentThroughType_TangentFeature" coords="285,262,413,291" />
+                                 <area alt="Features_xsd_Complex_Type_LineTangentThroughType.tmp#LineTangentThroughType_PointFeature" href="Features_xsd_Complex_Type_LineTangentThroughType.html#LineTangentThroughType_PointFeature" coords="285,353,397,382" />
+                                 <area alt="Features_xsd_Complex_Type_LineTangentThroughType.tmp#LineTangentThroughType" href="Features_xsd_Complex_Type_LineTangentThroughType.html#LineTangentThroughType" coords="187,3,394,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineTangentThroughType.html#LineTangentThroughType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineTangentThroughType')">LineTangentThroughType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_LineTangentThroughType.html#LineTangentThroughType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineTangentThroughType')">LineTangentThroughType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_LineConstructionMethodType_TangentThrough" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_LineConstructionMethodType_TangentThrough');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_LineConstructionMethodType_TangentThrough" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b>, <b><a href="Features_xsd_Complex_Type_LineTangentThroughType.html#LineTangentThroughType_PointFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeature')">PointFeature</a></b>, <b><a href="Features_xsd_Complex_Type_LineTangentThroughType.html#LineTangentThroughType_TangentFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TangentFeature')">TangentFeature</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_LineConstructionMethodType_TangentThrough" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_LineConstructionMethodType_TangentThrough');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_LineConstructionMethodType_TangentThrough" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;TangentThrough</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TangentFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/TangentFeature&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;PointFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/PointFeature&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/TangentThrough&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_LineConstructionMethodType_TangentThrough" type="image" src="img/btM.gif" value="-" onclick="switchState('source_LineConstructionMethodType_TangentThrough');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_LineConstructionMethodType_TangentThrough" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TangentThrough"</span><span class="tAN"> type=</span><span class="tAV">"LineTangentThroughType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The TangentThrough element describes the construction of a line tangent to a base feature and passing through a point feature. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="LineConstructionMethodType_Transform"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineConstructionMethodType')">LineConstructionMethodType</a></b> / Transform</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_LineConstructionMethodType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_LineConstructionMethodType_Transform');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_LineConstructionMethodType_Transform" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Transform element describes the construction of a line by the transformation of a base line. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_LineConstructionMethodType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_LineConstructionMethodType_Transform');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_LineConstructionMethodType_Transform" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Transform_12.jpeg" usemap="#Features_xsd_Element_Transform_12" /><map name="Features_xsd_Element_Transform_12" id="Features_xsd_Element_Transform_12">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="266,96,419,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="168,49,505,75" />
+                                 <area alt="Features_xsd_Complex_Type_LineTransformType.tmp#LineTransformType_BaseLine" href="Features_xsd_Complex_Type_LineTransformType.html#LineTransformType_BaseLine" coords="250,262,342,291" />
+                                 <area alt="Features_xsd_Complex_Type_LineTransformType.tmp#LineTransformType_Transformation" href="Features_xsd_Complex_Type_LineTransformType.html#LineTransformType_Transformation" coords="250,353,373,382" />
+                                 <area alt="Features_xsd_Complex_Type_LineTransformType.tmp#LineTransformType" href="Features_xsd_Complex_Type_LineTransformType.html#LineTransformType" coords="152,3,324,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineTransformType.html#LineTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineTransformType')">LineTransformType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_LineTransformType.html#LineTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineTransformType')">LineTransformType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_LineConstructionMethodType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_LineConstructionMethodType_Transform');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_LineConstructionMethodType_Transform" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineTransformType.html#LineTransformType_BaseLine" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseLine')">BaseLine</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b>, <b><a href="Features_xsd_Complex_Type_LineTransformType.html#LineTransformType_Transformation" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Transformation')">Transformation</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_LineConstructionMethodType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_LineConstructionMethodType_Transform');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_LineConstructionMethodType_Transform" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Transform</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BaseLine</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BaseLine&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Transformation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Transformation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Transform&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_LineConstructionMethodType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('source_LineConstructionMethodType_Transform');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_LineConstructionMethodType_Transform" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Transform"</span><span class="tAN"> type=</span><span class="tAV">"LineTransformType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Transform element describes the construction of a line by the transformation of a base line. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="LineConstructionMethodType_Extract"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineConstructionMethodType')">LineConstructionMethodType</a></b> / Extract</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_LineConstructionMethodType_Extract" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_LineConstructionMethodType_Extract');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_LineConstructionMethodType_Extract" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Extract element describes the extraction of a line from a curve. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_LineConstructionMethodType_Extract" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_LineConstructionMethodType_Extract');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_LineConstructionMethodType_Extract" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Extract_1.jpeg" usemap="#Features_xsd_Element_Extract_1" /><map name="Features_xsd_Element_Extract_1" id="Features_xsd_Element_Extract_1">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="251,96,404,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="153,49,490,75" />
+                                 <area alt="Features_xsd_Complex_Type_LineExtractType.tmp#LineExtractType_CurveFeature" href="Features_xsd_Complex_Type_LineExtractType.html#LineExtractType_CurveFeature" coords="235,266,349,295" />
+                                 <area alt="Features_xsd_Complex_Type_LineExtractType.tmp#LineExtractType" href="Features_xsd_Complex_Type_LineExtractType.html#LineExtractType" coords="137,3,294,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineExtractType.html#LineExtractType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineExtractType')">LineExtractType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_LineExtractType.html#LineExtractType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineExtractType')">LineExtractType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_LineConstructionMethodType_Extract" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_LineConstructionMethodType_Extract');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_LineConstructionMethodType_Extract" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineExtractType.html#LineExtractType_CurveFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CurveFeature')">CurveFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_LineConstructionMethodType_Extract" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_LineConstructionMethodType_Extract');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_LineConstructionMethodType_Extract" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Extract</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;CurveFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/CurveFeature&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Extract&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_LineConstructionMethodType_Extract" type="image" src="img/btM.gif" value="-" onclick="switchState('source_LineConstructionMethodType_Extract');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_LineConstructionMethodType_Extract" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Extract"</span><span class="tAN"> type=</span><span class="tAV">"LineExtractType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Extract element describes the extraction of a line from a curve. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="LineConstructionMethodType_FromScan"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineConstructionMethodType')">LineConstructionMethodType</a></b> / FromScan</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_LineConstructionMethodType_FromScan" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_LineConstructionMethodType_FromScan');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_LineConstructionMethodType_FromScan" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The FromScan element describes the construction of a line from scan data. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_LineConstructionMethodType_FromScan" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_LineConstructionMethodType_FromScan');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_LineConstructionMethodType_FromScan" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_FromScan_7.jpeg" usemap="#Features_xsd_Element_FromScan_7" /><map name="Features_xsd_Element_FromScan_7" id="Features_xsd_Element_FromScan_7">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="269,96,422,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="171,49,508,75" />
+                                 <area alt="Features_xsd_Complex_Type_LineFromScanType.tmp#LineFromScanType_SurfaceFeature" href="Features_xsd_Complex_Type_LineFromScanType.html#LineFromScanType_SurfaceFeature" coords="253,262,379,291" />
+                                 <area alt="Features_xsd_Complex_Type_LineFromScanType.tmp#LineFromScanType_SearchRadius" href="Features_xsd_Complex_Type_LineFromScanType.html#LineFromScanType_SearchRadius" coords="253,353,372,382" />
+                                 <area alt="Features_xsd_Complex_Type_LineFromScanType.tmp#LineFromScanType" href="Features_xsd_Complex_Type_LineFromScanType.html#LineFromScanType" coords="155,3,330,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineFromScanType.html#LineFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineFromScanType')">LineFromScanType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_LineFromScanType.html#LineFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineFromScanType')">LineFromScanType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_LineConstructionMethodType_FromScan" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_LineConstructionMethodType_FromScan');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_LineConstructionMethodType_FromScan" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b>, <b><a href="Features_xsd_Complex_Type_LineFromScanType.html#LineFromScanType_SearchRadius" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SearchRadius')">SearchRadius</a></b>, <b><a href="Features_xsd_Complex_Type_LineFromScanType.html#LineFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceFeature')">SurfaceFeature</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_LineConstructionMethodType_FromScan" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_LineConstructionMethodType_FromScan');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_LineConstructionMethodType_FromScan" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;FromScan</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SurfaceFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/SurfaceFeature&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SearchRadius</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/SearchRadius&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/FromScan&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_LineConstructionMethodType_FromScan" type="image" src="img/btM.gif" value="-" onclick="switchState('source_LineConstructionMethodType_FromScan');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_LineConstructionMethodType_FromScan" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FromScan"</span><span class="tAN"> type=</span><span class="tAV">"LineFromScanType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FromScan element describes the construction of a line from scan data. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="LineConstructionMethodType"></a><div class="componentTitle">Complex Type <span class="qname">LineConstructionMethodType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_LineConstructionMethodType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_LineConstructionMethodType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_LineConstructionMethodType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The LineConstructionMethodType defines the method for constructing a unique nominal or measured line feature.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_LineConstructionMethodType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_LineConstructionMethodType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_LineConstructionMethodType" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Complex_Type_LineConstructionMethodType.jpeg" usemap="#Features_xsd_Complex_Type_LineConstructionMethodType" /><map name="Features_xsd_Complex_Type_LineConstructionMethodType" id="Features_xsd_Complex_Type_LineConstructionMethodType">
+                                 <area alt="Features_xsd_Complex_Type_LineConstructionMethodType.tmp#LineConstructionMethodType_BestFit" href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_BestFit" coords="395,0,475,29" />
+                                 <area alt="Features_xsd_Complex_Type_LineConstructionMethodType.tmp#LineConstructionMethodType_Recompensated" href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Recompensated" coords="395,107,527,136" />
+                                 <area alt="Features_xsd_Complex_Type_LineConstructionMethodType.tmp#LineConstructionMethodType_Midline" href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Midline" coords="395,214,474,243" />
+                                 <area alt="Features_xsd_Complex_Type_LineConstructionMethodType.tmp#LineConstructionMethodType_Intersection" href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Intersection" coords="395,321,500,350" />
+                                 <area alt="Features_xsd_Complex_Type_LineConstructionMethodType.tmp#LineConstructionMethodType_Projection" href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Projection" coords="395,428,491,457" />
+                                 <area alt="Features_xsd_Complex_Type_LineConstructionMethodType.tmp#LineConstructionMethodType_Perpendicular" href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Perpendicular" coords="395,535,512,564" />
+                                 <area alt="Features_xsd_Complex_Type_LineConstructionMethodType.tmp#LineConstructionMethodType_Parallel" href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Parallel" coords="395,642,476,671" />
+                                 <area alt="Features_xsd_Complex_Type_LineConstructionMethodType.tmp#LineConstructionMethodType_Copy" href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Copy" coords="395,749,463,778" />
+                                 <area alt="Features_xsd_Complex_Type_LineConstructionMethodType.tmp#LineConstructionMethodType_Cast" href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Cast" coords="395,856,460,885" />
+                                 <area alt="Features_xsd_Complex_Type_LineConstructionMethodType.tmp#LineConstructionMethodType_TangentThrough" href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_TangentThrough" coords="395,979,525,1008" />
+                                 <area alt="Features_xsd_Complex_Type_LineConstructionMethodType.tmp#LineConstructionMethodType_Transform" href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Transform" coords="395,1086,490,1115" />
+                                 <area alt="Features_xsd_Complex_Type_LineConstructionMethodType.tmp#LineConstructionMethodType_Extract" href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Extract" coords="395,1193,475,1222" />
+                                 <area alt="Features_xsd_Complex_Type_LineConstructionMethodType.tmp#LineConstructionMethodType_FromScan" href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_FromScan" coords="395,1300,493,1329" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_LineConstructionMethodType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_LineConstructionMethodType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_LineConstructionMethodType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Elements </td>
+                                    <td><b><a href="Features_xsd_Complex_Type_LineCheckedType.html#LineCheckedType_Constructed" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineCheckedType/Constructed')">LineCheckedType/Constructed</a></b>, <b><a href="Features_xsd_Complex_Type_LineFeatureNominalType.html#LineFeatureNominalType_Constructed" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineFeatureNominalType/Constructed')">LineFeatureNominalType/Constructed</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_BestFit" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BestFit')">BestFit</a></b>, <b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Cast" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Cast')">Cast</a></b>, <b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Copy" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Copy')">Copy</a></b>, <b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Extract" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Extract')">Extract</a></b>, <b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_FromScan" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FromScan')">FromScan</a></b>, <b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Intersection" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Intersection')">Intersection</a></b>, <b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Midline" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Midline')">Midline</a></b>, <b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Parallel" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Parallel')">Parallel</a></b>, <b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Perpendicular" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Perpendicular')">Perpendicular</a></b>, <b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Projection" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Projection')">Projection</a></b>, <b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Recompensated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Recompensated')">Recompensated</a></b>, <b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_TangentThrough" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TangentThrough')">TangentThrough</a></b>, <b><a href="Features_xsd_Complex_Type_LineConstructionMethodType.html#LineConstructionMethodType_Transform" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Transform')">Transform</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_LineConstructionMethodType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_LineConstructionMethodType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_LineConstructionMethodType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"LineConstructionMethodType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The LineConstructionMethodType defines the method for constructing a unique nominal or measured line feature.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This optional compositor provides a choice of the construction method for the line.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"BestFit"</span><span class="tAN"> type=</span><span class="tAV">"LineBestFitType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The BestFit element describes the best-fit construction of a line from 2 or more point-reducible base features. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Recompensated"</span><span class="tAN"> type=</span><span class="tAV">"LineRecompType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Recompensated element describes the re-compensated-for- probe-size best-fit construction of a line from 2 or more base feature points. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Midline"</span><span class="tAN"> type=</span><span class="tAV">"LineMidlineType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Midline element describes the construction of a line that is everywhere at equal distance from each of a pair of base lines. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Intersection"</span><span class="tAN"> type=</span><span class="tAV">"LineIntersectionType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Intersection element describes the construction of a line by the intersection of two features. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Projection"</span><span class="tAN"> type=</span><span class="tAV">"LineProjectionType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Projection element describes the construction of a line by the projection of a base line onto a plane. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Perpendicular"</span><span class="tAN"> type=</span><span class="tAV">"LinePerpendicularType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Perpendicular element describes the construction of a line perpendicular to one base feature and passing through a point feature. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Parallel"</span><span class="tAN"> type=</span><span class="tAV">"LineParallelType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Parallel element describes the construction of a line parallel to a base feature and passing through a point feature. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Copy"</span><span class="tAN"> type=</span><span class="tAV">"LineCopyType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Copy element describes the construction of a line by the copying of a base line. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Cast"</span><span class="tAN"> type=</span><span class="tAV">"LineCastType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Cast element describes the construction of a line by the casting of a base feature. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TangentThrough"</span><span class="tAN"> type=</span><span class="tAV">"LineTangentThroughType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The TangentThrough element describes the construction of a line tangent to a base feature and passing through a point feature. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Transform"</span><span class="tAN"> type=</span><span class="tAV">"LineTransformType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Transform element describes the construction of a line by the transformation of a base line. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Extract"</span><span class="tAN"> type=</span><span class="tAV">"LineExtractType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Extract element describes the extraction of a line from a curve. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FromScan"</span><span class="tAN"> type=</span><span class="tAV">"LineFromScanType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FromScan element describes the construction of a line from scan data. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

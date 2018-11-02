@@ -1,0 +1,1522 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Organization</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_StandardType_Organization', 
+				'properties_StandardType_Designator', 
+				'properties_StandardType_Year', 
+				'properties_StandardType_Title', 
+				'properties_StandardType_Description', 
+				'properties_StandardType_URI', 
+				'properties_StandardType_ISBN', 
+				'properties_StandardType_ReferencedStandardIds', 
+				'properties_StandardType_id');
+var facetsBoxes= new Array('facets_StandardType_id');
+var usedByBoxes= new Array('usedBy_StandardType', 
+				'usedBy_StandardType_id');
+var sourceBoxes= new Array('source_StandardType_Organization', 
+				'source_StandardType_Designator', 
+				'source_StandardType_Year', 
+				'source_StandardType_Title', 
+				'source_StandardType_Description', 
+				'source_StandardType_URI', 
+				'source_StandardType_ISBN', 
+				'source_StandardType_ReferencedStandardIds', 
+				'source_StandardType', 
+				'source_StandardType_id');
+var instanceBoxes= new Array('instance_StandardType_Organization', 
+				'instance_StandardType_ReferencedStandardIds');
+var diagramBoxes= new Array('diagram_StandardType_Organization', 
+				'diagram_StandardType_Designator', 
+				'diagram_StandardType_Year', 
+				'diagram_StandardType_Title', 
+				'diagram_StandardType_Description', 
+				'diagram_StandardType_URI', 
+				'diagram_StandardType_ISBN', 
+				'diagram_StandardType_ReferencedStandardIds', 
+				'diagram_StandardType');
+var annotationBoxes= new Array('annotations_StandardType_Organization', 
+				'annotations_StandardType_Designator', 
+				'annotations_StandardType_Year', 
+				'annotations_StandardType_Title', 
+				'annotations_StandardType_Description', 
+				'annotations_StandardType_URI', 
+				'annotations_StandardType_ISBN', 
+				'annotations_StandardType_ReferencedStandardIds', 
+				'annotations_StandardType', 
+				'annotations_StandardType_id');
+var attributesBoxes= new Array('attributes_StandardType_ReferencedStandardIds', 
+				'attributes_StandardType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="StandardType_Organization"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StandardType')">StandardType</a></b> / Organization</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StandardType_Organization" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StandardType_Organization');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StandardType_Organization" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Organization element is the name of the organization issuing the standard or specification, e.g. ASME, ISO as enumerations, or "Acme Widget" as a string.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_StandardType_Organization" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_StandardType_Organization');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_StandardType_Organization" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_Organization.jpeg" usemap="#IntermediatesPMI_xsd_Element_Organization" /><map name="IntermediatesPMI_xsd_Element_Organization" id="IntermediatesPMI_xsd_Element_Organization">
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_StandardsOrganizationType.tmp#StandardsOrganizationType_StandardsOrganizationEnum" href="IntermediatesPMI_xsd_Complex_Type_StandardsOrganizationType.html#StandardsOrganizationType_StandardsOrganizationEnum" coords="286,46,490,75" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_StandardsOrganizationType.tmp#StandardsOrganizationType_OtherStandardsOrganization" href="IntermediatesPMI_xsd_Complex_Type_StandardsOrganizationType.html#StandardsOrganizationType_OtherStandardsOrganization" coords="286,137,488,166" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_StandardsOrganizationType.tmp#StandardsOrganizationType" href="IntermediatesPMI_xsd_Complex_Type_StandardsOrganizationType.html#StandardsOrganizationType" coords="168,3,391,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_StandardsOrganizationType.html#StandardsOrganizationType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StandardsOrganizationType')">StandardsOrganizationType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_StandardType_Organization" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_StandardType_Organization');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_StandardType_Organization" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_StandardsOrganizationType.html#StandardsOrganizationType_OtherStandardsOrganization" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherStandardsOrganization')">OtherStandardsOrganization</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_StandardsOrganizationType.html#StandardsOrganizationType_StandardsOrganizationEnum" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StandardsOrganizationEnum')">StandardsOrganizationEnum</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_StandardType_Organization" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_StandardType_Organization');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_StandardType_Organization" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Organization</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;StandardsOrganizationEnum</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/StandardsOrganizationEnum&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;OtherStandardsOrganization</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/OtherStandardsOrganization&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Organization&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StandardType_Organization" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StandardType_Organization');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StandardType_Organization" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Organization"</span><span class="tAN"> type=</span><span class="tAV">"StandardsOrganizationType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Organization element is the name of the organization issuing the standard or specification, e.g. ASME, ISO as enumerations, or "Acme Widget" as a string.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="StandardType_Designator"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StandardType')">StandardType</a></b> / Designator</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StandardType_Designator" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StandardType_Designator');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StandardType_Designator" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Designator element is the name of the designator of the standard or specification, e.g. Y14.5, 1101.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_StandardType_Designator" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_StandardType_Designator');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_StandardType_Designator" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_Designator.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:token</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_StandardType_Designator" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_StandardType_Designator');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_StandardType_Designator" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StandardType_Designator" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StandardType_Designator');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StandardType_Designator" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Designator"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Designator element is the name of the designator of the standard or specification, e.g. Y14.5, 1101.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="StandardType_Year"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StandardType')">StandardType</a></b> / Year</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StandardType_Year" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StandardType_Year');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StandardType_Year" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Year element is the year the standard or specification was released, e.g. 1994, 2009, 2017.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_StandardType_Year" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_StandardType_Year');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_StandardType_Year" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_Year.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_StandardType_Year" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_StandardType_Year');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_StandardType_Year" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StandardType_Year" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StandardType_Year');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StandardType_Year" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Year"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Year element is the year the standard or specification was released, e.g. 1994, 2009, 2017.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="StandardType_Title"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StandardType')">StandardType</a></b> / Title</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StandardType_Title" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StandardType_Title');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StandardType_Title" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Title element is the title of the standard or specification, e.g. "Dimensioning and Tolerancing", "Geometrical product specifications".</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_StandardType_Title" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_StandardType_Title');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_StandardType_Title" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_Title.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_StandardType_Title" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_StandardType_Title');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_StandardType_Title" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StandardType_Title" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StandardType_Title');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StandardType_Title" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Title"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Title element is the title of the standard or specification, e.g. "Dimensioning and Tolerancing", "Geometrical product specifications".</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="StandardType_Description"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StandardType')">StandardType</a></b> / Description</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StandardType_Description" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StandardType_Description');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StandardType_Description" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Description element is the description of the standard or specification.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_StandardType_Description" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_StandardType_Description');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_StandardType_Description" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_Description_1.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_StandardType_Description" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_StandardType_Description');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_StandardType_Description" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StandardType_Description" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StandardType_Description');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StandardType_Description" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Description"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Description element is the description of the standard or specification.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="StandardType_URI"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StandardType')">StandardType</a></b> / URI</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StandardType_URI" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StandardType_URI');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StandardType_URI" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional URI element is a Uniform Resource Identifier for the standard or specification, for example, a file or a web site.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_StandardType_URI" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_StandardType_URI');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_StandardType_URI" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_URI_1.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:anyURI</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_StandardType_URI" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_StandardType_URI');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_StandardType_URI" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StandardType_URI" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StandardType_URI');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StandardType_URI" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"URI"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional URI element is a Uniform Resource Identifier for the standard or specification, for example, a file or a web site.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="StandardType_ISBN"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StandardType')">StandardType</a></b> / ISBN</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StandardType_ISBN" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StandardType_ISBN');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StandardType_ISBN" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional ISBN element is the International Standard Book Number for the standard or specification.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_StandardType_ISBN" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_StandardType_ISBN');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_StandardType_ISBN" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_ISBN.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:NMTOKEN</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_StandardType_ISBN" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_StandardType_ISBN');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_StandardType_ISBN" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StandardType_ISBN" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StandardType_ISBN');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StandardType_ISBN" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ISBN"</span><span class="tAN"> type=</span><span class="tAV">"xs:NMTOKEN"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ISBN element is the International Standard Book Number for the standard or specification.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="StandardType_ReferencedStandardIds"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StandardType')">StandardType</a></b> / ReferencedStandardIds</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StandardType_ReferencedStandardIds" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StandardType_ReferencedStandardIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StandardType_ReferencedStandardIds" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional ReferencedStandardIds element is a list of ids of standards or specifications referenced by or associated with this standard or specification.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_StandardType_ReferencedStandardIds" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_StandardType_ReferencedStandardIds');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_StandardType_ReferencedStandardIds" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_ReferencedStandardIds_1.jpeg" usemap="#IntermediatesPMI_xsd_Element_ReferencedStandardIds_1" /><map name="IntermediatesPMI_xsd_Element_ReferencedStandardIds_1" id="IntermediatesPMI_xsd_Element_ReferencedStandardIds_1">
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_n" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" coords="258,90,339,119" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_Id" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" coords="352,194,410,223" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" coords="229,3,409,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayReferenceType')">ArrayReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_StandardType_ReferencedStandardIds" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_StandardType_ReferencedStandardIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_StandardType_ReferencedStandardIds" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_StandardType_ReferencedStandardIds" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_StandardType_ReferencedStandardIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_StandardType_ReferencedStandardIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;ReferencedStandardIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/ReferencedStandardIds&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_StandardType_ReferencedStandardIds" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_StandardType_ReferencedStandardIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_StandardType_ReferencedStandardIds" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of Id elements in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StandardType_ReferencedStandardIds" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StandardType_ReferencedStandardIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StandardType_ReferencedStandardIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ReferencedStandardIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ReferencedStandardIds element is a list of ids of standards or specifications referenced by or associated with this standard or specification.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="StandardType"></a><div class="componentTitle">Complex Type <span class="qname">StandardType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StandardType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StandardType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StandardType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The StandardType defines information about a standard or specification. The Organization, Designator, and Year elements together identify the standard or specification, e.g., ASME Y14.5-2009, ISO 1101:2017.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_StandardType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_StandardType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_StandardType" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Complex_Type_StandardType.jpeg" usemap="#IntermediatesPMI_xsd_Complex_Type_StandardType" /><map name="IntermediatesPMI_xsd_Complex_Type_StandardType" id="IntermediatesPMI_xsd_Complex_Type_StandardType">
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_StandardType.tmp#StandardType_id" href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_id" coords="218,44,299,73" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="287,144,381,173" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_StandardType.tmp#StandardType_Organization" href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_Organization" coords="287,251,398,280" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_StandardType.tmp#StandardType_Designator" href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_Designator" coords="287,358,387,387" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_StandardType.tmp#StandardType_Year" href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_Year" coords="287,465,352,494" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_StandardType.tmp#StandardType_Title" href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_Title" coords="287,572,349,601" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_StandardType.tmp#StandardType_Description" href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_Description" coords="287,679,390,708" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_StandardType.tmp#StandardType_URI" href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_URI" coords="287,770,346,799" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_StandardType.tmp#StandardType_ISBN" href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_ISBN" coords="287,877,355,906" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_StandardType.tmp#StandardType_ReferencedStandardIds" href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_ReferencedStandardIds" coords="287,984,459,1013" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_StandardType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_StandardType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_StandardType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="IntermediatesPMI_xsd_Complex_Type_StandardsType.html#StandardsType_Standard" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StandardsType/Standard')">StandardsType/Standard</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_Designator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Designator')">Designator</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_ISBN" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ISBN')">ISBN</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_Organization" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Organization')">Organization</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_ReferencedStandardIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReferencedStandardIds')">ReferencedStandardIds</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_Title" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Title')">Title</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_URI" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component URI')">URI</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_Year" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Year')">Year</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_StandardType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_StandardType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_StandardType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the standard or specification, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StandardType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StandardType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StandardType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"StandardType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The StandardType defines information about a standard or specification. The Organization, Designator, and Year elements together identify the standard or specification, e.g., ASME Y14.5-2009, ISO 1101:2017.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> ref=</span><span class="tAV">"Attributes"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Attributes element contains user defined attributes (typified, binary array, or XML structured).</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Organization"</span><span class="tAN"> type=</span><span class="tAV">"StandardsOrganizationType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Organization element is the name of the organization issuing the standard or specification, e.g. ASME, ISO as enumerations, or "Acme Widget" as a string.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Designator"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Designator element is the name of the designator of the standard or specification, e.g. Y14.5, 1101.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Year"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Year element is the year the standard or specification was released, e.g. 1994, 2009, 2017.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Title"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Title element is the title of the standard or specification, e.g. "Dimensioning and Tolerancing", "Geometrical product specifications".</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Description"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Description element is the description of the standard or specification.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"URI"</span><span class="tAN"> type=</span><span class="tAV">"xs:anyURI"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional URI element is a Uniform Resource Identifier for the standard or specification, for example, a file or a web site.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ISBN"</span><span class="tAN"> type=</span><span class="tAV">"xs:NMTOKEN"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ISBN element is the International Standard Book Number for the standard or specification.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ReferencedStandardIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ReferencedStandardIds element is a list of ids of standards or specifications referenced by or associated with this standard or specification.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"QIFIdType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The id attribute is the QIF id of the standard or specification, used for referencing.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="StandardType_id"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StandardType')">StandardType</a></b> / @id</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StandardType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StandardType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StandardType_id" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the standard or specification, used for referencing.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_StandardType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_StandardType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_StandardType_id" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">use</td>
+                                    <td><b>required</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_StandardType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_StandardType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_StandardType_id" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">pattern</td>
+                                    <td width="30%"><b>([\-+]?[0-9]+) &amp; ([1-9][0-9]*)</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_StandardType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_StandardType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_StandardType_id" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StandardType')">StandardType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StandardType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StandardType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StandardType_id" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"QIFIdType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The id attribute is the QIF id of the standard or specification, used for referencing.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

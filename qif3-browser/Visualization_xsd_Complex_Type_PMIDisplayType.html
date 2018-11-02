@@ -1,0 +1,1117 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Color</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_PMIDisplayType_Color', 
+				'properties_PMIDisplayType_Plane', 
+				'properties_PMIDisplayType_Graphics', 
+				'properties_PMIDisplayType_Reference', 
+				'properties_PMIDisplayType_GroupID');
+var facetsBoxes= new Array('facets_PMIDisplayType_Color', 
+				'facets_PMIDisplayType_GroupID');
+var usedByBoxes= new Array('usedBy_PMIDisplayType');
+var sourceBoxes= new Array('source_PMIDisplayType_Color', 
+				'source_PMIDisplayType_Plane', 
+				'source_PMIDisplayType_Graphics', 
+				'source_PMIDisplayType_Reference', 
+				'source_PMIDisplayType_GroupID', 
+				'source_PMIDisplayType');
+var instanceBoxes= new Array('instance_PMIDisplayType_Plane', 
+				'instance_PMIDisplayType_Graphics', 
+				'instance_PMIDisplayType_Reference');
+var diagramBoxes= new Array('diagram_PMIDisplayType_Color', 
+				'diagram_PMIDisplayType_Plane', 
+				'diagram_PMIDisplayType_Graphics', 
+				'diagram_PMIDisplayType_Reference', 
+				'diagram_PMIDisplayType_GroupID', 
+				'diagram_PMIDisplayType');
+var annotationBoxes= new Array('annotations_PMIDisplayType_Color', 
+				'annotations_PMIDisplayType_Plane', 
+				'annotations_PMIDisplayType_Graphics', 
+				'annotations_PMIDisplayType_Reference', 
+				'annotations_PMIDisplayType_GroupID', 
+				'annotations_PMIDisplayType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="PMIDisplayType_Color"></a><div class="componentTitle">Element <span class="qname"><b><a href="Visualization_xsd_Complex_Type_PMIDisplayType.html#PMIDisplayType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PMIDisplayType')">PMIDisplayType</a></b> / Color</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PMIDisplayType_Color" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PMIDisplayType_Color');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PMIDisplayType_Color" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional ColorType is the RGB color type - a triplet of integer numbers: the red-component, the green-component and the blue-component.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PMIDisplayType_Color" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PMIDisplayType_Color');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PMIDisplayType_Color" style="display:block"><img alt="Diagram" border="0" src="img/Visualization_xsd_Element_Color_3.jpeg" usemap="#Visualization_xsd_Element_Color_3" /><map name="Visualization_xsd_Element_Color_3" id="Visualization_xsd_Element_Color_3">
+                                 <area alt="PrimitivesPD_xsd_Simple_Type_ColorType.tmp#ColorType" href="PrimitivesPD_xsd_Simple_Type_ColorType.html#ColorType" coords="122,0,248,31" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="PrimitivesPD_xsd_Simple_Type_ColorType.html#ColorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ColorType')">ColorType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:integer</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_ListIntType.html#ListIntType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ListIntType')">ListIntType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="PrimitivesPD_xsd_Simple_Type_ColorType.html#ColorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ColorType')">ColorType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PMIDisplayType_Color" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PMIDisplayType_Color');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PMIDisplayType_Color" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_PMIDisplayType_Color" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_PMIDisplayType_Color');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_PMIDisplayType_Color" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">length</td>
+                                    <td width="30%"><b>3</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PMIDisplayType_Color" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PMIDisplayType_Color');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PMIDisplayType_Color" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Color"</span><span class="tAN"> type=</span><span class="tAV">"ColorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ColorType is the RGB color type - a triplet of integer numbers: the red-component, the green-component and the blue-component.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Visualization.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PMIDisplayType_Plane"></a><div class="componentTitle">Element <span class="qname"><b><a href="Visualization_xsd_Complex_Type_PMIDisplayType.html#PMIDisplayType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PMIDisplayType')">PMIDisplayType</a></b> / Plane</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PMIDisplayType_Plane" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PMIDisplayType_Plane');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PMIDisplayType_Plane" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Plane element is an annotation plane.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PMIDisplayType_Plane" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PMIDisplayType_Plane');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PMIDisplayType_Plane" style="display:block"><img alt="Diagram" border="0" src="img/Visualization_xsd_Element_Plane_1.jpeg" usemap="#Visualization_xsd_Element_Plane_1" /><map name="Visualization_xsd_Element_Plane_1" id="Visualization_xsd_Element_Plane_1">
+                                 <area alt="Visualization_xsd_Complex_Type_PlanePMIDisplayType.tmp#PlanePMIDisplayType_AnnotationViewId" href="Visualization_xsd_Complex_Type_PlanePMIDisplayType.html#PlanePMIDisplayType_AnnotationViewId" coords="226,46,364,75" />
+                                 <area alt="Visualization_xsd_Complex_Type_PlanePMIDisplayType.tmp#PlanePMIDisplayType_Origin" href="Visualization_xsd_Complex_Type_PlanePMIDisplayType.html#PlanePMIDisplayType_Origin" coords="226,137,298,166" />
+                                 <area alt="Visualization_xsd_Complex_Type_PlanePMIDisplayType.tmp#PlanePMIDisplayType_Direction" href="Visualization_xsd_Complex_Type_PlanePMIDisplayType.html#PlanePMIDisplayType_Direction" coords="226,228,315,257" />
+                                 <area alt="Visualization_xsd_Complex_Type_PlanePMIDisplayType.tmp#PlanePMIDisplayType" href="Visualization_xsd_Complex_Type_PlanePMIDisplayType.html#PlanePMIDisplayType" coords="128,3,318,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Visualization_xsd_Complex_Type_PlanePMIDisplayType.html#PlanePMIDisplayType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlanePMIDisplayType')">PlanePMIDisplayType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PMIDisplayType_Plane" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PMIDisplayType_Plane');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PMIDisplayType_Plane" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Visualization_xsd_Complex_Type_PlanePMIDisplayType.html#PlanePMIDisplayType_AnnotationViewId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AnnotationViewId')">AnnotationViewId</a></b>, <b><a href="Visualization_xsd_Complex_Type_PlanePMIDisplayType.html#PlanePMIDisplayType_Direction" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Direction')">Direction</a></b>, <b><a href="Visualization_xsd_Complex_Type_PlanePMIDisplayType.html#PlanePMIDisplayType_Origin" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Origin')">Origin</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_PMIDisplayType_Plane" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_PMIDisplayType_Plane');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_PMIDisplayType_Plane" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Plane</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;AnnotationViewId</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/AnnotationViewId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Origin</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">validity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">ySignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zValidity=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Origin&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Direction</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">validity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">ySignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zValidity=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Direction&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Plane&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PMIDisplayType_Plane" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PMIDisplayType_Plane');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PMIDisplayType_Plane" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Plane"</span><span class="tAN"> type=</span><span class="tAV">"PlanePMIDisplayType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Plane element is an annotation plane.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Visualization.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PMIDisplayType_Graphics"></a><div class="componentTitle">Element <span class="qname"><b><a href="Visualization_xsd_Complex_Type_PMIDisplayType.html#PMIDisplayType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PMIDisplayType')">PMIDisplayType</a></b> / Graphics</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PMIDisplayType_Graphics" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PMIDisplayType_Graphics');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PMIDisplayType_Graphics" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Graphics element defines additional visualization data. It allows specifying user-defined PMI data that have no semantic representation in a QIF file.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PMIDisplayType_Graphics" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PMIDisplayType_Graphics');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PMIDisplayType_Graphics" style="display:block"><img alt="Diagram" border="0" src="img/Visualization_xsd_Element_Graphics.jpeg" usemap="#Visualization_xsd_Element_Graphics" /><map name="Visualization_xsd_Element_Graphics" id="Visualization_xsd_Element_Graphics">
+                                 <area alt="Visualization_xsd_Complex_Type_GraphicsType.tmp#GraphicsType_Polylines" href="Visualization_xsd_Complex_Type_GraphicsType.html#GraphicsType_Polylines" coords="245,46,336,75" />
+                                 <area alt="Visualization_xsd_Complex_Type_GraphicsType.tmp#GraphicsType_Areas" href="Visualization_xsd_Complex_Type_GraphicsType.html#GraphicsType_Areas" coords="245,137,317,166" />
+                                 <area alt="Visualization_xsd_Complex_Type_GraphicsType.tmp#GraphicsType" href="Visualization_xsd_Complex_Type_GraphicsType.html#GraphicsType" coords="147,3,290,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Visualization_xsd_Complex_Type_GraphicsType.html#GraphicsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component GraphicsType')">GraphicsType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PMIDisplayType_Graphics" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PMIDisplayType_Graphics');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PMIDisplayType_Graphics" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Visualization_xsd_Complex_Type_GraphicsType.html#GraphicsType_Areas" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Areas')">Areas</a></b>, <b><a href="Visualization_xsd_Complex_Type_GraphicsType.html#GraphicsType_Polylines" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Polylines')">Polylines</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_PMIDisplayType_Graphics" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_PMIDisplayType_Graphics');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_PMIDisplayType_Graphics" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Graphics</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Polylines</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Polylines&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Areas</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Areas&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Graphics&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PMIDisplayType_Graphics" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PMIDisplayType_Graphics');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PMIDisplayType_Graphics" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Graphics"</span><span class="tAN"> type=</span><span class="tAV">"GraphicsType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Graphics element defines additional visualization data. It allows specifying user-defined PMI data that have no semantic representation in a QIF file.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Visualization.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PMIDisplayType_Reference"></a><div class="componentTitle">Element <span class="qname"><b><a href="Visualization_xsd_Complex_Type_PMIDisplayType.html#PMIDisplayType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PMIDisplayType')">PMIDisplayType</a></b> / Reference</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PMIDisplayType_Reference" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PMIDisplayType_Reference');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PMIDisplayType_Reference" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Reference element is the id of an annotation entity which will be visualized according to the display information defined in the fields above.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PMIDisplayType_Reference" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PMIDisplayType_Reference');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PMIDisplayType_Reference" style="display:block"><img alt="Diagram" border="0" src="img/Visualization_xsd_Element_Reference.jpeg" usemap="#Visualization_xsd_Element_Reference" /><map name="Visualization_xsd_Element_Reference" id="Visualization_xsd_Element_Reference">
+                                 <area alt="Primitives_xsd_Complex_Type_ElementReferenceFullType.tmp#ElementReferenceFullType_Id" href="Primitives_xsd_Complex_Type_ElementReferenceFullType.html#ElementReferenceFullType_Id" coords="251,50,309,79" />
+                                 <area alt="Primitives_xsd_Complex_Type_ElementReferenceFullType.tmp#ElementReferenceFullType" href="Primitives_xsd_Complex_Type_ElementReferenceFullType.html#ElementReferenceFullType" coords="153,3,371,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ElementReferenceFullType.html#ElementReferenceFullType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElementReferenceFullType')">ElementReferenceFullType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PMIDisplayType_Reference" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PMIDisplayType_Reference');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PMIDisplayType_Reference" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ElementReferenceFullType.html#ElementReferenceFullType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_PMIDisplayType_Reference" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_PMIDisplayType_Reference');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_PMIDisplayType_Reference" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Reference</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">asmPathId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">asmPathXId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Reference&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PMIDisplayType_Reference" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PMIDisplayType_Reference');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PMIDisplayType_Reference" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Reference"</span><span class="tAN"> type=</span><span class="tAV">"ElementReferenceFullType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Reference element is the id of an annotation entity which will be visualized according to the display information defined in the fields above.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Visualization.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PMIDisplayType_GroupID"></a><div class="componentTitle">Element <span class="qname"><b><a href="Visualization_xsd_Complex_Type_PMIDisplayType.html#PMIDisplayType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PMIDisplayType')">PMIDisplayType</a></b> / GroupID</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PMIDisplayType_GroupID" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PMIDisplayType_GroupID');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PMIDisplayType_GroupID" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional GroupID element is the group id: the first value is a group index, the second value is an annotation index within the group.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PMIDisplayType_GroupID" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PMIDisplayType_GroupID');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PMIDisplayType_GroupID" style="display:block"><img alt="Diagram" border="0" src="img/Visualization_xsd_Element_GroupID.jpeg" usemap="#Visualization_xsd_Element_GroupID" /><map name="Visualization_xsd_Element_GroupID" id="Visualization_xsd_Element_GroupID">
+                                 <area alt="Primitives_xsd_Simple_Type_I2Type.tmp#I2Type" href="Primitives_xsd_Simple_Type_I2Type.html#I2Type" coords="139,0,245,31" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Simple_Type_I2Type.html#I2Type" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component I2Type')">I2Type</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:integer</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_ListIntType.html#ListIntType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ListIntType')">ListIntType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_I2Type.html#I2Type" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component I2Type')">I2Type</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PMIDisplayType_GroupID" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PMIDisplayType_GroupID');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PMIDisplayType_GroupID" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_PMIDisplayType_GroupID" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_PMIDisplayType_GroupID');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_PMIDisplayType_GroupID" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">length</td>
+                                    <td width="30%"><b>2</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PMIDisplayType_GroupID" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PMIDisplayType_GroupID');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PMIDisplayType_GroupID" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"GroupID"</span><span class="tAN"> type=</span><span class="tAV">"I2Type"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional GroupID element is the group id: the first value is a group index, the second value is an annotation index within the group.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Visualization.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PMIDisplayType"></a><div class="componentTitle">Complex Type <span class="qname">PMIDisplayType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PMIDisplayType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PMIDisplayType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PMIDisplayType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The PMIDisplayType defines a block of display data used for visualization of PMI entities.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PMIDisplayType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PMIDisplayType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PMIDisplayType" style="display:block"><img alt="Diagram" border="0" src="img/Visualization_xsd_Complex_Type_PMIDisplayType.jpeg" usemap="#Visualization_xsd_Complex_Type_PMIDisplayType" /><map name="Visualization_xsd_Complex_Type_PMIDisplayType" id="Visualization_xsd_Complex_Type_PMIDisplayType">
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="326,0,420,29" />
+                                 <area alt="Visualization_xsd_Complex_Type_PMIDisplayType.tmp#PMIDisplayType_Color" href="Visualization_xsd_Complex_Type_PMIDisplayType.html#PMIDisplayType_Color" coords="326,107,394,136" />
+                                 <area alt="Visualization_xsd_Complex_Type_PMIDisplayType.tmp#PMIDisplayType_Plane" href="Visualization_xsd_Complex_Type_PMIDisplayType.html#PMIDisplayType_Plane" coords="326,214,397,243" />
+                                 <area alt="Visualization_xsd_Element_Texts.tmp#Texts" href="Visualization_xsd_Element_Texts.html#Texts" coords="326,305,396,334" />
+                                 <area alt="Visualization_xsd_Element_Leader.tmp#Leader" href="Visualization_xsd_Element_Leader.html#Leader" coords="326,396,403,425" />
+                                 <area alt="Visualization_xsd_Element_WitnessLines.tmp#WitnessLines" href="Visualization_xsd_Element_WitnessLines.html#WitnessLines" coords="326,471,443,500" />
+                                 <area alt="Visualization_xsd_Element_Frames.tmp#Frames" href="Visualization_xsd_Element_Frames.html#Frames" coords="326,562,408,591" />
+                                 <area alt="Visualization_xsd_Complex_Type_PMIDisplayType.tmp#PMIDisplayType_Graphics" href="Visualization_xsd_Complex_Type_PMIDisplayType.html#PMIDisplayType_Graphics" coords="326,653,416,682" />
+                                 <area alt="Visualization_xsd_Complex_Type_PMIDisplayType.tmp#PMIDisplayType_Reference" href="Visualization_xsd_Complex_Type_PMIDisplayType.html#PMIDisplayType_Reference" coords="326,760,422,789" />
+                                 <area alt="Visualization_xsd_Complex_Type_PMIDisplayType.tmp#PMIDisplayType_GroupID" href="Visualization_xsd_Complex_Type_PMIDisplayType.html#PMIDisplayType_GroupID" coords="326,867,411,896" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_PMIDisplayType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_PMIDisplayType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_PMIDisplayType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Visualization_xsd_Complex_Type_PMIDisplaySetType.html#PMIDisplaySetType_PMIDisplay" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PMIDisplaySetType/PMIDisplay')">PMIDisplaySetType/PMIDisplay</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Visualization_xsd_Complex_Type_PMIDisplayType.html#PMIDisplayType_Color" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Color')">Color</a></b>, <b><a href="Visualization_xsd_Element_Frames.html#Frames" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Frames')">Frames</a></b>, <b><a href="Visualization_xsd_Complex_Type_PMIDisplayType.html#PMIDisplayType_Graphics" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Graphics')">Graphics</a></b>, <b><a href="Visualization_xsd_Complex_Type_PMIDisplayType.html#PMIDisplayType_GroupID" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component GroupID')">GroupID</a></b>, <b><a href="Visualization_xsd_Element_Leader.html#Leader" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Leader')">Leader</a></b>, <b><a href="Visualization_xsd_Complex_Type_PMIDisplayType.html#PMIDisplayType_Plane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Plane')">Plane</a></b>, <b><a href="Visualization_xsd_Complex_Type_PMIDisplayType.html#PMIDisplayType_Reference" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Reference')">Reference</a></b>, <b><a href="Visualization_xsd_Element_Texts.html#Texts" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Texts')">Texts</a></b>, <b><a href="Visualization_xsd_Element_WitnessLines.html#WitnessLines" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WitnessLines')">WitnessLines</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PMIDisplayType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PMIDisplayType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PMIDisplayType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"PMIDisplayType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The PMIDisplayType defines a block of display data used for visualization of PMI entities.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> ref=</span><span class="tAV">"Attributes"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Attributes element contains user defined attributes (typified, binary array, or XML structured).</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Color"</span><span class="tAN"> type=</span><span class="tAV">"ColorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ColorType is the RGB color type - a triplet of integer numbers: the red-component, the green-component and the blue-component.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Plane"</span><span class="tAN"> type=</span><span class="tAV">"PlanePMIDisplayType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Plane element is an annotation plane.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> ref=</span><span class="tAV">"Texts"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Texts element specifies a set of text lines.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> ref=</span><span class="tAV">"Leader"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Leader element defines leaders.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> ref=</span><span class="tAV">"WitnessLines"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional WitnessLines element defines witness lines.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> ref=</span><span class="tAV">"Frames"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Frames element defines the visualization frames.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Graphics"</span><span class="tAN"> type=</span><span class="tAV">"GraphicsType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Graphics element defines additional visualization data. It allows specifying user-defined PMI data that have no semantic representation in a QIF file.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Reference"</span><span class="tAN"> type=</span><span class="tAV">"ElementReferenceFullType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Reference element is the id of an annotation entity which will be visualized according to the display information defined in the fields above.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"GroupID"</span><span class="tAN"> type=</span><span class="tAV">"I2Type"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional GroupID element is the group id: the first value is a group index, the second value is an annotation index within the group.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Visualization.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

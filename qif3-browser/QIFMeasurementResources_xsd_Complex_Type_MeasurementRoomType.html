@@ -1,0 +1,1508 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component TemperatureRangeMin</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_MeasurementRoomType_TemperatureRangeMin', 
+				'properties_MeasurementRoomType_TemperatureRangeMax', 
+				'properties_MeasurementRoomType_TemperatureControlMin', 
+				'properties_MeasurementRoomType_TemperatureControlMax', 
+				'properties_MeasurementRoomType_RelativeHumidityRangeMin', 
+				'properties_MeasurementRoomType_RelativeHumidityRangeMax', 
+				'properties_MeasurementRoomType_RelativeHumidityControlMin', 
+				'properties_MeasurementRoomType_RelativeHumidityControlMax');
+var usedByBoxes= new Array('usedBy_MeasurementRoomType');
+var sourceBoxes= new Array('source_MeasurementRoomType_TemperatureRangeMin', 
+				'source_MeasurementRoomType_TemperatureRangeMax', 
+				'source_MeasurementRoomType_TemperatureControlMin', 
+				'source_MeasurementRoomType_TemperatureControlMax', 
+				'source_MeasurementRoomType_RelativeHumidityRangeMin', 
+				'source_MeasurementRoomType_RelativeHumidityRangeMax', 
+				'source_MeasurementRoomType_RelativeHumidityControlMin', 
+				'source_MeasurementRoomType_RelativeHumidityControlMax', 
+				'source_MeasurementRoomType');
+var instanceBoxes= new Array('instance_MeasurementRoomType_TemperatureRangeMin', 
+				'instance_MeasurementRoomType_TemperatureRangeMax', 
+				'instance_MeasurementRoomType_TemperatureControlMin', 
+				'instance_MeasurementRoomType_TemperatureControlMax', 
+				'instance_MeasurementRoomType_RelativeHumidityRangeMin', 
+				'instance_MeasurementRoomType_RelativeHumidityRangeMax', 
+				'instance_MeasurementRoomType_RelativeHumidityControlMin', 
+				'instance_MeasurementRoomType_RelativeHumidityControlMax');
+var diagramBoxes= new Array('diagram_MeasurementRoomType_TemperatureRangeMin', 
+				'diagram_MeasurementRoomType_TemperatureRangeMax', 
+				'diagram_MeasurementRoomType_TemperatureControlMin', 
+				'diagram_MeasurementRoomType_TemperatureControlMax', 
+				'diagram_MeasurementRoomType_RelativeHumidityRangeMin', 
+				'diagram_MeasurementRoomType_RelativeHumidityRangeMax', 
+				'diagram_MeasurementRoomType_RelativeHumidityControlMin', 
+				'diagram_MeasurementRoomType_RelativeHumidityControlMax', 
+				'diagram_MeasurementRoomType');
+var annotationBoxes= new Array('annotations_MeasurementRoomType_TemperatureRangeMin', 
+				'annotations_MeasurementRoomType_TemperatureRangeMax', 
+				'annotations_MeasurementRoomType_TemperatureControlMin', 
+				'annotations_MeasurementRoomType_TemperatureControlMax', 
+				'annotations_MeasurementRoomType_RelativeHumidityRangeMin', 
+				'annotations_MeasurementRoomType_RelativeHumidityRangeMax', 
+				'annotations_MeasurementRoomType_RelativeHumidityControlMin', 
+				'annotations_MeasurementRoomType_RelativeHumidityControlMax', 
+				'annotations_MeasurementRoomType');
+var attributesBoxes= new Array('attributes_MeasurementRoomType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="MeasurementRoomType_TemperatureRangeMin"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementRoomType')">MeasurementRoomType</a></b> / TemperatureRangeMin</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasurementRoomType_TemperatureRangeMin" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasurementRoomType_TemperatureRangeMin');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasurementRoomType_TemperatureRangeMin" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The TemperatureRangeMin element gives the minimum temperature that the room can maintain while staying within the temperature control limits.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasurementRoomType_TemperatureRangeMin" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasurementRoomType_TemperatureRangeMin');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasurementRoomType_TemperatureRangeMin" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_TemperatureRangeMin.jpeg" usemap="#QIFMeasurementResources_xsd_Element_TemperatureRangeMin" /><map name="QIFMeasurementResources_xsd_Element_TemperatureRangeMin" id="QIFMeasurementResources_xsd_Element_TemperatureRangeMin">
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="323,46,417,75" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.tmp#TemperatureType_Temperature" href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType_Temperature" coords="323,153,433,182" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.tmp#TemperatureType_TimeStamp" href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType_TimeStamp" coords="323,228,427,257" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.tmp#TemperatureType" href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType" coords="225,3,388,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TemperatureType')">TemperatureType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MeasurementRoomType_TemperatureRangeMin" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MeasurementRoomType_TemperatureRangeMin');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MeasurementRoomType_TemperatureRangeMin" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType_Temperature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Temperature')">Temperature</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType_TimeStamp" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeStamp')">TimeStamp</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MeasurementRoomType_TemperatureRangeMin" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MeasurementRoomType_TemperatureRangeMin');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MeasurementRoomType_TemperatureRangeMin" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;TemperatureRangeMin</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Temperature</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">temperatureUnit=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Temperature&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TimeStamp</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/TimeStamp&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/TemperatureRangeMin&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasurementRoomType_TemperatureRangeMin" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasurementRoomType_TemperatureRangeMin');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasurementRoomType_TemperatureRangeMin" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TemperatureRangeMin"</span><span class="tAN"> type=</span><span class="tAV">"TemperatureType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The TemperatureRangeMin element gives the minimum temperature that the room can maintain while staying within the temperature control limits.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MeasurementRoomType_TemperatureRangeMax"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementRoomType')">MeasurementRoomType</a></b> / TemperatureRangeMax</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasurementRoomType_TemperatureRangeMax" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasurementRoomType_TemperatureRangeMax');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasurementRoomType_TemperatureRangeMax" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The TemperatureRangeMax element gives the maximum temperature that the room can maintain while staying within the temperature control limits.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasurementRoomType_TemperatureRangeMax" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasurementRoomType_TemperatureRangeMax');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasurementRoomType_TemperatureRangeMax" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_TemperatureRangeMax.jpeg" usemap="#QIFMeasurementResources_xsd_Element_TemperatureRangeMax" /><map name="QIFMeasurementResources_xsd_Element_TemperatureRangeMax" id="QIFMeasurementResources_xsd_Element_TemperatureRangeMax">
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="327,46,421,75" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.tmp#TemperatureType_Temperature" href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType_Temperature" coords="327,153,437,182" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.tmp#TemperatureType_TimeStamp" href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType_TimeStamp" coords="327,228,431,257" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.tmp#TemperatureType" href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType" coords="229,3,392,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TemperatureType')">TemperatureType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MeasurementRoomType_TemperatureRangeMax" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MeasurementRoomType_TemperatureRangeMax');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MeasurementRoomType_TemperatureRangeMax" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType_Temperature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Temperature')">Temperature</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType_TimeStamp" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeStamp')">TimeStamp</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MeasurementRoomType_TemperatureRangeMax" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MeasurementRoomType_TemperatureRangeMax');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MeasurementRoomType_TemperatureRangeMax" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;TemperatureRangeMax</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Temperature</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">temperatureUnit=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Temperature&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TimeStamp</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/TimeStamp&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/TemperatureRangeMax&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasurementRoomType_TemperatureRangeMax" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasurementRoomType_TemperatureRangeMax');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasurementRoomType_TemperatureRangeMax" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TemperatureRangeMax"</span><span class="tAN"> type=</span><span class="tAV">"TemperatureType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The TemperatureRangeMax element gives the maximum temperature that the room can maintain while staying within the temperature control limits.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MeasurementRoomType_TemperatureControlMin"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementRoomType')">MeasurementRoomType</a></b> / TemperatureControlMin</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasurementRoomType_TemperatureControlMin" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasurementRoomType_TemperatureControlMin');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasurementRoomType_TemperatureControlMin" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">This is an amount below any in-range temperature that the room is guaranteed not exceed. This must be a positive value.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasurementRoomType_TemperatureControlMin" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasurementRoomType_TemperatureControlMin');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasurementRoomType_TemperatureControlMin" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_TemperatureControlMin.jpeg" usemap="#QIFMeasurementResources_xsd_Element_TemperatureControlMin" /><map name="QIFMeasurementResources_xsd_Element_TemperatureControlMin" id="QIFMeasurementResources_xsd_Element_TemperatureControlMin">
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="327,46,421,75" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.tmp#TemperatureType_Temperature" href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType_Temperature" coords="327,153,437,182" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.tmp#TemperatureType_TimeStamp" href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType_TimeStamp" coords="327,228,431,257" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.tmp#TemperatureType" href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType" coords="229,3,392,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TemperatureType')">TemperatureType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MeasurementRoomType_TemperatureControlMin" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MeasurementRoomType_TemperatureControlMin');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MeasurementRoomType_TemperatureControlMin" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType_Temperature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Temperature')">Temperature</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType_TimeStamp" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeStamp')">TimeStamp</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MeasurementRoomType_TemperatureControlMin" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MeasurementRoomType_TemperatureControlMin');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MeasurementRoomType_TemperatureControlMin" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;TemperatureControlMin</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Temperature</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">temperatureUnit=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Temperature&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TimeStamp</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/TimeStamp&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/TemperatureControlMin&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasurementRoomType_TemperatureControlMin" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasurementRoomType_TemperatureControlMin');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasurementRoomType_TemperatureControlMin" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TemperatureControlMin"</span><span class="tAN"> type=</span><span class="tAV">"TemperatureType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This is an amount below any in-range temperature that the room is guaranteed not exceed. This must be a positive value.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MeasurementRoomType_TemperatureControlMax"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementRoomType')">MeasurementRoomType</a></b> / TemperatureControlMax</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasurementRoomType_TemperatureControlMax" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasurementRoomType_TemperatureControlMax');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasurementRoomType_TemperatureControlMax" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">This is an amount above any in-range temperature that the room is guaranteed not exceed.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasurementRoomType_TemperatureControlMax" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasurementRoomType_TemperatureControlMax');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasurementRoomType_TemperatureControlMax" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_TemperatureControlMax.jpeg" usemap="#QIFMeasurementResources_xsd_Element_TemperatureControlMax" /><map name="QIFMeasurementResources_xsd_Element_TemperatureControlMax" id="QIFMeasurementResources_xsd_Element_TemperatureControlMax">
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="331,46,425,75" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.tmp#TemperatureType_Temperature" href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType_Temperature" coords="331,153,441,182" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.tmp#TemperatureType_TimeStamp" href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType_TimeStamp" coords="331,228,435,257" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.tmp#TemperatureType" href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType" coords="233,3,396,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TemperatureType')">TemperatureType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MeasurementRoomType_TemperatureControlMax" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MeasurementRoomType_TemperatureControlMax');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MeasurementRoomType_TemperatureControlMax" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType_Temperature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Temperature')">Temperature</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_TemperatureType.html#TemperatureType_TimeStamp" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeStamp')">TimeStamp</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MeasurementRoomType_TemperatureControlMax" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MeasurementRoomType_TemperatureControlMax');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MeasurementRoomType_TemperatureControlMax" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;TemperatureControlMax</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Temperature</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">temperatureUnit=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Temperature&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TimeStamp</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/TimeStamp&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/TemperatureControlMax&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasurementRoomType_TemperatureControlMax" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasurementRoomType_TemperatureControlMax');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasurementRoomType_TemperatureControlMax" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TemperatureControlMax"</span><span class="tAN"> type=</span><span class="tAV">"TemperatureType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This is an amount above any in-range temperature that the room is guaranteed not exceed.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MeasurementRoomType_RelativeHumidityRangeMin"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementRoomType')">MeasurementRoomType</a></b> / RelativeHumidityRangeMin</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasurementRoomType_RelativeHumidityRangeMin" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasurementRoomType_RelativeHumidityRangeMin');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasurementRoomType_RelativeHumidityRangeMin" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The RelativeHumidityRangeMin element gives the minimum relative humidity that the room can maintain while staying within the humidity control limits.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasurementRoomType_RelativeHumidityRangeMin" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasurementRoomType_RelativeHumidityRangeMin');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasurementRoomType_RelativeHumidityRangeMin" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_RelativeHumidityRangeMin.jpeg" usemap="#QIFMeasurementResources_xsd_Element_RelativeHumidityRangeMin" /><map name="QIFMeasurementResources_xsd_Element_RelativeHumidityRangeMin" id="QIFMeasurementResources_xsd_Element_RelativeHumidityRangeMin">
+                                 <area alt="Primitives_xsd_Complex_Type_FractionType.tmp#FractionType_Numerator" href="Primitives_xsd_Complex_Type_FractionType.html#FractionType_Numerator" coords="347,46,445,75" />
+                                 <area alt="Primitives_xsd_Complex_Type_FractionType.tmp#FractionType_Denominator" href="Primitives_xsd_Complex_Type_FractionType.html#FractionType_Denominator" coords="347,137,458,166" />
+                                 <area alt="Primitives_xsd_Complex_Type_FractionType.tmp#FractionType" href="Primitives_xsd_Complex_Type_FractionType.html#FractionType" coords="249,3,387,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_FractionType.html#FractionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FractionType')">FractionType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MeasurementRoomType_RelativeHumidityRangeMin" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MeasurementRoomType_RelativeHumidityRangeMin');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MeasurementRoomType_RelativeHumidityRangeMin" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_FractionType.html#FractionType_Denominator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Denominator')">Denominator</a></b>, <b><a href="Primitives_xsd_Complex_Type_FractionType.html#FractionType_Numerator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Numerator')">Numerator</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MeasurementRoomType_RelativeHumidityRangeMin" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MeasurementRoomType_RelativeHumidityRangeMin');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MeasurementRoomType_RelativeHumidityRangeMin" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;RelativeHumidityRangeMin</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Numerator</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Numerator&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Denominator</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Denominator&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/RelativeHumidityRangeMin&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasurementRoomType_RelativeHumidityRangeMin" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasurementRoomType_RelativeHumidityRangeMin');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasurementRoomType_RelativeHumidityRangeMin" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"RelativeHumidityRangeMin"</span><span class="tAN"> type=</span><span class="tAV">"FractionType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The RelativeHumidityRangeMin element gives the minimum relative humidity that the room can maintain while staying within the humidity control limits.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MeasurementRoomType_RelativeHumidityRangeMax"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementRoomType')">MeasurementRoomType</a></b> / RelativeHumidityRangeMax</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasurementRoomType_RelativeHumidityRangeMax" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasurementRoomType_RelativeHumidityRangeMax');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasurementRoomType_RelativeHumidityRangeMax" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The RelativeHumidityRangeMax element gives the maximum relative humidity that the room can maintain while staying within the humidity control limits.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasurementRoomType_RelativeHumidityRangeMax" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasurementRoomType_RelativeHumidityRangeMax');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasurementRoomType_RelativeHumidityRangeMax" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_RelativeHumidityRangeMax.jpeg" usemap="#QIFMeasurementResources_xsd_Element_RelativeHumidityRangeMax" /><map name="QIFMeasurementResources_xsd_Element_RelativeHumidityRangeMax" id="QIFMeasurementResources_xsd_Element_RelativeHumidityRangeMax">
+                                 <area alt="Primitives_xsd_Complex_Type_FractionType.tmp#FractionType_Numerator" href="Primitives_xsd_Complex_Type_FractionType.html#FractionType_Numerator" coords="351,46,449,75" />
+                                 <area alt="Primitives_xsd_Complex_Type_FractionType.tmp#FractionType_Denominator" href="Primitives_xsd_Complex_Type_FractionType.html#FractionType_Denominator" coords="351,137,462,166" />
+                                 <area alt="Primitives_xsd_Complex_Type_FractionType.tmp#FractionType" href="Primitives_xsd_Complex_Type_FractionType.html#FractionType" coords="253,3,391,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_FractionType.html#FractionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FractionType')">FractionType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MeasurementRoomType_RelativeHumidityRangeMax" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MeasurementRoomType_RelativeHumidityRangeMax');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MeasurementRoomType_RelativeHumidityRangeMax" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_FractionType.html#FractionType_Denominator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Denominator')">Denominator</a></b>, <b><a href="Primitives_xsd_Complex_Type_FractionType.html#FractionType_Numerator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Numerator')">Numerator</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MeasurementRoomType_RelativeHumidityRangeMax" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MeasurementRoomType_RelativeHumidityRangeMax');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MeasurementRoomType_RelativeHumidityRangeMax" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;RelativeHumidityRangeMax</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Numerator</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Numerator&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Denominator</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Denominator&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/RelativeHumidityRangeMax&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasurementRoomType_RelativeHumidityRangeMax" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasurementRoomType_RelativeHumidityRangeMax');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasurementRoomType_RelativeHumidityRangeMax" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"RelativeHumidityRangeMax"</span><span class="tAN"> type=</span><span class="tAV">"FractionType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The RelativeHumidityRangeMax element gives the maximum relative humidity that the room can maintain while staying within the humidity control limits.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MeasurementRoomType_RelativeHumidityControlMin"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementRoomType')">MeasurementRoomType</a></b> / RelativeHumidityControlMin</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasurementRoomType_RelativeHumidityControlMin" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasurementRoomType_RelativeHumidityControlMin');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasurementRoomType_RelativeHumidityControlMin" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">This is an amount below any in-range relative humidity that the room is guaranteed not exceed. This must be a positive value.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasurementRoomType_RelativeHumidityControlMin" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasurementRoomType_RelativeHumidityControlMin');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasurementRoomType_RelativeHumidityControlMin" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_RelativeHumidityControlMin.jpeg" usemap="#QIFMeasurementResources_xsd_Element_RelativeHumidityControlMin" /><map name="QIFMeasurementResources_xsd_Element_RelativeHumidityControlMin" id="QIFMeasurementResources_xsd_Element_RelativeHumidityControlMin">
+                                 <area alt="Primitives_xsd_Complex_Type_FractionType.tmp#FractionType_Numerator" href="Primitives_xsd_Complex_Type_FractionType.html#FractionType_Numerator" coords="351,46,449,75" />
+                                 <area alt="Primitives_xsd_Complex_Type_FractionType.tmp#FractionType_Denominator" href="Primitives_xsd_Complex_Type_FractionType.html#FractionType_Denominator" coords="351,137,462,166" />
+                                 <area alt="Primitives_xsd_Complex_Type_FractionType.tmp#FractionType" href="Primitives_xsd_Complex_Type_FractionType.html#FractionType" coords="253,3,391,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_FractionType.html#FractionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FractionType')">FractionType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MeasurementRoomType_RelativeHumidityControlMin" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MeasurementRoomType_RelativeHumidityControlMin');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MeasurementRoomType_RelativeHumidityControlMin" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_FractionType.html#FractionType_Denominator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Denominator')">Denominator</a></b>, <b><a href="Primitives_xsd_Complex_Type_FractionType.html#FractionType_Numerator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Numerator')">Numerator</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MeasurementRoomType_RelativeHumidityControlMin" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MeasurementRoomType_RelativeHumidityControlMin');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MeasurementRoomType_RelativeHumidityControlMin" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;RelativeHumidityControlMin</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Numerator</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Numerator&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Denominator</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Denominator&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/RelativeHumidityControlMin&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasurementRoomType_RelativeHumidityControlMin" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasurementRoomType_RelativeHumidityControlMin');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasurementRoomType_RelativeHumidityControlMin" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"RelativeHumidityControlMin"</span><span class="tAN"> type=</span><span class="tAV">"FractionType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This is an amount below any in-range relative humidity that the room is guaranteed not exceed. This must be a positive value.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MeasurementRoomType_RelativeHumidityControlMax"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementRoomType')">MeasurementRoomType</a></b> / RelativeHumidityControlMax</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasurementRoomType_RelativeHumidityControlMax" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasurementRoomType_RelativeHumidityControlMax');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasurementRoomType_RelativeHumidityControlMax" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">This is an amount above any in-range relative humidity that the room is guaranteed not exceed.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasurementRoomType_RelativeHumidityControlMax" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasurementRoomType_RelativeHumidityControlMax');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasurementRoomType_RelativeHumidityControlMax" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_RelativeHumidityControlMax.jpeg" usemap="#QIFMeasurementResources_xsd_Element_RelativeHumidityControlMax" /><map name="QIFMeasurementResources_xsd_Element_RelativeHumidityControlMax" id="QIFMeasurementResources_xsd_Element_RelativeHumidityControlMax">
+                                 <area alt="Primitives_xsd_Complex_Type_FractionType.tmp#FractionType_Numerator" href="Primitives_xsd_Complex_Type_FractionType.html#FractionType_Numerator" coords="355,46,453,75" />
+                                 <area alt="Primitives_xsd_Complex_Type_FractionType.tmp#FractionType_Denominator" href="Primitives_xsd_Complex_Type_FractionType.html#FractionType_Denominator" coords="355,137,466,166" />
+                                 <area alt="Primitives_xsd_Complex_Type_FractionType.tmp#FractionType" href="Primitives_xsd_Complex_Type_FractionType.html#FractionType" coords="257,3,395,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_FractionType.html#FractionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FractionType')">FractionType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MeasurementRoomType_RelativeHumidityControlMax" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MeasurementRoomType_RelativeHumidityControlMax');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MeasurementRoomType_RelativeHumidityControlMax" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_FractionType.html#FractionType_Denominator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Denominator')">Denominator</a></b>, <b><a href="Primitives_xsd_Complex_Type_FractionType.html#FractionType_Numerator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Numerator')">Numerator</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MeasurementRoomType_RelativeHumidityControlMax" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MeasurementRoomType_RelativeHumidityControlMax');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MeasurementRoomType_RelativeHumidityControlMax" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;RelativeHumidityControlMax</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Numerator</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Numerator&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Denominator</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Denominator&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/RelativeHumidityControlMax&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasurementRoomType_RelativeHumidityControlMax" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasurementRoomType_RelativeHumidityControlMax');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasurementRoomType_RelativeHumidityControlMax" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"RelativeHumidityControlMax"</span><span class="tAN"> type=</span><span class="tAV">"FractionType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This is an amount above any in-range relative humidity that the room is guaranteed not exceed.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MeasurementRoomType"></a><div class="componentTitle">Complex Type <span class="qname">MeasurementRoomType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasurementRoomType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasurementRoomType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasurementRoomType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The MeasurementRoomType defines a room in which measurement may be done.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasurementRoomType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasurementRoomType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasurementRoomType" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.jpeg" usemap="#QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType" /><map name="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType" id="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType">
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_id" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_id" coords="295,90,376,119" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Name" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Name" coords="364,190,436,219" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Description" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Description" coords="364,281,467,310" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Manufacturer" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Manufacturer" coords="364,372,477,401" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_ModelNumber" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_ModelNumber" coords="364,463,482,492" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_SerialNumber" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_SerialNumber" coords="364,570,480,599" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Mass" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Mass" coords="364,677,434,706" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Size" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Size" coords="364,768,428,797" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_LocationId" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_LocationId" coords="469,875,566,904" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Location" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Location" coords="469,982,556,1011" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="364,1168,458,1197" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType" coords="266,3,621,29" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.tmp#MeasurementRoomType_TemperatureRangeMin" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType_TemperatureRangeMin" coords="348,1334,516,1363" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.tmp#MeasurementRoomType_TemperatureRangeMax" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType_TemperatureRangeMax" coords="348,1441,520,1470" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.tmp#MeasurementRoomType_TemperatureControlMin" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType_TemperatureControlMin" coords="348,1548,520,1577" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.tmp#MeasurementRoomType_TemperatureControlMax" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType_TemperatureControlMax" coords="348,1639,524,1668" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.tmp#MeasurementRoomType_RelativeHumidityRangeMin" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType_RelativeHumidityRangeMin" coords="348,1730,540,1759" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.tmp#MeasurementRoomType_RelativeHumidityRangeMax" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType_RelativeHumidityRangeMax" coords="348,1821,544,1850" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.tmp#MeasurementRoomType_RelativeHumidityControlMin" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType_RelativeHumidityControlMin" coords="348,1912,544,1941" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.tmp#MeasurementRoomType_RelativeHumidityControlMax" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType_RelativeHumidityControlMax" coords="348,2003,548,2032" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementResourceBaseType')">MeasurementResourceBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementResourceBaseType')">MeasurementResourceBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementRoomType')">MeasurementRoomType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_MeasurementRoomType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_MeasurementRoomType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_MeasurementRoomType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomsType.html#MeasurementRoomsType_MeasurementRoom" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementRoomsType/MeasurementRoom')">MeasurementRoomsType/MeasurementRoom</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Location" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Location')">Location</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_LocationId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LocationId')">LocationId</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Manufacturer" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Manufacturer')">Manufacturer</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Mass" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Mass')">Mass</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_ModelNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ModelNumber')">ModelNumber</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType_RelativeHumidityControlMax" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RelativeHumidityControlMax')">RelativeHumidityControlMax</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType_RelativeHumidityControlMin" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RelativeHumidityControlMin')">RelativeHumidityControlMin</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType_RelativeHumidityRangeMax" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RelativeHumidityRangeMax')">RelativeHumidityRangeMax</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType_RelativeHumidityRangeMin" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RelativeHumidityRangeMin')">RelativeHumidityRangeMin</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_SerialNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SerialNumber')">SerialNumber</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Size" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Size')">Size</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType_TemperatureControlMax" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TemperatureControlMax')">TemperatureControlMax</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType_TemperatureControlMin" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TemperatureControlMin')">TemperatureControlMin</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType_TemperatureRangeMax" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TemperatureRangeMax')">TemperatureRangeMax</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomType.html#MeasurementRoomType_TemperatureRangeMin" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TemperatureRangeMin')">TemperatureRangeMin</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_MeasurementRoomType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_MeasurementRoomType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_MeasurementRoomType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required id attribute is the QIF id of the measurement resource, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasurementRoomType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasurementRoomType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasurementRoomType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"MeasurementRoomType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The MeasurementRoomType defines a room in which measurement may be done.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"MeasurementResourceBaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TemperatureRangeMin"</span><span class="tAN"> type=</span><span class="tAV">"TemperatureType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The TemperatureRangeMin element gives the minimum temperature that the room can maintain while staying within the temperature control limits.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TemperatureRangeMax"</span><span class="tAN"> type=</span><span class="tAV">"TemperatureType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The TemperatureRangeMax element gives the maximum temperature that the room can maintain while staying within the temperature control limits.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TemperatureControlMin"</span><span class="tAN"> type=</span><span class="tAV">"TemperatureType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This is an amount below any in-range temperature that the room is guaranteed not exceed. This must be a positive value.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TemperatureControlMax"</span><span class="tAN"> type=</span><span class="tAV">"TemperatureType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This is an amount above any in-range temperature that the room is guaranteed not exceed.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"RelativeHumidityRangeMin"</span><span class="tAN"> type=</span><span class="tAV">"FractionType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The RelativeHumidityRangeMin element gives the minimum relative humidity that the room can maintain while staying within the humidity control limits.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"RelativeHumidityRangeMax"</span><span class="tAN"> type=</span><span class="tAV">"FractionType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The RelativeHumidityRangeMax element gives the maximum relative humidity that the room can maintain while staying within the humidity control limits.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"RelativeHumidityControlMin"</span><span class="tAN"> type=</span><span class="tAV">"FractionType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This is an amount below any in-range relative humidity that the room is guaranteed not exceed. This must be a positive value.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"RelativeHumidityControlMax"</span><span class="tAN"> type=</span><span class="tAV">"FractionType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This is an amount above any in-range relative humidity that the room is guaranteed not exceed.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

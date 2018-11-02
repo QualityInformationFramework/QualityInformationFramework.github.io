@@ -1,0 +1,1983 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Validation</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_BodyType_Validation', 
+				'properties_BodyType_Transform', 
+				'properties_BodyType_ShellIds', 
+				'properties_BodyType_FaceIds', 
+				'properties_BodyType_LoopIds', 
+				'properties_BodyType_EdgeIds', 
+				'properties_BodyType_VertexIds', 
+				'properties_BodyType_form', 
+				'properties_BodyType_materialIndex');
+var facetsBoxes= new Array('facets_BodyType_form', 
+				'facets_BodyType_materialIndex');
+var usedByBoxes= new Array('usedBy_BodyType', 
+				'usedBy_BodyType_form', 
+				'usedBy_BodyType_materialIndex');
+var sourceBoxes= new Array('source_BodyType_Validation', 
+				'source_BodyType_Transform', 
+				'source_BodyType_ShellIds', 
+				'source_BodyType_FaceIds', 
+				'source_BodyType_LoopIds', 
+				'source_BodyType_EdgeIds', 
+				'source_BodyType_VertexIds', 
+				'source_BodyType', 
+				'source_BodyType_form', 
+				'source_BodyType_materialIndex');
+var instanceBoxes= new Array('instance_BodyType_Validation', 
+				'instance_BodyType_Transform', 
+				'instance_BodyType_ShellIds', 
+				'instance_BodyType_FaceIds', 
+				'instance_BodyType_LoopIds', 
+				'instance_BodyType_EdgeIds', 
+				'instance_BodyType_VertexIds');
+var diagramBoxes= new Array('diagram_BodyType_Validation', 
+				'diagram_BodyType_Transform', 
+				'diagram_BodyType_ShellIds', 
+				'diagram_BodyType_FaceIds', 
+				'diagram_BodyType_LoopIds', 
+				'diagram_BodyType_EdgeIds', 
+				'diagram_BodyType_VertexIds', 
+				'diagram_BodyType');
+var annotationBoxes= new Array('annotations_BodyType_Validation', 
+				'annotations_BodyType_Transform', 
+				'annotations_BodyType_ShellIds', 
+				'annotations_BodyType_FaceIds', 
+				'annotations_BodyType_LoopIds', 
+				'annotations_BodyType_EdgeIds', 
+				'annotations_BodyType_VertexIds', 
+				'annotations_BodyType', 
+				'annotations_BodyType_form', 
+				'annotations_BodyType_materialIndex');
+var attributesBoxes= new Array('attributes_BodyType_ShellIds', 
+				'attributes_BodyType_FaceIds', 
+				'attributes_BodyType_LoopIds', 
+				'attributes_BodyType_EdgeIds', 
+				'attributes_BodyType_VertexIds', 
+				'attributes_BodyType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="BodyType_Validation"></a><div class="componentTitle">Element <span class="qname"><b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BodyType')">BodyType</a></b> / Validation</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BodyType_Validation" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BodyType_Validation');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BodyType_Validation" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Validation is a set of body validation properties.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BodyType_Validation" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BodyType_Validation');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BodyType_Validation" style="display:block"><img alt="Diagram" border="0" src="img/Topology_xsd_Element_Validation_2.jpeg" usemap="#Topology_xsd_Element_Validation_2" /><map name="Topology_xsd_Element_Validation_2" id="Topology_xsd_Element_Validation_2">
+                                 <area alt="Topology_xsd_Complex_Type_ValidationBodyType.tmp#ValidationBodyType_Area" href="Topology_xsd_Complex_Type_ValidationBodyType.html#ValidationBodyType_Area" coords="250,46,315,75" />
+                                 <area alt="Topology_xsd_Complex_Type_ValidationBodyType.tmp#ValidationBodyType_Centroid" href="Topology_xsd_Complex_Type_ValidationBodyType.html#ValidationBodyType_Centroid" coords="250,121,336,150" />
+                                 <area alt="Topology_xsd_Complex_Type_ValidationBodyType.tmp#ValidationBodyType_Volume" href="Topology_xsd_Complex_Type_ValidationBodyType.html#ValidationBodyType_Volume" coords="250,212,332,241" />
+                                 <area alt="Topology_xsd_Complex_Type_ValidationBodyType.tmp#ValidationBodyType_Box" href="Topology_xsd_Complex_Type_ValidationBodyType.html#ValidationBodyType_Box" coords="250,303,311,332" />
+                                 <area alt="Topology_xsd_Complex_Type_ValidationBodyType.tmp#ValidationBodyType_FacePoints" href="Topology_xsd_Complex_Type_ValidationBodyType.html#ValidationBodyType_FacePoints" coords="250,394,354,423" />
+                                 <area alt="Topology_xsd_Complex_Type_ValidationBodyType.tmp#ValidationBodyType_EdgePoints" href="Topology_xsd_Complex_Type_ValidationBodyType.html#ValidationBodyType_EdgePoints" coords="250,485,355,514" />
+                                 <area alt="Topology_xsd_Complex_Type_ValidationBodyType.tmp#ValidationBodyType" href="Topology_xsd_Complex_Type_ValidationBodyType.html#ValidationBodyType" coords="152,3,330,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Topology_xsd_Complex_Type_ValidationBodyType.html#ValidationBodyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidationBodyType')">ValidationBodyType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_BodyType_Validation" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_BodyType_Validation');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_BodyType_Validation" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Topology_xsd_Complex_Type_ValidationBodyType.html#ValidationBodyType_Area" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Area')">Area</a></b>, <b><a href="Topology_xsd_Complex_Type_ValidationBodyType.html#ValidationBodyType_Box" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Box')">Box</a></b>, <b><a href="Topology_xsd_Complex_Type_ValidationBodyType.html#ValidationBodyType_Centroid" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Centroid')">Centroid</a></b>, <b><a href="Topology_xsd_Complex_Type_ValidationBodyType.html#ValidationBodyType_EdgePoints" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePoints')">EdgePoints</a></b>, <b><a href="Topology_xsd_Complex_Type_ValidationBodyType.html#ValidationBodyType_FacePoints" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FacePoints')">FacePoints</a></b>, <b><a href="Topology_xsd_Complex_Type_ValidationBodyType.html#ValidationBodyType_Volume" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Volume')">Volume</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_BodyType_Validation" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_BodyType_Validation');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_BodyType_Validation" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Validation</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Area</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Area&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Centroid</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Centroid&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Volume</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Volume&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Box</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Box&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;FacePoints</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/FacePoints&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;EdgePoints</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/EdgePoints&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Validation&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BodyType_Validation" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BodyType_Validation');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BodyType_Validation" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Validation"</span><span class="tAN"> type=</span><span class="tAV">"ValidationBodyType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Validation is a set of body validation properties.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Topology.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="BodyType_Transform"></a><div class="componentTitle">Element <span class="qname"><b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BodyType')">BodyType</a></b> / Transform</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BodyType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BodyType_Transform');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BodyType_Transform" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Transform element is an identifier of the transformation matrix.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BodyType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BodyType_Transform');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BodyType_Transform" style="display:block"><img alt="Diagram" border="0" src="img/Topology_xsd_Element_Transform.jpeg" usemap="#Topology_xsd_Element_Transform" /><map name="Topology_xsd_Element_Transform" id="Topology_xsd_Element_Transform">
+                                 <area alt="Primitives_xsd_Complex_Type_ElementReferenceType.tmp#ElementReferenceType_Id" href="Primitives_xsd_Complex_Type_ElementReferenceType.html#ElementReferenceType_Id" coords="250,50,308,79" />
+                                 <area alt="Primitives_xsd_Complex_Type_ElementReferenceType.tmp#ElementReferenceType" href="Primitives_xsd_Complex_Type_ElementReferenceType.html#ElementReferenceType" coords="152,3,349,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ElementReferenceType.html#ElementReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElementReferenceType')">ElementReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_BodyType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_BodyType_Transform');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_BodyType_Transform" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ElementReferenceType.html#ElementReferenceType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_BodyType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_BodyType_Transform');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_BodyType_Transform" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Transform</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Transform&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BodyType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BodyType_Transform');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BodyType_Transform" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Transform"</span><span class="tAN"> type=</span><span class="tAV">"ElementReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Transform element is an identifier of the transformation matrix.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Topology.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="BodyType_ShellIds"></a><div class="componentTitle">Element <span class="qname"><b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BodyType')">BodyType</a></b> / ShellIds</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BodyType_ShellIds" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BodyType_ShellIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BodyType_ShellIds" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional ShellIds element is an array of shell identifiers participating in forming this body.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BodyType_ShellIds" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BodyType_ShellIds');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BodyType_ShellIds" style="display:block"><img alt="Diagram" border="0" src="img/Topology_xsd_Element_ShellIds.jpeg" usemap="#Topology_xsd_Element_ShellIds" /><map name="Topology_xsd_Element_ShellIds" id="Topology_xsd_Element_ShellIds">
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_n" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" coords="170,90,251,119" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_Id" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" coords="264,194,322,223" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" coords="141,3,321,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayReferenceType')">ArrayReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_BodyType_ShellIds" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_BodyType_ShellIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_BodyType_ShellIds" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_BodyType_ShellIds" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_BodyType_ShellIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_BodyType_ShellIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;ShellIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/ShellIds&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_BodyType_ShellIds" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_BodyType_ShellIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_BodyType_ShellIds" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of Id elements in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BodyType_ShellIds" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BodyType_ShellIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BodyType_ShellIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ShellIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ShellIds element is an array of shell identifiers participating in forming this body.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Topology.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="BodyType_FaceIds"></a><div class="componentTitle">Element <span class="qname"><b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BodyType')">BodyType</a></b> / FaceIds</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BodyType_FaceIds" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BodyType_FaceIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BodyType_FaceIds" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional FaceIds element is an array of face identifiers participating in forming this body.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BodyType_FaceIds" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BodyType_FaceIds');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BodyType_FaceIds" style="display:block"><img alt="Diagram" border="0" src="img/Topology_xsd_Element_FaceIds_1.jpeg" usemap="#Topology_xsd_Element_FaceIds_1" /><map name="Topology_xsd_Element_FaceIds_1" id="Topology_xsd_Element_FaceIds_1">
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_n" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" coords="170,90,251,119" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_Id" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" coords="264,194,322,223" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" coords="141,3,321,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayReferenceType')">ArrayReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_BodyType_FaceIds" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_BodyType_FaceIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_BodyType_FaceIds" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_BodyType_FaceIds" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_BodyType_FaceIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_BodyType_FaceIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;FaceIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/FaceIds&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_BodyType_FaceIds" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_BodyType_FaceIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_BodyType_FaceIds" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of Id elements in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BodyType_FaceIds" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BodyType_FaceIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BodyType_FaceIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FaceIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional FaceIds element is an array of face identifiers participating in forming this body.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Topology.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="BodyType_LoopIds"></a><div class="componentTitle">Element <span class="qname"><b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BodyType')">BodyType</a></b> / LoopIds</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BodyType_LoopIds" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BodyType_LoopIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BodyType_LoopIds" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional LoopIds element is an array of loop identifiers participating in forming this body.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BodyType_LoopIds" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BodyType_LoopIds');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BodyType_LoopIds" style="display:block"><img alt="Diagram" border="0" src="img/Topology_xsd_Element_LoopIds.jpeg" usemap="#Topology_xsd_Element_LoopIds" /><map name="Topology_xsd_Element_LoopIds" id="Topology_xsd_Element_LoopIds">
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_n" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" coords="169,90,250,119" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_Id" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" coords="263,194,321,223" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" coords="140,3,320,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayReferenceType')">ArrayReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_BodyType_LoopIds" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_BodyType_LoopIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_BodyType_LoopIds" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_BodyType_LoopIds" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_BodyType_LoopIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_BodyType_LoopIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;LoopIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/LoopIds&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_BodyType_LoopIds" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_BodyType_LoopIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_BodyType_LoopIds" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of Id elements in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BodyType_LoopIds" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BodyType_LoopIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BodyType_LoopIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"LoopIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional LoopIds element is an array of loop identifiers participating in forming this body.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Topology.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="BodyType_EdgeIds"></a><div class="componentTitle">Element <span class="qname"><b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BodyType')">BodyType</a></b> / EdgeIds</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BodyType_EdgeIds" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BodyType_EdgeIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BodyType_EdgeIds" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional EdgeIds element is an array of edge identifiers participating in forming this body.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BodyType_EdgeIds" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BodyType_EdgeIds');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BodyType_EdgeIds" style="display:block"><img alt="Diagram" border="0" src="img/Topology_xsd_Element_EdgeIds.jpeg" usemap="#Topology_xsd_Element_EdgeIds" /><map name="Topology_xsd_Element_EdgeIds" id="Topology_xsd_Element_EdgeIds">
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_n" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" coords="171,90,252,119" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_Id" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" coords="265,194,323,223" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" coords="142,3,322,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayReferenceType')">ArrayReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_BodyType_EdgeIds" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_BodyType_EdgeIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_BodyType_EdgeIds" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_BodyType_EdgeIds" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_BodyType_EdgeIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_BodyType_EdgeIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;EdgeIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/EdgeIds&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_BodyType_EdgeIds" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_BodyType_EdgeIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_BodyType_EdgeIds" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of Id elements in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BodyType_EdgeIds" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BodyType_EdgeIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BodyType_EdgeIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"EdgeIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional EdgeIds element is an array of edge identifiers participating in forming this body.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Topology.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="BodyType_VertexIds"></a><div class="componentTitle">Element <span class="qname"><b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BodyType')">BodyType</a></b> / VertexIds</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BodyType_VertexIds" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BodyType_VertexIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BodyType_VertexIds" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional VertexIds element is an array of vertex identifiers participating in forming this body.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BodyType_VertexIds" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BodyType_VertexIds');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BodyType_VertexIds" style="display:block"><img alt="Diagram" border="0" src="img/Topology_xsd_Element_VertexIds.jpeg" usemap="#Topology_xsd_Element_VertexIds" /><map name="Topology_xsd_Element_VertexIds" id="Topology_xsd_Element_VertexIds">
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_n" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" coords="179,90,260,119" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_Id" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" coords="273,194,331,223" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" coords="150,3,330,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayReferenceType')">ArrayReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_BodyType_VertexIds" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_BodyType_VertexIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_BodyType_VertexIds" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_BodyType_VertexIds" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_BodyType_VertexIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_BodyType_VertexIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;VertexIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/VertexIds&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_BodyType_VertexIds" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_BodyType_VertexIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_BodyType_VertexIds" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of Id elements in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BodyType_VertexIds" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BodyType_VertexIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BodyType_VertexIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"VertexIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional VertexIds element is an array of vertex identifiers participating in forming this body.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Topology.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="BodyType"></a><div class="componentTitle">Complex Type <span class="qname">BodyType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BodyType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BodyType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BodyType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The BodyType is the b-rep body type - a solid represented as a set of one outer and zero to many inner shells.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BodyType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BodyType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BodyType" style="display:block"><img alt="Diagram" border="0" src="img/Topology_xsd_Complex_Type_BodyType.jpeg" usemap="#Topology_xsd_Complex_Type_BodyType" /><map name="Topology_xsd_Complex_Type_BodyType" id="Topology_xsd_Complex_Type_BodyType">
+                                 <area alt="PrimitivesPD_xsd_Complex_Type_NodeBaseType.tmp#NodeBaseType_label" href="PrimitivesPD_xsd_Complex_Type_NodeBaseType.html#NodeBaseType_label" coords="260,228,348,257" />
+                                 <area alt="PrimitivesPD_xsd_Complex_Type_NodeBaseType.tmp#NodeBaseType" href="PrimitivesPD_xsd_Complex_Type_NodeBaseType.html#NodeBaseType" coords="231,141,482,167" />
+                                 <area alt="PrimitivesPD_xsd_Complex_Type_NodeWithIdBaseType.tmp#NodeWithIdBaseType_id" href="PrimitivesPD_xsd_Complex_Type_NodeWithIdBaseType.html#NodeWithIdBaseType_id" coords="244,447,325,476" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="313,551,407,580" />
+                                 <area alt="PrimitivesPD_xsd_Complex_Type_NodeWithIdBaseType.tmp#NodeWithIdBaseType" href="PrimitivesPD_xsd_Complex_Type_NodeWithIdBaseType.html#NodeWithIdBaseType" coords="215,95,503,121" />
+                                 <area alt="PrimitivesPD_xsd_Attribute_Group_AttrDrawable.tmp#AttrDrawable" href="PrimitivesPD_xsd_Attribute_Group_AttrDrawable.html#AttrDrawable" coords="231,764,373,795" />
+                                 <area alt="PrimitivesPD_xsd_Complex_Type_DrawableBaseType.tmp#DrawableBaseType" href="PrimitivesPD_xsd_Complex_Type_DrawableBaseType.html#DrawableBaseType" coords="199,49,473,75" />
+                                 <area alt="Topology_xsd_Complex_Type_TopologyBaseType.tmp#TopologyBaseType" href="Topology_xsd_Complex_Type_TopologyBaseType.html#TopologyBaseType" coords="183,3,456,29" />
+                                 <area alt="Topology_xsd_Complex_Type_BodyType.tmp#BodyType_form" href="Topology_xsd_Complex_Type_BodyType.html#BodyType_form" coords="196,967,282,996" />
+                                 <area alt="Topology_xsd_Complex_Type_BodyType.tmp#BodyType_materialIndex" href="Topology_xsd_Complex_Type_BodyType.html#BodyType_materialIndex" coords="196,1058,334,1087" />
+                                 <area alt="Topology_xsd_Complex_Type_BodyType.tmp#BodyType_Validation" href="Topology_xsd_Complex_Type_BodyType.html#BodyType_Validation" coords="265,1158,360,1187" />
+                                 <area alt="Topology_xsd_Complex_Type_BodyType.tmp#BodyType_Transform" href="Topology_xsd_Complex_Type_BodyType.html#BodyType_Transform" coords="265,1249,360,1278" />
+                                 <area alt="Topology_xsd_Complex_Type_BodyType.tmp#BodyType_ShellIds" href="Topology_xsd_Complex_Type_BodyType.html#BodyType_ShellIds" coords="265,1340,349,1369" />
+                                 <area alt="Topology_xsd_Complex_Type_BodyType.tmp#BodyType_FaceIds" href="Topology_xsd_Complex_Type_BodyType.html#BodyType_FaceIds" coords="265,1447,349,1476" />
+                                 <area alt="Topology_xsd_Complex_Type_BodyType.tmp#BodyType_LoopIds" href="Topology_xsd_Complex_Type_BodyType.html#BodyType_LoopIds" coords="265,1554,348,1583" />
+                                 <area alt="Topology_xsd_Complex_Type_BodyType.tmp#BodyType_EdgeIds" href="Topology_xsd_Complex_Type_BodyType.html#BodyType_EdgeIds" coords="265,1661,350,1690" />
+                                 <area alt="Topology_xsd_Complex_Type_BodyType.tmp#BodyType_VertexIds" href="Topology_xsd_Complex_Type_BodyType.html#BodyType_VertexIds" coords="265,1768,358,1797" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="Topology_xsd_Complex_Type_TopologyBaseType.html#TopologyBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TopologyBaseType')">TopologyBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="PrimitivesPD_xsd_Complex_Type_NodeBaseType.html#NodeBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NodeBaseType')">NodeBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="PrimitivesPD_xsd_Complex_Type_NodeWithIdBaseType.html#NodeWithIdBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NodeWithIdBaseType')">NodeWithIdBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="PrimitivesPD_xsd_Complex_Type_DrawableBaseType.html#DrawableBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DrawableBaseType')">DrawableBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Topology_xsd_Complex_Type_TopologyBaseType.html#TopologyBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TopologyBaseType')">TopologyBaseType</a></b><ul class="internal">
+                                                      <li class="internal"><b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BodyType')">BodyType</a></b></li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_BodyType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_BodyType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_BodyType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Topology_xsd_Element_Body.html#Body" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Body')">Body</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType_EdgeIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgeIds')">EdgeIds</a></b>, <b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType_FaceIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FaceIds')">FaceIds</a></b>, <b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType_LoopIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LoopIds')">LoopIds</a></b>, <b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType_ShellIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ShellIds')">ShellIds</a></b>, <b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType_Transform" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Transform')">Transform</a></b>, <b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType_Validation" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Validation')">Validation</a></b>, <b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType_VertexIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component VertexIds')">VertexIds</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_BodyType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_BodyType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_BodyType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="10%">Default</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPD_xsd_Attribute_Group_AttrDrawable.html#AttrDrawable_color" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component color')">color</a></b></td>
+                                    <td><b><a href="PrimitivesPD_xsd_Simple_Type_ColorType.html#ColorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ColorType')">ColorType</a></b></td>
+                                    <td></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional color attribute defines the RGB color property of a model entity.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType_form" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component form')">form</a></b></td>
+                                    <td><b><a href="Topology_xsd_Simple_Type_BodyFormEnumType.html#BodyFormEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BodyFormEnumType')">BodyFormEnumType</a></b></td>
+                                    <td>UNDEFINED</td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional form attribute specifies how the body is represented.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPD_xsd_Attribute_Group_AttrDrawable.html#AttrDrawable_hidden" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hidden')">hidden</a></b></td>
+                                    <td><b>xs:boolean</b></td>
+                                    <td>0</td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional hidden attribute defines the visibility property of a model entity in the graphical window.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPD_xsd_Complex_Type_NodeWithIdBaseType.html#NodeWithIdBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required id attribute is the unique model entity identifier.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPD_xsd_Complex_Type_NodeBaseType.html#NodeBaseType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label')">label</a></b></td>
+                                    <td><b>xs:string</b></td>
+                                    <td></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional label attribute is the model entity "nameplate". Normally it can be seen at the entity item in the project tree.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType_materialIndex" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component materialIndex')">materialIndex</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional materialIndex attribute specifies a material index in the material library.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPD_xsd_Attribute_Group_AttrDrawable.html#AttrDrawable_size" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component size')">size</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_DoublePositiveType.html#DoublePositiveType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DoublePositiveType')">DoublePositiveType</a></b></td>
+                                    <td></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional size attribute defines a recommended size for visualization of an infinite drawable element such as plane, cylinder, axis, etc., or objects without explicit geometric parameters (e.g. coordinate system).</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPD_xsd_Attribute_Group_AttrDrawable.html#AttrDrawable_transparency" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component transparency')">transparency</a></b></td>
+                                    <td><b><a href="PrimitivesPD_xsd_Simple_Type_TransparencyType.html#TransparencyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TransparencyType')">TransparencyType</a></b></td>
+                                    <td>0.0</td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional transparency attribute defines the transparency property of a model entity.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BodyType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BodyType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BodyType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"BodyType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The BodyType is the b-rep body type - a solid represented as a set of one outer and zero to many inner shells.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"TopologyBaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Validation"</span><span class="tAN"> type=</span><span class="tAV">"ValidationBodyType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Validation is a set of body validation properties.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Transform"</span><span class="tAN"> type=</span><span class="tAV">"ElementReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Transform element is an identifier of the transformation matrix.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ShellIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ShellIds element is an array of shell identifiers participating in forming this body.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FaceIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional FaceIds element is an array of face identifiers participating in forming this body.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"LoopIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional LoopIds element is an array of loop identifiers participating in forming this body.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"EdgeIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional EdgeIds element is an array of edge identifiers participating in forming this body.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"VertexIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional VertexIds element is an array of vertex identifiers participating in forming this body.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"form"</span><span class="tAN"> type=</span><span class="tAV">"BodyFormEnumType"</span><span class="tAN"> default=</span><span class="tAV">"UNDEFINED"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional form attribute specifies how the body is represented.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"materialIndex"</span><span class="tAN"> type=</span><span class="tAV">"NaturalType"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional materialIndex attribute specifies a material index in the material library.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Topology.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="BodyType_form"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BodyType')">BodyType</a></b> / @form</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BodyType_form" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BodyType_form');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BodyType_form" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional form attribute specifies how the body is represented.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Topology_xsd_Simple_Type_BodyFormEnumType.html#BodyFormEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BodyFormEnumType')">BodyFormEnumType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_BodyType_form" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_BodyType_form');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_BodyType_form" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">default</td>
+                                    <td><b>UNDEFINED</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_BodyType_form" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_BodyType_form');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_BodyType_form" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>UNDEFINED</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>TRIMMED_SURFACE</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WIRE</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>SOLID</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>SHEET</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>MIXED</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_BodyType_form" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_BodyType_form');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_BodyType_form" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BodyType')">BodyType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BodyType_form" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BodyType_form');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BodyType_form" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"form"</span><span class="tAN"> type=</span><span class="tAV">"BodyFormEnumType"</span><span class="tAN"> default=</span><span class="tAV">"UNDEFINED"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional form attribute specifies how the body is represented.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Topology.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="BodyType_materialIndex"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BodyType')">BodyType</a></b> / @materialIndex</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BodyType_materialIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BodyType_materialIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BodyType_materialIndex" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional materialIndex attribute specifies a material index in the material library.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_BodyType_materialIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_BodyType_materialIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_BodyType_materialIndex" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_BodyType_materialIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_BodyType_materialIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_BodyType_materialIndex" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">minInclusive</td>
+                                    <td width="30%"><b>1</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_BodyType_materialIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_BodyType_materialIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_BodyType_materialIndex" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="Topology_xsd_Complex_Type_BodyType.html#BodyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BodyType')">BodyType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BodyType_materialIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BodyType_materialIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BodyType_materialIndex" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"materialIndex"</span><span class="tAN"> type=</span><span class="tAV">"NaturalType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional materialIndex attribute specifies a material index in the material library.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Topology.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

@@ -1,0 +1,534 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component NominalsCalculated</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_ConstructionMethodBaseType_NominalsCalculated', 
+				'properties_ConstructionMethodBaseType');
+var usedByBoxes= new Array('usedBy_ConstructionMethodBaseType');
+var sourceBoxes= new Array('source_ConstructionMethodBaseType_NominalsCalculated', 
+				'source_ConstructionMethodBaseType');
+var diagramBoxes= new Array('diagram_ConstructionMethodBaseType_NominalsCalculated', 
+				'diagram_ConstructionMethodBaseType');
+var annotationBoxes= new Array('annotations_ConstructionMethodBaseType_NominalsCalculated', 
+				'annotations_ConstructionMethodBaseType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="ConstructionMethodBaseType_NominalsCalculated"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b> / NominalsCalculated</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ConstructionMethodBaseType_NominalsCalculated" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ConstructionMethodBaseType_NominalsCalculated');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ConstructionMethodBaseType_NominalsCalculated" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional NominalsCalculated element identifies whether nominals are calculated rather than supplied for the constructed feature: "true" for calculated, "false" or not present for supplied.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ConstructionMethodBaseType_NominalsCalculated" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ConstructionMethodBaseType_NominalsCalculated');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ConstructionMethodBaseType_NominalsCalculated" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_NominalsCalculated.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:boolean</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ConstructionMethodBaseType_NominalsCalculated" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ConstructionMethodBaseType_NominalsCalculated');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ConstructionMethodBaseType_NominalsCalculated" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ConstructionMethodBaseType_NominalsCalculated" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstructionMethodBaseType_NominalsCalculated');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ConstructionMethodBaseType_NominalsCalculated" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"NominalsCalculated"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional NominalsCalculated element identifies whether nominals are calculated rather than supplied for the constructed feature: "true" for calculated, "false" or not present for supplied.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ConstructionMethodBaseType"></a><div class="componentTitle">Complex Type <span class="qname">ConstructionMethodBaseType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ConstructionMethodBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ConstructionMethodBaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ConstructionMethodBaseType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The ConstructionMethodBaseType is the abstract base type that defines a construction method. A construction method defines the data for constructing a feature and describes how to use that data in the construction of a feature. In any case where more than one feature can be constructed with the same input, the result closest to the feature's nominal definition will be chosen.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ConstructionMethodBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ConstructionMethodBaseType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ConstructionMethodBaseType" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Complex_Type_ConstructionMethodBaseType.jpeg" usemap="#Features_xsd_Complex_Type_ConstructionMethodBaseType" /><map name="Features_xsd_Complex_Type_ConstructionMethodBaseType" id="Features_xsd_Complex_Type_ConstructionMethodBaseType">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="381,4,534,33" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ConstructionMethodBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ConstructionMethodBaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ConstructionMethodBaseType" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">abstract</td>
+                                    <td><b>true</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_ConstructionMethodBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ConstructionMethodBaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_ConstructionMethodBaseType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Types </td>
+                                    <td><b><a href="Features_xsd_Complex_Type_CircleBestFitType.html#CircleBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleBestFitType')">CircleBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_CircleCastType.html#CircleCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleCastType')">CircleCastType</a></b>, <b><a href="Features_xsd_Complex_Type_CircleCopyType.html#CircleCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleCopyType')">CircleCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_CircleFromConeType.html#CircleFromConeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleFromConeType')">CircleFromConeType</a></b>, <b><a href="Features_xsd_Complex_Type_CircleFromScanType.html#CircleFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleFromScanType')">CircleFromScanType</a></b>, <b><a href="Features_xsd_Complex_Type_CircleIntersectionType.html#CircleIntersectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleIntersectionType')">CircleIntersectionType</a></b>, <b><a href="Features_xsd_Complex_Type_CircleProjectionType.html#CircleProjectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleProjectionType')">CircleProjectionType</a></b>, <b><a href="Features_xsd_Complex_Type_CircleRecompType.html#CircleRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleRecompType')">CircleRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_CircleTangentThroughType.html#CircleTangentThroughType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleTangentThroughType')">CircleTangentThroughType</a></b>, <b><a href="Features_xsd_Complex_Type_CircleTangentType.html#CircleTangentType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleTangentType')">CircleTangentType</a></b>, <b><a href="Features_xsd_Complex_Type_CircleTransformType.html#CircleTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleTransformType')">CircleTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_CircularArcBestFitType.html#CircularArcBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcBestFitType')">CircularArcBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_CircularArcCastType.html#CircularArcCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcCastType')">CircularArcCastType</a></b>, <b><a href="Features_xsd_Complex_Type_CircularArcCopyType.html#CircularArcCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcCopyType')">CircularArcCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_CircularArcExtractType.html#CircularArcExtractType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcExtractType')">CircularArcExtractType</a></b>, <b><a href="Features_xsd_Complex_Type_CircularArcFromScanType.html#CircularArcFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcFromScanType')">CircularArcFromScanType</a></b>, <b><a href="Features_xsd_Complex_Type_CircularArcIntersectionType.html#CircularArcIntersectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcIntersectionType')">CircularArcIntersectionType</a></b>, <b><a href="Features_xsd_Complex_Type_CircularArcProjectionType.html#CircularArcProjectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcProjectionType')">CircularArcProjectionType</a></b>, <b><a href="Features_xsd_Complex_Type_CircularArcRecompType.html#CircularArcRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcRecompType')">CircularArcRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_CircularArcTransformType.html#CircularArcTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcTransformType')">CircularArcTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_ConeBestFitType.html#ConeBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConeBestFitType')">ConeBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_ConeCastType.html#ConeCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConeCastType')">ConeCastType</a></b>, <b><a href="Features_xsd_Complex_Type_ConeCopyType.html#ConeCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConeCopyType')">ConeCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_ConeFromScanType.html#ConeFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConeFromScanType')">ConeFromScanType</a></b>, <b><a href="Features_xsd_Complex_Type_ConeRecompType.html#ConeRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConeRecompType')">ConeRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_ConeTransformType.html#ConeTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConeTransformType')">ConeTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_ConicalSegmentBestFitType.html#ConicalSegmentBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConicalSegmentBestFitType')">ConicalSegmentBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_ConicalSegmentCastType.html#ConicalSegmentCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConicalSegmentCastType')">ConicalSegmentCastType</a></b>, <b><a href="Features_xsd_Complex_Type_ConicalSegmentCopyType.html#ConicalSegmentCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConicalSegmentCopyType')">ConicalSegmentCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_ConicalSegmentRecompType.html#ConicalSegmentRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConicalSegmentRecompType')">ConicalSegmentRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_ConicalSegmentTransformType.html#ConicalSegmentTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConicalSegmentTransformType')">ConicalSegmentTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_CylinderBestFitType.html#CylinderBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylinderBestFitType')">CylinderBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_CylinderCastType.html#CylinderCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylinderCastType')">CylinderCastType</a></b>, <b><a href="Features_xsd_Complex_Type_CylinderCopyType.html#CylinderCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylinderCopyType')">CylinderCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_CylinderFromScanType.html#CylinderFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylinderFromScanType')">CylinderFromScanType</a></b>, <b><a href="Features_xsd_Complex_Type_CylinderRecompType.html#CylinderRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylinderRecompType')">CylinderRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_CylinderTransformType.html#CylinderTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylinderTransformType')">CylinderTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_CylindricalSegmentBestFitType.html#CylindricalSegmentBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylindricalSegmentBestFitType')">CylindricalSegmentBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_CylindricalSegmentCastType.html#CylindricalSegmentCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylindricalSegmentCastType')">CylindricalSegmentCastType</a></b>, <b><a href="Features_xsd_Complex_Type_CylindricalSegmentCopyType.html#CylindricalSegmentCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylindricalSegmentCopyType')">CylindricalSegmentCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_CylindricalSegmentRecompType.html#CylindricalSegmentRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylindricalSegmentRecompType')">CylindricalSegmentRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_CylindricalSegmentTransformType.html#CylindricalSegmentTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylindricalSegmentTransformType')">CylindricalSegmentTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointCastType.html#EdgePointCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointCastType')">EdgePointCastType</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointCopyType.html#EdgePointCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointCopyType')">EdgePointCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointFromScanType')">EdgePointFromScanType</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointTransformType.html#EdgePointTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointTransformType')">EdgePointTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_EllipseBestFitType.html#EllipseBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseBestFitType')">EllipseBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_EllipseCastType.html#EllipseCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseCastType')">EllipseCastType</a></b>, <b><a href="Features_xsd_Complex_Type_EllipseCopyType.html#EllipseCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseCopyType')">EllipseCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_EllipseFromScanType.html#EllipseFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseFromScanType')">EllipseFromScanType</a></b>, <b><a href="Features_xsd_Complex_Type_EllipseIntersectionType.html#EllipseIntersectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseIntersectionType')">EllipseIntersectionType</a></b>, <b><a href="Features_xsd_Complex_Type_EllipseProjectionType.html#EllipseProjectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseProjectionType')">EllipseProjectionType</a></b>, <b><a href="Features_xsd_Complex_Type_EllipseRecompType.html#EllipseRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseRecompType')">EllipseRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_EllipseTransformType.html#EllipseTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseTransformType')">EllipseTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_EllipticalArcBestFitType.html#EllipticalArcBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcBestFitType')">EllipticalArcBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_EllipticalArcCastType.html#EllipticalArcCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcCastType')">EllipticalArcCastType</a></b>, <b><a href="Features_xsd_Complex_Type_EllipticalArcCopyType.html#EllipticalArcCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcCopyType')">EllipticalArcCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_EllipticalArcFromScanType.html#EllipticalArcFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcFromScanType')">EllipticalArcFromScanType</a></b>, <b><a href="Features_xsd_Complex_Type_EllipticalArcIntersectionType.html#EllipticalArcIntersectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcIntersectionType')">EllipticalArcIntersectionType</a></b>, <b><a href="Features_xsd_Complex_Type_EllipticalArcProjectionType.html#EllipticalArcProjectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcProjectionType')">EllipticalArcProjectionType</a></b>, <b><a href="Features_xsd_Complex_Type_EllipticalArcRecompType.html#EllipticalArcRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcRecompType')">EllipticalArcRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_EllipticalArcTransformType.html#EllipticalArcTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcTransformType')">EllipticalArcTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_ElongatedCircleBestFitType.html#ElongatedCircleBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCircleBestFitType')">ElongatedCircleBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_ElongatedCircleCastType.html#ElongatedCircleCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCircleCastType')">ElongatedCircleCastType</a></b>, <b><a href="Features_xsd_Complex_Type_ElongatedCircleCopyType.html#ElongatedCircleCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCircleCopyType')">ElongatedCircleCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_ElongatedCircleRecompType.html#ElongatedCircleRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCircleRecompType')">ElongatedCircleRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_ElongatedCircleTransformType.html#ElongatedCircleTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCircleTransformType')">ElongatedCircleTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_ElongatedCylinderBestFitType.html#ElongatedCylinderBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCylinderBestFitType')">ElongatedCylinderBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_ElongatedCylinderCastType.html#ElongatedCylinderCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCylinderCastType')">ElongatedCylinderCastType</a></b>, <b><a href="Features_xsd_Complex_Type_ElongatedCylinderCopyType.html#ElongatedCylinderCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCylinderCopyType')">ElongatedCylinderCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_ElongatedCylinderRecompType.html#ElongatedCylinderRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCylinderRecompType')">ElongatedCylinderRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_ElongatedCylinderTransformType.html#ElongatedCylinderTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCylinderTransformType')">ElongatedCylinderTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_ExtrudedCrossSectionBestFitType.html#ExtrudedCrossSectionBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ExtrudedCrossSectionBestFitType')">ExtrudedCrossSectionBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_ExtrudedCrossSectionCastType.html#ExtrudedCrossSectionCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ExtrudedCrossSectionCastType')">ExtrudedCrossSectionCastType</a></b>, <b><a href="Features_xsd_Complex_Type_ExtrudedCrossSectionCopyType.html#ExtrudedCrossSectionCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ExtrudedCrossSectionCopyType')">ExtrudedCrossSectionCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_ExtrudedCrossSectionRecompType.html#ExtrudedCrossSectionRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ExtrudedCrossSectionRecompType')">ExtrudedCrossSectionRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_ExtrudedCrossSectionTransformType.html#ExtrudedCrossSectionTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ExtrudedCrossSectionTransformType')">ExtrudedCrossSectionTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_LineBestFitType.html#LineBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineBestFitType')">LineBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_LineCastType.html#LineCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineCastType')">LineCastType</a></b>, <b><a href="Features_xsd_Complex_Type_LineCopyType.html#LineCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineCopyType')">LineCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_LineExtractType.html#LineExtractType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineExtractType')">LineExtractType</a></b>, <b><a href="Features_xsd_Complex_Type_LineFromScanType.html#LineFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineFromScanType')">LineFromScanType</a></b>, <b><a href="Features_xsd_Complex_Type_LineIntersectionType.html#LineIntersectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineIntersectionType')">LineIntersectionType</a></b>, <b><a href="Features_xsd_Complex_Type_LineMidlineType.html#LineMidlineType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineMidlineType')">LineMidlineType</a></b>, <b><a href="Features_xsd_Complex_Type_LineParallelType.html#LineParallelType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineParallelType')">LineParallelType</a></b>, <b><a href="Features_xsd_Complex_Type_LinePerpendicularType.html#LinePerpendicularType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinePerpendicularType')">LinePerpendicularType</a></b>, <b><a href="Features_xsd_Complex_Type_LineProjectionType.html#LineProjectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineProjectionType')">LineProjectionType</a></b>, <b><a href="Features_xsd_Complex_Type_LineRecompType.html#LineRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineRecompType')">LineRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_LineTangentThroughType.html#LineTangentThroughType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineTangentThroughType')">LineTangentThroughType</a></b>, <b><a href="Features_xsd_Complex_Type_LineTransformType.html#LineTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineTransformType')">LineTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledLinesBestFitType.html#OppositeAngledLinesBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesBestFitType')">OppositeAngledLinesBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledLinesCastType.html#OppositeAngledLinesCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesCastType')">OppositeAngledLinesCastType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledLinesCopyType.html#OppositeAngledLinesCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesCopyType')">OppositeAngledLinesCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledLinesFromScanType.html#OppositeAngledLinesFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesFromScanType')">OppositeAngledLinesFromScanType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledLinesIntersectionType.html#OppositeAngledLinesIntersectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesIntersectionType')">OppositeAngledLinesIntersectionType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledLinesProjectionType.html#OppositeAngledLinesProjectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesProjectionType')">OppositeAngledLinesProjectionType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledLinesRecompType.html#OppositeAngledLinesRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesRecompType')">OppositeAngledLinesRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledLinesTransformType.html#OppositeAngledLinesTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesTransformType')">OppositeAngledLinesTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesBestFitType.html#OppositeAngledPlanesBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesBestFitType')">OppositeAngledPlanesBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesCastType.html#OppositeAngledPlanesCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesCastType')">OppositeAngledPlanesCastType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesCopyType.html#OppositeAngledPlanesCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesCopyType')">OppositeAngledPlanesCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesFromScanType.html#OppositeAngledPlanesFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesFromScanType')">OppositeAngledPlanesFromScanType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesRecompType.html#OppositeAngledPlanesRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesRecompType')">OppositeAngledPlanesRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesTransformType.html#OppositeAngledPlanesTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesTransformType')">OppositeAngledPlanesTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesBestFitType.html#OppositeParallelLinesBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesBestFitType')">OppositeParallelLinesBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesCastType.html#OppositeParallelLinesCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesCastType')">OppositeParallelLinesCastType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesCopyType.html#OppositeParallelLinesCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesCopyType')">OppositeParallelLinesCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesFromScanType.html#OppositeParallelLinesFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesFromScanType')">OppositeParallelLinesFromScanType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesIntersectionType.html#OppositeParallelLinesIntersectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesIntersectionType')">OppositeParallelLinesIntersectionType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesProjectionType.html#OppositeParallelLinesProjectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesProjectionType')">OppositeParallelLinesProjectionType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesRecompType.html#OppositeParallelLinesRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesRecompType')">OppositeParallelLinesRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesTransformType.html#OppositeParallelLinesTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesTransformType')">OppositeParallelLinesTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelPlanesBestFitType.html#OppositeParallelPlanesBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelPlanesBestFitType')">OppositeParallelPlanesBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelPlanesCastType.html#OppositeParallelPlanesCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelPlanesCastType')">OppositeParallelPlanesCastType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelPlanesCopyType.html#OppositeParallelPlanesCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelPlanesCopyType')">OppositeParallelPlanesCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelPlanesFromScanType.html#OppositeParallelPlanesFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelPlanesFromScanType')">OppositeParallelPlanesFromScanType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelPlanesRecompType.html#OppositeParallelPlanesRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelPlanesRecompType')">OppositeParallelPlanesRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelPlanesTransformType.html#OppositeParallelPlanesTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelPlanesTransformType')">OppositeParallelPlanesTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_OtherCurveFeatureCopyType.html#OtherCurveFeatureCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherCurveFeatureCopyType')">OtherCurveFeatureCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_OtherShapeFeatureCopyType.html#OtherShapeFeatureCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherShapeFeatureCopyType')">OtherShapeFeatureCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_OtherSurfaceFeatureCopyType.html#OtherSurfaceFeatureCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherSurfaceFeatureCopyType')">OtherSurfaceFeatureCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneBestFitType.html#PlaneBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneBestFitType')">PlaneBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneCastType.html#PlaneCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneCastType')">PlaneCastType</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneCopyType.html#PlaneCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneCopyType')">PlaneCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneExtractType.html#PlaneExtractType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneExtractType')">PlaneExtractType</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneMidplaneType.html#PlaneMidplaneType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneMidplaneType')">PlaneMidplaneType</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneOffsetType.html#PlaneOffsetType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneOffsetType')">PlaneOffsetType</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneParallelType.html#PlaneParallelType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneParallelType')">PlaneParallelType</a></b>, <b><a href="Features_xsd_Complex_Type_PlanePerpendicularType.html#PlanePerpendicularType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlanePerpendicularType')">PlanePerpendicularType</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneRecompType.html#PlaneRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneRecompType')">PlaneRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneTangentThroughType.html#PlaneTangentThroughType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneTangentThroughType')">PlaneTangentThroughType</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneThroughType.html#PlaneThroughType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneThroughType')">PlaneThroughType</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneTransformType.html#PlaneTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneTransformType')">PlaneTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedCurveBestFitType.html#PointDefinedCurveBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedCurveBestFitType')">PointDefinedCurveBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedCurveCopyType.html#PointDefinedCurveCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedCurveCopyType')">PointDefinedCurveCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedCurveExtractType.html#PointDefinedCurveExtractType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedCurveExtractType')">PointDefinedCurveExtractType</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedCurveFromScanType.html#PointDefinedCurveFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedCurveFromScanType')">PointDefinedCurveFromScanType</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedCurveRecompType.html#PointDefinedCurveRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedCurveRecompType')">PointDefinedCurveRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedCurveTransformType.html#PointDefinedCurveTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedCurveTransformType')">PointDefinedCurveTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedSurfaceBestFitType.html#PointDefinedSurfaceBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedSurfaceBestFitType')">PointDefinedSurfaceBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedSurfaceCopyType.html#PointDefinedSurfaceCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedSurfaceCopyType')">PointDefinedSurfaceCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedSurfaceExtractType.html#PointDefinedSurfaceExtractType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedSurfaceExtractType')">PointDefinedSurfaceExtractType</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedSurfaceRecompType.html#PointDefinedSurfaceRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedSurfaceRecompType')">PointDefinedSurfaceRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedSurfaceTransformType.html#PointDefinedSurfaceTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedSurfaceTransformType')">PointDefinedSurfaceTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureCastType.html#PointFeatureCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureCastType')">PointFeatureCastType</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureCenterOfGravityType.html#PointFeatureCenterOfGravityType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureCenterOfGravityType')">PointFeatureCenterOfGravityType</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureCopyType.html#PointFeatureCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureCopyType')">PointFeatureCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureExtremeType.html#PointFeatureExtremeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureExtremeType')">PointFeatureExtremeType</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureFromConeType.html#PointFeatureFromConeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureFromConeType')">PointFeatureFromConeType</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureFromScanType.html#PointFeatureFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureFromScanType')">PointFeatureFromScanType</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureIntersectionType.html#PointFeatureIntersectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureIntersectionType')">PointFeatureIntersectionType</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureMidPointType.html#PointFeatureMidPointType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureMidPointType')">PointFeatureMidPointType</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureMovePointAxisType.html#PointFeatureMovePointAxisType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureMovePointAxisType')">PointFeatureMovePointAxisType</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureMovePointType.html#PointFeatureMovePointType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureMovePointType')">PointFeatureMovePointType</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureMovePointVectorType.html#PointFeatureMovePointVectorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureMovePointVectorType')">PointFeatureMovePointVectorType</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeaturePierceType.html#PointFeaturePierceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeaturePierceType')">PointFeaturePierceType</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureProjectionType.html#PointFeatureProjectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureProjectionType')">PointFeatureProjectionType</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureTransformType.html#PointFeatureTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureTransformType')">PointFeatureTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_SphereBestFitType.html#SphereBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphereBestFitType')">SphereBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_SphereCastType.html#SphereCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphereCastType')">SphereCastType</a></b>, <b><a href="Features_xsd_Complex_Type_SphereCopyType.html#SphereCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphereCopyType')">SphereCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_SphereFromScanType.html#SphereFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphereFromScanType')">SphereFromScanType</a></b>, <b><a href="Features_xsd_Complex_Type_SphereRecompType.html#SphereRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphereRecompType')">SphereRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_SphereTransformType.html#SphereTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphereTransformType')">SphereTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_SphericalSegmentBestFitType.html#SphericalSegmentBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphericalSegmentBestFitType')">SphericalSegmentBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_SphericalSegmentCastType.html#SphericalSegmentCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphericalSegmentCastType')">SphericalSegmentCastType</a></b>, <b><a href="Features_xsd_Complex_Type_SphericalSegmentCopyType.html#SphericalSegmentCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphericalSegmentCopyType')">SphericalSegmentCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_SphericalSegmentRecompType.html#SphericalSegmentRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphericalSegmentRecompType')">SphericalSegmentRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_SphericalSegmentTransformType.html#SphericalSegmentTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphericalSegmentTransformType')">SphericalSegmentTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionBestFitType.html#SurfaceOfRevolutionBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionBestFitType')">SurfaceOfRevolutionBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionCastType.html#SurfaceOfRevolutionCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionCastType')">SurfaceOfRevolutionCastType</a></b>, <b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionCopyType.html#SurfaceOfRevolutionCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionCopyType')">SurfaceOfRevolutionCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionRecompType.html#SurfaceOfRevolutionRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionRecompType')">SurfaceOfRevolutionRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionTransformType.html#SurfaceOfRevolutionTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionTransformType')">SurfaceOfRevolutionTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_ThreadedFeatureBestFitType.html#ThreadedFeatureBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadedFeatureBestFitType')">ThreadedFeatureBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_ThreadedFeatureCastType.html#ThreadedFeatureCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadedFeatureCastType')">ThreadedFeatureCastType</a></b>, <b><a href="Features_xsd_Complex_Type_ThreadedFeatureCopyType.html#ThreadedFeatureCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadedFeatureCopyType')">ThreadedFeatureCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_ThreadedFeatureFromCylinderType.html#ThreadedFeatureFromCylinderType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadedFeatureFromCylinderType')">ThreadedFeatureFromCylinderType</a></b>, <b><a href="Features_xsd_Complex_Type_ThreadedFeatureRecompType.html#ThreadedFeatureRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadedFeatureRecompType')">ThreadedFeatureRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_ThreadedFeatureTransformType.html#ThreadedFeatureTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadedFeatureTransformType')">ThreadedFeatureTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_ToroidalSegmentBestFitType.html#ToroidalSegmentBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentBestFitType')">ToroidalSegmentBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_ToroidalSegmentCastType.html#ToroidalSegmentCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentCastType')">ToroidalSegmentCastType</a></b>, <b><a href="Features_xsd_Complex_Type_ToroidalSegmentCopyType.html#ToroidalSegmentCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentCopyType')">ToroidalSegmentCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_ToroidalSegmentRecompType.html#ToroidalSegmentRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentRecompType')">ToroidalSegmentRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_ToroidalSegmentTransformType.html#ToroidalSegmentTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentTransformType')">ToroidalSegmentTransformType</a></b>, <b><a href="Features_xsd_Complex_Type_TorusBestFitType.html#TorusBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TorusBestFitType')">TorusBestFitType</a></b>, <b><a href="Features_xsd_Complex_Type_TorusCastType.html#TorusCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TorusCastType')">TorusCastType</a></b>, <b><a href="Features_xsd_Complex_Type_TorusCopyType.html#TorusCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TorusCopyType')">TorusCopyType</a></b>, <b><a href="Features_xsd_Complex_Type_TorusFromScanType.html#TorusFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TorusFromScanType')">TorusFromScanType</a></b>, <b><a href="Features_xsd_Complex_Type_TorusRecompType.html#TorusRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TorusRecompType')">TorusRecompType</a></b>, <b><a href="Features_xsd_Complex_Type_TorusTransformType.html#TorusTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TorusTransformType')">TorusTransformType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ConstructionMethodBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ConstructionMethodBaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ConstructionMethodBaseType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ConstructionMethodBaseType"</span><span class="tAN"> abstract=</span><span class="tAV">"true"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ConstructionMethodBaseType is the abstract base type that defines a construction method. A construction method defines the data for constructing a feature and describes how to use that data in the construction of a feature. In any case where more than one feature can be constructed with the same input, the result closest to the feature's nominal definition will be chosen.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"NominalsCalculated"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional NominalsCalculated element identifies whether nominals are calculated rather than supplied for the constructed feature: "true" for calculated, "false" or not present for supplied.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

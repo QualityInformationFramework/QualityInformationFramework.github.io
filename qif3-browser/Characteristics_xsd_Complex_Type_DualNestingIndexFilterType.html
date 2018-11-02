@@ -1,0 +1,1330 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Symbol</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_DualNestingIndexFilterType_Symbol', 
+				'properties_DualNestingIndexFilterType_FirstNestingIndex', 
+				'properties_DualNestingIndexFilterType_SecondNestingIndex', 
+				'properties_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex', 
+				'properties_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex');
+var facetsBoxes= new Array('facets_DualNestingIndexFilterType_Symbol');
+var usedByBoxes= new Array('usedBy_DualNestingIndexFilterType');
+var sourceBoxes= new Array('source_DualNestingIndexFilterType_Symbol', 
+				'source_DualNestingIndexFilterType_FirstNestingIndex', 
+				'source_DualNestingIndexFilterType_SecondNestingIndex', 
+				'source_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex', 
+				'source_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex', 
+				'source_DualNestingIndexFilterType');
+var diagramBoxes= new Array('diagram_DualNestingIndexFilterType_Symbol', 
+				'diagram_DualNestingIndexFilterType_FirstNestingIndex', 
+				'diagram_DualNestingIndexFilterType_SecondNestingIndex', 
+				'diagram_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex', 
+				'diagram_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex', 
+				'diagram_DualNestingIndexFilterType');
+var annotationBoxes= new Array('annotations_DualNestingIndexFilterType_Symbol', 
+				'annotations_DualNestingIndexFilterType_FirstNestingIndex', 
+				'annotations_DualNestingIndexFilterType_SecondNestingIndex', 
+				'annotations_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex', 
+				'annotations_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex', 
+				'annotations_DualNestingIndexFilterType');
+var attributesBoxes= new Array('attributes_DualNestingIndexFilterType_FirstNestingIndex', 
+				'attributes_DualNestingIndexFilterType_SecondNestingIndex', 
+				'attributes_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex', 
+				'attributes_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="DualNestingIndexFilterType_Symbol"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.html#DualNestingIndexFilterType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DualNestingIndexFilterType')">DualNestingIndexFilterType</a></b> / Symbol</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DualNestingIndexFilterType_Symbol" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DualNestingIndexFilterType_Symbol');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DualNestingIndexFilterType_Symbol" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Symbol element defines the filter symbol.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_DualNestingIndexFilterType_Symbol" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DualNestingIndexFilterType_Symbol');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_DualNestingIndexFilterType_Symbol" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_Symbol_1.jpeg" usemap="#Characteristics_xsd_Element_Symbol_1" /><map name="Characteristics_xsd_Element_Symbol_1" id="Characteristics_xsd_Element_Symbol_1">
+                                 <area alt="Characteristics_xsd_Simple_Type_DualNestingIndexFilterSymbolEnumType.tmp#DualNestingIndexFilterSymbolEnumType" href="Characteristics_xsd_Simple_Type_DualNestingIndexFilterSymbolEnumType.html#DualNestingIndexFilterSymbolEnumType" coords="136,0,440,31" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Characteristics_xsd_Simple_Type_DualNestingIndexFilterSymbolEnumType.html#DualNestingIndexFilterSymbolEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DualNestingIndexFilterSymbolEnumType')">DualNestingIndexFilterSymbolEnumType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_DualNestingIndexFilterType_Symbol" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_DualNestingIndexFilterType_Symbol');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_DualNestingIndexFilterType_Symbol" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_DualNestingIndexFilterType_Symbol" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_DualNestingIndexFilterType_Symbol');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_DualNestingIndexFilterType_Symbol" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>CW</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>F</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>G</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>RG</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>RS</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>S</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>SW</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DualNestingIndexFilterType_Symbol" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DualNestingIndexFilterType_Symbol');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DualNestingIndexFilterType_Symbol" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Symbol"</span><span class="tAN"> type=</span><span class="tAV">"DualNestingIndexFilterSymbolEnumType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Symbol element defines the filter symbol.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="DualNestingIndexFilterType_FirstNestingIndex"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.html#DualNestingIndexFilterType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DualNestingIndexFilterType')">DualNestingIndexFilterType</a></b> / FirstNestingIndex</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DualNestingIndexFilterType_FirstNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DualNestingIndexFilterType_FirstNestingIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DualNestingIndexFilterType_FirstNestingIndex" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional FirstNestingIndex element describes the first nesting index value. This is the value preceding the '-' in '0.25-150'. This optional element is not present when no first nesting index is present, i.e., no value precedes the '-' as in '-150'. The interpretation of this value depends on the filter symbol: G, S, SW, CW, RG, or RS = cutoff length F = wavelength</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_DualNestingIndexFilterType_FirstNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DualNestingIndexFilterType_FirstNestingIndex');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_DualNestingIndexFilterType_FirstNestingIndex" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_FirstNestingIndex.jpeg" usemap="#Characteristics_xsd_Element_FirstNestingIndex" /><map name="Characteristics_xsd_Element_FirstNestingIndex" id="Characteristics_xsd_Element_FirstNestingIndex">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="241,229,387,258" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="241,304,403,333" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="212,49,503,75" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType_linearUnit" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" coords="225,507,340,536" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" coords="196,3,355,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_DualNestingIndexFilterType_FirstNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_DualNestingIndexFilterType_FirstNestingIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_DualNestingIndexFilterType_FirstNestingIndex" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_DualNestingIndexFilterType_FirstNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_DualNestingIndexFilterType_FirstNestingIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_DualNestingIndexFilterType_FirstNestingIndex" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the UnitName for the LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DualNestingIndexFilterType_FirstNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DualNestingIndexFilterType_FirstNestingIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DualNestingIndexFilterType_FirstNestingIndex" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FirstNestingIndex"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional FirstNestingIndex element describes the first nesting index value. This is the value preceding the '-' in '0.25-150'. This optional element is not present when no first nesting index is present, i.e., no value precedes the '-' as in '-150'. The interpretation of this value depends on the filter symbol: G, S, SW, CW, RG, or RS = cutoff length F = wavelength</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="DualNestingIndexFilterType_SecondNestingIndex"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.html#DualNestingIndexFilterType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DualNestingIndexFilterType')">DualNestingIndexFilterType</a></b> / SecondNestingIndex</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DualNestingIndexFilterType_SecondNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DualNestingIndexFilterType_SecondNestingIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DualNestingIndexFilterType_SecondNestingIndex" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional SecondNestingIndex element describes the second nesting index value. This is the value following the '-' in '0.25-150'. This optional element is not present when no second nesting index is present, i.e., no value follows the '-' as in '0.25-'. The interpretation of this value depends on the filter symbol: G, S, SW, CW, RG, or RS = cutoff UPR F = UPR number.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_DualNestingIndexFilterType_SecondNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DualNestingIndexFilterType_SecondNestingIndex');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_DualNestingIndexFilterType_SecondNestingIndex" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_SecondNestingIndex.jpeg" usemap="#Characteristics_xsd_Element_SecondNestingIndex" /><map name="Characteristics_xsd_Element_SecondNestingIndex" id="Characteristics_xsd_Element_SecondNestingIndex">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="259,229,405,258" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="259,304,421,333" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="230,49,521,75" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType_linearUnit" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" coords="243,507,358,536" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" coords="214,3,373,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_DualNestingIndexFilterType_SecondNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_DualNestingIndexFilterType_SecondNestingIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_DualNestingIndexFilterType_SecondNestingIndex" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_DualNestingIndexFilterType_SecondNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_DualNestingIndexFilterType_SecondNestingIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_DualNestingIndexFilterType_SecondNestingIndex" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the UnitName for the LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DualNestingIndexFilterType_SecondNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DualNestingIndexFilterType_SecondNestingIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DualNestingIndexFilterType_SecondNestingIndex" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SecondNestingIndex"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional SecondNestingIndex element describes the second nesting index value. This is the value following the '-' in '0.25-150'. This optional element is not present when no second nesting index is present, i.e., no value follows the '-' as in '0.25-'. The interpretation of this value depends on the filter symbol: G, S, SW, CW, RG, or RS = cutoff UPR F = UPR number.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="DualNestingIndexFilterType_SecondDirectionFirstNestingIndex"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.html#DualNestingIndexFilterType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DualNestingIndexFilterType')">DualNestingIndexFilterType</a></b> / SecondDirectionFirstNestingIndex</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional SecondDirectionFirstNestingIndex element describes the first nesting index value in the second direction , i.e, following the 'x' and preceding the '-', the '0.5' in '0.25-150x0.5-200'. This optional element will not be present if either there is no second direction filter defined or no value precedes the '-' in the second direction filter definition.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_SecondDirectionFirstNestingIndex.jpeg" usemap="#Characteristics_xsd_Element_SecondDirectionFirstNestingIndex" /><map name="Characteristics_xsd_Element_SecondDirectionFirstNestingIndex" id="Characteristics_xsd_Element_SecondDirectionFirstNestingIndex">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="336,229,482,258" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="336,304,498,333" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="307,49,598,75" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType_linearUnit" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" coords="320,507,435,536" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" coords="291,3,450,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the UnitName for the LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DualNestingIndexFilterType_SecondDirectionFirstNestingIndex" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SecondDirectionFirstNestingIndex"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional SecondDirectionFirstNestingIndex element describes the first nesting index value in the second direction , i.e, following the 'x' and preceding the '-', the '0.5' in '0.25-150x0.5-200'. This optional element will not be present if either there is no second direction filter defined or no value precedes the '-' in the second direction filter definition.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="DualNestingIndexFilterType_SecondDirectionSecondNestingIndex"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.html#DualNestingIndexFilterType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DualNestingIndexFilterType')">DualNestingIndexFilterType</a></b> / SecondDirectionSecondNestingIndex</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional SecondDirectionSecondNestingIndex element describes the second nesting index value in the second direction , i.e, following the 'x' and following the '-', the '200' in '0.25-150x0.5-200'. This optional element will not be present if either there is no second direction filter defined or no value follows the '-' in the second direction filter definition.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_SecondDirectionSecondNestingIndex.jpeg" usemap="#Characteristics_xsd_Element_SecondDirectionSecondNestingIndex" /><map name="Characteristics_xsd_Element_SecondDirectionSecondNestingIndex" id="Characteristics_xsd_Element_SecondDirectionSecondNestingIndex">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="354,229,500,258" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="354,304,516,333" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="325,49,616,75" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType_linearUnit" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" coords="338,507,453,536" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" coords="309,3,468,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the UnitName for the LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DualNestingIndexFilterType_SecondDirectionSecondNestingIndex" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SecondDirectionSecondNestingIndex"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional SecondDirectionSecondNestingIndex element describes the second nesting index value in the second direction , i.e, following the 'x' and following the '-', the '200' in '0.25-150x0.5-200'. This optional element will not be present if either there is no second direction filter defined or no value follows the '-' in the second direction filter definition.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="DualNestingIndexFilterType"></a><div class="componentTitle">Complex Type <span class="qname">DualNestingIndexFilterType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DualNestingIndexFilterType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DualNestingIndexFilterType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DualNestingIndexFilterType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The DualNestingIndexFilterType defines an ISO specific filter definition as a symbol followed by one or both of two nesting indexes optionally in two directions.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_DualNestingIndexFilterType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DualNestingIndexFilterType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_DualNestingIndexFilterType" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.jpeg" usemap="#Characteristics_xsd_Complex_Type_DualNestingIndexFilterType" /><map name="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType" id="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType">
+                                 <area alt="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.tmp#DualNestingIndexFilterType_Symbol" href="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.html#DualNestingIndexFilterType_Symbol" coords="365,0,447,29" />
+                                 <area alt="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.tmp#DualNestingIndexFilterType_FirstNestingIndex" href="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.html#DualNestingIndexFilterType_FirstNestingIndex" coords="365,75,504,104" />
+                                 <area alt="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.tmp#DualNestingIndexFilterType_SecondNestingIndex" href="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.html#DualNestingIndexFilterType_SecondNestingIndex" coords="365,182,522,211" />
+                                 <area alt="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.tmp#DualNestingIndexFilterType_SecondDirectionFirstNestingIndex" href="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.html#DualNestingIndexFilterType_SecondDirectionFirstNestingIndex" coords="365,289,599,318" />
+                                 <area alt="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.tmp#DualNestingIndexFilterType_SecondDirectionSecondNestingIndex" href="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.html#DualNestingIndexFilterType_SecondDirectionSecondNestingIndex" coords="365,380,617,409" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_DualNestingIndexFilterType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_DualNestingIndexFilterType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_DualNestingIndexFilterType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Characteristics_xsd_Complex_Type_FilterType.html#FilterType_DualNestingIndexFilter" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FilterType/DualNestingIndexFilter')">FilterType/DualNestingIndexFilter</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.html#DualNestingIndexFilterType_FirstNestingIndex" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FirstNestingIndex')">FirstNestingIndex</a></b>, <b><a href="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.html#DualNestingIndexFilterType_SecondDirectionFirstNestingIndex" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SecondDirectionFirstNestingIndex')">SecondDirectionFirstNestingIndex</a></b>, <b><a href="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.html#DualNestingIndexFilterType_SecondDirectionSecondNestingIndex" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SecondDirectionSecondNestingIndex')">SecondDirectionSecondNestingIndex</a></b>, <b><a href="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.html#DualNestingIndexFilterType_SecondNestingIndex" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SecondNestingIndex')">SecondNestingIndex</a></b>, <b><a href="Characteristics_xsd_Complex_Type_DualNestingIndexFilterType.html#DualNestingIndexFilterType_Symbol" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Symbol')">Symbol</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DualNestingIndexFilterType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DualNestingIndexFilterType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DualNestingIndexFilterType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"DualNestingIndexFilterType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The DualNestingIndexFilterType defines an ISO specific filter definition as a symbol followed by one or both of two nesting indexes optionally in two directions.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Symbol"</span><span class="tAN"> type=</span><span class="tAV">"DualNestingIndexFilterSymbolEnumType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Symbol element defines the filter symbol.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FirstNestingIndex"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional FirstNestingIndex element describes the first nesting index value. This is the value preceding the '-' in '0.25-150'. This optional element is not present when no first nesting index is present, i.e., no value precedes the '-' as in '-150'. The interpretation of this value depends on the filter symbol: G, S, SW, CW, RG, or RS = cutoff length F = wavelength</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SecondNestingIndex"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional SecondNestingIndex element describes the second nesting index value. This is the value following the '-' in '0.25-150'. This optional element is not present when no second nesting index is present, i.e., no value follows the '-' as in '0.25-'. The interpretation of this value depends on the filter symbol: G, S, SW, CW, RG, or RS = cutoff UPR F = UPR number.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SecondDirectionFirstNestingIndex"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional SecondDirectionFirstNestingIndex element describes the first nesting index value in the second direction , i.e, following the 'x' and preceding the '-', the '0.5' in '0.25-150x0.5-200'. This optional element will not be present if either there is no second direction filter defined or no value precedes the '-' in the second direction filter definition.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SecondDirectionSecondNestingIndex"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional SecondDirectionSecondNestingIndex element describes the second nesting index value in the second direction , i.e, following the 'x' and following the '-', the '200' in '0.25-150x0.5-200'. This optional element will not be present if either there is no second direction filter defined or no value follows the '-' in the second direction filter definition.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

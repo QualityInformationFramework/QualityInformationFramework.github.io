@@ -1,0 +1,744 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component MeasuredPointSet</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_MeasuredPointSet');
+var usedByBoxes= new Array('usedBy_MeasuredPointSet');
+var sourceBoxes= new Array('source_MeasuredPointSet');
+var instanceBoxes= new Array('instance_MeasuredPointSet');
+var diagramBoxes= new Array('diagram_MeasuredPointSet');
+var annotationBoxes= new Array('annotations_MeasuredPointSet');
+var attributesBoxes= new Array('attributes_MeasuredPointSet');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="MeasuredPointSet"></a><div class="componentTitle">Element <span class="qname">MeasuredPointSet</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasuredPointSet" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasuredPointSet');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasuredPointSet" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The global MeasuredPointSet element gives information about a measured point set.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasuredPointSet" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasuredPointSet');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasuredPointSet" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_MeasuredPointSet.jpeg" usemap="#Features_xsd_Element_MeasuredPointSet" /><map name="Features_xsd_Element_MeasuredPointSet" id="Features_xsd_Element_MeasuredPointSet">
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_count" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_count" coords="231,90,324,119" />
+                                 <area alt="Primitives_xsd_Attribute_Group_AttrPoint.tmp#AttrPoint" href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint" coords="234,184,353,215" />
+                                 <area alt="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.tmp#AttrMeasuredPoint" href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint" coords="234,285,410,316" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_id" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_id" coords="231,399,312,428" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="300,499,394,528" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_Units" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_Units" coords="300,606,368,635" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_CoordinateSystemId" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_CoordinateSystemId" coords="405,697,560,726" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_TranformId" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_TranformId" coords="405,804,503,833" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_Points" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_Points" coords="405,1038,480,1067" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_BinaryPoints" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryPoints" coords="405,1145,517,1174" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_Normals" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_Normals" coords="405,1315,491,1344" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_BinaryNormals" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryNormals" coords="405,1422,528,1451" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_Compensated" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_Compensated" coords="405,1672,523,1701" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_Compensations" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_Compensations" coords="405,1779,533,1808" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_BinaryCompensated" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryCompensated" coords="405,1886,560,1915" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_ProbeRadius" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_ProbeRadius" coords="405,2019,517,2048" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_ProbeRadii" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_ProbeRadii" coords="405,2126,506,2155" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_BinaryProbeRadii" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryProbeRadii" coords="405,2233,543,2262" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_MeasurementDeviceId" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_MeasurementDeviceId" coords="300,2382,465,2411" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_SensorId" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_SensorId" coords="405,2473,494,2502" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_SensorIds" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_SensorIds" coords="405,2580,501,2609" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_BinarySensorIds" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinarySensorIds" coords="405,2687,538,2716" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_TipId" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_TipId" coords="405,2794,470,2823" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_TipIds" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_TipIds" coords="405,2901,477,2930" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_BinaryTipIds" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryTipIds" coords="405,3008,514,3037" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_MeasurePointNominalIds" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_MeasurePointNominalIds" coords="405,3115,587,3144" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_BinaryMeasurePointNominalIds" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryMeasurePointNominalIds" coords="405,3206,624,3235" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_TimeStamp" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_TimeStamp" coords="405,3384,509,3413" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_TimeStamps" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_TimeStamps" coords="405,3475,516,3504" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_Quality" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_Quality" coords="405,3701,484,3730" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_BinaryQuality" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryQuality" coords="405,3808,521,3837" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_Deviations" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_Deviations" coords="405,3978,502,4007" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_BinaryDeviations" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryDeviations" coords="405,4085,539,4114" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_Colors" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_Colors" coords="405,4239,480,4268" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_BinaryColors" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryColors" coords="405,4346,517,4375" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_NumberOfFacets" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_NumberOfFacets" coords="405,4580,541,4609" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_PointIndices" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_PointIndices" coords="510,4671,619,4700" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType_BinaryPointIndices" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryPointIndices" coords="510,4778,656,4807" />
+                                 <area alt="Features_xsd_Complex_Type_MeasuredPointSetType.tmp#MeasuredPointSetType" href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType" coords="202,3,400,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredPointSetType')">MeasuredPointSetType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MeasuredPointSet" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MeasuredPointSet');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MeasuredPointSet" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_MeasuredPointSet" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_MeasuredPointSet');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_MeasuredPointSet" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="Features_xsd_Complex_Type_MeasuredPointSetsType.html#MeasuredPointSetsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredPointSetsType')">MeasuredPointSetsType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryColors" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BinaryColors')">BinaryColors</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryCompensated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BinaryCompensated')">BinaryCompensated</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryDeviations" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BinaryDeviations')">BinaryDeviations</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryMeasurePointNominalIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BinaryMeasurePointNominalIds')">BinaryMeasurePointNominalIds</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryNormals" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BinaryNormals')">BinaryNormals</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryPointIndices" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BinaryPointIndices')">BinaryPointIndices</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryPoints" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BinaryPoints')">BinaryPoints</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryProbeRadii" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BinaryProbeRadii')">BinaryProbeRadii</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryQuality" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BinaryQuality')">BinaryQuality</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinarySensorIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BinarySensorIds')">BinarySensorIds</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_BinaryTipIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BinaryTipIds')">BinaryTipIds</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_Colors" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Colors')">Colors</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_Compensated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Compensated')">Compensated</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_Compensations" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Compensations')">Compensations</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_CoordinateSystemId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CoordinateSystemId')">CoordinateSystemId</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_Deviations" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Deviations')">Deviations</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_MeasurePointNominalIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurePointNominalIds')">MeasurePointNominalIds</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_MeasurementDeviceId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementDeviceId')">MeasurementDeviceId</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_Normals" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Normals')">Normals</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_NumberOfFacets" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NumberOfFacets')">NumberOfFacets</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_PointIndices" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointIndices')">PointIndices</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_Points" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Points')">Points</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_ProbeRadii" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProbeRadii')">ProbeRadii</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_ProbeRadius" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProbeRadius')">ProbeRadius</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_Quality" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Quality')">Quality</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_SensorId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SensorId')">SensorId</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_SensorIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SensorIds')">SensorIds</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_TimeStamp" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeStamp')">TimeStamp</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_TimeStamps" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeStamps')">TimeStamps</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_TipId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TipId')">TipId</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_TipIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TipIds')">TipIds</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_TranformId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TranformId')">TranformId</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_Units" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Units')">Units</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MeasuredPointSet" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MeasuredPointSet');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MeasuredPointSet" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;MeasuredPointSet</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">count=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">validity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xCombinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xMeanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yCombinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yMeanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">ySignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zCombinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zMeanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Units</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Units&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;CoordinateSystemId</span><span class="tT"> </span><span class="tAN">asmPathId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">asmPathXId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/CoordinateSystemId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TranformId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/TranformId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Points</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Points&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BinaryPoints</span><span class="tT"> </span><span class="tAN">count=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">sizeElement=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BinaryPoints&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Normals</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Normals&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BinaryNormals</span><span class="tT"> </span><span class="tAN">count=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">sizeElement=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BinaryNormals&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Compensated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Compensated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Compensations</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Compensations&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BinaryCompensated</span><span class="tT"> </span><span class="tAN">count=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">sizeElement=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BinaryCompensated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ProbeRadius</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ProbeRadius&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ProbeRadii</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ProbeRadii&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BinaryProbeRadii</span><span class="tT"> </span><span class="tAN">count=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">sizeElement=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BinaryProbeRadii&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MeasurementDeviceId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MeasurementDeviceId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SensorId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/SensorId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SensorIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/SensorIds&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BinarySensorIds</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BinarySensorIds&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TipId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/TipId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TipIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/TipIds&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BinaryTipIds</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BinaryTipIds&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MeasurePointNominalIds</span><span class="tT"> </span><span class="tAN">asmPathId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">asmPathXId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/MeasurePointNominalIds&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BinaryMeasurePointNominalIds</span><span class="tT"> </span><span class="tAN">asmPathId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">asmPathXId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BinaryMeasurePointNominalIds&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TimeStamp</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/TimeStamp&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TimeStamps</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/TimeStamps&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Quality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Quality&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BinaryQuality</span><span class="tT"> </span><span class="tAN">count=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">sizeElement=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BinaryQuality&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Deviations</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Deviations&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BinaryDeviations</span><span class="tT"> </span><span class="tAN">count=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">sizeElement=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BinaryDeviations&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Colors</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Colors&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BinaryColors</span><span class="tT"> </span><span class="tAN">count=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">sizeElement=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BinaryColors&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NumberOfFacets</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/NumberOfFacets&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;PointIndices</span><span class="tT"> </span><span class="tAN">count=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/PointIndices&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BinaryPointIndices</span><span class="tT"> </span><span class="tAN">count=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">sizeElement=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BinaryPointIndices&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/MeasuredPointSet&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_MeasuredPointSet" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_MeasuredPointSet');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_MeasuredPointSet" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_combinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component combinedUncertainty')">combinedUncertainty</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_count" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component count')">count</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required count attribute gives the number of measured points in the measured point set.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required id attribute is the QIF id of the measured point set, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_meanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component meanError')">meanError</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_validity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component validity')">validity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_xCombinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xCombinedUncertainty')">xCombinedUncertainty</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xDecimalPlaces')">xDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_xMeanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xMeanError')">xMeanError</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xSignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xSignificantFigures')">xSignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xValidity')">xValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_yCombinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yCombinedUncertainty')">yCombinedUncertainty</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_yDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yDecimalPlaces')">yDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_yMeanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yMeanError')">yMeanError</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_ySignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component ySignificantFigures')">ySignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_yValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yValidity')">yValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_zCombinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zCombinedUncertainty')">zCombinedUncertainty</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zDecimalPlaces')">zDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_zMeanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zMeanError')">zMeanError</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zSignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zSignificantFigures')">zSignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zValidity')">zValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasuredPointSet" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasuredPointSet');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasuredPointSet" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MeasuredPointSet"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredPointSetType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The global MeasuredPointSet element gives information about a measured point set.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

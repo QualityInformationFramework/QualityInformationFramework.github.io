@@ -1,0 +1,1579 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component BestFit</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_OppositeParallelLinesConstructionMethodType_BestFit', 
+				'properties_OppositeParallelLinesConstructionMethodType_Recompensated', 
+				'properties_OppositeParallelLinesConstructionMethodType_Intersection', 
+				'properties_OppositeParallelLinesConstructionMethodType_Projection', 
+				'properties_OppositeParallelLinesConstructionMethodType_Copy', 
+				'properties_OppositeParallelLinesConstructionMethodType_Cast', 
+				'properties_OppositeParallelLinesConstructionMethodType_Transform', 
+				'properties_OppositeParallelLinesConstructionMethodType_FromScan');
+var usedByBoxes= new Array('usedBy_OppositeParallelLinesConstructionMethodType');
+var sourceBoxes= new Array('source_OppositeParallelLinesConstructionMethodType_BestFit', 
+				'source_OppositeParallelLinesConstructionMethodType_Recompensated', 
+				'source_OppositeParallelLinesConstructionMethodType_Intersection', 
+				'source_OppositeParallelLinesConstructionMethodType_Projection', 
+				'source_OppositeParallelLinesConstructionMethodType_Copy', 
+				'source_OppositeParallelLinesConstructionMethodType_Cast', 
+				'source_OppositeParallelLinesConstructionMethodType_Transform', 
+				'source_OppositeParallelLinesConstructionMethodType_FromScan', 
+				'source_OppositeParallelLinesConstructionMethodType');
+var instanceBoxes= new Array('instance_OppositeParallelLinesConstructionMethodType_BestFit', 
+				'instance_OppositeParallelLinesConstructionMethodType_Recompensated', 
+				'instance_OppositeParallelLinesConstructionMethodType_Intersection', 
+				'instance_OppositeParallelLinesConstructionMethodType_Projection', 
+				'instance_OppositeParallelLinesConstructionMethodType_Copy', 
+				'instance_OppositeParallelLinesConstructionMethodType_Cast', 
+				'instance_OppositeParallelLinesConstructionMethodType_Transform', 
+				'instance_OppositeParallelLinesConstructionMethodType_FromScan');
+var diagramBoxes= new Array('diagram_OppositeParallelLinesConstructionMethodType_BestFit', 
+				'diagram_OppositeParallelLinesConstructionMethodType_Recompensated', 
+				'diagram_OppositeParallelLinesConstructionMethodType_Intersection', 
+				'diagram_OppositeParallelLinesConstructionMethodType_Projection', 
+				'diagram_OppositeParallelLinesConstructionMethodType_Copy', 
+				'diagram_OppositeParallelLinesConstructionMethodType_Cast', 
+				'diagram_OppositeParallelLinesConstructionMethodType_Transform', 
+				'diagram_OppositeParallelLinesConstructionMethodType_FromScan', 
+				'diagram_OppositeParallelLinesConstructionMethodType');
+var annotationBoxes= new Array('annotations_OppositeParallelLinesConstructionMethodType_BestFit', 
+				'annotations_OppositeParallelLinesConstructionMethodType_Recompensated', 
+				'annotations_OppositeParallelLinesConstructionMethodType_Intersection', 
+				'annotations_OppositeParallelLinesConstructionMethodType_Projection', 
+				'annotations_OppositeParallelLinesConstructionMethodType_Copy', 
+				'annotations_OppositeParallelLinesConstructionMethodType_Cast', 
+				'annotations_OppositeParallelLinesConstructionMethodType_Transform', 
+				'annotations_OppositeParallelLinesConstructionMethodType_FromScan', 
+				'annotations_OppositeParallelLinesConstructionMethodType');
+var attributesBoxes= new Array('attributes_OppositeParallelLinesConstructionMethodType_BestFit');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="OppositeParallelLinesConstructionMethodType_BestFit"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesConstructionMethodType')">OppositeParallelLinesConstructionMethodType</a></b> / BestFit</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_OppositeParallelLinesConstructionMethodType_BestFit" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_OppositeParallelLinesConstructionMethodType_BestFit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_OppositeParallelLinesConstructionMethodType_BestFit" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The BestFit element describes the best-fit construction of an opposite parallel lines feature from 3 or more point-reducible base features. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_OppositeParallelLinesConstructionMethodType_BestFit" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_OppositeParallelLinesConstructionMethodType_BestFit');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_OppositeParallelLinesConstructionMethodType_BestFit" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_BestFit_12.jpeg" usemap="#Features_xsd_Element_BestFit_12" /><map name="Features_xsd_Element_BestFit_12" id="Features_xsd_Element_BestFit_12">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="251,96,404,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="153,49,490,75" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesBestFitType.tmp#OppositeParallelLinesBestFitType_n" href="Features_xsd_Complex_Type_OppositeParallelLinesBestFitType.html#OppositeParallelLinesBestFitType_n" coords="166,306,247,335" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesBestFitType.tmp#OppositeParallelLinesBestFitType_BaseFeature" href="Features_xsd_Complex_Type_OppositeParallelLinesBestFitType.html#OppositeParallelLinesBestFitType_BaseFeature" coords="260,410,372,439" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesBestFitType.tmp#OppositeParallelLinesBestFitType" href="Features_xsd_Complex_Type_OppositeParallelLinesBestFitType.html#OppositeParallelLinesBestFitType" coords="137,3,396,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesBestFitType.html#OppositeParallelLinesBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesBestFitType')">OppositeParallelLinesBestFitType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesBestFitType.html#OppositeParallelLinesBestFitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesBestFitType')">OppositeParallelLinesBestFitType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_OppositeParallelLinesConstructionMethodType_BestFit" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_OppositeParallelLinesConstructionMethodType_BestFit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_OppositeParallelLinesConstructionMethodType_BestFit" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesBestFitType.html#OppositeParallelLinesBestFitType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseFeature')">BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_OppositeParallelLinesConstructionMethodType_BestFit" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_OppositeParallelLinesConstructionMethodType_BestFit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_OppositeParallelLinesConstructionMethodType_BestFit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;BestFit</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BaseFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{3,unbounded}</span><span class="tEl">&lt;/BaseFeature&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/BestFit&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_OppositeParallelLinesConstructionMethodType_BestFit" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_OppositeParallelLinesConstructionMethodType_BestFit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_OppositeParallelLinesConstructionMethodType_BestFit" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesBestFitType.html#OppositeParallelLinesBestFitType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of base features used in the construction.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_OppositeParallelLinesConstructionMethodType_BestFit" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OppositeParallelLinesConstructionMethodType_BestFit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_OppositeParallelLinesConstructionMethodType_BestFit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"BestFit"</span><span class="tAN"> type=</span><span class="tAV">"OppositeParallelLinesBestFitType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The BestFit element describes the best-fit construction of an opposite parallel lines feature from 3 or more point-reducible base features. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="OppositeParallelLinesConstructionMethodType_Recompensated"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesConstructionMethodType')">OppositeParallelLinesConstructionMethodType</a></b> / Recompensated</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_OppositeParallelLinesConstructionMethodType_Recompensated" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_OppositeParallelLinesConstructionMethodType_Recompensated');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_OppositeParallelLinesConstructionMethodType_Recompensated" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Recompensated element describes the re-compensated-for- probe-size best-fit construction of an opposite parallel lines feature from 3 or more base feature points. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_OppositeParallelLinesConstructionMethodType_Recompensated" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_OppositeParallelLinesConstructionMethodType_Recompensated');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_OppositeParallelLinesConstructionMethodType_Recompensated" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Recompensated_12.jpeg" usemap="#Features_xsd_Element_Recompensated_12" /><map name="Features_xsd_Element_Recompensated_12" id="Features_xsd_Element_Recompensated_12">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="303,96,456,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="205,49,542,75" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesRecompType.tmp#OppositeParallelLinesRecompType_BaseFeaturePointList" href="Features_xsd_Complex_Type_OppositeParallelLinesRecompType.html#OppositeParallelLinesRecompType_BaseFeaturePointList" coords="287,266,450,295" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesRecompType.tmp#OppositeParallelLinesRecompType" href="Features_xsd_Complex_Type_OppositeParallelLinesRecompType.html#OppositeParallelLinesRecompType" coords="189,3,454,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesRecompType.html#OppositeParallelLinesRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesRecompType')">OppositeParallelLinesRecompType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesRecompType.html#OppositeParallelLinesRecompType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesRecompType')">OppositeParallelLinesRecompType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_OppositeParallelLinesConstructionMethodType_Recompensated" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_OppositeParallelLinesConstructionMethodType_Recompensated');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_OppositeParallelLinesConstructionMethodType_Recompensated" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesRecompType.html#OppositeParallelLinesRecompType_BaseFeaturePointList" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseFeaturePointList')">BaseFeaturePointList</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_OppositeParallelLinesConstructionMethodType_Recompensated" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_OppositeParallelLinesConstructionMethodType_Recompensated');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_OppositeParallelLinesConstructionMethodType_Recompensated" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Recompensated</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BaseFeaturePointList</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BaseFeaturePointList&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Recompensated&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_OppositeParallelLinesConstructionMethodType_Recompensated" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OppositeParallelLinesConstructionMethodType_Recompensated');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_OppositeParallelLinesConstructionMethodType_Recompensated" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Recompensated"</span><span class="tAN"> type=</span><span class="tAV">"OppositeParallelLinesRecompType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Recompensated element describes the re-compensated-for- probe-size best-fit construction of an opposite parallel lines feature from 3 or more base feature points. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="OppositeParallelLinesConstructionMethodType_Intersection"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesConstructionMethodType')">OppositeParallelLinesConstructionMethodType</a></b> / Intersection</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_OppositeParallelLinesConstructionMethodType_Intersection" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_OppositeParallelLinesConstructionMethodType_Intersection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_OppositeParallelLinesConstructionMethodType_Intersection" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Intersection element describes the construction of an opposite parallel lines feature by the intersection of a plane and a feature which has a parallel lines cross section. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_OppositeParallelLinesConstructionMethodType_Intersection" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_OppositeParallelLinesConstructionMethodType_Intersection');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_OppositeParallelLinesConstructionMethodType_Intersection" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Intersection_5.jpeg" usemap="#Features_xsd_Element_Intersection_5" /><map name="Features_xsd_Element_Intersection_5" id="Features_xsd_Element_Intersection_5">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="276,96,429,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="178,49,515,75" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesIntersectionType.tmp#OppositeParallelLinesIntersectionType_IntersectionPlane" href="Features_xsd_Complex_Type_OppositeParallelLinesIntersectionType.html#OppositeParallelLinesIntersectionType_IntersectionPlane" coords="260,262,398,291" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesIntersectionType.tmp#OppositeParallelLinesIntersectionType_IntersectionFeature" href="Features_xsd_Complex_Type_OppositeParallelLinesIntersectionType.html#OppositeParallelLinesIntersectionType_IntersectionFeature" coords="260,353,409,382" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesIntersectionType.tmp#OppositeParallelLinesIntersectionType" href="Features_xsd_Complex_Type_OppositeParallelLinesIntersectionType.html#OppositeParallelLinesIntersectionType" coords="162,3,446,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesIntersectionType.html#OppositeParallelLinesIntersectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesIntersectionType')">OppositeParallelLinesIntersectionType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesIntersectionType.html#OppositeParallelLinesIntersectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesIntersectionType')">OppositeParallelLinesIntersectionType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_OppositeParallelLinesConstructionMethodType_Intersection" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_OppositeParallelLinesConstructionMethodType_Intersection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_OppositeParallelLinesConstructionMethodType_Intersection" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesIntersectionType.html#OppositeParallelLinesIntersectionType_IntersectionFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component IntersectionFeature')">IntersectionFeature</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesIntersectionType.html#OppositeParallelLinesIntersectionType_IntersectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component IntersectionPlane')">IntersectionPlane</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_OppositeParallelLinesConstructionMethodType_Intersection" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_OppositeParallelLinesConstructionMethodType_Intersection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_OppositeParallelLinesConstructionMethodType_Intersection" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Intersection</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;IntersectionPlane</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/IntersectionPlane&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;IntersectionFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/IntersectionFeature&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Intersection&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_OppositeParallelLinesConstructionMethodType_Intersection" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OppositeParallelLinesConstructionMethodType_Intersection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_OppositeParallelLinesConstructionMethodType_Intersection" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Intersection"</span><span class="tAN"> type=</span><span class="tAV">"OppositeParallelLinesIntersectionType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Intersection element describes the construction of an opposite parallel lines feature by the intersection of a plane and a feature which has a parallel lines cross section. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="OppositeParallelLinesConstructionMethodType_Projection"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesConstructionMethodType')">OppositeParallelLinesConstructionMethodType</a></b> / Projection</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_OppositeParallelLinesConstructionMethodType_Projection" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_OppositeParallelLinesConstructionMethodType_Projection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_OppositeParallelLinesConstructionMethodType_Projection" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Projection element describes the construction of an opposite parallel lines feature by the projection of a base opposite lines parallel feature onto a plane. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_OppositeParallelLinesConstructionMethodType_Projection" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_OppositeParallelLinesConstructionMethodType_Projection');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_OppositeParallelLinesConstructionMethodType_Projection" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Projection_5.jpeg" usemap="#Features_xsd_Element_Projection_5" /><map name="Features_xsd_Element_Projection_5" id="Features_xsd_Element_Projection_5">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="267,96,420,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="169,49,506,75" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesProjectionType.tmp#OppositeParallelLinesProjectionType_ProjectionPlane" href="Features_xsd_Complex_Type_OppositeParallelLinesProjectionType.html#OppositeParallelLinesProjectionType_ProjectionPlane" coords="251,262,380,291" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesProjectionType.tmp#OppositeParallelLinesProjectionType_ProjectionOppositeParallelLines" href="Features_xsd_Complex_Type_OppositeParallelLinesProjectionType.html#OppositeParallelLinesProjectionType_ProjectionOppositeParallelLines" coords="251,369,473,398" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesProjectionType.tmp#OppositeParallelLinesProjectionType" href="Features_xsd_Complex_Type_OppositeParallelLinesProjectionType.html#OppositeParallelLinesProjectionType" coords="153,3,428,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesProjectionType.html#OppositeParallelLinesProjectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesProjectionType')">OppositeParallelLinesProjectionType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesProjectionType.html#OppositeParallelLinesProjectionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesProjectionType')">OppositeParallelLinesProjectionType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_OppositeParallelLinesConstructionMethodType_Projection" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_OppositeParallelLinesConstructionMethodType_Projection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_OppositeParallelLinesConstructionMethodType_Projection" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesProjectionType.html#OppositeParallelLinesProjectionType_ProjectionOppositeParallelLines" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProjectionOppositeParallelLines')">ProjectionOppositeParallelLines</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesProjectionType.html#OppositeParallelLinesProjectionType_ProjectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProjectionPlane')">ProjectionPlane</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_OppositeParallelLinesConstructionMethodType_Projection" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_OppositeParallelLinesConstructionMethodType_Projection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_OppositeParallelLinesConstructionMethodType_Projection" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Projection</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ProjectionPlane</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ProjectionPlane&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ProjectionOppositeParallelLines</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ProjectionOppositeParallelLines&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Projection&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_OppositeParallelLinesConstructionMethodType_Projection" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OppositeParallelLinesConstructionMethodType_Projection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_OppositeParallelLinesConstructionMethodType_Projection" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Projection"</span><span class="tAN"> type=</span><span class="tAV">"OppositeParallelLinesProjectionType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Projection element describes the construction of an opposite parallel lines feature by the projection of a base opposite lines parallel feature onto a plane. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="OppositeParallelLinesConstructionMethodType_Copy"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesConstructionMethodType')">OppositeParallelLinesConstructionMethodType</a></b> / Copy</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_OppositeParallelLinesConstructionMethodType_Copy" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_OppositeParallelLinesConstructionMethodType_Copy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_OppositeParallelLinesConstructionMethodType_Copy" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Copy element describes the construction of an opposite parallel lines feature by the copying of a base opposite parallel lines feature. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_OppositeParallelLinesConstructionMethodType_Copy" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_OppositeParallelLinesConstructionMethodType_Copy');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_OppositeParallelLinesConstructionMethodType_Copy" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Copy_13.jpeg" usemap="#Features_xsd_Element_Copy_13" /><map name="Features_xsd_Element_Copy_13" id="Features_xsd_Element_Copy_13">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="239,96,392,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="141,49,478,75" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesCopyType.tmp#OppositeParallelLinesCopyType_BaseOppositeParallelLines" href="Features_xsd_Complex_Type_OppositeParallelLinesCopyType.html#OppositeParallelLinesCopyType_BaseOppositeParallelLines" coords="223,266,417,295" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesCopyType.tmp#OppositeParallelLinesCopyType" href="Features_xsd_Complex_Type_OppositeParallelLinesCopyType.html#OppositeParallelLinesCopyType" coords="125,3,372,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesCopyType.html#OppositeParallelLinesCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesCopyType')">OppositeParallelLinesCopyType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesCopyType.html#OppositeParallelLinesCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesCopyType')">OppositeParallelLinesCopyType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_OppositeParallelLinesConstructionMethodType_Copy" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_OppositeParallelLinesConstructionMethodType_Copy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_OppositeParallelLinesConstructionMethodType_Copy" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesCopyType.html#OppositeParallelLinesCopyType_BaseOppositeParallelLines" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseOppositeParallelLines')">BaseOppositeParallelLines</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_OppositeParallelLinesConstructionMethodType_Copy" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_OppositeParallelLinesConstructionMethodType_Copy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_OppositeParallelLinesConstructionMethodType_Copy" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Copy</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BaseOppositeParallelLines</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BaseOppositeParallelLines&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Copy&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_OppositeParallelLinesConstructionMethodType_Copy" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OppositeParallelLinesConstructionMethodType_Copy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_OppositeParallelLinesConstructionMethodType_Copy" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Copy"</span><span class="tAN"> type=</span><span class="tAV">"OppositeParallelLinesCopyType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Copy element describes the construction of an opposite parallel lines feature by the copying of a base opposite parallel lines feature. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="OppositeParallelLinesConstructionMethodType_Cast"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesConstructionMethodType')">OppositeParallelLinesConstructionMethodType</a></b> / Cast</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_OppositeParallelLinesConstructionMethodType_Cast" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_OppositeParallelLinesConstructionMethodType_Cast');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_OppositeParallelLinesConstructionMethodType_Cast" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Cast element describes the construction of an opposite parallel lines feature by the casting of a base feature. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_OppositeParallelLinesConstructionMethodType_Cast" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_OppositeParallelLinesConstructionMethodType_Cast');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_OppositeParallelLinesConstructionMethodType_Cast" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Cast_13.jpeg" usemap="#Features_xsd_Element_Cast_13" /><map name="Features_xsd_Element_Cast_13" id="Features_xsd_Element_Cast_13">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="236,96,389,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="138,49,475,75" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesCastType.tmp#OppositeParallelLinesCastType_BaseFeature" href="Features_xsd_Complex_Type_OppositeParallelLinesCastType.html#OppositeParallelLinesCastType_BaseFeature" coords="220,266,332,295" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesCastType.tmp#OppositeParallelLinesCastType" href="Features_xsd_Complex_Type_OppositeParallelLinesCastType.html#OppositeParallelLinesCastType" coords="122,3,366,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesCastType.html#OppositeParallelLinesCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesCastType')">OppositeParallelLinesCastType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesCastType.html#OppositeParallelLinesCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesCastType')">OppositeParallelLinesCastType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_OppositeParallelLinesConstructionMethodType_Cast" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_OppositeParallelLinesConstructionMethodType_Cast');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_OppositeParallelLinesConstructionMethodType_Cast" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesCastType.html#OppositeParallelLinesCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseFeature')">BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_OppositeParallelLinesConstructionMethodType_Cast" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_OppositeParallelLinesConstructionMethodType_Cast');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_OppositeParallelLinesConstructionMethodType_Cast" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Cast</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BaseFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BaseFeature&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Cast&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_OppositeParallelLinesConstructionMethodType_Cast" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OppositeParallelLinesConstructionMethodType_Cast');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_OppositeParallelLinesConstructionMethodType_Cast" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Cast"</span><span class="tAN"> type=</span><span class="tAV">"OppositeParallelLinesCastType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Cast element describes the construction of an opposite parallel lines feature by the casting of a base feature. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="OppositeParallelLinesConstructionMethodType_Transform"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesConstructionMethodType')">OppositeParallelLinesConstructionMethodType</a></b> / Transform</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_OppositeParallelLinesConstructionMethodType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_OppositeParallelLinesConstructionMethodType_Transform');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_OppositeParallelLinesConstructionMethodType_Transform" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Transform element describes the construction of an opposite parallel lines feature by the transformation of a base opposite parallel lines feature. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_OppositeParallelLinesConstructionMethodType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_OppositeParallelLinesConstructionMethodType_Transform');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_OppositeParallelLinesConstructionMethodType_Transform" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Transform_13.jpeg" usemap="#Features_xsd_Element_Transform_13" /><map name="Features_xsd_Element_Transform_13" id="Features_xsd_Element_Transform_13">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="266,96,419,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="168,49,505,75" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesTransformType.tmp#OppositeParallelLinesTransformType_BaseOppositeParallelLines" href="Features_xsd_Complex_Type_OppositeParallelLinesTransformType.html#OppositeParallelLinesTransformType_BaseOppositeParallelLines" coords="250,262,444,291" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesTransformType.tmp#OppositeParallelLinesTransformType_Transformation" href="Features_xsd_Complex_Type_OppositeParallelLinesTransformType.html#OppositeParallelLinesTransformType_Transformation" coords="250,353,373,382" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesTransformType.tmp#OppositeParallelLinesTransformType" href="Features_xsd_Complex_Type_OppositeParallelLinesTransformType.html#OppositeParallelLinesTransformType" coords="152,3,426,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesTransformType.html#OppositeParallelLinesTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesTransformType')">OppositeParallelLinesTransformType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesTransformType.html#OppositeParallelLinesTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesTransformType')">OppositeParallelLinesTransformType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_OppositeParallelLinesConstructionMethodType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_OppositeParallelLinesConstructionMethodType_Transform');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_OppositeParallelLinesConstructionMethodType_Transform" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesTransformType.html#OppositeParallelLinesTransformType_BaseOppositeParallelLines" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseOppositeParallelLines')">BaseOppositeParallelLines</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesTransformType.html#OppositeParallelLinesTransformType_Transformation" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Transformation')">Transformation</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_OppositeParallelLinesConstructionMethodType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_OppositeParallelLinesConstructionMethodType_Transform');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_OppositeParallelLinesConstructionMethodType_Transform" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Transform</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BaseOppositeParallelLines</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BaseOppositeParallelLines&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Transformation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Transformation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Transform&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_OppositeParallelLinesConstructionMethodType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OppositeParallelLinesConstructionMethodType_Transform');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_OppositeParallelLinesConstructionMethodType_Transform" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Transform"</span><span class="tAN"> type=</span><span class="tAV">"OppositeParallelLinesTransformType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Transform element describes the construction of an opposite parallel lines feature by the transformation of a base opposite parallel lines feature. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="OppositeParallelLinesConstructionMethodType_FromScan"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesConstructionMethodType')">OppositeParallelLinesConstructionMethodType</a></b> / FromScan</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_OppositeParallelLinesConstructionMethodType_FromScan" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_OppositeParallelLinesConstructionMethodType_FromScan');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_OppositeParallelLinesConstructionMethodType_FromScan" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The FromScan element describes the construction of an opposite parallel lines feature from scan data. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_OppositeParallelLinesConstructionMethodType_FromScan" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_OppositeParallelLinesConstructionMethodType_FromScan');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_OppositeParallelLinesConstructionMethodType_FromScan" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_FromScan_8.jpeg" usemap="#Features_xsd_Element_FromScan_8" /><map name="Features_xsd_Element_FromScan_8" id="Features_xsd_Element_FromScan_8">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="269,96,422,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="171,49,508,75" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesFromScanType.tmp#OppositeParallelLinesFromScanType_SurfaceFeature" href="Features_xsd_Complex_Type_OppositeParallelLinesFromScanType.html#OppositeParallelLinesFromScanType_SurfaceFeature" coords="253,262,379,291" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesFromScanType.tmp#OppositeParallelLinesFromScanType_SearchRadius" href="Features_xsd_Complex_Type_OppositeParallelLinesFromScanType.html#OppositeParallelLinesFromScanType_SearchRadius" coords="253,369,372,398" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesFromScanType.tmp#OppositeParallelLinesFromScanType_Depth" href="Features_xsd_Complex_Type_OppositeParallelLinesFromScanType.html#OppositeParallelLinesFromScanType_Depth" coords="253,476,325,505" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesFromScanType.tmp#OppositeParallelLinesFromScanType" href="Features_xsd_Complex_Type_OppositeParallelLinesFromScanType.html#OppositeParallelLinesFromScanType" coords="155,3,432,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesFromScanType.html#OppositeParallelLinesFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesFromScanType')">OppositeParallelLinesFromScanType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesFromScanType.html#OppositeParallelLinesFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesFromScanType')">OppositeParallelLinesFromScanType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_OppositeParallelLinesConstructionMethodType_FromScan" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_OppositeParallelLinesConstructionMethodType_FromScan');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_OppositeParallelLinesConstructionMethodType_FromScan" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesFromScanType.html#OppositeParallelLinesFromScanType_Depth" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Depth')">Depth</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesFromScanType.html#OppositeParallelLinesFromScanType_SearchRadius" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SearchRadius')">SearchRadius</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesFromScanType.html#OppositeParallelLinesFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceFeature')">SurfaceFeature</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_OppositeParallelLinesConstructionMethodType_FromScan" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_OppositeParallelLinesConstructionMethodType_FromScan');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_OppositeParallelLinesConstructionMethodType_FromScan" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;FromScan</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SurfaceFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/SurfaceFeature&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SearchRadius</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/SearchRadius&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Depth</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Depth&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/FromScan&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_OppositeParallelLinesConstructionMethodType_FromScan" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OppositeParallelLinesConstructionMethodType_FromScan');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_OppositeParallelLinesConstructionMethodType_FromScan" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FromScan"</span><span class="tAN"> type=</span><span class="tAV">"OppositeParallelLinesFromScanType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FromScan element describes the construction of an opposite parallel lines feature from scan data. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="OppositeParallelLinesConstructionMethodType"></a><div class="componentTitle">Complex Type <span class="qname">OppositeParallelLinesConstructionMethodType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_OppositeParallelLinesConstructionMethodType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_OppositeParallelLinesConstructionMethodType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_OppositeParallelLinesConstructionMethodType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The OppositeParallelLinesConstructionMethodType defines the method for constructing a unique nominal or measured opposite parallel lines feature.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_OppositeParallelLinesConstructionMethodType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_OppositeParallelLinesConstructionMethodType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_OppositeParallelLinesConstructionMethodType" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.jpeg" usemap="#Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType" /><map name="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType" id="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType">
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.tmp#OppositeParallelLinesConstructionMethodType_BestFit" href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType_BestFit" coords="497,0,577,29" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.tmp#OppositeParallelLinesConstructionMethodType_Recompensated" href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType_Recompensated" coords="497,107,629,136" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.tmp#OppositeParallelLinesConstructionMethodType_Intersection" href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType_Intersection" coords="497,214,602,243" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.tmp#OppositeParallelLinesConstructionMethodType_Projection" href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType_Projection" coords="497,321,593,350" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.tmp#OppositeParallelLinesConstructionMethodType_Copy" href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType_Copy" coords="497,428,565,457" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.tmp#OppositeParallelLinesConstructionMethodType_Cast" href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType_Cast" coords="497,535,562,564" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.tmp#OppositeParallelLinesConstructionMethodType_Transform" href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType_Transform" coords="497,642,592,671" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.tmp#OppositeParallelLinesConstructionMethodType_FromScan" href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType_FromScan" coords="497,749,595,778" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_OppositeParallelLinesConstructionMethodType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_OppositeParallelLinesConstructionMethodType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_OppositeParallelLinesConstructionMethodType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Elements </td>
+                                    <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesCheckedType.html#OppositeParallelLinesCheckedType_Constructed" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesCheckedType/Constructed')">OppositeParallelLinesCheckedType/Constructed</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesFeatureNominalType.html#OppositeParallelLinesFeatureNominalType_Constructed" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesFeatureNominalType/Constructed')">OppositeParallelLinesFeatureNominalType/Constructed</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType_BestFit" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BestFit')">BestFit</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType_Cast" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Cast')">Cast</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType_Copy" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Copy')">Copy</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType_FromScan" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FromScan')">FromScan</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType_Intersection" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Intersection')">Intersection</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType_Projection" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Projection')">Projection</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType_Recompensated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Recompensated')">Recompensated</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesConstructionMethodType.html#OppositeParallelLinesConstructionMethodType_Transform" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Transform')">Transform</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_OppositeParallelLinesConstructionMethodType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OppositeParallelLinesConstructionMethodType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_OppositeParallelLinesConstructionMethodType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"OppositeParallelLinesConstructionMethodType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The OppositeParallelLinesConstructionMethodType defines the method for constructing a unique nominal or measured opposite parallel lines feature.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This optional compositor provides a choice of the construction method for the opposite parallel lines feature.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"BestFit"</span><span class="tAN"> type=</span><span class="tAV">"OppositeParallelLinesBestFitType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The BestFit element describes the best-fit construction of an opposite parallel lines feature from 3 or more point-reducible base features. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Recompensated"</span><span class="tAN"> type=</span><span class="tAV">"OppositeParallelLinesRecompType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Recompensated element describes the re-compensated-for- probe-size best-fit construction of an opposite parallel lines feature from 3 or more base feature points. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Intersection"</span><span class="tAN"> type=</span><span class="tAV">"OppositeParallelLinesIntersectionType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Intersection element describes the construction of an opposite parallel lines feature by the intersection of a plane and a feature which has a parallel lines cross section. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Projection"</span><span class="tAN"> type=</span><span class="tAV">"OppositeParallelLinesProjectionType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Projection element describes the construction of an opposite parallel lines feature by the projection of a base opposite lines parallel feature onto a plane. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Copy"</span><span class="tAN"> type=</span><span class="tAV">"OppositeParallelLinesCopyType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Copy element describes the construction of an opposite parallel lines feature by the copying of a base opposite parallel lines feature. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Cast"</span><span class="tAN"> type=</span><span class="tAV">"OppositeParallelLinesCastType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Cast element describes the construction of an opposite parallel lines feature by the casting of a base feature. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Transform"</span><span class="tAN"> type=</span><span class="tAV">"OppositeParallelLinesTransformType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Transform element describes the construction of an opposite parallel lines feature by the transformation of a base opposite parallel lines feature. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FromScan"</span><span class="tAN"> type=</span><span class="tAV">"OppositeParallelLinesFromScanType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FromScan element describes the construction of an opposite parallel lines feature from scan data. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

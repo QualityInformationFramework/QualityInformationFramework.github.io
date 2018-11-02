@@ -1,0 +1,570 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component ProductionStudyResults</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_ProductionStudyResults');
+var sourceBoxes= new Array('source_ProductionStudyResults');
+var instanceBoxes= new Array('instance_ProductionStudyResults');
+var diagramBoxes= new Array('diagram_ProductionStudyResults');
+var annotationBoxes= new Array('annotations_ProductionStudyResults');
+var attributesBoxes= new Array('attributes_ProductionStudyResults');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="ProductionStudyResults"></a><div class="componentTitle">Element <span class="qname">ProductionStudyResults</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ProductionStudyResults" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ProductionStudyResults');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ProductionStudyResults" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The global ProductionStudyResults element gives information about</span><span class="tI">
+</span><span class="tT">the results of a production statistical study.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ProductionStudyResults" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ProductionStudyResults');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ProductionStudyResults" style="display:block"><img alt="Diagram" border="0" src="img/QIFStatistics_xsd_Element_ProductionStudyResults.jpeg" usemap="#QIFStatistics_xsd_Element_ProductionStudyResults" /><map name="QIFStatistics_xsd_Element_ProductionStudyResults" id="QIFStatistics_xsd_Element_ProductionStudyResults">
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_id" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_id" coords="296,182,377,211" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_ThisStatisticalStudyResultsInstanceQPId" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ThisStatisticalStudyResultsInstanceQPId" coords="365,282,641,311" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="365,373,459,402" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_Status" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_Status" coords="365,480,441,509" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_SoftwareId" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_SoftwareId" coords="450,571,548,600" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_StandardId" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_StandardId" coords="450,678,550,707" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_StudyIssues" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_StudyIssues" coords="365,785,475,814" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_InspectionTraceability" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_InspectionTraceability" coords="365,892,528,921" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_Name" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_Name" coords="365,983,437,1012" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_Description" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_Description" coords="365,1074,468,1103" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_StudyId" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_StudyId" coords="365,1165,447,1194" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_ResultsIds" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ResultsIds" coords="495,1256,594,1285" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_ResultsQPIds" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ResultsQPIds" coords="495,1363,613,1392" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_ResultsFiles" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ResultsFiles" coords="495,1470,605,1499" />
+                                 <area alt="Statistics_xsd_Element_AverageFeatures.tmp#AverageFeatures" href="Statistics_xsd_Element_AverageFeatures.html#AverageFeatures" coords="365,1651,500,1680" />
+                                 <area alt="Statistics_xsd_Element_CharacteristicsStats.tmp#CharacteristicsStats" href="Statistics_xsd_Element_CharacteristicsStats.html#CharacteristicsStats" coords="365,1742,521,1771" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_LinearStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_LinearStatsSummaries" coords="365,1833,535,1862" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_AngularStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_AngularStatsSummaries" coords="365,1924,544,1953" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_AreaStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_AreaStatsSummaries" coords="365,2015,527,2044" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_ForceStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ForceStatsSummaries" coords="365,2106,533,2135" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_MassStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_MassStatsSummaries" coords="365,2197,532,2226" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_PressureStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_PressureStatsSummaries" coords="365,2288,552,2317" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_SpeedStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_SpeedStatsSummaries" coords="365,2379,537,2408" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_TemperatureStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_TemperatureStatsSummaries" coords="365,2470,572,2499" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_TimeStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_TimeStatsSummaries" coords="365,2561,528,2590" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_UserDefinedUnitStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_UserDefinedUnitStatsSummaries" coords="365,2652,593,2681" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_StatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_StatsSummaries" coords="365,2743,500,2772" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType" coords="267,95,624,121" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_MultipleProductInstanceStudyResultsBaseType.tmp#MultipleProductInstanceStudyResultsBaseType_NumberOfSamples" href="QIFStatistics_xsd_Complex_Type_MultipleProductInstanceStudyResultsBaseType.html#MultipleProductInstanceStudyResultsBaseType_NumberOfSamples" coords="349,2893,496,2922" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_MultipleProductInstanceStudyResultsBaseType.tmp#MultipleProductInstanceStudyResultsBaseType_SubgroupSize" href="QIFStatistics_xsd_Complex_Type_MultipleProductInstanceStudyResultsBaseType.html#MultipleProductInstanceStudyResultsBaseType_SubgroupSize" coords="349,2984,468,3013" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_MultipleProductInstanceStudyResultsBaseType.tmp#MultipleProductInstanceStudyResultsBaseType" href="QIFStatistics_xsd_Complex_Type_MultipleProductInstanceStudyResultsBaseType.html#MultipleProductInstanceStudyResultsBaseType" coords="251,49,689,75" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_ProductionStudyResultsType.tmp#ProductionStudyResultsType_ControlIssueDetailsList" href="QIFStatistics_xsd_Complex_Type_ProductionStudyResultsType.html#ProductionStudyResultsType_ControlIssueDetailsList" coords="358,3138,529,3167" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_ProductionStudyResultsType.tmp#ProductionStudyResultsType" href="QIFStatistics_xsd_Complex_Type_ProductionStudyResultsType.html#ProductionStudyResultsType" coords="235,3,466,29" />
+                                 <area alt="QIFStatistics_xsd_Element_StatisticalStudyResults.tmp#StatisticalStudyResults" href="QIFStatistics_xsd_Element_StatisticalStudyResults.html#StatisticalStudyResults" coords="248,3767,422,3796" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFStatistics_xsd_Complex_Type_ProductionStudyResultsType.html#ProductionStudyResultsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProductionStudyResultsType')">ProductionStudyResultsType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StatisticalStudyResultsBaseType')">StatisticalStudyResultsBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="QIFStatistics_xsd_Complex_Type_MultipleProductInstanceStudyResultsBaseType.html#MultipleProductInstanceStudyResultsBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MultipleProductInstanceStudyResultsBaseType')">MultipleProductInstanceStudyResultsBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="QIFStatistics_xsd_Complex_Type_ProductionStudyResultsType.html#ProductionStudyResultsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProductionStudyResultsType')">ProductionStudyResultsType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ProductionStudyResults" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ProductionStudyResults');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ProductionStudyResults" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Substitution Group Affiliation</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="QIFStatistics_xsd_Element_StatisticalStudyResults.html#StatisticalStudyResults" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StatisticalStudyResults')">StatisticalStudyResults</a></b></li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_AngularStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AngularStatsSummaries')">AngularStatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_AreaStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AreaStatsSummaries')">AreaStatsSummaries</a></b>, <b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Statistics_xsd_Element_AverageFeatures.html#AverageFeatures" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AverageFeatures')">AverageFeatures</a></b>, <b><a href="Statistics_xsd_Element_CharacteristicsStats.html#CharacteristicsStats" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicsStats')">CharacteristicsStats</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_ProductionStudyResultsType.html#ProductionStudyResultsType_ControlIssueDetailsList" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ControlIssueDetailsList')">ControlIssueDetailsList</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ForceStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ForceStatsSummaries')">ForceStatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_InspectionTraceability" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionTraceability')">InspectionTraceability</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_LinearStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearStatsSummaries')">LinearStatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_MassStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MassStatsSummaries')">MassStatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_MultipleProductInstanceStudyResultsBaseType.html#MultipleProductInstanceStudyResultsBaseType_NumberOfSamples" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NumberOfSamples')">NumberOfSamples</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_PressureStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PressureStatsSummaries')">PressureStatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ResultsFiles" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ResultsFiles')">ResultsFiles</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ResultsIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ResultsIds')">ResultsIds</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ResultsQPIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ResultsQPIds')">ResultsQPIds</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_SoftwareId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SoftwareId')">SoftwareId</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_SpeedStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpeedStatsSummaries')">SpeedStatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_StandardId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StandardId')">StandardId</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_StatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StatsSummaries')">StatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_Status" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Status')">Status</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_StudyId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StudyId')">StudyId</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_StudyIssues" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StudyIssues')">StudyIssues</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_MultipleProductInstanceStudyResultsBaseType.html#MultipleProductInstanceStudyResultsBaseType_SubgroupSize" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SubgroupSize')">SubgroupSize</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_TemperatureStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TemperatureStatsSummaries')">TemperatureStatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ThisStatisticalStudyResultsInstanceQPId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThisStatisticalStudyResultsInstanceQPId')">ThisStatisticalStudyResultsInstanceQPId</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_TimeStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeStatsSummaries')">TimeStatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_UserDefinedUnitStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedUnitStatsSummaries')">UserDefinedUnitStatsSummaries</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_ProductionStudyResults" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_ProductionStudyResults');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_ProductionStudyResults" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;ProductionStudyResults</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ThisStatisticalStudyResultsInstanceQPId</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ThisStatisticalStudyResultsInstanceQPId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Status</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Status&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SoftwareId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/SoftwareId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;StandardId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/StandardId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;StudyIssues</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/StudyIssues&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;InspectionTraceability</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/InspectionTraceability&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Name&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Description</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Description&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;StudyId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/StudyId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ResultsIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ResultsIds&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ResultsQPIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/ResultsQPIds&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ResultsFiles</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ResultsFiles&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;AverageFeatures</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/AverageFeatures&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;CharacteristicsStats</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/CharacteristicsStats&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;LinearStatsSummaries</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/LinearStatsSummaries&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;AngularStatsSummaries</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/AngularStatsSummaries&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;AreaStatsSummaries</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/AreaStatsSummaries&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ForceStatsSummaries</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ForceStatsSummaries&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MassStatsSummaries</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MassStatsSummaries&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;PressureStatsSummaries</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/PressureStatsSummaries&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SpeedStatsSummaries</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SpeedStatsSummaries&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TemperatureStatsSummaries</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/TemperatureStatsSummaries&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TimeStatsSummaries</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/TimeStatsSummaries&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UserDefinedUnitStatsSummaries</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/UserDefinedUnitStatsSummaries&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;StatsSummaries</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/StatsSummaries&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NumberOfSamples</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/NumberOfSamples&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SubgroupSize</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SubgroupSize&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ControlIssueDetailsList</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/ControlIssueDetailsList&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/ProductionStudyResults&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ProductionStudyResults" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ProductionStudyResults');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ProductionStudyResults" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required id attribute is the QIF id of the statistical study</span><span class="tI">
+</span><span class="tT">results, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ProductionStudyResults" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProductionStudyResults');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ProductionStudyResults" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ProductionStudyResults"</span><span class="tAN"> type=</span><span class="tAV">"ProductionStudyResultsType"</span><span class="tAN"> substitutionGroup=</span><span class="tAV">"StatisticalStudyResults"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The global ProductionStudyResults element gives information about the results of a production statistical study.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:key</span><span class="tAN"> name=</span><span class="tAV">"ProductionSubgroupIdKey"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ProductionSubgroupIdKey collects all QIF ids of all Subgroups in CharacteristicStats of a production study.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:selector</span><span class="tAN"> xpath=</span><span class="tAV">"t:CharacteristicsStats/t:*/t:Subgroups/t:Subgroup"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:field</span><span class="tAN"> xpath=</span><span class="tAV">"@id"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:key&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:keyref</span><span class="tAN"> name=</span><span class="tAV">"ProductionSubgroupIdKeyref"</span><span class="tAN"> refer=</span><span class="tAV">"ProductionSubgroupIdKey"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ProductionSubgroupIdKeyref requires that a SubgroupId in a StudyIssue in CharacteristicStats be the id of a Subgroup in the production article study.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:selector</span><span class="tAN"> xpath=</span><span class="tAV">"t:CharacteristicsStats/t:*/t:StudyIssues/t:StudyIssue               /t:SubgroupIds/t:Id"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:field</span><span class="tAN"> xpath=</span><span class="tAV">"."</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:keyref&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFStatistics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

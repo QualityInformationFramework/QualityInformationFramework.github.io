@@ -1,0 +1,1260 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component SerialNumber</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_ActualComponentType_SerialNumber', 
+				'properties_ActualComponentType_AdditionalChanges', 
+				'properties_ActualComponentType_Status', 
+				'properties_ActualComponentType_Traceability', 
+				'properties_ActualComponentType_AsmPathId', 
+				'properties_ActualComponentType_id');
+var facetsBoxes= new Array('facets_ActualComponentType_id');
+var usedByBoxes= new Array('usedBy_ActualComponentType', 
+				'usedBy_ActualComponentType_id');
+var sourceBoxes= new Array('source_ActualComponentType_SerialNumber', 
+				'source_ActualComponentType_AdditionalChanges', 
+				'source_ActualComponentType_Status', 
+				'source_ActualComponentType_Traceability', 
+				'source_ActualComponentType_AsmPathId', 
+				'source_ActualComponentType', 
+				'source_ActualComponentType_id');
+var instanceBoxes= new Array('instance_ActualComponentType_Status', 
+				'instance_ActualComponentType_Traceability');
+var diagramBoxes= new Array('diagram_ActualComponentType_SerialNumber', 
+				'diagram_ActualComponentType_AdditionalChanges', 
+				'diagram_ActualComponentType_Status', 
+				'diagram_ActualComponentType_Traceability', 
+				'diagram_ActualComponentType_AsmPathId', 
+				'diagram_ActualComponentType');
+var annotationBoxes= new Array('annotations_ActualComponentType_SerialNumber', 
+				'annotations_ActualComponentType_AdditionalChanges', 
+				'annotations_ActualComponentType_Status', 
+				'annotations_ActualComponentType_Traceability', 
+				'annotations_ActualComponentType_AsmPathId', 
+				'annotations_ActualComponentType', 
+				'annotations_ActualComponentType_id');
+var attributesBoxes= new Array('attributes_ActualComponentType_AsmPathId', 
+				'attributes_ActualComponentType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="ActualComponentType_SerialNumber"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ActualComponentType')">ActualComponentType</a></b> / SerialNumber</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ActualComponentType_SerialNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ActualComponentType_SerialNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ActualComponentType_SerialNumber" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional SerialNumber element is a label of a specific actual component of a given type. Components with the same ModelNumber have different SerialNumbers. The combination of ModelNumber and SerialNumber should differentiate a given actual component from all other actual components in a QIF application instance file.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ActualComponentType_SerialNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ActualComponentType_SerialNumber');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ActualComponentType_SerialNumber" style="display:block"><img alt="Diagram" border="0" src="img/QIFResults_xsd_Element_SerialNumber.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ActualComponentType_SerialNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ActualComponentType_SerialNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ActualComponentType_SerialNumber" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ActualComponentType_SerialNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ActualComponentType_SerialNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ActualComponentType_SerialNumber" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SerialNumber"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional SerialNumber element is a label of a specific actual component of a given type. Components with the same ModelNumber have different SerialNumbers. The combination of ModelNumber and SerialNumber should differentiate a given actual component from all other actual components in a QIF application instance file.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFResults.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ActualComponentType_AdditionalChanges"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ActualComponentType')">ActualComponentType</a></b> / AdditionalChanges</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ActualComponentType_AdditionalChanges" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ActualComponentType_AdditionalChanges');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ActualComponentType_AdditionalChanges" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional AdditionalChanges element is a record of any changes to the product beyond what is recorded in the product model. The information recorded here may be used for the Additional Changes field of an AS9102A form.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ActualComponentType_AdditionalChanges" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ActualComponentType_AdditionalChanges');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ActualComponentType_AdditionalChanges" style="display:block"><img alt="Diagram" border="0" src="img/QIFResults_xsd_Element_AdditionalChanges.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ActualComponentType_AdditionalChanges" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ActualComponentType_AdditionalChanges');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ActualComponentType_AdditionalChanges" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ActualComponentType_AdditionalChanges" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ActualComponentType_AdditionalChanges');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ActualComponentType_AdditionalChanges" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"AdditionalChanges"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional AdditionalChanges element is a record of any changes to the product beyond what is recorded in the product model. The information recorded here may be used for the Additional Changes field of an AS9102A form.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFResults.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ActualComponentType_Status"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ActualComponentType')">ActualComponentType</a></b> / Status</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ActualComponentType_Status" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ActualComponentType_Status');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ActualComponentType_Status" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Status element gives the inspection status of the actual component.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ActualComponentType_Status" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ActualComponentType_Status');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ActualComponentType_Status" style="display:block"><img alt="Diagram" border="0" src="img/QIFResults_xsd_Element_Status.jpeg" usemap="#QIFResults_xsd_Element_Status" /><map name="QIFResults_xsd_Element_Status" id="QIFResults_xsd_Element_Status">
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_InspectionStatusType.tmp#InspectionStatusType_InspectionStatusEnum" href="IntermediatesPMI_xsd_Complex_Type_InspectionStatusType.html#InspectionStatusType_InspectionStatusEnum" coords="231,46,400,75" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_InspectionStatusType.tmp#InspectionStatusType_OtherInspectionStatus" href="IntermediatesPMI_xsd_Complex_Type_InspectionStatusType.html#InspectionStatusType_OtherInspectionStatus" coords="231,137,398,166" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_InspectionStatusType.tmp#InspectionStatusType" href="IntermediatesPMI_xsd_Complex_Type_InspectionStatusType.html#InspectionStatusType" coords="133,3,321,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_InspectionStatusType.html#InspectionStatusType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionStatusType')">InspectionStatusType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ActualComponentType_Status" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ActualComponentType_Status');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ActualComponentType_Status" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_InspectionStatusType.html#InspectionStatusType_InspectionStatusEnum" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionStatusEnum')">InspectionStatusEnum</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_InspectionStatusType.html#InspectionStatusType_OtherInspectionStatus" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherInspectionStatus')">OtherInspectionStatus</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_ActualComponentType_Status" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_ActualComponentType_Status');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_ActualComponentType_Status" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Status</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;InspectionStatusEnum</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/InspectionStatusEnum&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;OtherInspectionStatus</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/OtherInspectionStatus&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Status&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ActualComponentType_Status" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ActualComponentType_Status');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ActualComponentType_Status" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Status"</span><span class="tAN"> type=</span><span class="tAV">"InspectionStatusType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Status element gives the inspection status of the actual component.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFResults.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ActualComponentType_Traceability"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ActualComponentType')">ActualComponentType</a></b> / Traceability</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ActualComponentType_Traceability" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ActualComponentType_Traceability');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ActualComponentType_Traceability" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Traceability element gives traceability information for an actual component.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ActualComponentType_Traceability" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ActualComponentType_Traceability');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ActualComponentType_Traceability" style="display:block"><img alt="Diagram" border="0" src="img/QIFResults_xsd_Element_Traceability.jpeg" usemap="#QIFResults_xsd_Element_Traceability" /><map name="QIFResults_xsd_Element_Traceability" id="QIFResults_xsd_Element_Traceability">
+                                 <area alt="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.tmp#ActualProductTraceabilityType_SampleNumber" href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_SampleNumber" coords="259,46,386,75" />
+                                 <area alt="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.tmp#ActualProductTraceabilityType_LotNumber" href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_LotNumber" coords="259,153,360,182" />
+                                 <area alt="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.tmp#ActualProductTraceabilityType_ReportNumber" href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_ReportNumber" coords="259,244,380,273" />
+                                 <area alt="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.tmp#ActualProductTraceabilityType_ManufacturingProcessId" href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_ManufacturingProcessId" coords="259,351,436,380" />
+                                 <area alt="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.tmp#ActualProductTraceabilityType_FixtureId" href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_FixtureId" coords="259,442,347,471" />
+                                 <area alt="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.tmp#ActualProductTraceabilityType_NotableEventIds" href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_NotableEventIds" coords="259,533,390,562" />
+                                 <area alt="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.tmp#ActualProductTraceabilityType_NotedEventIds" href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_NotedEventIds" coords="259,624,380,653" />
+                                 <area alt="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.tmp#ActualProductTraceabilityType_InspectionStart" href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_InspectionStart" coords="259,731,384,760" />
+                                 <area alt="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.tmp#ActualProductTraceabilityType_InspectionEnd" href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_InspectionEnd" coords="259,838,379,867" />
+                                 <area alt="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.tmp#ActualProductTraceabilityType_InspectionSoftwareItems" href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_InspectionSoftwareItems" coords="259,945,438,974" />
+                                 <area alt="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.tmp#ActualProductTraceabilityType_InspectionProgram" href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_InspectionProgram" coords="259,1036,405,1065" />
+                                 <area alt="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.tmp#ActualProductTraceabilityType_InspectionOperator" href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_InspectionOperator" coords="259,1143,406,1172" />
+                                 <area alt="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.tmp#ActualProductTraceabilityType_MeasurementDeviceIds" href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_MeasurementDeviceIds" coords="259,1250,431,1279" />
+                                 <area alt="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.tmp#ActualProductTraceabilityType_ProductEnvironments" href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_ProductEnvironments" coords="259,1341,420,1370" />
+                                 <area alt="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.tmp#ActualProductTraceabilityType_Errors" href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_Errors" coords="259,1432,332,1461" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="259,1539,353,1568" />
+                                 <area alt="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.tmp#ActualProductTraceabilityType" href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType" coords="161,3,400,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ActualProductTraceabilityType')">ActualProductTraceabilityType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ActualComponentType_Traceability" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ActualComponentType_Traceability');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ActualComponentType_Traceability" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_Errors" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Errors')">Errors</a></b>, <b><a href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_FixtureId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FixtureId')">FixtureId</a></b>, <b><a href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_InspectionEnd" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionEnd')">InspectionEnd</a></b>, <b><a href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_InspectionOperator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionOperator')">InspectionOperator</a></b>, <b><a href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_InspectionProgram" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionProgram')">InspectionProgram</a></b>, <b><a href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_InspectionSoftwareItems" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionSoftwareItems')">InspectionSoftwareItems</a></b>, <b><a href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_InspectionStart" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionStart')">InspectionStart</a></b>, <b><a href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_LotNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LotNumber')">LotNumber</a></b>, <b><a href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_ManufacturingProcessId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ManufacturingProcessId')">ManufacturingProcessId</a></b>, <b><a href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_MeasurementDeviceIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementDeviceIds')">MeasurementDeviceIds</a></b>, <b><a href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_NotableEventIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NotableEventIds')">NotableEventIds</a></b>, <b><a href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_NotedEventIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NotedEventIds')">NotedEventIds</a></b>, <b><a href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_ProductEnvironments" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProductEnvironments')">ProductEnvironments</a></b>, <b><a href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_ReportNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReportNumber')">ReportNumber</a></b>, <b><a href="Traceability_xsd_Complex_Type_ActualProductTraceabilityType.html#ActualProductTraceabilityType_SampleNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SampleNumber')">SampleNumber</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_ActualComponentType_Traceability" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_ActualComponentType_Traceability');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_ActualComponentType_Traceability" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Traceability</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SampleNumber</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SampleNumber&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;LotNumber</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/LotNumber&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ReportNumber</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ReportNumber&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ManufacturingProcessId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ManufacturingProcessId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;FixtureId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/FixtureId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NotableEventIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NotableEventIds&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NotedEventIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NotedEventIds&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;InspectionStart</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/InspectionStart&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;InspectionEnd</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/InspectionEnd&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;InspectionSoftwareItems</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/InspectionSoftwareItems&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;InspectionProgram</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/InspectionProgram&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;InspectionOperator</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/InspectionOperator&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MeasurementDeviceIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MeasurementDeviceIds&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ProductEnvironments</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ProductEnvironments&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Errors</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Errors&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Traceability&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ActualComponentType_Traceability" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ActualComponentType_Traceability');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ActualComponentType_Traceability" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Traceability"</span><span class="tAN"> type=</span><span class="tAV">"ActualProductTraceabilityType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Traceability element gives traceability information for an actual component.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFResults.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ActualComponentType_AsmPathId"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ActualComponentType')">ActualComponentType</a></b> / AsmPathId</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ActualComponentType_AsmPathId" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ActualComponentType_AsmPathId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ActualComponentType_AsmPathId" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional AsmPathId element is the id of the assembly path of this component.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ActualComponentType_AsmPathId" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ActualComponentType_AsmPathId');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ActualComponentType_AsmPathId" style="display:block"><img alt="Diagram" border="0" src="img/QIFResults_xsd_Element_AsmPathId.jpeg" usemap="#QIFResults_xsd_Element_AsmPathId" /><map name="QIFResults_xsd_Element_AsmPathId" id="QIFResults_xsd_Element_AsmPathId">
+                                 <area alt="Primitives_xsd_Simple_Type_QIFReferenceBaseType.tmp#QIFReferenceBaseType" href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" coords="172,46,377,77" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType_xId" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" coords="188,183,269,212" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" coords="159,3,329,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceBaseType')">QIFReferenceBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ActualComponentType_AsmPathId" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ActualComponentType_AsmPathId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ActualComponentType_AsmPathId" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ActualComponentType_AsmPathId" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ActualComponentType_AsmPathId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ActualComponentType_AsmPathId" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xId')">xId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional xId attribute is a reference to the id of a QIF object in an external document. A QIF object in an external QIF document can be referenced by using references to two QIF ids: the id of the external document reference of type ExternalQIFDocumentReferenceType found in the local document and the id of the object found in the external document.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ActualComponentType_AsmPathId" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ActualComponentType_AsmPathId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ActualComponentType_AsmPathId" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"AsmPathId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional AsmPathId element is the id of the assembly path of this component.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFResults.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ActualComponentType"></a><div class="componentTitle">Complex Type <span class="qname">ActualComponentType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ActualComponentType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ActualComponentType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ActualComponentType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The ActualComponentType defines data of an actual component.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ActualComponentType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ActualComponentType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ActualComponentType" style="display:block"><img alt="Diagram" border="0" src="img/QIFResults_xsd_Complex_Type_ActualComponentType.jpeg" usemap="#QIFResults_xsd_Complex_Type_ActualComponentType" /><map name="QIFResults_xsd_Complex_Type_ActualComponentType" id="QIFResults_xsd_Complex_Type_ActualComponentType">
+                                 <area alt="QIFResults_xsd_Complex_Type_ActualComponentType.tmp#ActualComponentType_id" href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType_id" coords="269,44,350,73" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="338,144,432,173" />
+                                 <area alt="QIFResults_xsd_Complex_Type_ActualComponentType.tmp#ActualComponentType_SerialNumber" href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType_SerialNumber" coords="338,251,454,280" />
+                                 <area alt="QIFResults_xsd_Complex_Type_ActualComponentType.tmp#ActualComponentType_AdditionalChanges" href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType_AdditionalChanges" coords="338,358,484,387" />
+                                 <area alt="QIFResults_xsd_Complex_Type_ActualComponentType.tmp#ActualComponentType_Status" href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType_Status" coords="338,465,414,494" />
+                                 <area alt="QIFResults_xsd_Complex_Type_ActualComponentType.tmp#ActualComponentType_Traceability" href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType_Traceability" coords="338,556,442,585" />
+                                 <area alt="QIFResults_xsd_Complex_Type_ActualComponentType.tmp#ActualComponentType_AsmPathId" href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType_AsmPathId" coords="338,647,440,676" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_ActualComponentType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ActualComponentType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_ActualComponentType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="QIFResults_xsd_Element_ActualComponent.html#ActualComponent" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ActualComponent')">ActualComponent</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType_AdditionalChanges" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AdditionalChanges')">AdditionalChanges</a></b>, <b><a href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType_AsmPathId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AsmPathId')">AsmPathId</a></b>, <b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType_SerialNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SerialNumber')">SerialNumber</a></b>, <b><a href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType_Status" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Status')">Status</a></b>, <b><a href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType_Traceability" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Traceability')">Traceability</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ActualComponentType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ActualComponentType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ActualComponentType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the actual component data, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ActualComponentType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ActualComponentType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ActualComponentType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ActualComponentType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ActualComponentType defines data of an actual component.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> ref=</span><span class="tAV">"Attributes"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Attributes element contains user defined attributes (typified, binary array, or XML structured).</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SerialNumber"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional SerialNumber element is a label of a specific actual component of a given type. Components with the same ModelNumber have different SerialNumbers. The combination of ModelNumber and SerialNumber should differentiate a given actual component from all other actual components in a QIF application instance file.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"AdditionalChanges"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional AdditionalChanges element is a record of any changes to the product beyond what is recorded in the product model. The information recorded here may be used for the Additional Changes field of an AS9102A form.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Status"</span><span class="tAN"> type=</span><span class="tAV">"InspectionStatusType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Status element gives the inspection status of the actual component.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Traceability"</span><span class="tAN"> type=</span><span class="tAV">"ActualProductTraceabilityType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Traceability element gives traceability information for an actual component.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"AsmPathId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional AsmPathId element is the id of the assembly path of this component.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"QIFIdType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The id attribute is the QIF id of the actual component data, used for referencing.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFResults.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ActualComponentType_id"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ActualComponentType')">ActualComponentType</a></b> / @id</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ActualComponentType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ActualComponentType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ActualComponentType_id" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the actual component data, used for referencing.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ActualComponentType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ActualComponentType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ActualComponentType_id" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">use</td>
+                                    <td><b>required</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_ActualComponentType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_ActualComponentType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_ActualComponentType_id" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">pattern</td>
+                                    <td width="30%"><b>([\-+]?[0-9]+) &amp; ([1-9][0-9]*)</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_ActualComponentType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ActualComponentType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_ActualComponentType_id" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ActualComponentType')">ActualComponentType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ActualComponentType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ActualComponentType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ActualComponentType_id" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"QIFIdType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The id attribute is the QIF id of the actual component data, used for referencing.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFResults.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

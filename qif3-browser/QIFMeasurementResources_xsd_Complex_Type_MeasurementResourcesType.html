@@ -1,0 +1,1388 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Version</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_MeasurementResourcesType_Version', 
+				'properties_MeasurementResourcesType_Fixtures', 
+				'properties_MeasurementResourcesType_MeasurementRooms', 
+				'properties_MeasurementResourcesType_MeasurementDevices', 
+				'properties_MeasurementResourcesType_DetachableSensors', 
+				'properties_MeasurementResourcesType_Tools');
+var usedByBoxes= new Array('usedBy_MeasurementResourcesType');
+var sourceBoxes= new Array('source_MeasurementResourcesType_Version', 
+				'source_MeasurementResourcesType_Fixtures', 
+				'source_MeasurementResourcesType_MeasurementRooms', 
+				'source_MeasurementResourcesType_MeasurementDevices', 
+				'source_MeasurementResourcesType_DetachableSensors', 
+				'source_MeasurementResourcesType_Tools', 
+				'source_MeasurementResourcesType');
+var instanceBoxes= new Array('instance_MeasurementResourcesType_Version', 
+				'instance_MeasurementResourcesType_Fixtures', 
+				'instance_MeasurementResourcesType_MeasurementRooms', 
+				'instance_MeasurementResourcesType_MeasurementDevices', 
+				'instance_MeasurementResourcesType_DetachableSensors', 
+				'instance_MeasurementResourcesType_Tools');
+var diagramBoxes= new Array('diagram_MeasurementResourcesType_Version', 
+				'diagram_MeasurementResourcesType_Fixtures', 
+				'diagram_MeasurementResourcesType_MeasurementRooms', 
+				'diagram_MeasurementResourcesType_MeasurementDevices', 
+				'diagram_MeasurementResourcesType_DetachableSensors', 
+				'diagram_MeasurementResourcesType_Tools', 
+				'diagram_MeasurementResourcesType');
+var annotationBoxes= new Array('annotations_MeasurementResourcesType_Version', 
+				'annotations_MeasurementResourcesType_Fixtures', 
+				'annotations_MeasurementResourcesType_MeasurementRooms', 
+				'annotations_MeasurementResourcesType_MeasurementDevices', 
+				'annotations_MeasurementResourcesType_DetachableSensors', 
+				'annotations_MeasurementResourcesType_Tools', 
+				'annotations_MeasurementResourcesType');
+var attributesBoxes= new Array('attributes_MeasurementResourcesType_Fixtures', 
+				'attributes_MeasurementResourcesType_MeasurementRooms', 
+				'attributes_MeasurementResourcesType_MeasurementDevices', 
+				'attributes_MeasurementResourcesType_DetachableSensors', 
+				'attributes_MeasurementResourcesType_Tools');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="MeasurementResourcesType_Version"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementResourcesType')">MeasurementResourcesType</a></b> / Version</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasurementResourcesType_Version" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasurementResourcesType_Version');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasurementResourcesType_Version" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Version element uniquely identifies the version information of this QIF Resources instance.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasurementResourcesType_Version" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasurementResourcesType_Version');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasurementResourcesType_Version" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_Version.jpeg" usemap="#QIFMeasurementResources_xsd_Element_Version" /><map name="QIFMeasurementResources_xsd_Element_Version" id="QIFMeasurementResources_xsd_Element_Version">
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_VersionBaseType.tmp#VersionBaseType_TimeCreated" href="IntermediatesPMI_xsd_Complex_Type_VersionBaseType.html#VersionBaseType_TimeCreated" coords="253,92,364,121" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_VersionBaseType.tmp#VersionBaseType_SignOffs" href="IntermediatesPMI_xsd_Complex_Type_VersionBaseType.html#VersionBaseType_SignOffs" coords="253,183,340,212" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_VersionBaseType.tmp#VersionBaseType" href="IntermediatesPMI_xsd_Complex_Type_VersionBaseType.html#VersionBaseType" coords="155,49,420,75" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_VersionType.tmp#VersionType_ThisInstanceQPId" href="IntermediatesPMI_xsd_Complex_Type_VersionType.html#VersionType_ThisInstanceQPId" coords="237,337,377,366" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_VersionType.tmp#VersionType" href="IntermediatesPMI_xsd_Complex_Type_VersionType.html#VersionType" coords="139,3,274,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_VersionType.html#VersionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component VersionType')">VersionType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="IntermediatesPMI_xsd_Complex_Type_VersionBaseType.html#VersionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component VersionBaseType')">VersionBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="IntermediatesPMI_xsd_Complex_Type_VersionType.html#VersionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component VersionType')">VersionType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MeasurementResourcesType_Version" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MeasurementResourcesType_Version');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MeasurementResourcesType_Version" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_VersionBaseType.html#VersionBaseType_SignOffs" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SignOffs')">SignOffs</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_VersionType.html#VersionType_ThisInstanceQPId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThisInstanceQPId')">ThisInstanceQPId</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_VersionBaseType.html#VersionBaseType_TimeCreated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeCreated')">TimeCreated</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MeasurementResourcesType_Version" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MeasurementResourcesType_Version');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MeasurementResourcesType_Version" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Version</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TimeCreated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/TimeCreated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SignOffs</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SignOffs&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ThisInstanceQPId</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ThisInstanceQPId&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Version&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasurementResourcesType_Version" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasurementResourcesType_Version');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasurementResourcesType_Version" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Version"</span><span class="tAN"> type=</span><span class="tAV">"VersionType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Version element uniquely identifies the version information of this QIF Resources instance.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MeasurementResourcesType_Fixtures"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementResourcesType')">MeasurementResourcesType</a></b> / Fixtures</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasurementResourcesType_Fixtures" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasurementResourcesType_Fixtures');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasurementResourcesType_Fixtures" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Fixtures element is a list of fixtures.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasurementResourcesType_Fixtures" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasurementResourcesType_Fixtures');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasurementResourcesType_Fixtures" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_Fixtures.jpeg" usemap="#QIFMeasurementResources_xsd_Element_Fixtures" /><map name="QIFMeasurementResources_xsd_Element_Fixtures" id="QIFMeasurementResources_xsd_Element_Fixtures">
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_FixturesType.tmp#FixturesType_n" href="QIFMeasurementResources_xsd_Complex_Type_FixturesType.html#FixturesType_n" coords="171,90,252,119" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_FixturesType.tmp#FixturesType_Fixture" href="QIFMeasurementResources_xsd_Complex_Type_FixturesType.html#FixturesType_Fixture" coords="265,194,343,223" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_FixturesType.tmp#FixturesType" href="QIFMeasurementResources_xsd_Complex_Type_FixturesType.html#FixturesType" coords="142,3,280,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_FixturesType.html#FixturesType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FixturesType')">FixturesType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MeasurementResourcesType_Fixtures" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MeasurementResourcesType_Fixtures');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MeasurementResourcesType_Fixtures" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_FixturesType.html#FixturesType_Fixture" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Fixture')">Fixture</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MeasurementResourcesType_Fixtures" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MeasurementResourcesType_Fixtures');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MeasurementResourcesType_Fixtures" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Fixtures</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Fixture</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/Fixture&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Fixtures&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_MeasurementResourcesType_Fixtures" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_MeasurementResourcesType_Fixtures');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_MeasurementResourcesType_Fixtures" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFMeasurementResources_xsd_Complex_Type_FixturesType.html#FixturesType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute gives the number of fixtures in the list.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasurementResourcesType_Fixtures" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasurementResourcesType_Fixtures');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasurementResourcesType_Fixtures" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Fixtures"</span><span class="tAN"> type=</span><span class="tAV">"FixturesType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Fixtures element is a list of fixtures.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MeasurementResourcesType_MeasurementRooms"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementResourcesType')">MeasurementResourcesType</a></b> / MeasurementRooms</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasurementResourcesType_MeasurementRooms" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasurementResourcesType_MeasurementRooms');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasurementResourcesType_MeasurementRooms" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional MeasurementRooms element is a list of measurement rooms.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasurementResourcesType_MeasurementRooms" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasurementResourcesType_MeasurementRooms');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasurementResourcesType_MeasurementRooms" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_MeasurementRooms.jpeg" usemap="#QIFMeasurementResources_xsd_Element_MeasurementRooms" /><map name="QIFMeasurementResources_xsd_Element_MeasurementRooms" id="QIFMeasurementResources_xsd_Element_MeasurementRooms">
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomsType.tmp#MeasurementRoomsType_n" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomsType.html#MeasurementRoomsType_n" coords="244,90,325,119" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomsType.tmp#MeasurementRoomsType_MeasurementRoom" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomsType.html#MeasurementRoomsType_MeasurementRoom" coords="338,194,489,223" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomsType.tmp#MeasurementRoomsType" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomsType.html#MeasurementRoomsType" coords="215,3,426,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomsType.html#MeasurementRoomsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementRoomsType')">MeasurementRoomsType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MeasurementResourcesType_MeasurementRooms" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MeasurementResourcesType_MeasurementRooms');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MeasurementResourcesType_MeasurementRooms" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomsType.html#MeasurementRoomsType_MeasurementRoom" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementRoom')">MeasurementRoom</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MeasurementResourcesType_MeasurementRooms" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MeasurementResourcesType_MeasurementRooms');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MeasurementResourcesType_MeasurementRooms" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;MeasurementRooms</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MeasurementRoom</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/MeasurementRoom&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/MeasurementRooms&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_MeasurementResourcesType_MeasurementRooms" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_MeasurementResourcesType_MeasurementRooms');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_MeasurementResourcesType_MeasurementRooms" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementRoomsType.html#MeasurementRoomsType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute gives the number of measurement rooms in the list.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasurementResourcesType_MeasurementRooms" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasurementResourcesType_MeasurementRooms');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasurementResourcesType_MeasurementRooms" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MeasurementRooms"</span><span class="tAN"> type=</span><span class="tAV">"MeasurementRoomsType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional MeasurementRooms element is a list of measurement rooms.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MeasurementResourcesType_MeasurementDevices"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementResourcesType')">MeasurementResourcesType</a></b> / MeasurementDevices</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasurementResourcesType_MeasurementDevices" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasurementResourcesType_MeasurementDevices');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasurementResourcesType_MeasurementDevices" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional MeasurementDevices element is a list of measurement devices.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasurementResourcesType_MeasurementDevices" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasurementResourcesType_MeasurementDevices');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasurementResourcesType_MeasurementDevices" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_MeasurementDevices.jpeg" usemap="#QIFMeasurementResources_xsd_Element_MeasurementDevices" /><map name="QIFMeasurementResources_xsd_Element_MeasurementDevices" id="QIFMeasurementResources_xsd_Element_MeasurementDevices">
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementDevicesType.tmp#MeasurementDevicesType_n" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementDevicesType.html#MeasurementDevicesType_n" coords="248,90,329,119" />
+                                 <area alt="QIFMeasurementResources_xsd_Element_MeasurementDevice.tmp#MeasurementDevice" href="QIFMeasurementResources_xsd_Element_MeasurementDevice.html#MeasurementDevice" coords="342,194,497,223" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementDevicesType.tmp#MeasurementDevicesType" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementDevicesType.html#MeasurementDevicesType" coords="219,3,434,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementDevicesType.html#MeasurementDevicesType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementDevicesType')">MeasurementDevicesType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MeasurementResourcesType_MeasurementDevices" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MeasurementResourcesType_MeasurementDevices');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MeasurementResourcesType_MeasurementDevices" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Element_MeasurementDevice.html#MeasurementDevice" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementDevice')">MeasurementDevice</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MeasurementResourcesType_MeasurementDevices" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MeasurementResourcesType_MeasurementDevices');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MeasurementResourcesType_MeasurementDevices" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;MeasurementDevices</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MeasurementDevice</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/MeasurementDevice&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/MeasurementDevices&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_MeasurementResourcesType_MeasurementDevices" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_MeasurementResourcesType_MeasurementDevices');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_MeasurementResourcesType_MeasurementDevices" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementDevicesType.html#MeasurementDevicesType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of measurement devices in the list.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasurementResourcesType_MeasurementDevices" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasurementResourcesType_MeasurementDevices');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasurementResourcesType_MeasurementDevices" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MeasurementDevices"</span><span class="tAN"> type=</span><span class="tAV">"MeasurementDevicesType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional MeasurementDevices element is a list of measurement devices.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MeasurementResourcesType_DetachableSensors"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementResourcesType')">MeasurementResourcesType</a></b> / DetachableSensors</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasurementResourcesType_DetachableSensors" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasurementResourcesType_DetachableSensors');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasurementResourcesType_DetachableSensors" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional DetachableSensors element is a list of detachable sensors.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasurementResourcesType_DetachableSensors" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasurementResourcesType_DetachableSensors');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasurementResourcesType_DetachableSensors" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_DetachableSensors.jpeg" usemap="#QIFMeasurementResources_xsd_Element_DetachableSensors" /><map name="QIFMeasurementResources_xsd_Element_DetachableSensors" id="QIFMeasurementResources_xsd_Element_DetachableSensors">
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_DetachableSensorsType.tmp#DetachableSensorsType_n" href="QIFMeasurementResources_xsd_Complex_Type_DetachableSensorsType.html#DetachableSensorsType_n" coords="237,90,318,119" />
+                                 <area alt="QIFMeasurementResources_xsd_Element_DetachableSensor.tmp#DetachableSensor" href="QIFMeasurementResources_xsd_Element_DetachableSensor.html#DetachableSensor" coords="331,194,475,223" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_DetachableSensorsType.tmp#DetachableSensorsType" href="QIFMeasurementResources_xsd_Complex_Type_DetachableSensorsType.html#DetachableSensorsType" coords="208,3,412,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_DetachableSensorsType.html#DetachableSensorsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DetachableSensorsType')">DetachableSensorsType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MeasurementResourcesType_DetachableSensors" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MeasurementResourcesType_DetachableSensors');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MeasurementResourcesType_DetachableSensors" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Element_DetachableSensor.html#DetachableSensor" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DetachableSensor')">DetachableSensor</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MeasurementResourcesType_DetachableSensors" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MeasurementResourcesType_DetachableSensors');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MeasurementResourcesType_DetachableSensors" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;DetachableSensors</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DetachableSensor</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/DetachableSensor&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/DetachableSensors&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_MeasurementResourcesType_DetachableSensors" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_MeasurementResourcesType_DetachableSensors');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_MeasurementResourcesType_DetachableSensors" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFMeasurementResources_xsd_Complex_Type_DetachableSensorsType.html#DetachableSensorsType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of detachable sensors in the list.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasurementResourcesType_DetachableSensors" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasurementResourcesType_DetachableSensors');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasurementResourcesType_DetachableSensors" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DetachableSensors"</span><span class="tAN"> type=</span><span class="tAV">"DetachableSensorsType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional DetachableSensors element is a list of detachable sensors.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MeasurementResourcesType_Tools"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementResourcesType')">MeasurementResourcesType</a></b> / Tools</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasurementResourcesType_Tools" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasurementResourcesType_Tools');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasurementResourcesType_Tools" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Tools element is a list of tools.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasurementResourcesType_Tools" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasurementResourcesType_Tools');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasurementResourcesType_Tools" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_Tools.jpeg" usemap="#QIFMeasurementResources_xsd_Element_Tools" /><map name="QIFMeasurementResources_xsd_Element_Tools" id="QIFMeasurementResources_xsd_Element_Tools">
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_ToolsType.tmp#ToolsType_n" href="QIFMeasurementResources_xsd_Complex_Type_ToolsType.html#ToolsType_n" coords="155,90,236,119" />
+                                 <area alt="QIFMeasurementResources_xsd_Element_Tool.tmp#Tool" href="QIFMeasurementResources_xsd_Element_Tool.html#Tool" coords="249,194,311,223" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_ToolsType.tmp#ToolsType" href="QIFMeasurementResources_xsd_Complex_Type_ToolsType.html#ToolsType" coords="126,3,248,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_ToolsType.html#ToolsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToolsType')">ToolsType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MeasurementResourcesType_Tools" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MeasurementResourcesType_Tools');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MeasurementResourcesType_Tools" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Element_Tool.html#Tool" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Tool')">Tool</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MeasurementResourcesType_Tools" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MeasurementResourcesType_Tools');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MeasurementResourcesType_Tools" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Tools</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Tool</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/Tool&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Tools&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_MeasurementResourcesType_Tools" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_MeasurementResourcesType_Tools');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_MeasurementResourcesType_Tools" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFMeasurementResources_xsd_Complex_Type_ToolsType.html#ToolsType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of tools in the list.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasurementResourcesType_Tools" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasurementResourcesType_Tools');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasurementResourcesType_Tools" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Tools"</span><span class="tAN"> type=</span><span class="tAV">"ToolsType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Tools element is a list of tools.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MeasurementResourcesType"></a><div class="componentTitle">Complex Type <span class="qname">MeasurementResourcesType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MeasurementResourcesType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MeasurementResourcesType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MeasurementResourcesType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The MeasurementResourcesType defines a set of measurement resources.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MeasurementResourcesType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MeasurementResourcesType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MeasurementResourcesType" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.jpeg" usemap="#QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType" /><map name="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType" id="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType">
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.tmp#MeasurementResourcesType_Version" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType_Version" coords="376,0,458,29" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.tmp#MeasurementResourcesType_Fixtures" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType_Fixtures" coords="376,107,461,136" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.tmp#MeasurementResourcesType_MeasurementRooms" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType_MeasurementRooms" coords="376,198,534,227" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.tmp#MeasurementResourcesType_MeasurementDevices" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType_MeasurementDevices" coords="376,289,538,318" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.tmp#MeasurementResourcesType_DetachableSensors" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType_DetachableSensors" coords="376,380,527,409" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.tmp#MeasurementResourcesType_Tools" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType_Tools" coords="376,471,445,500" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_MeasurementResourcesType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_MeasurementResourcesType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_MeasurementResourcesType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="QIFMeasurementResources_xsd_Element_MeasurementResources.html#MeasurementResources" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementResources')">MeasurementResources</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType_DetachableSensors" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DetachableSensors')">DetachableSensors</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType_Fixtures" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Fixtures')">Fixtures</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType_MeasurementDevices" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementDevices')">MeasurementDevices</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType_MeasurementRooms" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementRooms')">MeasurementRooms</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType_Tools" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Tools')">Tools</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourcesType.html#MeasurementResourcesType_Version" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Version')">Version</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MeasurementResourcesType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MeasurementResourcesType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MeasurementResourcesType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"MeasurementResourcesType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The MeasurementResourcesType defines a set of measurement resources.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Version"</span><span class="tAN"> type=</span><span class="tAV">"VersionType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Version element uniquely identifies the version information of this QIF Resources instance.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Fixtures"</span><span class="tAN"> type=</span><span class="tAV">"FixturesType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Fixtures element is a list of fixtures.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MeasurementRooms"</span><span class="tAN"> type=</span><span class="tAV">"MeasurementRoomsType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional MeasurementRooms element is a list of measurement rooms.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MeasurementDevices"</span><span class="tAN"> type=</span><span class="tAV">"MeasurementDevicesType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional MeasurementDevices element is a list of measurement devices.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DetachableSensors"</span><span class="tAN"> type=</span><span class="tAV">"DetachableSensorsType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional DetachableSensors element is a list of detachable sensors.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Tools"</span><span class="tAN"> type=</span><span class="tAV">"ToolsType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Tools element is a list of tools.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

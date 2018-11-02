@@ -1,0 +1,962 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component CharacteristicTypeEnumType</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var facetsBoxes= new Array('facets_CharacteristicTypeEnumType');
+var usedByBoxes= new Array('usedBy_CharacteristicTypeEnumType');
+var sourceBoxes= new Array('source_CharacteristicTypeEnumType');
+var diagramBoxes= new Array('diagram_CharacteristicTypeEnumType');
+var annotationBoxes= new Array('annotations_CharacteristicTypeEnumType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="CharacteristicTypeEnumType"></a><div class="componentTitle">Simple Type <span class="qname">CharacteristicTypeEnumType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CharacteristicTypeEnumType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CharacteristicTypeEnumType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CharacteristicTypeEnumType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The CharacteristicTypeEnumType enumerates types of characteristics.</span><span class="tI">
+</span><span class="tT">The enumeration values represent the names of the characteristic</span><span class="tI">
+</span><span class="tT">types defined in Characteristics.xsd.</span><span class="tI">
+</span><span class="tT">  ANGLE = AngleCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  ANGLECOORDINATE = AngleCoordinateCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  ANGLEFROM = AngleFromCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  ANGLEBETWEEN = AngleBetweenCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  ANGULARITY = AngularityCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  CHORD = ChordCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  CIRCULARITY = CircularityCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  CIRCULARRUNOUT = CircularRunoutCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  CONCENTRICITY = ConcentricityCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  CONICALTAPER = ConicalTaperCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  CONICITY = ConicityCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  CURVELENGTH = CurveLengthCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  CYLINDRICITY = CylindricityCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  DEPTH = DepthCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  DIAMETER = DiameterCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  DISTANCE = DistanceBetweenCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  DISTANCEFROM = DistanceFromCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  ELLIPTICITY = EllipticityCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  FLATTAPER = FlatTaperCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  FLATNESS = FlatnessCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  HEIGHT = HeightCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  LENGTH = LengthCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  LENGTHCOORDINATE = LengthCoordinateCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  LINEPROFILE = LineProfileCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  OTHERFORM = OtherFormCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  PERPENDICULARITY = PerpendicularityCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  PARALLELISM = ParallelismCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  POINTPROFILE = PointProfileCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  POSITION = PositionCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  RADIUS = RadiusCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  SPHERICALDIAMETER = SphericalDiameterCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  SPHERICALRADIUS = SphericalRadiusCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  SPHERICITY = SphericityCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  SQUARE = SquareCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  STRAIGHTNESS = StraightnessCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  SURFACEPROFILE = SurfaceProfileCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  SURFACEPROFILENONUNIFORM = SurfaceProfileNonUniformChar'Nom'Type</span><span class="tI">
+</span><span class="tT">  SYMMETRY = SymmetryCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  THICKNESS = ThicknessCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  THREAD = ThreadCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  TOROIDICITY = ToroidicityCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  TOTALRUNOUT = TotalRunoutCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WELDBEVEL = WeldBevelCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WELDEDGE = WeldEdgeCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WELDFILLET = WeldFilletCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WELDFLAREBEVEL = WeldFlareBevelCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WELDFLAREV = WeldFlareVCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WELDJ = WeldJCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WELDPLUG = WeldPlugCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WELDSCARF = WeldScarfCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WELDSEAM = WeldSeamCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WELDSLOT = WeldSlotCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WELDSPOT = WeldSpotCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WELDSQUARE = WeldSquareCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WELDSTUD = WeldStudCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WELDSURFACING = WeldSurfacingCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WELDU = WeldUCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WELDV = WeldVCharacteristicNominalType</span><span class="tI">
+</span><span class="tT">  WIDTH = WidthCharacteristicNominalType</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CharacteristicTypeEnumType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CharacteristicTypeEnumType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CharacteristicTypeEnumType" style="display:block"><img alt="Diagram" border="0" src="img/Expressions_xsd_Simple_Type_CharacteristicTypeEnumType.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>restriction of <b>xs:NMTOKEN</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_CharacteristicTypeEnumType" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_CharacteristicTypeEnumType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_CharacteristicTypeEnumType" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>ANGLE</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>ANGLEBETWEEN</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>ANGLECOORDINATE</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>ANGLEFROM</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>ANGULARITY</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>CHORD</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>CIRCULARITY</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>CIRCULARRUNOUT</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>CONCENTRICITY</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>CONICALTAPER</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>CONICITY</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>CURVELENGTH</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>CYLINDRICITY</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>DEPTH</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>DIAMETER</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>DISTANCE</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>DISTANCEFROM</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>ELLIPTICITY</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>FLATTAPER</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>FLATNESS</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>HEIGHT</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>LENGTH</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>LENGTHCOORDINATE</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>LINEPROFILE</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>OTHERFORM</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>PERPENDICULARITY</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>PARALLELISM</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>POINTPROFILE</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>POSITION</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>RADIUS</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>SPHERICALDIAMTER</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>SPHERICALRADIUS</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>SPHERICITY</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>SQUARE</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>STRAIGHTNESS</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>SURFACEPROFILE</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>SURFACEPROFILENONUNIFORM</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>SYMMETRY</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>THICKNESS</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>THREAD</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>TOROIDICITY</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>TOTALRUNOUT</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WELDBEVEL</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WELDEDGE</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WELDFILLET</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WELDFLAREBEVEL</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WELDFLAREV</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WELDJ</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WELDPLUG</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WELDSCARF</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WELDSEAM</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WELDSLOT</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WELDSPOT</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WELDSQUARE</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WELDSTUD</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WELDSURFACING</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WELDU</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WELDV</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>WIDTH</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_CharacteristicTypeEnumType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_CharacteristicTypeEnumType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_CharacteristicTypeEnumType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Attribute </td>
+                                    <td><b><a href="Expressions_xsd_Complex_Type_CharacteristicIsType.html#CharacteristicIsType_val" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component CharacteristicIsType/@val')">CharacteristicIsType/@val</a></b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Expressions_xsd_Complex_Type_ArithmeticCharacteristicParameterType.html#ArithmeticCharacteristicParameterType_CharacteristicTypeEnum" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArithmeticCharacteristicParameterType/CharacteristicTypeEnum')">ArithmeticCharacteristicParameterType/CharacteristicTypeEnum</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CharacteristicTypeEnumType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CharacteristicTypeEnumType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CharacteristicTypeEnumType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:simpleType</span><span class="tAN"> name=</span><span class="tAV">"CharacteristicTypeEnumType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The CharacteristicTypeEnumType enumerates types of characteristics. The enumeration values represent the names of the characteristic types defined in Characteristics.xsd. ANGLE = AngleCharacteristicNominalType ANGLECOORDINATE = AngleCoordinateCharacteristicNominalType ANGLEFROM = AngleFromCharacteristicNominalType ANGLEBETWEEN = AngleBetweenCharacteristicNominalType ANGULARITY = AngularityCharacteristicNominalType CHORD = ChordCharacteristicNominalType CIRCULARITY = CircularityCharacteristicNominalType CIRCULARRUNOUT = CircularRunoutCharacteristicNominalType CONCENTRICITY = ConcentricityCharacteristicNominalType CONICALTAPER = ConicalTaperCharacteristicNominalType CONICITY = ConicityCharacteristicNominalType CURVELENGTH = CurveLengthCharacteristicNominalType CYLINDRICITY = CylindricityCharacteristicNominalType DEPTH = DepthCharacteristicNominalType DIAMETER = DiameterCharacteristicNominalType DISTANCE = DistanceBetweenCharacteristicNominalType DISTANCEFROM = DistanceFromCharacteristicNominalType ELLIPTICITY = EllipticityCharacteristicNominalType FLATTAPER = FlatTaperCharacteristicNominalType FLATNESS = FlatnessCharacteristicNominalType HEIGHT = HeightCharacteristicNominalType LENGTH = LengthCharacteristicNominalType LENGTHCOORDINATE = LengthCoordinateCharacteristicNominalType LINEPROFILE = LineProfileCharacteristicNominalType OTHERFORM = OtherFormCharacteristicNominalType PERPENDICULARITY = PerpendicularityCharacteristicNominalType PARALLELISM = ParallelismCharacteristicNominalType POINTPROFILE = PointProfileCharacteristicNominalType POSITION = PositionCharacteristicNominalType RADIUS = RadiusCharacteristicNominalType SPHERICALDIAMETER = SphericalDiameterCharacteristicNominalType SPHERICALRADIUS = SphericalRadiusCharacteristicNominalType SPHERICITY = SphericityCharacteristicNominalType SQUARE = SquareCharacteristicNominalType STRAIGHTNESS = StraightnessCharacteristicNominalType SURFACEPROFILE = SurfaceProfileCharacteristicNominalType SURFACEPROFILENONUNIFORM = SurfaceProfileNonUniformChar'Nom'Type SYMMETRY = SymmetryCharacteristicNominalType THICKNESS = ThicknessCharacteristicNominalType THREAD = ThreadCharacteristicNominalType TOROIDICITY = ToroidicityCharacteristicNominalType TOTALRUNOUT = TotalRunoutCharacteristicNominalType WELDBEVEL = WeldBevelCharacteristicNominalType WELDEDGE = WeldEdgeCharacteristicNominalType WELDFILLET = WeldFilletCharacteristicNominalType WELDFLAREBEVEL = WeldFlareBevelCharacteristicNominalType WELDFLAREV = WeldFlareVCharacteristicNominalType WELDJ = WeldJCharacteristicNominalType WELDPLUG = WeldPlugCharacteristicNominalType WELDSCARF = WeldScarfCharacteristicNominalType WELDSEAM = WeldSeamCharacteristicNominalType WELDSLOT = WeldSlotCharacteristicNominalType WELDSPOT = WeldSpotCharacteristicNominalType WELDSQUARE = WeldSquareCharacteristicNominalType WELDSTUD = WeldStudCharacteristicNominalType WELDSURFACING = WeldSurfacingCharacteristicNominalType WELDU = WeldUCharacteristicNominalType WELDV = WeldVCharacteristicNominalType WIDTH = WidthCharacteristicNominalType</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:NMTOKEN"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"ANGLE"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"ANGLEBETWEEN"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"ANGLECOORDINATE"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"ANGLEFROM"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"ANGULARITY"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"CHORD"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"CIRCULARITY"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"CIRCULARRUNOUT"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"CONCENTRICITY"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"CONICALTAPER"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"CONICITY"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"CURVELENGTH"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"CYLINDRICITY"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"DEPTH"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"DIAMETER"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"DISTANCE"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"DISTANCEFROM"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"ELLIPTICITY"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"FLATTAPER"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"FLATNESS"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"HEIGHT"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"LENGTH"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"LENGTHCOORDINATE"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"LINEPROFILE"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"OTHERFORM"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"PERPENDICULARITY"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"PARALLELISM"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"POINTPROFILE"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"POSITION"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"RADIUS"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"SPHERICALDIAMTER"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"SPHERICALRADIUS"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"SPHERICITY"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"SQUARE"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"STRAIGHTNESS"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"SURFACEPROFILE"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"SURFACEPROFILENONUNIFORM"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"SYMMETRY"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"THICKNESS"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"THREAD"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"TOROIDICITY"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"TOTALRUNOUT"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WELDBEVEL"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WELDEDGE"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WELDFILLET"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WELDFLAREBEVEL"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WELDFLAREV"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WELDJ"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WELDPLUG"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WELDSCARF"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WELDSEAM"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WELDSLOT"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WELDSPOT"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WELDSQUARE"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WELDSTUD"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WELDSURFACING"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WELDU"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WELDV"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:enumeration</span><span class="tAN"> value=</span><span class="tAV">"WIDTH"</span><span class="tEl">/&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:simpleType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Expressions.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

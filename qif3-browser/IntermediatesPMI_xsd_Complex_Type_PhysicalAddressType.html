@@ -1,0 +1,1806 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Description</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_PhysicalAddressType_Description', 
+				'properties_PhysicalAddressType_InternalLocation', 
+				'properties_PhysicalAddressType_StreetNumber', 
+				'properties_PhysicalAddressType_Street', 
+				'properties_PhysicalAddressType_PostalBox', 
+				'properties_PhysicalAddressType_Town', 
+				'properties_PhysicalAddressType_Region', 
+				'properties_PhysicalAddressType_PostalCode', 
+				'properties_PhysicalAddressType_Country', 
+				'properties_PhysicalAddressType_FacsimileNumber', 
+				'properties_PhysicalAddressType_TelephoneNumber', 
+				'properties_PhysicalAddressType_ElectronicMailAddress', 
+				'properties_PhysicalAddressType_TelexNumber');
+var usedByBoxes= new Array('usedBy_PhysicalAddressType');
+var sourceBoxes= new Array('source_PhysicalAddressType_Description', 
+				'source_PhysicalAddressType_InternalLocation', 
+				'source_PhysicalAddressType_StreetNumber', 
+				'source_PhysicalAddressType_Street', 
+				'source_PhysicalAddressType_PostalBox', 
+				'source_PhysicalAddressType_Town', 
+				'source_PhysicalAddressType_Region', 
+				'source_PhysicalAddressType_PostalCode', 
+				'source_PhysicalAddressType_Country', 
+				'source_PhysicalAddressType_FacsimileNumber', 
+				'source_PhysicalAddressType_TelephoneNumber', 
+				'source_PhysicalAddressType_ElectronicMailAddress', 
+				'source_PhysicalAddressType_TelexNumber', 
+				'source_PhysicalAddressType');
+var instanceBoxes= new Array('instance_PhysicalAddressType_Description');
+var diagramBoxes= new Array('diagram_PhysicalAddressType_Description', 
+				'diagram_PhysicalAddressType_InternalLocation', 
+				'diagram_PhysicalAddressType_StreetNumber', 
+				'diagram_PhysicalAddressType_Street', 
+				'diagram_PhysicalAddressType_PostalBox', 
+				'diagram_PhysicalAddressType_Town', 
+				'diagram_PhysicalAddressType_Region', 
+				'diagram_PhysicalAddressType_PostalCode', 
+				'diagram_PhysicalAddressType_Country', 
+				'diagram_PhysicalAddressType_FacsimileNumber', 
+				'diagram_PhysicalAddressType_TelephoneNumber', 
+				'diagram_PhysicalAddressType_ElectronicMailAddress', 
+				'diagram_PhysicalAddressType_TelexNumber', 
+				'diagram_PhysicalAddressType');
+var annotationBoxes= new Array('annotations_PhysicalAddressType_Description', 
+				'annotations_PhysicalAddressType_InternalLocation', 
+				'annotations_PhysicalAddressType_StreetNumber', 
+				'annotations_PhysicalAddressType_Street', 
+				'annotations_PhysicalAddressType_PostalBox', 
+				'annotations_PhysicalAddressType_Town', 
+				'annotations_PhysicalAddressType_Region', 
+				'annotations_PhysicalAddressType_PostalCode', 
+				'annotations_PhysicalAddressType_Country', 
+				'annotations_PhysicalAddressType_FacsimileNumber', 
+				'annotations_PhysicalAddressType_TelephoneNumber', 
+				'annotations_PhysicalAddressType_ElectronicMailAddress', 
+				'annotations_PhysicalAddressType_TelexNumber', 
+				'annotations_PhysicalAddressType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="PhysicalAddressType_Description"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PhysicalAddressType')">PhysicalAddressType</a></b> / Description</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PhysicalAddressType_Description" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PhysicalAddressType_Description');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PhysicalAddressType_Description" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Description element characterizes the type of the address to distinguish among delivery, postal, and visitor addresses.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PhysicalAddressType_Description" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PhysicalAddressType_Description');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PhysicalAddressType_Description" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_Description_3.jpeg" usemap="#IntermediatesPMI_xsd_Element_Description_3" /><map name="IntermediatesPMI_xsd_Element_Description_3" id="IntermediatesPMI_xsd_Element_Description_3">
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_AddressDescriptionType.tmp#AddressDescriptionType_AddressDescriptionEnum" href="IntermediatesPMI_xsd_Complex_Type_AddressDescriptionType.html#AddressDescriptionType_AddressDescriptionEnum" coords="258,46,443,75" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_AddressDescriptionType.tmp#AddressDescriptionType_OtherAddressDescription" href="IntermediatesPMI_xsd_Complex_Type_AddressDescriptionType.html#AddressDescriptionType_OtherAddressDescription" coords="258,137,441,166" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_AddressDescriptionType.tmp#AddressDescriptionType" href="IntermediatesPMI_xsd_Complex_Type_AddressDescriptionType.html#AddressDescriptionType" coords="160,3,364,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_AddressDescriptionType.html#AddressDescriptionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AddressDescriptionType')">AddressDescriptionType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PhysicalAddressType_Description" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PhysicalAddressType_Description');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PhysicalAddressType_Description" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_AddressDescriptionType.html#AddressDescriptionType_AddressDescriptionEnum" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AddressDescriptionEnum')">AddressDescriptionEnum</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_AddressDescriptionType.html#AddressDescriptionType_OtherAddressDescription" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherAddressDescription')">OtherAddressDescription</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_PhysicalAddressType_Description" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_PhysicalAddressType_Description');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_PhysicalAddressType_Description" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Description</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;AddressDescriptionEnum</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/AddressDescriptionEnum&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;OtherAddressDescription</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/OtherAddressDescription&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Description&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PhysicalAddressType_Description" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PhysicalAddressType_Description');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PhysicalAddressType_Description" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Description"</span><span class="tAN"> type=</span><span class="tAV">"AddressDescriptionType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Description element characterizes the type of the address to distinguish among delivery, postal, and visitor addresses.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PhysicalAddressType_InternalLocation"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PhysicalAddressType')">PhysicalAddressType</a></b> / InternalLocation</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PhysicalAddressType_InternalLocation" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PhysicalAddressType_InternalLocation');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PhysicalAddressType_InternalLocation" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional InternalLocation element is an organization-defined address for internal mail delivery.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PhysicalAddressType_InternalLocation" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PhysicalAddressType_InternalLocation');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PhysicalAddressType_InternalLocation" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_InternalLocation.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:token</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PhysicalAddressType_InternalLocation" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PhysicalAddressType_InternalLocation');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PhysicalAddressType_InternalLocation" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PhysicalAddressType_InternalLocation" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PhysicalAddressType_InternalLocation');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PhysicalAddressType_InternalLocation" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"InternalLocation"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional InternalLocation element is an organization-defined address for internal mail delivery.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PhysicalAddressType_StreetNumber"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PhysicalAddressType')">PhysicalAddressType</a></b> / StreetNumber</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PhysicalAddressType_StreetNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PhysicalAddressType_StreetNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PhysicalAddressType_StreetNumber" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional StreetNumber element is the number of a location on a street.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PhysicalAddressType_StreetNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PhysicalAddressType_StreetNumber');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PhysicalAddressType_StreetNumber" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_StreetNumber.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:token</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PhysicalAddressType_StreetNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PhysicalAddressType_StreetNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PhysicalAddressType_StreetNumber" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PhysicalAddressType_StreetNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PhysicalAddressType_StreetNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PhysicalAddressType_StreetNumber" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"StreetNumber"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional StreetNumber element is the number of a location on a street.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PhysicalAddressType_Street"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PhysicalAddressType')">PhysicalAddressType</a></b> / Street</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PhysicalAddressType_Street" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PhysicalAddressType_Street');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PhysicalAddressType_Street" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Street element is the name of the street.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PhysicalAddressType_Street" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PhysicalAddressType_Street');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PhysicalAddressType_Street" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_Street.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:token</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PhysicalAddressType_Street" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PhysicalAddressType_Street');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PhysicalAddressType_Street" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PhysicalAddressType_Street" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PhysicalAddressType_Street');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PhysicalAddressType_Street" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Street"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Street element is the name of the street.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PhysicalAddressType_PostalBox"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PhysicalAddressType')">PhysicalAddressType</a></b> / PostalBox</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PhysicalAddressType_PostalBox" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PhysicalAddressType_PostalBox');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PhysicalAddressType_PostalBox" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional PostalBox element is the number of a postal box.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PhysicalAddressType_PostalBox" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PhysicalAddressType_PostalBox');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PhysicalAddressType_PostalBox" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_PostalBox.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:token</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PhysicalAddressType_PostalBox" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PhysicalAddressType_PostalBox');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PhysicalAddressType_PostalBox" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PhysicalAddressType_PostalBox" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PhysicalAddressType_PostalBox');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PhysicalAddressType_PostalBox" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PostalBox"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional PostalBox element is the number of a postal box.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PhysicalAddressType_Town"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PhysicalAddressType')">PhysicalAddressType</a></b> / Town</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PhysicalAddressType_Town" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PhysicalAddressType_Town');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PhysicalAddressType_Town" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Town element is the name of a town or city.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PhysicalAddressType_Town" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PhysicalAddressType_Town');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PhysicalAddressType_Town" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_Town.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:token</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PhysicalAddressType_Town" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PhysicalAddressType_Town');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PhysicalAddressType_Town" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PhysicalAddressType_Town" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PhysicalAddressType_Town');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PhysicalAddressType_Town" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Town"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Town element is the name of a town or city.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PhysicalAddressType_Region"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PhysicalAddressType')">PhysicalAddressType</a></b> / Region</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PhysicalAddressType_Region" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PhysicalAddressType_Region');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PhysicalAddressType_Region" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Region element is the name of a region.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PhysicalAddressType_Region" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PhysicalAddressType_Region');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PhysicalAddressType_Region" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_Region.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:token</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PhysicalAddressType_Region" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PhysicalAddressType_Region');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PhysicalAddressType_Region" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PhysicalAddressType_Region" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PhysicalAddressType_Region');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PhysicalAddressType_Region" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Region"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Region element is the name of a region.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PhysicalAddressType_PostalCode"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PhysicalAddressType')">PhysicalAddressType</a></b> / PostalCode</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PhysicalAddressType_PostalCode" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PhysicalAddressType_PostalCode');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PhysicalAddressType_PostalCode" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional PostalCode element is the code used by the country's postal service.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PhysicalAddressType_PostalCode" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PhysicalAddressType_PostalCode');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PhysicalAddressType_PostalCode" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_PostalCode.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:token</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PhysicalAddressType_PostalCode" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PhysicalAddressType_PostalCode');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PhysicalAddressType_PostalCode" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PhysicalAddressType_PostalCode" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PhysicalAddressType_PostalCode');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PhysicalAddressType_PostalCode" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PostalCode"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional PostalCode element is the code used by the country's postal service.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PhysicalAddressType_Country"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PhysicalAddressType')">PhysicalAddressType</a></b> / Country</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PhysicalAddressType_Country" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PhysicalAddressType_Country');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PhysicalAddressType_Country" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Country element is the name of the country.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PhysicalAddressType_Country" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PhysicalAddressType_Country');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PhysicalAddressType_Country" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_Country.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:token</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PhysicalAddressType_Country" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PhysicalAddressType_Country');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PhysicalAddressType_Country" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PhysicalAddressType_Country" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PhysicalAddressType_Country');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PhysicalAddressType_Country" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Country"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Country element is the name of the country.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PhysicalAddressType_FacsimileNumber"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PhysicalAddressType')">PhysicalAddressType</a></b> / FacsimileNumber</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PhysicalAddressType_FacsimileNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PhysicalAddressType_FacsimileNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PhysicalAddressType_FacsimileNumber" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional FacsimileNumber element is the telephone number where facsimiles may be received.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PhysicalAddressType_FacsimileNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PhysicalAddressType_FacsimileNumber');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PhysicalAddressType_FacsimileNumber" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_FacsimileNumber.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:token</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PhysicalAddressType_FacsimileNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PhysicalAddressType_FacsimileNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PhysicalAddressType_FacsimileNumber" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PhysicalAddressType_FacsimileNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PhysicalAddressType_FacsimileNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PhysicalAddressType_FacsimileNumber" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FacsimileNumber"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional FacsimileNumber element is the telephone number where facsimiles may be received.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PhysicalAddressType_TelephoneNumber"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PhysicalAddressType')">PhysicalAddressType</a></b> / TelephoneNumber</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PhysicalAddressType_TelephoneNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PhysicalAddressType_TelephoneNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PhysicalAddressType_TelephoneNumber" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional TelephoneNumber element is the number where telephone calls may be received.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PhysicalAddressType_TelephoneNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PhysicalAddressType_TelephoneNumber');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PhysicalAddressType_TelephoneNumber" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_TelephoneNumber.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:token</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PhysicalAddressType_TelephoneNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PhysicalAddressType_TelephoneNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PhysicalAddressType_TelephoneNumber" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PhysicalAddressType_TelephoneNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PhysicalAddressType_TelephoneNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PhysicalAddressType_TelephoneNumber" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TelephoneNumber"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional TelephoneNumber element is the number where telephone calls may be received.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PhysicalAddressType_ElectronicMailAddress"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PhysicalAddressType')">PhysicalAddressType</a></b> / ElectronicMailAddress</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PhysicalAddressType_ElectronicMailAddress" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PhysicalAddressType_ElectronicMailAddress');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PhysicalAddressType_ElectronicMailAddress" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional ElectronicMailAddress element is the electronic mail address at which electronic messages may be received.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PhysicalAddressType_ElectronicMailAddress" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PhysicalAddressType_ElectronicMailAddress');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PhysicalAddressType_ElectronicMailAddress" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_ElectronicMailAddress.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:token</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PhysicalAddressType_ElectronicMailAddress" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PhysicalAddressType_ElectronicMailAddress');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PhysicalAddressType_ElectronicMailAddress" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PhysicalAddressType_ElectronicMailAddress" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PhysicalAddressType_ElectronicMailAddress');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PhysicalAddressType_ElectronicMailAddress" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ElectronicMailAddress"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ElectronicMailAddress element is the electronic mail address at which electronic messages may be received.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PhysicalAddressType_TelexNumber"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PhysicalAddressType')">PhysicalAddressType</a></b> / TelexNumber</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PhysicalAddressType_TelexNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PhysicalAddressType_TelexNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PhysicalAddressType_TelexNumber" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional TelexNumber element is the number at which telex messages may be received.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PhysicalAddressType_TelexNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PhysicalAddressType_TelexNumber');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PhysicalAddressType_TelexNumber" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_TelexNumber.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:token</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PhysicalAddressType_TelexNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PhysicalAddressType_TelexNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PhysicalAddressType_TelexNumber" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PhysicalAddressType_TelexNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PhysicalAddressType_TelexNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PhysicalAddressType_TelexNumber" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TelexNumber"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional TelexNumber element is the number at which telex messages may be received.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PhysicalAddressType"></a><div class="componentTitle">Complex Type <span class="qname">PhysicalAddressType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PhysicalAddressType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PhysicalAddressType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PhysicalAddressType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The PhysicalAddressType defines a physical address.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PhysicalAddressType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PhysicalAddressType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PhysicalAddressType" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.jpeg" usemap="#IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType" /><map name="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType" id="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType">
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.tmp#PhysicalAddressType_Description" href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_Description" coords="333,0,436,29" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.tmp#PhysicalAddressType_InternalLocation" href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_InternalLocation" coords="333,107,462,136" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.tmp#PhysicalAddressType_StreetNumber" href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_StreetNumber" coords="333,198,451,227" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.tmp#PhysicalAddressType_Street" href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_Street" coords="333,289,406,318" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.tmp#PhysicalAddressType_PostalBox" href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_PostalBox" coords="333,380,431,409" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.tmp#PhysicalAddressType_Town" href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_Town" coords="333,471,401,500" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.tmp#PhysicalAddressType_Region" href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_Region" coords="333,562,411,591" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.tmp#PhysicalAddressType_PostalCode" href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_PostalCode" coords="333,653,438,682" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.tmp#PhysicalAddressType_Country" href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_Country" coords="333,744,416,773" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.tmp#PhysicalAddressType_FacsimileNumber" href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_FacsimileNumber" coords="333,835,472,864" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.tmp#PhysicalAddressType_TelephoneNumber" href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_TelephoneNumber" coords="333,926,475,955" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.tmp#PhysicalAddressType_ElectronicMailAddress" href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_ElectronicMailAddress" coords="333,1017,501,1046" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.tmp#PhysicalAddressType_TelexNumber" href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_TelexNumber" coords="333,1108,447,1137" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_PhysicalAddressType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_PhysicalAddressType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_PhysicalAddressType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Elements </td>
+                                    <td><b><a href="IntermediatesPMI_xsd_Complex_Type_LocationType.html#LocationType_Address" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LocationType/Address')">LocationType/Address</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_OrganizationType.html#OrganizationType_Address" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OrganizationType/Address')">OrganizationType/Address</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_Country" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Country')">Country</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_ElectronicMailAddress" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElectronicMailAddress')">ElectronicMailAddress</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_FacsimileNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FacsimileNumber')">FacsimileNumber</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_InternalLocation" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InternalLocation')">InternalLocation</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_PostalBox" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PostalBox')">PostalBox</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_PostalCode" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PostalCode')">PostalCode</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_Region" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Region')">Region</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_Street" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Street')">Street</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_StreetNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StreetNumber')">StreetNumber</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_TelephoneNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TelephoneNumber')">TelephoneNumber</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_TelexNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TelexNumber')">TelexNumber</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_PhysicalAddressType.html#PhysicalAddressType_Town" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Town')">Town</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PhysicalAddressType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PhysicalAddressType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PhysicalAddressType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"PhysicalAddressType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The PhysicalAddressType defines a physical address.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Description"</span><span class="tAN"> type=</span><span class="tAV">"AddressDescriptionType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Description element characterizes the type of the address to distinguish among delivery, postal, and visitor addresses.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"InternalLocation"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional InternalLocation element is an organization-defined address for internal mail delivery.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"StreetNumber"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional StreetNumber element is the number of a location on a street.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Street"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Street element is the name of the street.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PostalBox"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional PostalBox element is the number of a postal box.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Town"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Town element is the name of a town or city.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Region"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Region element is the name of a region.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PostalCode"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional PostalCode element is the code used by the country's postal service.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Country"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Country element is the name of the country.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FacsimileNumber"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional FacsimileNumber element is the telephone number where facsimiles may be received.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TelephoneNumber"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional TelephoneNumber element is the number where telephone calls may be received.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ElectronicMailAddress"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ElectronicMailAddress element is the electronic mail address at which electronic messages may be received.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TelexNumber"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional TelexNumber element is the number at which telex messages may be received.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

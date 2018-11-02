@@ -1,0 +1,986 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Copy</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_EdgePointConstructionMethodType_Copy', 
+				'properties_EdgePointConstructionMethodType_Cast', 
+				'properties_EdgePointConstructionMethodType_Transform', 
+				'properties_EdgePointConstructionMethodType_FromScan');
+var usedByBoxes= new Array('usedBy_EdgePointConstructionMethodType');
+var sourceBoxes= new Array('source_EdgePointConstructionMethodType_Copy', 
+				'source_EdgePointConstructionMethodType_Cast', 
+				'source_EdgePointConstructionMethodType_Transform', 
+				'source_EdgePointConstructionMethodType_FromScan', 
+				'source_EdgePointConstructionMethodType');
+var instanceBoxes= new Array('instance_EdgePointConstructionMethodType_Copy', 
+				'instance_EdgePointConstructionMethodType_Cast', 
+				'instance_EdgePointConstructionMethodType_Transform', 
+				'instance_EdgePointConstructionMethodType_FromScan');
+var diagramBoxes= new Array('diagram_EdgePointConstructionMethodType_Copy', 
+				'diagram_EdgePointConstructionMethodType_Cast', 
+				'diagram_EdgePointConstructionMethodType_Transform', 
+				'diagram_EdgePointConstructionMethodType_FromScan', 
+				'diagram_EdgePointConstructionMethodType');
+var annotationBoxes= new Array('annotations_EdgePointConstructionMethodType_Copy', 
+				'annotations_EdgePointConstructionMethodType_Cast', 
+				'annotations_EdgePointConstructionMethodType_Transform', 
+				'annotations_EdgePointConstructionMethodType_FromScan', 
+				'annotations_EdgePointConstructionMethodType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="EdgePointConstructionMethodType_Copy"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_EdgePointConstructionMethodType.html#EdgePointConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointConstructionMethodType')">EdgePointConstructionMethodType</a></b> / Copy</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EdgePointConstructionMethodType_Copy" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EdgePointConstructionMethodType_Copy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EdgePointConstructionMethodType_Copy" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Copy element describes the construction of an edge-point by the copying of a base edge-point. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_EdgePointConstructionMethodType_Copy" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_EdgePointConstructionMethodType_Copy');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_EdgePointConstructionMethodType_Copy" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Copy_6.jpeg" usemap="#Features_xsd_Element_Copy_6" /><map name="Features_xsd_Element_Copy_6" id="Features_xsd_Element_Copy_6">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="239,96,392,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="141,49,478,75" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointCopyType.tmp#EdgePointCopyType_BaseEdgePoint" href="Features_xsd_Complex_Type_EdgePointCopyType.html#EdgePointCopyType_BaseEdgePoint" coords="223,266,351,295" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointCopyType.tmp#EdgePointCopyType" href="Features_xsd_Complex_Type_EdgePointCopyType.html#EdgePointCopyType" coords="125,3,306,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_EdgePointCopyType.html#EdgePointCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointCopyType')">EdgePointCopyType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_EdgePointCopyType.html#EdgePointCopyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointCopyType')">EdgePointCopyType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_EdgePointConstructionMethodType_Copy" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_EdgePointConstructionMethodType_Copy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_EdgePointConstructionMethodType_Copy" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_EdgePointCopyType.html#EdgePointCopyType_BaseEdgePoint" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseEdgePoint')">BaseEdgePoint</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_EdgePointConstructionMethodType_Copy" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_EdgePointConstructionMethodType_Copy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_EdgePointConstructionMethodType_Copy" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Copy</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BaseEdgePoint</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BaseEdgePoint&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Copy&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EdgePointConstructionMethodType_Copy" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EdgePointConstructionMethodType_Copy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EdgePointConstructionMethodType_Copy" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Copy"</span><span class="tAN"> type=</span><span class="tAV">"EdgePointCopyType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Copy element describes the construction of an edge-point by the copying of a base edge-point. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="EdgePointConstructionMethodType_Cast"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_EdgePointConstructionMethodType.html#EdgePointConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointConstructionMethodType')">EdgePointConstructionMethodType</a></b> / Cast</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EdgePointConstructionMethodType_Cast" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EdgePointConstructionMethodType_Cast');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EdgePointConstructionMethodType_Cast" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Cast element describes the construction of an edge-point by the casting of a base feature. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_EdgePointConstructionMethodType_Cast" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_EdgePointConstructionMethodType_Cast');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_EdgePointConstructionMethodType_Cast" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Cast_6.jpeg" usemap="#Features_xsd_Element_Cast_6" /><map name="Features_xsd_Element_Cast_6" id="Features_xsd_Element_Cast_6">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="236,96,389,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="138,49,475,75" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointCastType.tmp#EdgePointCastType_BaseFeature" href="Features_xsd_Complex_Type_EdgePointCastType.html#EdgePointCastType_BaseFeature" coords="220,266,332,295" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointCastType.tmp#EdgePointCastType" href="Features_xsd_Complex_Type_EdgePointCastType.html#EdgePointCastType" coords="122,3,300,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_EdgePointCastType.html#EdgePointCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointCastType')">EdgePointCastType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_EdgePointCastType.html#EdgePointCastType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointCastType')">EdgePointCastType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_EdgePointConstructionMethodType_Cast" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_EdgePointConstructionMethodType_Cast');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_EdgePointConstructionMethodType_Cast" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_EdgePointCastType.html#EdgePointCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseFeature')">BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_EdgePointConstructionMethodType_Cast" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_EdgePointConstructionMethodType_Cast');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_EdgePointConstructionMethodType_Cast" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Cast</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BaseFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BaseFeature&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Cast&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EdgePointConstructionMethodType_Cast" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EdgePointConstructionMethodType_Cast');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EdgePointConstructionMethodType_Cast" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Cast"</span><span class="tAN"> type=</span><span class="tAV">"EdgePointCastType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Cast element describes the construction of an edge-point by the casting of a base feature. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="EdgePointConstructionMethodType_Transform"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_EdgePointConstructionMethodType.html#EdgePointConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointConstructionMethodType')">EdgePointConstructionMethodType</a></b> / Transform</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EdgePointConstructionMethodType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EdgePointConstructionMethodType_Transform');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EdgePointConstructionMethodType_Transform" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Transform element describes the construction of an edge-point by the transformation of a base edge-point. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_EdgePointConstructionMethodType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_EdgePointConstructionMethodType_Transform');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_EdgePointConstructionMethodType_Transform" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Transform_6.jpeg" usemap="#Features_xsd_Element_Transform_6" /><map name="Features_xsd_Element_Transform_6" id="Features_xsd_Element_Transform_6">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="266,96,419,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="168,49,505,75" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointTransformType.tmp#EdgePointTransformType_BaseEdgePoint" href="Features_xsd_Complex_Type_EdgePointTransformType.html#EdgePointTransformType_BaseEdgePoint" coords="250,262,378,291" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointTransformType.tmp#EdgePointTransformType_Transformation" href="Features_xsd_Complex_Type_EdgePointTransformType.html#EdgePointTransformType_Transformation" coords="250,353,373,382" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointTransformType.tmp#EdgePointTransformType" href="Features_xsd_Complex_Type_EdgePointTransformType.html#EdgePointTransformType" coords="152,3,360,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_EdgePointTransformType.html#EdgePointTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointTransformType')">EdgePointTransformType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_EdgePointTransformType.html#EdgePointTransformType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointTransformType')">EdgePointTransformType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_EdgePointConstructionMethodType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_EdgePointConstructionMethodType_Transform');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_EdgePointConstructionMethodType_Transform" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_EdgePointTransformType.html#EdgePointTransformType_BaseEdgePoint" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseEdgePoint')">BaseEdgePoint</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointTransformType.html#EdgePointTransformType_Transformation" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Transformation')">Transformation</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_EdgePointConstructionMethodType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_EdgePointConstructionMethodType_Transform');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_EdgePointConstructionMethodType_Transform" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Transform</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BaseEdgePoint</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BaseEdgePoint&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Transformation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Transformation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Transform&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EdgePointConstructionMethodType_Transform" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EdgePointConstructionMethodType_Transform');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EdgePointConstructionMethodType_Transform" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Transform"</span><span class="tAN"> type=</span><span class="tAV">"EdgePointTransformType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Transform element describes the construction of an edge-point by the transformation of a base edge-point. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="EdgePointConstructionMethodType_FromScan"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_EdgePointConstructionMethodType.html#EdgePointConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointConstructionMethodType')">EdgePointConstructionMethodType</a></b> / FromScan</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EdgePointConstructionMethodType_FromScan" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EdgePointConstructionMethodType_FromScan');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EdgePointConstructionMethodType_FromScan" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The FromScan element describes the construction of an edge-point from scan data. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_EdgePointConstructionMethodType_FromScan" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_EdgePointConstructionMethodType_FromScan');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_EdgePointConstructionMethodType_FromScan" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_FromScan_4.jpeg" usemap="#Features_xsd_Element_FromScan_4" /><map name="Features_xsd_Element_FromScan_4" id="Features_xsd_Element_FromScan_4">
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType_NominalsCalculated" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" coords="269,96,422,125" />
+                                 <area alt="Features_xsd_Complex_Type_ConstructionMethodBaseType.tmp#ConstructionMethodBaseType" href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" coords="171,49,508,75" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointFromScanType.tmp#EdgePointFromScanType_SurfaceFeature" href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType_SurfaceFeature" coords="253,262,379,291" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointFromScanType.tmp#EdgePointFromScanType_SearchRadius" href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType_SearchRadius" coords="253,353,372,382" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointFromScanType.tmp#EdgePointFromScanType_PatchRadius" href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType_PatchRadius" coords="253,460,365,489" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointFromScanType.tmp#EdgePointFromScanType_Distance" href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType_Distance" coords="253,567,342,596" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointFromScanType.tmp#EdgePointFromScanType_Depth" href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType_Depth" coords="253,674,325,703" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointFromScanType.tmp#EdgePointFromScanType_RetrievalMethod" href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType_RetrievalMethod" coords="253,765,383,794" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointFromScanType.tmp#EdgePointFromScanType" href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType" coords="155,3,366,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointFromScanType')">EdgePointFromScanType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstructionMethodBaseType')">ConstructionMethodBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointFromScanType')">EdgePointFromScanType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_EdgePointConstructionMethodType_FromScan" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_EdgePointConstructionMethodType_FromScan');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_EdgePointConstructionMethodType_FromScan" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType_Depth" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Depth')">Depth</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType_Distance" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Distance')">Distance</a></b>, <b><a href="Features_xsd_Complex_Type_ConstructionMethodBaseType.html#ConstructionMethodBaseType_NominalsCalculated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NominalsCalculated')">NominalsCalculated</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType_PatchRadius" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PatchRadius')">PatchRadius</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType_RetrievalMethod" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RetrievalMethod')">RetrievalMethod</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType_SearchRadius" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SearchRadius')">SearchRadius</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceFeature')">SurfaceFeature</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_EdgePointConstructionMethodType_FromScan" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_EdgePointConstructionMethodType_FromScan');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_EdgePointConstructionMethodType_FromScan" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;FromScan</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NominalsCalculated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NominalsCalculated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SurfaceFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/SurfaceFeature&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SearchRadius</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/SearchRadius&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;PatchRadius</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/PatchRadius&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Distance</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Distance&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Depth</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Depth&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;RetrievalMethod</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/RetrievalMethod&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/FromScan&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EdgePointConstructionMethodType_FromScan" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EdgePointConstructionMethodType_FromScan');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EdgePointConstructionMethodType_FromScan" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FromScan"</span><span class="tAN"> type=</span><span class="tAV">"EdgePointFromScanType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FromScan element describes the construction of an edge-point from scan data. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="EdgePointConstructionMethodType"></a><div class="componentTitle">Complex Type <span class="qname">EdgePointConstructionMethodType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EdgePointConstructionMethodType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EdgePointConstructionMethodType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EdgePointConstructionMethodType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The EdgePointConstructionMethodType defines the method for constructing a unique nominal or measured edge-point feature.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_EdgePointConstructionMethodType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_EdgePointConstructionMethodType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_EdgePointConstructionMethodType" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Complex_Type_EdgePointConstructionMethodType.jpeg" usemap="#Features_xsd_Complex_Type_EdgePointConstructionMethodType" /><map name="Features_xsd_Complex_Type_EdgePointConstructionMethodType" id="Features_xsd_Complex_Type_EdgePointConstructionMethodType">
+                                 <area alt="Features_xsd_Complex_Type_EdgePointConstructionMethodType.tmp#EdgePointConstructionMethodType_Copy" href="Features_xsd_Complex_Type_EdgePointConstructionMethodType.html#EdgePointConstructionMethodType_Copy" coords="431,0,499,29" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointConstructionMethodType.tmp#EdgePointConstructionMethodType_Cast" href="Features_xsd_Complex_Type_EdgePointConstructionMethodType.html#EdgePointConstructionMethodType_Cast" coords="431,107,496,136" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointConstructionMethodType.tmp#EdgePointConstructionMethodType_Transform" href="Features_xsd_Complex_Type_EdgePointConstructionMethodType.html#EdgePointConstructionMethodType_Transform" coords="431,214,526,243" />
+                                 <area alt="Features_xsd_Complex_Type_EdgePointConstructionMethodType.tmp#EdgePointConstructionMethodType_FromScan" href="Features_xsd_Complex_Type_EdgePointConstructionMethodType.html#EdgePointConstructionMethodType_FromScan" coords="431,321,529,350" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_EdgePointConstructionMethodType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_EdgePointConstructionMethodType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_EdgePointConstructionMethodType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Elements </td>
+                                    <td><b><a href="Features_xsd_Complex_Type_EdgePointCheckedType.html#EdgePointCheckedType_Constructed" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointCheckedType/Constructed')">EdgePointCheckedType/Constructed</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointFeatureNominalType.html#EdgePointFeatureNominalType_Constructed" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointFeatureNominalType/Constructed')">EdgePointFeatureNominalType/Constructed</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_EdgePointConstructionMethodType.html#EdgePointConstructionMethodType_Cast" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Cast')">Cast</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointConstructionMethodType.html#EdgePointConstructionMethodType_Copy" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Copy')">Copy</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointConstructionMethodType.html#EdgePointConstructionMethodType_FromScan" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FromScan')">FromScan</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointConstructionMethodType.html#EdgePointConstructionMethodType_Transform" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Transform')">Transform</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EdgePointConstructionMethodType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EdgePointConstructionMethodType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EdgePointConstructionMethodType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"EdgePointConstructionMethodType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The EdgePointConstructionMethodType defines the method for constructing a unique nominal or measured edge-point feature.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This optional compositor provides a choice of the construction method for the edge point.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Copy"</span><span class="tAN"> type=</span><span class="tAV">"EdgePointCopyType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Copy element describes the construction of an edge-point by the copying of a base edge-point. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Cast"</span><span class="tAN"> type=</span><span class="tAV">"EdgePointCastType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Cast element describes the construction of an edge-point by the casting of a base feature. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Transform"</span><span class="tAN"> type=</span><span class="tAV">"EdgePointTransformType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Transform element describes the construction of an edge-point by the transformation of a base edge-point. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FromScan"</span><span class="tAN"> type=</span><span class="tAV">"EdgePointFromScanType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FromScan element describes the construction of an edge-point from scan data. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

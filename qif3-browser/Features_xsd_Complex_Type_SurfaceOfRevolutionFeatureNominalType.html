@@ -1,0 +1,1084 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Axis</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_SurfaceOfRevolutionFeatureNominalType_Axis', 
+				'properties_SurfaceOfRevolutionFeatureNominalType_Sweep', 
+				'properties_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId', 
+				'properties_SurfaceOfRevolutionFeatureNominalType_Constructed');
+var usedByBoxes= new Array('usedBy_SurfaceOfRevolutionFeatureNominalType');
+var sourceBoxes= new Array('source_SurfaceOfRevolutionFeatureNominalType_Axis', 
+				'source_SurfaceOfRevolutionFeatureNominalType_Sweep', 
+				'source_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId', 
+				'source_SurfaceOfRevolutionFeatureNominalType_Constructed', 
+				'source_SurfaceOfRevolutionFeatureNominalType');
+var instanceBoxes= new Array('instance_SurfaceOfRevolutionFeatureNominalType_Axis', 
+				'instance_SurfaceOfRevolutionFeatureNominalType_Sweep', 
+				'instance_SurfaceOfRevolutionFeatureNominalType_Constructed');
+var diagramBoxes= new Array('diagram_SurfaceOfRevolutionFeatureNominalType_Axis', 
+				'diagram_SurfaceOfRevolutionFeatureNominalType_Sweep', 
+				'diagram_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId', 
+				'diagram_SurfaceOfRevolutionFeatureNominalType_Constructed', 
+				'diagram_SurfaceOfRevolutionFeatureNominalType');
+var annotationBoxes= new Array('annotations_SurfaceOfRevolutionFeatureNominalType_Axis', 
+				'annotations_SurfaceOfRevolutionFeatureNominalType_Sweep', 
+				'annotations_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId', 
+				'annotations_SurfaceOfRevolutionFeatureNominalType_Constructed', 
+				'annotations_SurfaceOfRevolutionFeatureNominalType');
+var attributesBoxes= new Array('attributes_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId', 
+				'attributes_SurfaceOfRevolutionFeatureNominalType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="SurfaceOfRevolutionFeatureNominalType_Axis"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.html#SurfaceOfRevolutionFeatureNominalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionFeatureNominalType')">SurfaceOfRevolutionFeatureNominalType</a></b> / Axis</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SurfaceOfRevolutionFeatureNominalType_Axis" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SurfaceOfRevolutionFeatureNominalType_Axis');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SurfaceOfRevolutionFeatureNominalType_Axis" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Axis element gives the nominal location of the start point and the nominal unit axis vector of the surface of revolution.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SurfaceOfRevolutionFeatureNominalType_Axis" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SurfaceOfRevolutionFeatureNominalType_Axis');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SurfaceOfRevolutionFeatureNominalType_Axis" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Axis_12.jpeg" usemap="#Features_xsd_Element_Axis_12" /><map name="Features_xsd_Element_Axis_12" id="Features_xsd_Element_Axis_12">
+                                 <area alt="Primitives_xsd_Complex_Type_AxisType.tmp#AxisType_AxisPoint" href="Primitives_xsd_Complex_Type_AxisType.html#AxisType_AxisPoint" coords="219,46,313,75" />
+                                 <area alt="Primitives_xsd_Complex_Type_AxisType.tmp#AxisType_Direction" href="Primitives_xsd_Complex_Type_AxisType.html#AxisType_Direction" coords="219,137,308,166" />
+                                 <area alt="Primitives_xsd_Complex_Type_AxisType.tmp#AxisType" href="Primitives_xsd_Complex_Type_AxisType.html#AxisType" coords="121,3,238,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_AxisType.html#AxisType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AxisType')">AxisType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_SurfaceOfRevolutionFeatureNominalType_Axis" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_SurfaceOfRevolutionFeatureNominalType_Axis');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_SurfaceOfRevolutionFeatureNominalType_Axis" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_AxisType.html#AxisType_AxisPoint" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AxisPoint')">AxisPoint</a></b>, <b><a href="Primitives_xsd_Complex_Type_AxisType.html#AxisType_Direction" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Direction')">Direction</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_SurfaceOfRevolutionFeatureNominalType_Axis" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_SurfaceOfRevolutionFeatureNominalType_Axis');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_SurfaceOfRevolutionFeatureNominalType_Axis" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Axis</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;AxisPoint</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">validity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">ySignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zValidity=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/AxisPoint&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Direction</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">validity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">ySignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zValidity=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Direction&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Axis&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SurfaceOfRevolutionFeatureNominalType_Axis" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SurfaceOfRevolutionFeatureNominalType_Axis');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SurfaceOfRevolutionFeatureNominalType_Axis" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Axis"</span><span class="tAN"> type=</span><span class="tAV">"AxisType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Axis element gives the nominal location of the start point and the nominal unit axis vector of the surface of revolution.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="SurfaceOfRevolutionFeatureNominalType_Sweep"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.html#SurfaceOfRevolutionFeatureNominalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionFeatureNominalType')">SurfaceOfRevolutionFeatureNominalType</a></b> / Sweep</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SurfaceOfRevolutionFeatureNominalType_Sweep" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SurfaceOfRevolutionFeatureNominalType_Sweep');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SurfaceOfRevolutionFeatureNominalType_Sweep" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Sweep element gives the nominal start direction and the swept angle for a partial surface of revolution. The swept angle is typically greater than 180 degrees for a feature of size. If the sweep is not specified, the feature subtends a full 360 degrees. The StartVector of the Sweep must lie in a plane normal to the axis of the surface of revolution.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SurfaceOfRevolutionFeatureNominalType_Sweep" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SurfaceOfRevolutionFeatureNominalType_Sweep');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SurfaceOfRevolutionFeatureNominalType_Sweep" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Sweep_8.jpeg" usemap="#Features_xsd_Element_Sweep_8" /><map name="Features_xsd_Element_Sweep_8" id="Features_xsd_Element_Sweep_8">
+                                 <area alt="Primitives_xsd_Complex_Type_SweepType.tmp#SweepType_DirBeg" href="Primitives_xsd_Complex_Type_SweepType.html#SweepType_DirBeg" coords="232,46,309,75" />
+                                 <area alt="Primitives_xsd_Complex_Type_SweepType.tmp#SweepType_DomainAngle" href="Primitives_xsd_Complex_Type_SweepType.html#SweepType_DomainAngle" coords="232,153,347,182" />
+                                 <area alt="Primitives_xsd_Complex_Type_SweepType.tmp#SweepType" href="Primitives_xsd_Complex_Type_SweepType.html#SweepType" coords="134,3,264,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_SweepType.html#SweepType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SweepType')">SweepType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_SurfaceOfRevolutionFeatureNominalType_Sweep" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_SurfaceOfRevolutionFeatureNominalType_Sweep');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_SurfaceOfRevolutionFeatureNominalType_Sweep" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_SweepType.html#SweepType_DirBeg" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DirBeg')">DirBeg</a></b>, <b><a href="Primitives_xsd_Complex_Type_SweepType.html#SweepType_DomainAngle" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DomainAngle')">DomainAngle</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_SurfaceOfRevolutionFeatureNominalType_Sweep" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_SurfaceOfRevolutionFeatureNominalType_Sweep');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_SurfaceOfRevolutionFeatureNominalType_Sweep" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Sweep</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DirBeg</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">validity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">ySignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zValidity=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/DirBeg&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DomainAngle</span><span class="tT"> </span><span class="tAN">angularUnit=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/DomainAngle&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Sweep&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SurfaceOfRevolutionFeatureNominalType_Sweep" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SurfaceOfRevolutionFeatureNominalType_Sweep');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SurfaceOfRevolutionFeatureNominalType_Sweep" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Sweep"</span><span class="tAN"> type=</span><span class="tAV">"SweepType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Sweep element gives the nominal start direction and the swept angle for a partial surface of revolution. The swept angle is typically greater than 180 degrees for a feature of size. If the sweep is not specified, the feature subtends a full 360 degrees. The StartVector of the Sweep must lie in a plane normal to the axis of the surface of revolution.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.html#SurfaceOfRevolutionFeatureNominalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionFeatureNominalType')">SurfaceOfRevolutionFeatureNominalType</a></b> / ReferenceFeatureNominalId</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional ReferenceFeatureNominalId element is the QIF id of the nominal feature that is the curve being swept. The value of the element must be the QIF id of a nominal feature. If this element is not given, the shape of the feature is defined by the geometry and/or topology identified by the EntityInternalIds and/or EntityExternalIds.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_ReferenceFeatureNominalId.jpeg" usemap="#Features_xsd_Element_ReferenceFeatureNominalId" /><map name="Features_xsd_Element_ReferenceFeatureNominalId" id="Features_xsd_Element_ReferenceFeatureNominalId">
+                                 <area alt="Primitives_xsd_Simple_Type_QIFReferenceBaseType.tmp#QIFReferenceBaseType" href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" coords="283,92,488,123" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType_xId" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" coords="299,229,380,258" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" coords="270,49,540,75" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType_asmPathId" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathId" coords="283,448,406,477" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType_asmPathXId" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathXId" coords="283,555,413,584" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" coords="254,3,445,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceFullType')">QIFReferenceFullType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceBaseType')">QIFReferenceBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b><ul class="internal">
+                                                      <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceFullType')">QIFReferenceFullType</a></b></li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component asmPathId')">asmPathId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional asmPathId attribute is a reference used for locating the id of an assembly path. If the asmPathXId attribute is not used, the asmPathId is a reference to an assembly path in the AsmPaths of the local document. If the asmPathXId is used, the asmPathId is the local id of an external QIF document, and the asmPathXId is a reference to an assembly path in the external QIF document. The assembly path (instantiation chain) unambiguously identifies a model entity within an assembly.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathXId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component asmPathXId')">asmPathXId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional asmPathXId attribute, if used, is a reference to the id of an assembly path in the external document identified by the asmPathId. The asmPathXId must not be used if the asmPathId is not used.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xId')">xId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional xId attribute is a reference to the id of a QIF object in an external document. A QIF object in an external QIF document can be referenced by using references to two QIF ids: the id of the external document reference of type ExternalQIFDocumentReferenceType found in the local document and the id of the object found in the external document.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ReferenceFeatureNominalId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceFullType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ReferenceFeatureNominalId element is the QIF id of the nominal feature that is the curve being swept. The value of the element must be the QIF id of a nominal feature. If this element is not given, the shape of the feature is defined by the geometry and/or topology identified by the EntityInternalIds and/or EntityExternalIds.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="SurfaceOfRevolutionFeatureNominalType_Constructed"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.html#SurfaceOfRevolutionFeatureNominalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionFeatureNominalType')">SurfaceOfRevolutionFeatureNominalType</a></b> / Constructed</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SurfaceOfRevolutionFeatureNominalType_Constructed" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SurfaceOfRevolutionFeatureNominalType_Constructed');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SurfaceOfRevolutionFeatureNominalType_Constructed" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Constructed element signifies that the surface of revolution is constructed and provides details of the construction method.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SurfaceOfRevolutionFeatureNominalType_Constructed" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SurfaceOfRevolutionFeatureNominalType_Constructed');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SurfaceOfRevolutionFeatureNominalType_Constructed" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Constructed_53.jpeg" usemap="#Features_xsd_Element_Constructed_53" /><map name="Features_xsd_Element_Constructed_53" id="Features_xsd_Element_Constructed_53">
+                                 <area alt="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.tmp#SurfaceOfRevolutionConstructionMethodType_BestFit" href="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.html#SurfaceOfRevolutionConstructionMethodType_BestFit" coords="283,46,363,75" />
+                                 <area alt="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.tmp#SurfaceOfRevolutionConstructionMethodType_Recompensated" href="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.html#SurfaceOfRevolutionConstructionMethodType_Recompensated" coords="283,153,415,182" />
+                                 <area alt="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.tmp#SurfaceOfRevolutionConstructionMethodType_Copy" href="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.html#SurfaceOfRevolutionConstructionMethodType_Copy" coords="283,260,351,289" />
+                                 <area alt="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.tmp#SurfaceOfRevolutionConstructionMethodType_Cast" href="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.html#SurfaceOfRevolutionConstructionMethodType_Cast" coords="283,367,348,396" />
+                                 <area alt="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.tmp#SurfaceOfRevolutionConstructionMethodType_Transform" href="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.html#SurfaceOfRevolutionConstructionMethodType_Transform" coords="283,490,378,519" />
+                                 <area alt="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.tmp#SurfaceOfRevolutionConstructionMethodType" href="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.html#SurfaceOfRevolutionConstructionMethodType" coords="165,3,488,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.html#SurfaceOfRevolutionConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionConstructionMethodType')">SurfaceOfRevolutionConstructionMethodType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_SurfaceOfRevolutionFeatureNominalType_Constructed" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_SurfaceOfRevolutionFeatureNominalType_Constructed');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_SurfaceOfRevolutionFeatureNominalType_Constructed" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.html#SurfaceOfRevolutionConstructionMethodType_BestFit" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BestFit')">BestFit</a></b>, <b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.html#SurfaceOfRevolutionConstructionMethodType_Cast" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Cast')">Cast</a></b>, <b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.html#SurfaceOfRevolutionConstructionMethodType_Copy" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Copy')">Copy</a></b>, <b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.html#SurfaceOfRevolutionConstructionMethodType_Recompensated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Recompensated')">Recompensated</a></b>, <b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionConstructionMethodType.html#SurfaceOfRevolutionConstructionMethodType_Transform" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Transform')">Transform</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_SurfaceOfRevolutionFeatureNominalType_Constructed" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_SurfaceOfRevolutionFeatureNominalType_Constructed');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_SurfaceOfRevolutionFeatureNominalType_Constructed" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Constructed</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BestFit</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BestFit&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Recompensated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Recompensated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Copy</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Copy&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Cast</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Cast&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Transform</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Transform&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Constructed&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SurfaceOfRevolutionFeatureNominalType_Constructed" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SurfaceOfRevolutionFeatureNominalType_Constructed');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SurfaceOfRevolutionFeatureNominalType_Constructed" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Constructed"</span><span class="tAN"> type=</span><span class="tAV">"SurfaceOfRevolutionConstructionMethodType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Constructed element signifies that the surface of revolution is constructed and provides details of the construction method.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="SurfaceOfRevolutionFeatureNominalType"></a><div class="componentTitle">Complex Type <span class="qname">SurfaceOfRevolutionFeatureNominalType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SurfaceOfRevolutionFeatureNominalType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SurfaceOfRevolutionFeatureNominalType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SurfaceOfRevolutionFeatureNominalType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The SurfaceOfRevolutionFeatureNominalType defines the nominal information for an individual surface of revolution feature.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SurfaceOfRevolutionFeatureNominalType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SurfaceOfRevolutionFeatureNominalType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SurfaceOfRevolutionFeatureNominalType" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.jpeg" usemap="#Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType" /><map name="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType" id="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType">
+                                 <area alt="Features_xsd_Complex_Type_FeatureBaseType.tmp#FeatureBaseType_id" href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType_id" coords="437,228,518,257" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="506,332,600,361" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureBaseType.tmp#FeatureBaseType" href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType" coords="408,141,673,167" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_Name" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_Name" coords="490,498,562,527" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_UUID" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_UUID" coords="490,589,558,618" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_FeatureDefinitionId" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_FeatureDefinitionId" coords="490,696,635,725" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_ParentFeatureNominalId" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_ParentFeatureNominalId" coords="490,787,667,816" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_EntityInternalIds" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_EntityInternalIds" coords="490,878,621,907" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_EntityExternalIds" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_EntityExternalIds" coords="490,985,627,1014" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType" coords="392,95,704,121" />
+                                 <area alt="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.tmp#ShapeFeatureNominalBaseType_PointList" href="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.html#ShapeFeatureNominalBaseType_PointList" coords="474,1151,563,1180" />
+                                 <area alt="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.tmp#ShapeFeatureNominalBaseType_SubstituteFeatureAlgorithm" href="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.html#ShapeFeatureNominalBaseType_SubstituteFeatureAlgorithm" coords="474,1258,670,1287" />
+                                 <area alt="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.tmp#ShapeFeatureNominalBaseType" href="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.html#ShapeFeatureNominalBaseType" coords="376,49,725,75" />
+                                 <area alt="Features_xsd_Complex_Type_SurfaceFeatureNominalBaseType.tmp#SurfaceFeatureNominalBaseType" href="Features_xsd_Complex_Type_SurfaceFeatureNominalBaseType.html#SurfaceFeatureNominalBaseType" coords="360,3,716,29" />
+                                 <area alt="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.tmp#SurfaceOfRevolutionFeatureNominalType_Axis" href="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.html#SurfaceOfRevolutionFeatureNominalType_Axis" coords="442,1467,506,1496" />
+                                 <area alt="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.tmp#SurfaceOfRevolutionFeatureNominalType_Sweep" href="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.html#SurfaceOfRevolutionFeatureNominalType_Sweep" coords="442,1574,519,1603" />
+                                 <area alt="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.tmp#SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId" href="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.html#SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId" coords="442,1681,639,1710" />
+                                 <area alt="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.tmp#SurfaceOfRevolutionFeatureNominalType_Constructed" href="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.html#SurfaceOfRevolutionFeatureNominalType_Constructed" coords="442,1772,550,1801" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="Features_xsd_Complex_Type_SurfaceFeatureNominalBaseType.html#SurfaceFeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceFeatureNominalBaseType')">SurfaceFeatureNominalBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureBaseType')">FeatureBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureNominalBaseType')">FeatureNominalBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.html#ShapeFeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ShapeFeatureNominalBaseType')">ShapeFeatureNominalBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Features_xsd_Complex_Type_SurfaceFeatureNominalBaseType.html#SurfaceFeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceFeatureNominalBaseType')">SurfaceFeatureNominalBaseType</a></b><ul class="internal">
+                                                      <li class="internal"><b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.html#SurfaceOfRevolutionFeatureNominalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionFeatureNominalType')">SurfaceOfRevolutionFeatureNominalType</a></b></li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_SurfaceOfRevolutionFeatureNominalType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_SurfaceOfRevolutionFeatureNominalType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_SurfaceOfRevolutionFeatureNominalType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Features_xsd_Element_SurfaceOfRevolutionFeatureNominal.html#SurfaceOfRevolutionFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionFeatureNominal')">SurfaceOfRevolutionFeatureNominal</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.html#SurfaceOfRevolutionFeatureNominalType_Axis" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Axis')">Axis</a></b>, <b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.html#SurfaceOfRevolutionFeatureNominalType_Constructed" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Constructed')">Constructed</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_EntityExternalIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EntityExternalIds')">EntityExternalIds</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_EntityInternalIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EntityInternalIds')">EntityInternalIds</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_FeatureDefinitionId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureDefinitionId')">FeatureDefinitionId</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_ParentFeatureNominalId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ParentFeatureNominalId')">ParentFeatureNominalId</a></b>, <b><a href="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.html#ShapeFeatureNominalBaseType_PointList" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointList')">PointList</a></b>, <b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.html#SurfaceOfRevolutionFeatureNominalType_ReferenceFeatureNominalId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReferenceFeatureNominalId')">ReferenceFeatureNominalId</a></b>, <b><a href="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.html#ShapeFeatureNominalBaseType_SubstituteFeatureAlgorithm" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SubstituteFeatureAlgorithm')">SubstituteFeatureAlgorithm</a></b>, <b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionFeatureNominalType.html#SurfaceOfRevolutionFeatureNominalType_Sweep" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Sweep')">Sweep</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_UUID" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UUID')">UUID</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_SurfaceOfRevolutionFeatureNominalType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_SurfaceOfRevolutionFeatureNominalType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_SurfaceOfRevolutionFeatureNominalType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the feature, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SurfaceOfRevolutionFeatureNominalType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SurfaceOfRevolutionFeatureNominalType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SurfaceOfRevolutionFeatureNominalType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"SurfaceOfRevolutionFeatureNominalType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The SurfaceOfRevolutionFeatureNominalType defines the nominal information for an individual surface of revolution feature.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"SurfaceFeatureNominalBaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Axis"</span><span class="tAN"> type=</span><span class="tAV">"AxisType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Axis element gives the nominal location of the start point and the nominal unit axis vector of the surface of revolution.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Sweep"</span><span class="tAN"> type=</span><span class="tAV">"SweepType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Sweep element gives the nominal start direction and the swept angle for a partial surface of revolution. The swept angle is typically greater than 180 degrees for a feature of size. If the sweep is not specified, the feature subtends a full 360 degrees. The StartVector of the Sweep must lie in a plane normal to the axis of the surface of revolution.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ReferenceFeatureNominalId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceFullType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ReferenceFeatureNominalId element is the QIF id of the nominal feature that is the curve being swept. The value of the element must be the QIF id of a nominal feature. If this element is not given, the shape of the feature is defined by the geometry and/or topology identified by the EntityInternalIds and/or EntityExternalIds.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Constructed"</span><span class="tAN"> type=</span><span class="tAV">"SurfaceOfRevolutionConstructionMethodType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Constructed element signifies that the surface of revolution is constructed and provides details of the construction method.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

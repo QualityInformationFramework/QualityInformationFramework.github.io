@@ -1,0 +1,870 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component SimpleDatum</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_SequencedDatumType_SimpleDatum', 
+				'properties_SequencedDatumType_CompoundDatum', 
+				'properties_SequencedDatumType_SequenceNumber');
+var facetsBoxes= new Array('facets_SequencedDatumType_SequenceNumber');
+var usedByBoxes= new Array('usedBy_SequencedDatumType');
+var sourceBoxes= new Array('source_SequencedDatumType_SimpleDatum', 
+				'source_SequencedDatumType_CompoundDatum', 
+				'source_SequencedDatumType_SequenceNumber', 
+				'source_SequencedDatumType');
+var instanceBoxes= new Array('instance_SequencedDatumType_SimpleDatum', 
+				'instance_SequencedDatumType_CompoundDatum');
+var diagramBoxes= new Array('diagram_SequencedDatumType_SimpleDatum', 
+				'diagram_SequencedDatumType_CompoundDatum', 
+				'diagram_SequencedDatumType_SequenceNumber', 
+				'diagram_SequencedDatumType');
+var annotationBoxes= new Array('annotations_SequencedDatumType_SimpleDatum', 
+				'annotations_SequencedDatumType_CompoundDatum', 
+				'annotations_SequencedDatumType_SequenceNumber', 
+				'annotations_SequencedDatumType');
+var attributesBoxes= new Array('attributes_SequencedDatumType_CompoundDatum');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="SequencedDatumType_SimpleDatum"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_SequencedDatumType.html#SequencedDatumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SequencedDatumType')">SequencedDatumType</a></b> / SimpleDatum</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SequencedDatumType_SimpleDatum" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SequencedDatumType_SimpleDatum');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SequencedDatumType_SimpleDatum" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Datum element is a simple datum with an assigned label.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SequencedDatumType_SimpleDatum" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SequencedDatumType_SimpleDatum');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SequencedDatumType_SimpleDatum" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_SimpleDatum_1.jpeg" usemap="#IntermediatesPMI_xsd_Element_SimpleDatum_1" /><map name="IntermediatesPMI_xsd_Element_SimpleDatum_1" id="IntermediatesPMI_xsd_Element_SimpleDatum_1">
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_DatumDefinitionId" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_DatumDefinitionId" coords="271,46,410,75" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_MaterialModifier" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_MaterialModifier" coords="271,153,400,182" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_SizeCharacteristicDefinitionId" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_SizeCharacteristicDefinitionId" coords="271,260,478,289" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_ReferencedComponent" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_ReferencedComponent" coords="271,351,440,380" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_SubstituteFeatureAlgorithm" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_SubstituteFeatureAlgorithm" coords="271,458,467,487" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_DatumFeatureSimulatorModifier" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_DatumFeatureSimulatorModifier" coords="271,549,491,578" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_DatumTranslation" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_DatumTranslation" coords="271,640,410,669" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_DegreesOfFreedom" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_DegreesOfFreedom" coords="271,747,421,776" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_ProjectedDatum" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_ProjectedDatum" coords="271,838,402,867" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_DiameterModifier" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_DiameterModifier" coords="271,945,406,974" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_SectionModifier" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_SectionModifier" coords="271,1052,398,1081" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_ContactingFeature" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_ContactingFeature" coords="271,1159,415,1188" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_DistanceVariable" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_DistanceVariable" coords="271,1266,407,1295" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_DatumFixed" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_DatumFixed" coords="271,1373,379,1402" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_ReducedDatum" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_ReducedDatum" coords="271,1480,398,1509" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_ConstrainOrientation" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_ConstrainOrientation" coords="271,1587,427,1616" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType_ConstrainSubsequent" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_ConstrainSubsequent" coords="271,1694,433,1723" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="271,1801,365,1830" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_DatumType.tmp#DatumType" href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType" coords="173,3,302,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DatumType')">DatumType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_SequencedDatumType_SimpleDatum" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_SequencedDatumType_SimpleDatum');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_SequencedDatumType_SimpleDatum" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_ConstrainOrientation" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstrainOrientation')">ConstrainOrientation</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_ConstrainSubsequent" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConstrainSubsequent')">ConstrainSubsequent</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_ContactingFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ContactingFeature')">ContactingFeature</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_DatumDefinitionId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DatumDefinitionId')">DatumDefinitionId</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_DatumFeatureSimulatorModifier" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DatumFeatureSimulatorModifier')">DatumFeatureSimulatorModifier</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_DatumFixed" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DatumFixed')">DatumFixed</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_DatumTranslation" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DatumTranslation')">DatumTranslation</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_DegreesOfFreedom" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DegreesOfFreedom')">DegreesOfFreedom</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_DiameterModifier" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DiameterModifier')">DiameterModifier</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_DistanceVariable" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DistanceVariable')">DistanceVariable</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_MaterialModifier" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MaterialModifier')">MaterialModifier</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_ProjectedDatum" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProjectedDatum')">ProjectedDatum</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_ReducedDatum" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReducedDatum')">ReducedDatum</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_ReferencedComponent" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReferencedComponent')">ReferencedComponent</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_SectionModifier" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SectionModifier')">SectionModifier</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_SizeCharacteristicDefinitionId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SizeCharacteristicDefinitionId')">SizeCharacteristicDefinitionId</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumType.html#DatumType_SubstituteFeatureAlgorithm" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SubstituteFeatureAlgorithm')">SubstituteFeatureAlgorithm</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_SequencedDatumType_SimpleDatum" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_SequencedDatumType_SimpleDatum');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_SequencedDatumType_SimpleDatum" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;SimpleDatum</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DatumDefinitionId</span><span class="tT"> </span><span class="tAN">asmPathId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">asmPathXId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/DatumDefinitionId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MaterialModifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/MaterialModifier&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SizeCharacteristicDefinitionId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SizeCharacteristicDefinitionId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ReferencedComponent</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ReferencedComponent&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SubstituteFeatureAlgorithm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SubstituteFeatureAlgorithm&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DatumFeatureSimulatorModifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/DatumFeatureSimulatorModifier&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DatumTranslation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/DatumTranslation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DegreesOfFreedom</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/DegreesOfFreedom&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ProjectedDatum</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ProjectedDatum&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DiameterModifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/DiameterModifier&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SectionModifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SectionModifier&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ContactingFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ContactingFeature&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DistanceVariable</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/DistanceVariable&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DatumFixed</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/DatumFixed&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ReducedDatum</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ReducedDatum&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ConstrainOrientation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ConstrainOrientation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ConstrainSubsequent</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ConstrainSubsequent&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/SimpleDatum&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SequencedDatumType_SimpleDatum" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SequencedDatumType_SimpleDatum');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SequencedDatumType_SimpleDatum" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SimpleDatum"</span><span class="tAN"> type=</span><span class="tAV">"DatumType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Datum element is a simple datum with an assigned label.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="SequencedDatumType_CompoundDatum"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_SequencedDatumType.html#SequencedDatumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SequencedDatumType')">SequencedDatumType</a></b> / CompoundDatum</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SequencedDatumType_CompoundDatum" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SequencedDatumType_CompoundDatum');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SequencedDatumType_CompoundDatum" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">(ISO specific) The CompoundDatum element is a nested compound datum.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SequencedDatumType_CompoundDatum" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SequencedDatumType_CompoundDatum');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SequencedDatumType_CompoundDatum" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_CompoundDatum_1.jpeg" usemap="#IntermediatesPMI_xsd_Element_CompoundDatum_1" /><map name="IntermediatesPMI_xsd_Element_CompoundDatum_1" id="IntermediatesPMI_xsd_Element_CompoundDatum_1">
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_CompoundDatumType.tmp#CompoundDatumType_n" href="IntermediatesPMI_xsd_Complex_Type_CompoundDatumType.html#CompoundDatumType_n" coords="224,90,305,119" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_CompoundDatumType.tmp#CompoundDatumType_Datum" href="IntermediatesPMI_xsd_Complex_Type_CompoundDatumType.html#CompoundDatumType_Datum" coords="318,190,394,219" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_CompoundDatumType.tmp#CompoundDatumType_ReducedDatum" href="IntermediatesPMI_xsd_Complex_Type_CompoundDatumType.html#CompoundDatumType_ReducedDatum" coords="318,297,445,326" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_CompoundDatumType.tmp#CompoundDatumType" href="IntermediatesPMI_xsd_Complex_Type_CompoundDatumType.html#CompoundDatumType" coords="195,3,386,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_CompoundDatumType.html#CompoundDatumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompoundDatumType')">CompoundDatumType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_SequencedDatumType_CompoundDatum" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_SequencedDatumType_CompoundDatum');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_SequencedDatumType_CompoundDatum" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_CompoundDatumType.html#CompoundDatumType_Datum" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Datum')">Datum</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_CompoundDatumType.html#CompoundDatumType_ReducedDatum" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReducedDatum')">ReducedDatum</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_SequencedDatumType_CompoundDatum" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_SequencedDatumType_CompoundDatum');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_SequencedDatumType_CompoundDatum" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;CompoundDatum</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Datum</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{2,unbounded}</span><span class="tEl">&lt;/Datum&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ReducedDatum</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ReducedDatum&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/CompoundDatum&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_SequencedDatumType_CompoundDatum" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_SequencedDatumType_CompoundDatum');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_SequencedDatumType_CompoundDatum" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="IntermediatesPMI_xsd_Complex_Type_CompoundDatumType.html#CompoundDatumType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of datums in the compound datum.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SequencedDatumType_CompoundDatum" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SequencedDatumType_CompoundDatum');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SequencedDatumType_CompoundDatum" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CompoundDatum"</span><span class="tAN"> type=</span><span class="tAV">"CompoundDatumType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">(ISO specific) The CompoundDatum element is a nested compound datum.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="SequencedDatumType_SequenceNumber"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_SequencedDatumType.html#SequencedDatumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SequencedDatumType')">SequencedDatumType</a></b> / SequenceNumber</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SequencedDatumType_SequenceNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SequencedDatumType_SequenceNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SequencedDatumType_SequenceNumber" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The SequenceNumber element is the sequence number of the datum in a compound datum. The sequence numbers in an ordered set of datums should be assigned 1, 2, 3, ...</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SequencedDatumType_SequenceNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SequencedDatumType_SequenceNumber');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SequencedDatumType_SequenceNumber" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_SequenceNumber_2.jpeg" usemap="#IntermediatesPMI_xsd_Element_SequenceNumber_2" /><map name="IntermediatesPMI_xsd_Element_SequenceNumber_2" id="IntermediatesPMI_xsd_Element_SequenceNumber_2">
+                                 <area alt="Primitives_xsd_Simple_Type_NaturalType.tmp#NaturalType" href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" coords="195,0,332,31" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_SequencedDatumType_SequenceNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_SequencedDatumType_SequenceNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_SequencedDatumType_SequenceNumber" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_SequencedDatumType_SequenceNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_SequencedDatumType_SequenceNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_SequencedDatumType_SequenceNumber" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">minInclusive</td>
+                                    <td width="30%"><b>1</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SequencedDatumType_SequenceNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SequencedDatumType_SequenceNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SequencedDatumType_SequenceNumber" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SequenceNumber"</span><span class="tAN"> type=</span><span class="tAV">"NaturalType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The SequenceNumber element is the sequence number of the datum in a compound datum. The sequence numbers in an ordered set of datums should be assigned 1, 2, 3, ...</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="SequencedDatumType"></a><div class="componentTitle">Complex Type <span class="qname">SequencedDatumType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_SequencedDatumType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_SequencedDatumType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_SequencedDatumType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The SequencedDatumType defines a datum reference with a sequence number for ordering in a compound datum.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_SequencedDatumType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_SequencedDatumType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_SequencedDatumType" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Complex_Type_SequencedDatumType.jpeg" usemap="#IntermediatesPMI_xsd_Complex_Type_SequencedDatumType" /><map name="IntermediatesPMI_xsd_Complex_Type_SequencedDatumType" id="IntermediatesPMI_xsd_Complex_Type_SequencedDatumType">
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_SequencedDatumType.tmp#SequencedDatumType_SimpleDatum" href="IntermediatesPMI_xsd_Complex_Type_SequencedDatumType.html#SequencedDatumType_SimpleDatum" coords="443,0,559,29" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_SequencedDatumType.tmp#SequencedDatumType_CompoundDatum" href="IntermediatesPMI_xsd_Complex_Type_SequencedDatumType.html#SequencedDatumType_CompoundDatum" coords="443,91,581,120" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_SequencedDatumType.tmp#SequencedDatumType_SequenceNumber" href="IntermediatesPMI_xsd_Complex_Type_SequencedDatumType.html#SequencedDatumType_SequenceNumber" coords="338,317,479,346" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_SequencedDatumType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_SequencedDatumType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_SequencedDatumType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="IntermediatesPMI_xsd_Complex_Type_CompoundDatumType.html#CompoundDatumType_Datum" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompoundDatumType/Datum')">CompoundDatumType/Datum</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_SequencedDatumType.html#SequencedDatumType_CompoundDatum" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompoundDatum')">CompoundDatum</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_SequencedDatumType.html#SequencedDatumType_SequenceNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SequenceNumber')">SequenceNumber</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_SequencedDatumType.html#SequencedDatumType_SimpleDatum" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SimpleDatum')">SimpleDatum</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_SequencedDatumType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_SequencedDatumType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_SequencedDatumType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"SequencedDatumType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The SequencedDatumType defines a datum reference with a sequence number for ordering in a compound datum.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This compositor provides a choice between a datum with a simple label and a nested compound datum label (with an optional reduction modifier) to handle ISO specific cases such as (A-B)[PT]-(C-D)[SL].</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SimpleDatum"</span><span class="tAN"> type=</span><span class="tAV">"DatumType"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Datum element is a simple datum with an assigned label.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CompoundDatum"</span><span class="tAN"> type=</span><span class="tAV">"CompoundDatumType"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">(ISO specific) The CompoundDatum element is a nested compound datum.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SequenceNumber"</span><span class="tAN"> type=</span><span class="tAV">"NaturalType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The SequenceNumber element is the sequence number of the datum in a compound datum. The sequence numbers in an ordered set of datums should be assigned 1, 2, 3, ...</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

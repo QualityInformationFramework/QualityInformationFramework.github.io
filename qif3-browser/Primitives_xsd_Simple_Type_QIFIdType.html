@@ -1,0 +1,446 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component QIFIdType</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var facetsBoxes= new Array('facets_QIFIdType');
+var usedByBoxes= new Array('usedBy_QIFIdType');
+var sourceBoxes= new Array('source_QIFIdType');
+var diagramBoxes= new Array('diagram_QIFIdType');
+var annotationBoxes= new Array('annotations_QIFIdType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="QIFIdType"></a><div class="componentTitle">Simple Type <span class="qname">QIFIdType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_QIFIdType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_QIFIdType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_QIFIdType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The QIFIdType defines the type for 'id' attributes. All 'id' attributes in all QIF schema files are of QIFIdType.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_QIFIdType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_QIFIdType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_QIFIdType" style="display:block"><img alt="Diagram" border="0" src="img/Primitives_xsd_Simple_Type_QIFIdType.jpeg" usemap="#Primitives_xsd_Simple_Type_QIFIdType" /><map name="Primitives_xsd_Simple_Type_QIFIdType" id="Primitives_xsd_Simple_Type_QIFIdType">
+                                 <area alt="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.tmp#QIFIdAndReferenceBaseType" href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" coords="181,0,419,31" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_QIFIdType" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_QIFIdType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_QIFIdType" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">pattern</td>
+                                    <td width="30%"><b>([\-+]?[0-9]+) &amp; ([1-9][0-9]*)</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_QIFIdType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_QIFIdType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_QIFIdType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Attributes </td>
+                                    <td><b><a href="QIFPlan_xsd_Complex_Type_ActionMethodBaseType.html#ActionMethodBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component ActionMethodBaseType/@id')">ActionMethodBaseType/@id</a></b>, <b><a href="QIFResults_xsd_Complex_Type_ActualComponentType.html#ActualComponentType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component ActualComponentType/@id')">ActualComponentType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_AlgorithmType.html#AlgorithmType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component AlgorithmType/@id')">AlgorithmType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_AngularToleranceDefinitionType.html#AngularToleranceDefinitionType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component AngularToleranceDefinitionType/@id')">AngularToleranceDefinitionType/@id</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_AsmPathType.html#AsmPathType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component AsmPathType/@id')">AsmPathType/@id</a></b>, <b><a href="Statistics_xsd_Complex_Type_AssignableCauseType.html#AssignableCauseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component AssignableCauseType/@id')">AssignableCauseType/@id</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component CharacteristicBaseType/@id')">CharacteristicBaseType/@id</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicGroupType.html#CharacteristicGroupType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component CharacteristicGroupType/@id')">CharacteristicGroupType/@id</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_ControlMethodType.html#ControlMethodType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component ControlMethodType/@id')">ControlMethodType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_CoordinateSystemType.html#CoordinateSystemType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component CoordinateSystemType/@id')">CoordinateSystemType/@id</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_CorrectiveActionPlanType.html#CorrectiveActionPlanType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component CorrectiveActionPlanType/@id')">CorrectiveActionPlanType/@id</a></b>, <b><a href="Statistics_xsd_Complex_Type_CorrectiveActionType.html#CorrectiveActionType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component CorrectiveActionType/@id')">CorrectiveActionType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumDefinitionType.html#DatumDefinitionType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component DatumDefinitionType/@id')">DatumDefinitionType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumReferenceFrameType.html#DatumReferenceFrameType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component DatumReferenceFrameType/@id')">DatumReferenceFrameType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DatumTargetType.html#DatumTargetType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component DatumTargetType/@id')">DatumTargetType/@id</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component DefinitionExternalType/@id')">DefinitionExternalType/@id</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component DigitalDrawingType/@id')">DigitalDrawingType/@id</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component DigitalModelType/@id')">DigitalModelType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_EntityExternalType.html#EntityExternalType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component EntityExternalType/@id')">EntityExternalType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_EventBaseType.html#EventBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component EventBaseType/@id')">EventBaseType/@id</a></b>, <b><a href="QIFDocument_xsd_Complex_Type_ExternalQIFDocumentReferenceType.html#ExternalQIFDocumentReferenceType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component ExternalQIFDocumentReferenceType/@id')">ExternalQIFDocumentReferenceType/@id</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component FeatureBaseType/@id')">FeatureBaseType/@id</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureZoneBaseType.html#FeatureZoneBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component FeatureZoneBaseType/@id')">FeatureZoneBaseType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_LinearToleranceDefinitionType.html#LinearToleranceDefinitionType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component LinearToleranceDefinitionType/@id')">LinearToleranceDefinitionType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_LocationType.html#LocationType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component LocationType/@id')">LocationType/@id</a></b>, <b><a href="Traceability_xsd_Complex_Type_ManufacturingProcessTraceabilityType.html#ManufacturingProcessTraceabilityType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component ManufacturingProcessTraceabilityType/@id')">ManufacturingProcessTraceabilityType/@id</a></b>, <b><a href="QIFPlan_xsd_Complex_Type_MeasurandBaseType.html#MeasurandBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component MeasurandBaseType/@id')">MeasurandBaseType/@id</a></b>, <b><a href="Features_xsd_Complex_Type_MeasuredPointSetType.html#MeasuredPointSetType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component MeasuredPointSetType/@id')">MeasuredPointSetType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_MeasuredPointWithNormalBaseType.html#MeasuredPointWithNormalBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component MeasuredPointWithNormalBaseType/@id')">MeasuredPointWithNormalBaseType/@id</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component MeasurementResourceBaseType/@id')">MeasurementResourceBaseType/@id</a></b>, <b><a href="QIFResults_xsd_Complex_Type_MeasurementResultsType.html#MeasurementResultsType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component MeasurementResultsType/@id')">MeasurementResultsType/@id</a></b>, <b><a href="PrimitivesPD_xsd_Complex_Type_NodeWithIdBaseType.html#NodeWithIdBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component NodeWithIdBaseType/@id')">NodeWithIdBaseType/@id</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component PhysicalModelType/@id')">PhysicalModelType/@id</a></b>, <b><a href="Features_xsd_Complex_Type_PointSetNominalType.html#PointSetNominalType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component PointSetNominalType/@id')">PointSetNominalType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_PointWithNormalBaseType.html#PointWithNormalBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component PointWithNormalBaseType/@id')">PointWithNormalBaseType/@id</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component PrintedDrawingType/@id')">PrintedDrawingType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_SoftwareType.html#SoftwareType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component SoftwareType/@id')">SoftwareType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_StandardType.html#StandardType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component StandardType/@id')">StandardType/@id</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyPlanBaseType.html#StatisticalStudyPlanBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component StatisticalStudyPlanBaseType/@id')">StatisticalStudyPlanBaseType/@id</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component StatisticalStudyResultsBaseType/@id')">StatisticalStudyResultsBaseType/@id</a></b>, <b><a href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component StudyIssueType/@id')">StudyIssueType/@id</a></b>, <b><a href="PrimitivesPMI_xsd_Complex_Type_SubgroupDecimalType.html#SubgroupDecimalType_subgroupId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component SubgroupDecimalType/@subgroupId')">SubgroupDecimalType/@subgroupId</a></b>, <b><a href="PrimitivesPMI_xsd_Complex_Type_SubgroupIntegerType.html#SubgroupIntegerType_subgroupId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component SubgroupIntegerType/@subgroupId')">SubgroupIntegerType/@subgroupId</a></b>, <b><a href="Statistics_xsd_Complex_Type_SubgroupType.html#SubgroupType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component SubgroupType/@id')">SubgroupType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_TextThreadSpecificationType.html#TextThreadSpecificationType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component TextThreadSpecificationType/@id')">TextThreadSpecificationType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_ThreadSpecificationDetailedBaseType.html#ThreadSpecificationDetailedBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component ThreadSpecificationDetailedBaseType/@id')">ThreadSpecificationDetailedBaseType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_TransformInstanceType.html#TransformInstanceType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component TransformInstanceType/@id')">TransformInstanceType/@id</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_VirtualMeasurementType.html#VirtualMeasurementType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component VirtualMeasurementType/@id')">VirtualMeasurementType/@id</a></b>, <b><a href="QIFPlan_xsd_Complex_Type_WorkInstructionBaseType.html#WorkInstructionBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component WorkInstructionBaseType/@id')">WorkInstructionBaseType/@id</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_QIFIdType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_QIFIdType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_QIFIdType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:simpleType</span><span class="tAN"> name=</span><span class="tAV">"QIFIdType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The QIFIdType defines the type for 'id' attributes. All 'id' attributes in all QIF schema files are of QIFIdType.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"QIFIdAndReferenceBaseType"</span><span class="tEl">/&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:simpleType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Primitives.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

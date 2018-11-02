@@ -1,0 +1,2093 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Location</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_ToroidalSegmentFeatureMeasurementType_Location', 
+				'properties_ToroidalSegmentFeatureMeasurementType_AxisVector', 
+				'properties_ToroidalSegmentFeatureMeasurementType_MinorDiameter', 
+				'properties_ToroidalSegmentFeatureMeasurementType_MajorDiameter', 
+				'properties_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange', 
+				'properties_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull', 
+				'properties_ToroidalSegmentFeatureMeasurementType_Form');
+var usedByBoxes= new Array('usedBy_ToroidalSegmentFeatureMeasurementType');
+var sourceBoxes= new Array('source_ToroidalSegmentFeatureMeasurementType_Location', 
+				'source_ToroidalSegmentFeatureMeasurementType_AxisVector', 
+				'source_ToroidalSegmentFeatureMeasurementType_MinorDiameter', 
+				'source_ToroidalSegmentFeatureMeasurementType_MajorDiameter', 
+				'source_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange', 
+				'source_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull', 
+				'source_ToroidalSegmentFeatureMeasurementType_Form', 
+				'source_ToroidalSegmentFeatureMeasurementType');
+var instanceBoxes= new Array('instance_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange', 
+				'instance_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull');
+var diagramBoxes= new Array('diagram_ToroidalSegmentFeatureMeasurementType_Location', 
+				'diagram_ToroidalSegmentFeatureMeasurementType_AxisVector', 
+				'diagram_ToroidalSegmentFeatureMeasurementType_MinorDiameter', 
+				'diagram_ToroidalSegmentFeatureMeasurementType_MajorDiameter', 
+				'diagram_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange', 
+				'diagram_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull', 
+				'diagram_ToroidalSegmentFeatureMeasurementType_Form', 
+				'diagram_ToroidalSegmentFeatureMeasurementType');
+var annotationBoxes= new Array('annotations_ToroidalSegmentFeatureMeasurementType_Location', 
+				'annotations_ToroidalSegmentFeatureMeasurementType_AxisVector', 
+				'annotations_ToroidalSegmentFeatureMeasurementType_MinorDiameter', 
+				'annotations_ToroidalSegmentFeatureMeasurementType_MajorDiameter', 
+				'annotations_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange', 
+				'annotations_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull', 
+				'annotations_ToroidalSegmentFeatureMeasurementType_Form', 
+				'annotations_ToroidalSegmentFeatureMeasurementType');
+var attributesBoxes= new Array('attributes_ToroidalSegmentFeatureMeasurementType_Location', 
+				'attributes_ToroidalSegmentFeatureMeasurementType_AxisVector', 
+				'attributes_ToroidalSegmentFeatureMeasurementType_MinorDiameter', 
+				'attributes_ToroidalSegmentFeatureMeasurementType_MajorDiameter', 
+				'attributes_ToroidalSegmentFeatureMeasurementType_Form', 
+				'attributes_ToroidalSegmentFeatureMeasurementType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="ToroidalSegmentFeatureMeasurementType_Location"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentFeatureMeasurementType')">ToroidalSegmentFeatureMeasurementType</a></b> / Location</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ToroidalSegmentFeatureMeasurementType_Location" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ToroidalSegmentFeatureMeasurementType_Location');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ToroidalSegmentFeatureMeasurementType_Location" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Location element is the measured center of the toroidal segment.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ToroidalSegmentFeatureMeasurementType_Location" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ToroidalSegmentFeatureMeasurementType_Location');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ToroidalSegmentFeatureMeasurementType_Location" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Location_19.jpeg" usemap="#Features_xsd_Element_Location_19" /><map name="Features_xsd_Element_Location_19" id="Features_xsd_Element_Location_19">
+                                 <area alt="Primitives_xsd_Simple_Type_PointSimpleType.tmp#PointSimpleType" href="Primitives_xsd_Simple_Type_PointSimpleType.html#PointSimpleType" coords="173,92,339,123" />
+                                 <area alt="Primitives_xsd_Attribute_Group_AttrPoint.tmp#AttrPoint" href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint" coords="192,232,311,263" />
+                                 <area alt="Primitives_xsd_Complex_Type_PointType.tmp#PointType" href="Primitives_xsd_Complex_Type_PointType.html#PointType" coords="160,49,381,75" />
+                                 <area alt="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.tmp#AttrMeasuredPoint" href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint" coords="176,461,352,492" />
+                                 <area alt="PrimitivesPMI_xsd_Complex_Type_MeasuredPointType.tmp#MeasuredPointType" href="PrimitivesPMI_xsd_Complex_Type_MeasuredPointType.html#MeasuredPointType" coords="144,3,322,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="PrimitivesPMI_xsd_Complex_Type_MeasuredPointType.html#MeasuredPointType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredPointType')">MeasuredPointType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:anySimpleType</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_ListDoubleType.html#ListDoubleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ListDoubleType')">ListDoubleType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_PointSimpleType.html#PointSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointSimpleType')">PointSimpleType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_PointType.html#PointType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointType')">PointType</a></b><ul class="internal">
+                                                      <li class="internal"><b><a href="PrimitivesPMI_xsd_Complex_Type_MeasuredPointType.html#MeasuredPointType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredPointType')">MeasuredPointType</a></b></li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ToroidalSegmentFeatureMeasurementType_Location" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ToroidalSegmentFeatureMeasurementType_Location');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ToroidalSegmentFeatureMeasurementType_Location" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ToroidalSegmentFeatureMeasurementType_Location" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ToroidalSegmentFeatureMeasurementType_Location');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ToroidalSegmentFeatureMeasurementType_Location" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th></th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_combinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component combinedUncertainty')">combinedUncertainty</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_meanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component meanError')">meanError</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_validity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component validity')">validity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_xCombinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xCombinedUncertainty')">xCombinedUncertainty</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xDecimalPlaces')">xDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_xMeanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xMeanError')">xMeanError</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xSignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xSignificantFigures')">xSignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xValidity')">xValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_yCombinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yCombinedUncertainty')">yCombinedUncertainty</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_yDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yDecimalPlaces')">yDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_yMeanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yMeanError')">yMeanError</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_ySignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component ySignificantFigures')">ySignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_yValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yValidity')">yValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_zCombinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zCombinedUncertainty')">zCombinedUncertainty</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zDecimalPlaces')">zDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_zMeanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zMeanError')">zMeanError</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zSignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zSignificantFigures')">zSignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zValidity')">zValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ToroidalSegmentFeatureMeasurementType_Location" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ToroidalSegmentFeatureMeasurementType_Location');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ToroidalSegmentFeatureMeasurementType_Location" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Location"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredPointType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Location element is the measured center of the toroidal segment.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ToroidalSegmentFeatureMeasurementType_AxisVector"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentFeatureMeasurementType')">ToroidalSegmentFeatureMeasurementType</a></b> / AxisVector</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ToroidalSegmentFeatureMeasurementType_AxisVector" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ToroidalSegmentFeatureMeasurementType_AxisVector');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ToroidalSegmentFeatureMeasurementType_AxisVector" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional AxisVector element is the measured unit axis vector of the toroidal segment.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ToroidalSegmentFeatureMeasurementType_AxisVector" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ToroidalSegmentFeatureMeasurementType_AxisVector');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ToroidalSegmentFeatureMeasurementType_AxisVector" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_AxisVector_1.jpeg" usemap="#Features_xsd_Element_AxisVector_1" /><map name="Features_xsd_Element_AxisVector_1" id="Features_xsd_Element_AxisVector_1">
+                                 <area alt="Primitives_xsd_Simple_Type_UnitVectorSimpleType.tmp#UnitVectorSimpleType" href="Primitives_xsd_Simple_Type_UnitVectorSimpleType.html#UnitVectorSimpleType" coords="188,92,385,123" />
+                                 <area alt="Primitives_xsd_Attribute_Group_AttrPoint.tmp#AttrPoint" href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint" coords="207,232,326,263" />
+                                 <area alt="Primitives_xsd_Complex_Type_UnitVectorType.tmp#UnitVectorType" href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" coords="175,49,427,75" />
+                                 <area alt="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.tmp#AttrMeasuredPoint" href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint" coords="191,461,367,492" />
+                                 <area alt="PrimitivesPMI_xsd_Complex_Type_MeasuredUnitVectorType.tmp#MeasuredUnitVectorType" href="PrimitivesPMI_xsd_Complex_Type_MeasuredUnitVectorType.html#MeasuredUnitVectorType" coords="159,3,368,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="PrimitivesPMI_xsd_Complex_Type_MeasuredUnitVectorType.html#MeasuredUnitVectorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredUnitVectorType')">MeasuredUnitVectorType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:anySimpleType</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_ListDoubleType.html#ListDoubleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ListDoubleType')">ListDoubleType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_UnitVectorSimpleType.html#UnitVectorSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorSimpleType')">UnitVectorSimpleType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorType')">UnitVectorType</a></b><ul class="internal">
+                                                      <li class="internal"><b><a href="PrimitivesPMI_xsd_Complex_Type_MeasuredUnitVectorType.html#MeasuredUnitVectorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredUnitVectorType')">MeasuredUnitVectorType</a></b></li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ToroidalSegmentFeatureMeasurementType_AxisVector" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ToroidalSegmentFeatureMeasurementType_AxisVector');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ToroidalSegmentFeatureMeasurementType_AxisVector" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ToroidalSegmentFeatureMeasurementType_AxisVector" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ToroidalSegmentFeatureMeasurementType_AxisVector');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ToroidalSegmentFeatureMeasurementType_AxisVector" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th></th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_combinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component combinedUncertainty')">combinedUncertainty</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_meanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component meanError')">meanError</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_validity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component validity')">validity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_xCombinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xCombinedUncertainty')">xCombinedUncertainty</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xDecimalPlaces')">xDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_xMeanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xMeanError')">xMeanError</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xSignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xSignificantFigures')">xSignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xValidity')">xValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_yCombinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yCombinedUncertainty')">yCombinedUncertainty</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_yDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yDecimalPlaces')">yDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_yMeanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yMeanError')">yMeanError</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_ySignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component ySignificantFigures')">ySignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_yValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yValidity')">yValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_zCombinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zCombinedUncertainty')">zCombinedUncertainty</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zDecimalPlaces')">zDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPMI_xsd_Attribute_Group_AttrMeasuredPoint.html#AttrMeasuredPoint_zMeanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zMeanError')">zMeanError</a></b></td>
+                                    <td><b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zSignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zSignificantFigures')">zSignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zValidity')">zValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ToroidalSegmentFeatureMeasurementType_AxisVector" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ToroidalSegmentFeatureMeasurementType_AxisVector');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ToroidalSegmentFeatureMeasurementType_AxisVector" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"AxisVector"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredUnitVectorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional AxisVector element is the measured unit axis vector of the toroidal segment.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ToroidalSegmentFeatureMeasurementType_MinorDiameter"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentFeatureMeasurementType')">ToroidalSegmentFeatureMeasurementType</a></b> / MinorDiameter</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ToroidalSegmentFeatureMeasurementType_MinorDiameter" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ToroidalSegmentFeatureMeasurementType_MinorDiameter');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ToroidalSegmentFeatureMeasurementType_MinorDiameter" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional MinorDiameter element is the measured minor diameter of the toroidal segment based on the substitute feature data fitting algorithm setting.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ToroidalSegmentFeatureMeasurementType_MinorDiameter" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ToroidalSegmentFeatureMeasurementType_MinorDiameter');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ToroidalSegmentFeatureMeasurementType_MinorDiameter" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_MinorDiameter_5.jpeg" usemap="#Features_xsd_Element_MinorDiameter_5" /><map name="Features_xsd_Element_MinorDiameter_5" id="Features_xsd_Element_MinorDiameter_5">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="240,275,386,304" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="240,350,402,379" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="211,95,502,121" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_combinedUncertainty" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" coords="224,553,407,582" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_meanError" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" coords="224,644,345,673" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" coords="195,49,490,75" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredLinearValueType.tmp#MeasuredLinearValueType_linearUnit" href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType_linearUnit" coords="208,863,323,892" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredLinearValueType.tmp#MeasuredLinearValueType" href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" coords="179,3,395,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredLinearValueType')">MeasuredLinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredDecimalType')">MeasuredDecimalType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredLinearValueType')">MeasuredLinearValueType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ToroidalSegmentFeatureMeasurementType_MinorDiameter" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ToroidalSegmentFeatureMeasurementType_MinorDiameter');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ToroidalSegmentFeatureMeasurementType_MinorDiameter" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ToroidalSegmentFeatureMeasurementType_MinorDiameter" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ToroidalSegmentFeatureMeasurementType_MinorDiameter');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ToroidalSegmentFeatureMeasurementType_MinorDiameter" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component combinedUncertainty')">combinedUncertainty</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional combinedUncertainty attribute is a value expressing the combined uncertainty assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the unit used by LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component meanError')">meanError</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional meanError attribute is a value expressing the mean error assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ToroidalSegmentFeatureMeasurementType_MinorDiameter" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ToroidalSegmentFeatureMeasurementType_MinorDiameter');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ToroidalSegmentFeatureMeasurementType_MinorDiameter" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MinorDiameter"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredLinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional MinorDiameter element is the measured minor diameter of the toroidal segment based on the substitute feature data fitting algorithm setting.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ToroidalSegmentFeatureMeasurementType_MajorDiameter"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentFeatureMeasurementType')">ToroidalSegmentFeatureMeasurementType</a></b> / MajorDiameter</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ToroidalSegmentFeatureMeasurementType_MajorDiameter" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ToroidalSegmentFeatureMeasurementType_MajorDiameter');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ToroidalSegmentFeatureMeasurementType_MajorDiameter" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional MajorDiameter element is the measured major diameter of the toroidal segment based on the substitute feature data fitting algorithm setting.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ToroidalSegmentFeatureMeasurementType_MajorDiameter" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ToroidalSegmentFeatureMeasurementType_MajorDiameter');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ToroidalSegmentFeatureMeasurementType_MajorDiameter" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_MajorDiameter_5.jpeg" usemap="#Features_xsd_Element_MajorDiameter_5" /><map name="Features_xsd_Element_MajorDiameter_5" id="Features_xsd_Element_MajorDiameter_5">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="240,275,386,304" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="240,350,402,379" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="211,95,502,121" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_combinedUncertainty" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" coords="224,553,407,582" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_meanError" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" coords="224,644,345,673" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" coords="195,49,490,75" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredLinearValueType.tmp#MeasuredLinearValueType_linearUnit" href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType_linearUnit" coords="208,863,323,892" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredLinearValueType.tmp#MeasuredLinearValueType" href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" coords="179,3,395,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredLinearValueType')">MeasuredLinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredDecimalType')">MeasuredDecimalType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredLinearValueType')">MeasuredLinearValueType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ToroidalSegmentFeatureMeasurementType_MajorDiameter" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ToroidalSegmentFeatureMeasurementType_MajorDiameter');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ToroidalSegmentFeatureMeasurementType_MajorDiameter" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ToroidalSegmentFeatureMeasurementType_MajorDiameter" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ToroidalSegmentFeatureMeasurementType_MajorDiameter');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ToroidalSegmentFeatureMeasurementType_MajorDiameter" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component combinedUncertainty')">combinedUncertainty</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional combinedUncertainty attribute is a value expressing the combined uncertainty assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the unit used by LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component meanError')">meanError</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional meanError attribute is a value expressing the mean error assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ToroidalSegmentFeatureMeasurementType_MajorDiameter" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ToroidalSegmentFeatureMeasurementType_MajorDiameter');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ToroidalSegmentFeatureMeasurementType_MajorDiameter" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MajorDiameter"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredLinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional MajorDiameter element is the measured major diameter of the toroidal segment based on the substitute feature data fitting algorithm setting.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentFeatureMeasurementType')">ToroidalSegmentFeatureMeasurementType</a></b> / LatitudeLongitudeSweepMeasurementRange</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional LatitudeLongitudeSweepMeasurementRange element gives the range over which the sweep was actually measured for a toroidal segment with angular sweep in two directions analogous to terrestrial latitude and longitude.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_LatitudeLongitudeSweepMeasurementRange_2.jpeg" usemap="#Features_xsd_Element_LatitudeLongitudeSweepMeasurementRange_2" /><map name="Features_xsd_Element_LatitudeLongitudeSweepMeasurementRange_2" id="Features_xsd_Element_LatitudeLongitudeSweepMeasurementRange_2">
+                                 <area alt="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.tmp#LatitudeLongitudeSweepType_DirMeridianPrime" href="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.html#LatitudeLongitudeSweepType_DirMeridianPrime" coords="466,92,603,121" />
+                                 <area alt="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.tmp#LatitudeLongitudeSweepType_DomainLatitude" href="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.html#LatitudeLongitudeSweepType_DomainLatitude" coords="466,183,594,212" />
+                                 <area alt="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.tmp#LatitudeLongitudeSweepType_DomainLongitude" href="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.html#LatitudeLongitudeSweepType_DomainLongitude" coords="466,290,604,319" />
+                                 <area alt="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.tmp#LatitudeLongitudeSweepType" href="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.html#LatitudeLongitudeSweepType" coords="368,49,700,75" />
+                                 <area alt="Primitives_xsd_Complex_Type_OrientedLatitudeLongitudeSweepType.tmp#OrientedLatitudeLongitudeSweepType_DirNorthPole" href="Primitives_xsd_Complex_Type_OrientedLatitudeLongitudeSweepType.html#OrientedLatitudeLongitudeSweepType_DirNorthPole" coords="450,460,561,489" />
+                                 <area alt="Primitives_xsd_Complex_Type_OrientedLatitudeLongitudeSweepType.tmp#OrientedLatitudeLongitudeSweepType" href="Primitives_xsd_Complex_Type_OrientedLatitudeLongitudeSweepType.html#OrientedLatitudeLongitudeSweepType" coords="352,3,633,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_OrientedLatitudeLongitudeSweepType.html#OrientedLatitudeLongitudeSweepType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OrientedLatitudeLongitudeSweepType')">OrientedLatitudeLongitudeSweepType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.html#LatitudeLongitudeSweepType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LatitudeLongitudeSweepType')">LatitudeLongitudeSweepType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Complex_Type_OrientedLatitudeLongitudeSweepType.html#OrientedLatitudeLongitudeSweepType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OrientedLatitudeLongitudeSweepType')">OrientedLatitudeLongitudeSweepType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.html#LatitudeLongitudeSweepType_DirMeridianPrime" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DirMeridianPrime')">DirMeridianPrime</a></b>, <b><a href="Primitives_xsd_Complex_Type_OrientedLatitudeLongitudeSweepType.html#OrientedLatitudeLongitudeSweepType_DirNorthPole" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DirNorthPole')">DirNorthPole</a></b>, <b><a href="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.html#LatitudeLongitudeSweepType_DomainLatitude" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DomainLatitude')">DomainLatitude</a></b>, <b><a href="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.html#LatitudeLongitudeSweepType_DomainLongitude" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DomainLongitude')">DomainLongitude</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;LatitudeLongitudeSweepMeasurementRange</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DirMeridianPrime</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">validity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">ySignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zValidity=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/DirMeridianPrime&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DomainLatitude</span><span class="tT"> </span><span class="tAN">angularUnit=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/DomainLatitude&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DomainLongitude</span><span class="tT"> </span><span class="tAN">angularUnit=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/DomainLongitude&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DirNorthPole</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">validity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">ySignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zValidity=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/DirNorthPole&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/LatitudeLongitudeSweepMeasurementRange&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"LatitudeLongitudeSweepMeasurementRange"</span><span class="tAN"> type=</span><span class="tAV">"OrientedLatitudeLongitudeSweepType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional LatitudeLongitudeSweepMeasurementRange element gives the range over which the sweep was actually measured for a toroidal segment with angular sweep in two directions analogous to terrestrial latitude and longitude.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentFeatureMeasurementType')">ToroidalSegmentFeatureMeasurementType</a></b> / LatitudeLongitudeSweepFull</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional LatitudeLongitudeSweepFull element gives the measured extent of a toroidal segment with angular sweep in two directions analogous to terrestrial latitude and longitude. This is intended for use when it has been possible to measure the start and end of the sweep in both directions.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_LatitudeLongitudeSweepFull_2.jpeg" usemap="#Features_xsd_Element_LatitudeLongitudeSweepFull_2" /><map name="Features_xsd_Element_LatitudeLongitudeSweepFull_2" id="Features_xsd_Element_LatitudeLongitudeSweepFull_2">
+                                 <area alt="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.tmp#LatitudeLongitudeSweepType_DirMeridianPrime" href="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.html#LatitudeLongitudeSweepType_DirMeridianPrime" coords="371,92,508,121" />
+                                 <area alt="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.tmp#LatitudeLongitudeSweepType_DomainLatitude" href="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.html#LatitudeLongitudeSweepType_DomainLatitude" coords="371,183,499,212" />
+                                 <area alt="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.tmp#LatitudeLongitudeSweepType_DomainLongitude" href="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.html#LatitudeLongitudeSweepType_DomainLongitude" coords="371,290,509,319" />
+                                 <area alt="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.tmp#LatitudeLongitudeSweepType" href="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.html#LatitudeLongitudeSweepType" coords="273,49,605,75" />
+                                 <area alt="Primitives_xsd_Complex_Type_OrientedLatitudeLongitudeSweepType.tmp#OrientedLatitudeLongitudeSweepType_DirNorthPole" href="Primitives_xsd_Complex_Type_OrientedLatitudeLongitudeSweepType.html#OrientedLatitudeLongitudeSweepType_DirNorthPole" coords="355,460,466,489" />
+                                 <area alt="Primitives_xsd_Complex_Type_OrientedLatitudeLongitudeSweepType.tmp#OrientedLatitudeLongitudeSweepType" href="Primitives_xsd_Complex_Type_OrientedLatitudeLongitudeSweepType.html#OrientedLatitudeLongitudeSweepType" coords="257,3,538,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_OrientedLatitudeLongitudeSweepType.html#OrientedLatitudeLongitudeSweepType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OrientedLatitudeLongitudeSweepType')">OrientedLatitudeLongitudeSweepType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.html#LatitudeLongitudeSweepType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LatitudeLongitudeSweepType')">LatitudeLongitudeSweepType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Complex_Type_OrientedLatitudeLongitudeSweepType.html#OrientedLatitudeLongitudeSweepType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OrientedLatitudeLongitudeSweepType')">OrientedLatitudeLongitudeSweepType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.html#LatitudeLongitudeSweepType_DirMeridianPrime" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DirMeridianPrime')">DirMeridianPrime</a></b>, <b><a href="Primitives_xsd_Complex_Type_OrientedLatitudeLongitudeSweepType.html#OrientedLatitudeLongitudeSweepType_DirNorthPole" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DirNorthPole')">DirNorthPole</a></b>, <b><a href="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.html#LatitudeLongitudeSweepType_DomainLatitude" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DomainLatitude')">DomainLatitude</a></b>, <b><a href="Primitives_xsd_Complex_Type_LatitudeLongitudeSweepType.html#LatitudeLongitudeSweepType_DomainLongitude" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DomainLongitude')">DomainLongitude</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;LatitudeLongitudeSweepFull</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DirMeridianPrime</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">validity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">ySignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zValidity=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/DirMeridianPrime&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DomainLatitude</span><span class="tT"> </span><span class="tAN">angularUnit=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/DomainLatitude&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DomainLongitude</span><span class="tT"> </span><span class="tAN">angularUnit=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/DomainLongitude&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DirNorthPole</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">validity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">ySignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zValidity=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/DirNorthPole&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/LatitudeLongitudeSweepFull&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"LatitudeLongitudeSweepFull"</span><span class="tAN"> type=</span><span class="tAV">"OrientedLatitudeLongitudeSweepType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional LatitudeLongitudeSweepFull element gives the measured extent of a toroidal segment with angular sweep in two directions analogous to terrestrial latitude and longitude. This is intended for use when it has been possible to measure the start and end of the sweep in both directions.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ToroidalSegmentFeatureMeasurementType_Form"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentFeatureMeasurementType')">ToroidalSegmentFeatureMeasurementType</a></b> / Form</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ToroidalSegmentFeatureMeasurementType_Form" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ToroidalSegmentFeatureMeasurementType_Form');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ToroidalSegmentFeatureMeasurementType_Form" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Form element is the form error (toroidicity) of the toroidal segment from a report or an analysis.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ToroidalSegmentFeatureMeasurementType_Form" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ToroidalSegmentFeatureMeasurementType_Form');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ToroidalSegmentFeatureMeasurementType_Form" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Form_22.jpeg" usemap="#Features_xsd_Element_Form_22" /><map name="Features_xsd_Element_Form_22" id="Features_xsd_Element_Form_22">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="186,275,332,304" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="186,350,348,379" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="157,95,448,121" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_combinedUncertainty" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" coords="170,553,353,582" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_meanError" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" coords="170,644,291,673" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" coords="141,49,436,75" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredLinearValueType.tmp#MeasuredLinearValueType_linearUnit" href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType_linearUnit" coords="154,863,269,892" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredLinearValueType.tmp#MeasuredLinearValueType" href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" coords="125,3,341,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredLinearValueType')">MeasuredLinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredDecimalType')">MeasuredDecimalType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredLinearValueType')">MeasuredLinearValueType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ToroidalSegmentFeatureMeasurementType_Form" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ToroidalSegmentFeatureMeasurementType_Form');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ToroidalSegmentFeatureMeasurementType_Form" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ToroidalSegmentFeatureMeasurementType_Form" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ToroidalSegmentFeatureMeasurementType_Form');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ToroidalSegmentFeatureMeasurementType_Form" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component combinedUncertainty')">combinedUncertainty</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional combinedUncertainty attribute is a value expressing the combined uncertainty assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the unit used by LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component meanError')">meanError</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional meanError attribute is a value expressing the mean error assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ToroidalSegmentFeatureMeasurementType_Form" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ToroidalSegmentFeatureMeasurementType_Form');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ToroidalSegmentFeatureMeasurementType_Form" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Form"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredLinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Form element is the form error (toroidicity) of the toroidal segment from a report or an analysis.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ToroidalSegmentFeatureMeasurementType"></a><div class="componentTitle">Complex Type <span class="qname">ToroidalSegmentFeatureMeasurementType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ToroidalSegmentFeatureMeasurementType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ToroidalSegmentFeatureMeasurementType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ToroidalSegmentFeatureMeasurementType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The ToroidalSegmentFeatureMeasurementType defines the toroidal segment feature measurement information for an individual toroidal segment feature.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ToroidalSegmentFeatureMeasurementType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ToroidalSegmentFeatureMeasurementType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ToroidalSegmentFeatureMeasurementType" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.jpeg" usemap="#Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType" /><map name="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType" id="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType">
+                                 <area alt="Features_xsd_Complex_Type_FeatureBaseType.tmp#FeatureBaseType_id" href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType_id" coords="450,228,531,257" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="519,332,613,361" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureBaseType.tmp#FeatureBaseType" href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType" coords="421,141,686,167" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureMeasurementBaseType.tmp#FeatureMeasurementBaseType_FeatureItemId" href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType_FeatureItemId" coords="503,498,620,527" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureMeasurementBaseType.tmp#FeatureMeasurementBaseType_FeatureName" href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType_FeatureName" coords="503,605,619,634" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureMeasurementBaseType.tmp#FeatureMeasurementBaseType_TimeStamp" href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType_TimeStamp" coords="503,712,607,741" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureMeasurementBaseType.tmp#FeatureMeasurementBaseType_ActualComponentId" href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType_ActualComponentId" coords="503,803,654,832" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureMeasurementBaseType.tmp#FeatureMeasurementBaseType_ManufacturingProcessId" href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType_ManufacturingProcessId" coords="503,894,680,923" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureMeasurementBaseType.tmp#FeatureMeasurementBaseType_MeasurementDeviceIds" href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType_MeasurementDeviceIds" coords="503,985,675,1014" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureMeasurementBaseType.tmp#FeatureMeasurementBaseType_ActualTransformId" href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType_ActualTransformId" coords="503,1092,645,1121" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureMeasurementBaseType.tmp#FeatureMeasurementBaseType_NotedEventIds" href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType_NotedEventIds" coords="503,1199,624,1228" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureMeasurementBaseType.tmp#FeatureMeasurementBaseType" href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType" coords="405,95,749,121" />
+                                 <area alt="Features_xsd_Complex_Type_ShapeFeatureMeasurementBaseType.tmp#ShapeFeatureMeasurementBaseType_PointList" href="Features_xsd_Complex_Type_ShapeFeatureMeasurementBaseType.html#ShapeFeatureMeasurementBaseType_PointList" coords="487,1365,576,1394" />
+                                 <area alt="Features_xsd_Complex_Type_ShapeFeatureMeasurementBaseType.tmp#ShapeFeatureMeasurementBaseType_SubstituteFeatureAlgorithm" href="Features_xsd_Complex_Type_ShapeFeatureMeasurementBaseType.html#ShapeFeatureMeasurementBaseType_SubstituteFeatureAlgorithm" coords="487,1456,683,1485" />
+                                 <area alt="Features_xsd_Complex_Type_ShapeFeatureMeasurementBaseType.tmp#ShapeFeatureMeasurementBaseType_ProxyMeasurementId" href="Features_xsd_Complex_Type_ShapeFeatureMeasurementBaseType.html#ShapeFeatureMeasurementBaseType_ProxyMeasurementId" coords="487,1547,648,1576" />
+                                 <area alt="Features_xsd_Complex_Type_ShapeFeatureMeasurementBaseType.tmp#ShapeFeatureMeasurementBaseType" href="Features_xsd_Complex_Type_ShapeFeatureMeasurementBaseType.html#ShapeFeatureMeasurementBaseType" coords="389,49,770,75" />
+                                 <area alt="Features_xsd_Complex_Type_SurfaceFeatureMeasurementBaseType.tmp#SurfaceFeatureMeasurementBaseType" href="Features_xsd_Complex_Type_SurfaceFeatureMeasurementBaseType.html#SurfaceFeatureMeasurementBaseType" coords="373,3,761,29" />
+                                 <area alt="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.tmp#ToroidalSegmentFeatureMeasurementType_Location" href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType_Location" coords="455,1756,542,1785" />
+                                 <area alt="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.tmp#ToroidalSegmentFeatureMeasurementType_AxisVector" href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType_AxisVector" coords="455,1847,557,1876" />
+                                 <area alt="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.tmp#ToroidalSegmentFeatureMeasurementType_MinorDiameter" href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType_MinorDiameter" coords="455,1938,577,1967" />
+                                 <area alt="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.tmp#ToroidalSegmentFeatureMeasurementType_MajorDiameter" href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType_MajorDiameter" coords="455,2045,577,2074" />
+                                 <area alt="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.tmp#ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange" href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange" coords="455,2152,750,2181" />
+                                 <area alt="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.tmp#ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull" href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull" coords="455,2243,655,2272" />
+                                 <area alt="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.tmp#ToroidalSegmentFeatureMeasurementType_Form" href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType_Form" coords="455,2334,523,2363" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="Features_xsd_Complex_Type_SurfaceFeatureMeasurementBaseType.html#SurfaceFeatureMeasurementBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceFeatureMeasurementBaseType')">SurfaceFeatureMeasurementBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureBaseType')">FeatureBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureMeasurementBaseType')">FeatureMeasurementBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Features_xsd_Complex_Type_ShapeFeatureMeasurementBaseType.html#ShapeFeatureMeasurementBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ShapeFeatureMeasurementBaseType')">ShapeFeatureMeasurementBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Features_xsd_Complex_Type_SurfaceFeatureMeasurementBaseType.html#SurfaceFeatureMeasurementBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceFeatureMeasurementBaseType')">SurfaceFeatureMeasurementBaseType</a></b><ul class="internal">
+                                                      <li class="internal"><b><a href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentFeatureMeasurementType')">ToroidalSegmentFeatureMeasurementType</a></b></li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_ToroidalSegmentFeatureMeasurementType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ToroidalSegmentFeatureMeasurementType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_ToroidalSegmentFeatureMeasurementType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Features_xsd_Element_ToroidalSegmentFeatureMeasurement.html#ToroidalSegmentFeatureMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentFeatureMeasurement')">ToroidalSegmentFeatureMeasurement</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType_ActualComponentId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ActualComponentId')">ActualComponentId</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType_ActualTransformId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ActualTransformId')">ActualTransformId</a></b>, <b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType_AxisVector" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AxisVector')">AxisVector</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType_FeatureItemId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureItemId')">FeatureItemId</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType_FeatureName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureName')">FeatureName</a></b>, <b><a href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType_Form" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Form')">Form</a></b>, <b><a href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepFull" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LatitudeLongitudeSweepFull')">LatitudeLongitudeSweepFull</a></b>, <b><a href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType_LatitudeLongitudeSweepMeasurementRange" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LatitudeLongitudeSweepMeasurementRange')">LatitudeLongitudeSweepMeasurementRange</a></b>, <b><a href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType_Location" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Location')">Location</a></b>, <b><a href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType_MajorDiameter" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MajorDiameter')">MajorDiameter</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType_ManufacturingProcessId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ManufacturingProcessId')">ManufacturingProcessId</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType_MeasurementDeviceIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementDeviceIds')">MeasurementDeviceIds</a></b>, <b><a href="Features_xsd_Complex_Type_ToroidalSegmentFeatureMeasurementType.html#ToroidalSegmentFeatureMeasurementType_MinorDiameter" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MinorDiameter')">MinorDiameter</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType_NotedEventIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NotedEventIds')">NotedEventIds</a></b>, <b><a href="Features_xsd_Complex_Type_ShapeFeatureMeasurementBaseType.html#ShapeFeatureMeasurementBaseType_PointList" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointList')">PointList</a></b>, <b><a href="Features_xsd_Complex_Type_ShapeFeatureMeasurementBaseType.html#ShapeFeatureMeasurementBaseType_ProxyMeasurementId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProxyMeasurementId')">ProxyMeasurementId</a></b>, <b><a href="Features_xsd_Complex_Type_ShapeFeatureMeasurementBaseType.html#ShapeFeatureMeasurementBaseType_SubstituteFeatureAlgorithm" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SubstituteFeatureAlgorithm')">SubstituteFeatureAlgorithm</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureMeasurementBaseType.html#FeatureMeasurementBaseType_TimeStamp" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeStamp')">TimeStamp</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ToroidalSegmentFeatureMeasurementType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ToroidalSegmentFeatureMeasurementType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ToroidalSegmentFeatureMeasurementType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the feature, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ToroidalSegmentFeatureMeasurementType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ToroidalSegmentFeatureMeasurementType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ToroidalSegmentFeatureMeasurementType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ToroidalSegmentFeatureMeasurementType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ToroidalSegmentFeatureMeasurementType defines the toroidal segment feature measurement information for an individual toroidal segment feature.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"SurfaceFeatureMeasurementBaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Location"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredPointType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Location element is the measured center of the toroidal segment.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"AxisVector"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredUnitVectorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional AxisVector element is the measured unit axis vector of the toroidal segment.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MinorDiameter"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredLinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional MinorDiameter element is the measured minor diameter of the toroidal segment based on the substitute feature data fitting algorithm setting.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MajorDiameter"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredLinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional MajorDiameter element is the measured major diameter of the toroidal segment based on the substitute feature data fitting algorithm setting.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"LatitudeLongitudeSweepMeasurementRange"</span><span class="tAN"> type=</span><span class="tAV">"OrientedLatitudeLongitudeSweepType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional LatitudeLongitudeSweepMeasurementRange element gives the range over which the sweep was actually measured for a toroidal segment with angular sweep in two directions analogous to terrestrial latitude and longitude.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"LatitudeLongitudeSweepFull"</span><span class="tAN"> type=</span><span class="tAV">"OrientedLatitudeLongitudeSweepType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional LatitudeLongitudeSweepFull element gives the measured extent of a toroidal segment with angular sweep in two directions analogous to terrestrial latitude and longitude. This is intended for use when it has been possible to measure the start and end of the sweep in both directions.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Form"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredLinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Form element is the form error (toroidicity) of the toroidal segment from a report or an analysis.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

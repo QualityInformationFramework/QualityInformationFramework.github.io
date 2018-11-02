@@ -1,0 +1,1376 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Name</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_FeatureNominalBaseType_Name', 
+				'properties_FeatureNominalBaseType_UUID', 
+				'properties_FeatureNominalBaseType_FeatureDefinitionId', 
+				'properties_FeatureNominalBaseType_ParentFeatureNominalId', 
+				'properties_FeatureNominalBaseType_EntityInternalIds', 
+				'properties_FeatureNominalBaseType_EntityExternalIds', 
+				'properties_FeatureNominalBaseType');
+var facetsBoxes= new Array('facets_FeatureNominalBaseType_UUID');
+var usedByBoxes= new Array('usedBy_FeatureNominalBaseType');
+var sourceBoxes= new Array('source_FeatureNominalBaseType_Name', 
+				'source_FeatureNominalBaseType_UUID', 
+				'source_FeatureNominalBaseType_FeatureDefinitionId', 
+				'source_FeatureNominalBaseType_ParentFeatureNominalId', 
+				'source_FeatureNominalBaseType_EntityInternalIds', 
+				'source_FeatureNominalBaseType_EntityExternalIds', 
+				'source_FeatureNominalBaseType');
+var instanceBoxes= new Array('instance_FeatureNominalBaseType_EntityInternalIds', 
+				'instance_FeatureNominalBaseType_EntityExternalIds');
+var diagramBoxes= new Array('diagram_FeatureNominalBaseType_Name', 
+				'diagram_FeatureNominalBaseType_UUID', 
+				'diagram_FeatureNominalBaseType_FeatureDefinitionId', 
+				'diagram_FeatureNominalBaseType_ParentFeatureNominalId', 
+				'diagram_FeatureNominalBaseType_EntityInternalIds', 
+				'diagram_FeatureNominalBaseType_EntityExternalIds', 
+				'diagram_FeatureNominalBaseType');
+var annotationBoxes= new Array('annotations_FeatureNominalBaseType_Name', 
+				'annotations_FeatureNominalBaseType_UUID', 
+				'annotations_FeatureNominalBaseType_FeatureDefinitionId', 
+				'annotations_FeatureNominalBaseType_ParentFeatureNominalId', 
+				'annotations_FeatureNominalBaseType_EntityInternalIds', 
+				'annotations_FeatureNominalBaseType_EntityExternalIds', 
+				'annotations_FeatureNominalBaseType');
+var attributesBoxes= new Array('attributes_FeatureNominalBaseType_FeatureDefinitionId', 
+				'attributes_FeatureNominalBaseType_ParentFeatureNominalId', 
+				'attributes_FeatureNominalBaseType_EntityInternalIds', 
+				'attributes_FeatureNominalBaseType_EntityExternalIds', 
+				'attributes_FeatureNominalBaseType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="FeatureNominalBaseType_Name"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureNominalBaseType')">FeatureNominalBaseType</a></b> / Name</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_FeatureNominalBaseType_Name" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_FeatureNominalBaseType_Name');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_FeatureNominalBaseType_Name" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Name element is the name of the feature nominal.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_FeatureNominalBaseType_Name" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_FeatureNominalBaseType_Name');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_FeatureNominalBaseType_Name" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Name.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:token</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_FeatureNominalBaseType_Name" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_FeatureNominalBaseType_Name');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_FeatureNominalBaseType_Name" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_FeatureNominalBaseType_Name" type="image" src="img/btM.gif" value="-" onclick="switchState('source_FeatureNominalBaseType_Name');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_FeatureNominalBaseType_Name" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Name"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Name element is the name of the feature nominal.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="FeatureNominalBaseType_UUID"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureNominalBaseType')">FeatureNominalBaseType</a></b> / UUID</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_FeatureNominalBaseType_UUID" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_FeatureNominalBaseType_UUID');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_FeatureNominalBaseType_UUID" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional UUID element is a persistent identifier for the shape feature nominal. If used, it should be generated using a widely accepted UUID generator.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_FeatureNominalBaseType_UUID" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_FeatureNominalBaseType_UUID');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_FeatureNominalBaseType_UUID" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_UUID.jpeg" usemap="#Features_xsd_Element_UUID" /><map name="Features_xsd_Element_UUID" id="Features_xsd_Element_UUID">
+                                 <area alt="Primitives_xsd_Simple_Type_QPIdType.tmp#QPIdType" href="Primitives_xsd_Simple_Type_QPIdType.html#QPIdType" coords="122,0,247,31" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Simple_Type_QPIdType.html#QPIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QPIdType')">QPIdType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_FeatureNominalBaseType_UUID" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_FeatureNominalBaseType_UUID');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_FeatureNominalBaseType_UUID" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_FeatureNominalBaseType_UUID" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_FeatureNominalBaseType_UUID');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_FeatureNominalBaseType_UUID" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">pattern</td>
+                                    <td width="30%"><b>[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_FeatureNominalBaseType_UUID" type="image" src="img/btM.gif" value="-" onclick="switchState('source_FeatureNominalBaseType_UUID');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_FeatureNominalBaseType_UUID" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"UUID"</span><span class="tAN"> type=</span><span class="tAV">"QPIdType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional UUID element is a persistent identifier for the shape feature nominal. If used, it should be generated using a widely accepted UUID generator.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="FeatureNominalBaseType_FeatureDefinitionId"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureNominalBaseType')">FeatureNominalBaseType</a></b> / FeatureDefinitionId</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_FeatureNominalBaseType_FeatureDefinitionId" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_FeatureNominalBaseType_FeatureDefinitionId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_FeatureNominalBaseType_FeatureDefinitionId" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The FeatureDefinitionId element is the QIF id of the associated feature definition.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_FeatureNominalBaseType_FeatureDefinitionId" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_FeatureNominalBaseType_FeatureDefinitionId');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_FeatureNominalBaseType_FeatureDefinitionId" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_FeatureDefinitionId.jpeg" usemap="#Features_xsd_Element_FeatureDefinitionId" /><map name="Features_xsd_Element_FeatureDefinitionId" id="Features_xsd_Element_FeatureDefinitionId">
+                                 <area alt="Primitives_xsd_Simple_Type_QIFReferenceBaseType.tmp#QIFReferenceBaseType" href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" coords="215,46,420,77" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType_xId" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" coords="231,183,312,212" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" coords="202,3,372,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceBaseType')">QIFReferenceBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_FeatureNominalBaseType_FeatureDefinitionId" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_FeatureNominalBaseType_FeatureDefinitionId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_FeatureNominalBaseType_FeatureDefinitionId" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_FeatureNominalBaseType_FeatureDefinitionId" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_FeatureNominalBaseType_FeatureDefinitionId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_FeatureNominalBaseType_FeatureDefinitionId" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xId')">xId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional xId attribute is a reference to the id of a QIF object in an external document. A QIF object in an external QIF document can be referenced by using references to two QIF ids: the id of the external document reference of type ExternalQIFDocumentReferenceType found in the local document and the id of the object found in the external document.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_FeatureNominalBaseType_FeatureDefinitionId" type="image" src="img/btM.gif" value="-" onclick="switchState('source_FeatureNominalBaseType_FeatureDefinitionId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_FeatureNominalBaseType_FeatureDefinitionId" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FeatureDefinitionId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FeatureDefinitionId element is the QIF id of the associated feature definition.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="FeatureNominalBaseType_ParentFeatureNominalId"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureNominalBaseType')">FeatureNominalBaseType</a></b> / ParentFeatureNominalId</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_FeatureNominalBaseType_ParentFeatureNominalId" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_FeatureNominalBaseType_ParentFeatureNominalId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_FeatureNominalBaseType_ParentFeatureNominalId" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional ParentFeatureNominalId element is the QIF id of the parent feature nominal when this feature item is derived from another feature nominal.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_FeatureNominalBaseType_ParentFeatureNominalId" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_FeatureNominalBaseType_ParentFeatureNominalId');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_FeatureNominalBaseType_ParentFeatureNominalId" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_ParentFeatureNominalId.jpeg" usemap="#Features_xsd_Element_ParentFeatureNominalId" /><map name="Features_xsd_Element_ParentFeatureNominalId" id="Features_xsd_Element_ParentFeatureNominalId">
+                                 <area alt="Primitives_xsd_Simple_Type_QIFReferenceBaseType.tmp#QIFReferenceBaseType" href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" coords="247,46,452,77" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType_xId" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" coords="263,183,344,212" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" coords="234,3,404,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceBaseType')">QIFReferenceBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_FeatureNominalBaseType_ParentFeatureNominalId" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_FeatureNominalBaseType_ParentFeatureNominalId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_FeatureNominalBaseType_ParentFeatureNominalId" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_FeatureNominalBaseType_ParentFeatureNominalId" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_FeatureNominalBaseType_ParentFeatureNominalId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_FeatureNominalBaseType_ParentFeatureNominalId" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xId')">xId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional xId attribute is a reference to the id of a QIF object in an external document. A QIF object in an external QIF document can be referenced by using references to two QIF ids: the id of the external document reference of type ExternalQIFDocumentReferenceType found in the local document and the id of the object found in the external document.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_FeatureNominalBaseType_ParentFeatureNominalId" type="image" src="img/btM.gif" value="-" onclick="switchState('source_FeatureNominalBaseType_ParentFeatureNominalId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_FeatureNominalBaseType_ParentFeatureNominalId" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ParentFeatureNominalId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ParentFeatureNominalId element is the QIF id of the parent feature nominal when this feature item is derived from another feature nominal.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="FeatureNominalBaseType_EntityInternalIds"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureNominalBaseType')">FeatureNominalBaseType</a></b> / EntityInternalIds</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_FeatureNominalBaseType_EntityInternalIds" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_FeatureNominalBaseType_EntityInternalIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_FeatureNominalBaseType_EntityInternalIds" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The EntityInternalIds element is a list of the QIF ids of internally-defined CAD entities associated with this feature nominal.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_FeatureNominalBaseType_EntityInternalIds" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_FeatureNominalBaseType_EntityInternalIds');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_FeatureNominalBaseType_EntityInternalIds" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_EntityInternalIds.jpeg" usemap="#Features_xsd_Element_EntityInternalIds" /><map name="Features_xsd_Element_EntityInternalIds" id="Features_xsd_Element_EntityInternalIds">
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceFullType.tmp#ArrayReferenceFullType_n" href="Primitives_xsd_Complex_Type_ArrayReferenceFullType.html#ArrayReferenceFullType_n" coords="217,90,298,119" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceFullType.tmp#ArrayReferenceFullType_Id" href="Primitives_xsd_Complex_Type_ArrayReferenceFullType.html#ArrayReferenceFullType_Id" coords="311,194,369,223" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceFullType.tmp#ArrayReferenceFullType" href="Primitives_xsd_Complex_Type_ArrayReferenceFullType.html#ArrayReferenceFullType" coords="188,3,389,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceFullType.html#ArrayReferenceFullType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayReferenceFullType')">ArrayReferenceFullType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_FeatureNominalBaseType_EntityInternalIds" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_FeatureNominalBaseType_EntityInternalIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_FeatureNominalBaseType_EntityInternalIds" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceFullType.html#ArrayReferenceFullType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_FeatureNominalBaseType_EntityInternalIds" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_FeatureNominalBaseType_EntityInternalIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_FeatureNominalBaseType_EntityInternalIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;EntityInternalIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">asmPathId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">asmPathXId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/EntityInternalIds&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_FeatureNominalBaseType_EntityInternalIds" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_FeatureNominalBaseType_EntityInternalIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_FeatureNominalBaseType_EntityInternalIds" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceFullType.html#ArrayReferenceFullType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of Id elements in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_FeatureNominalBaseType_EntityInternalIds" type="image" src="img/btM.gif" value="-" onclick="switchState('source_FeatureNominalBaseType_EntityInternalIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_FeatureNominalBaseType_EntityInternalIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"EntityInternalIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceFullType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The EntityInternalIds element is a list of the QIF ids of internally-defined CAD entities associated with this feature nominal.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="FeatureNominalBaseType_EntityExternalIds"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureNominalBaseType')">FeatureNominalBaseType</a></b> / EntityExternalIds</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_FeatureNominalBaseType_EntityExternalIds" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_FeatureNominalBaseType_EntityExternalIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_FeatureNominalBaseType_EntityExternalIds" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The EntityExternalIds element is a list of the QIF ids of instances of EntityExternalType associated with this feature nominal.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_FeatureNominalBaseType_EntityExternalIds" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_FeatureNominalBaseType_EntityExternalIds');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_FeatureNominalBaseType_EntityExternalIds" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_EntityExternalIds.jpeg" usemap="#Features_xsd_Element_EntityExternalIds" /><map name="Features_xsd_Element_EntityExternalIds" id="Features_xsd_Element_EntityExternalIds">
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceFullType.tmp#ArrayReferenceFullType_n" href="Primitives_xsd_Complex_Type_ArrayReferenceFullType.html#ArrayReferenceFullType_n" coords="223,90,304,119" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceFullType.tmp#ArrayReferenceFullType_Id" href="Primitives_xsd_Complex_Type_ArrayReferenceFullType.html#ArrayReferenceFullType_Id" coords="317,194,375,223" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceFullType.tmp#ArrayReferenceFullType" href="Primitives_xsd_Complex_Type_ArrayReferenceFullType.html#ArrayReferenceFullType" coords="194,3,395,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceFullType.html#ArrayReferenceFullType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayReferenceFullType')">ArrayReferenceFullType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_FeatureNominalBaseType_EntityExternalIds" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_FeatureNominalBaseType_EntityExternalIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_FeatureNominalBaseType_EntityExternalIds" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceFullType.html#ArrayReferenceFullType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_FeatureNominalBaseType_EntityExternalIds" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_FeatureNominalBaseType_EntityExternalIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_FeatureNominalBaseType_EntityExternalIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;EntityExternalIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">asmPathId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">asmPathXId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/EntityExternalIds&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_FeatureNominalBaseType_EntityExternalIds" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_FeatureNominalBaseType_EntityExternalIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_FeatureNominalBaseType_EntityExternalIds" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceFullType.html#ArrayReferenceFullType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of Id elements in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_FeatureNominalBaseType_EntityExternalIds" type="image" src="img/btM.gif" value="-" onclick="switchState('source_FeatureNominalBaseType_EntityExternalIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_FeatureNominalBaseType_EntityExternalIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"EntityExternalIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceFullType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The EntityExternalIds element is a list of the QIF ids of instances of EntityExternalType associated with this feature nominal.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="FeatureNominalBaseType"></a><div class="componentTitle">Complex Type <span class="qname">FeatureNominalBaseType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_FeatureNominalBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_FeatureNominalBaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_FeatureNominalBaseType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The FeatureNominalBaseType is the abstract base type for feature nominals. A feature nominal holds that portion of feature nominal information which cannot be shared among several features, e.g. feature location.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_FeatureNominalBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_FeatureNominalBaseType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_FeatureNominalBaseType" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Complex_Type_FeatureNominalBaseType.jpeg" usemap="#Features_xsd_Complex_Type_FeatureNominalBaseType" /><map name="Features_xsd_Complex_Type_FeatureNominalBaseType" id="Features_xsd_Complex_Type_FeatureNominalBaseType">
+                                 <area alt="Features_xsd_Complex_Type_FeatureBaseType.tmp#FeatureBaseType_id" href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType_id" coords="303,90,384,119" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="372,194,466,223" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureBaseType.tmp#FeatureBaseType" href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType" coords="274,3,539,29" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_Name" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_Name" coords="356,360,428,389" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_UUID" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_UUID" coords="356,451,424,480" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_FeatureDefinitionId" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_FeatureDefinitionId" coords="356,558,501,587" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_ParentFeatureNominalId" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_ParentFeatureNominalId" coords="356,649,533,678" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_EntityInternalIds" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_EntityInternalIds" coords="356,740,487,769" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_EntityExternalIds" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_EntityExternalIds" coords="356,847,493,876" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureBaseType')">FeatureBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureBaseType')">FeatureBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureNominalBaseType')">FeatureNominalBaseType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_FeatureNominalBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_FeatureNominalBaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_FeatureNominalBaseType" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">abstract</td>
+                                    <td><b>true</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_FeatureNominalBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_FeatureNominalBaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_FeatureNominalBaseType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Features_xsd_Element_FeatureNominal.html#FeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureNominal')">FeatureNominal</a></b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">Complex Types </td>
+                                    <td><b><a href="Features_xsd_Complex_Type_NonShapeFeatureNominalBaseType.html#NonShapeFeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonShapeFeatureNominalBaseType')">NonShapeFeatureNominalBaseType</a></b>, <b><a href="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.html#ShapeFeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ShapeFeatureNominalBaseType')">ShapeFeatureNominalBaseType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_EntityExternalIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EntityExternalIds')">EntityExternalIds</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_EntityInternalIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EntityInternalIds')">EntityInternalIds</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_FeatureDefinitionId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureDefinitionId')">FeatureDefinitionId</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_ParentFeatureNominalId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ParentFeatureNominalId')">ParentFeatureNominalId</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_UUID" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UUID')">UUID</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_FeatureNominalBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_FeatureNominalBaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_FeatureNominalBaseType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the feature, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_FeatureNominalBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_FeatureNominalBaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_FeatureNominalBaseType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"FeatureNominalBaseType"</span><span class="tAN"> abstract=</span><span class="tAV">"true"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FeatureNominalBaseType is the abstract base type for feature nominals. A feature nominal holds that portion of feature nominal information which cannot be shared among several features, e.g. feature location.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"FeatureBaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Name"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Name element is the name of the feature nominal.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"UUID"</span><span class="tAN"> type=</span><span class="tAV">"QPIdType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional UUID element is a persistent identifier for the shape feature nominal. If used, it should be generated using a widely accepted UUID generator.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FeatureDefinitionId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FeatureDefinitionId element is the QIF id of the associated feature definition.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ParentFeatureNominalId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ParentFeatureNominalId element is the QIF id of the parent feature nominal when this feature item is derived from another feature nominal.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"EntityInternalIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceFullType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The EntityInternalIds element is a list of the QIF ids of internally-defined CAD entities associated with this feature nominal.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"EntityExternalIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceFullType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The EntityExternalIds element is a list of the QIF ids of instances of EntityExternalType associated with this feature nominal.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

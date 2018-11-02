@@ -1,0 +1,1300 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component ObjectTemperature</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_EnvironmentType_ObjectTemperature', 
+				'properties_EnvironmentType_AmbientTemperature', 
+				'properties_EnvironmentType_RelativeHumidity', 
+				'properties_EnvironmentType_DateAndTime', 
+				'properties_EnvironmentType_TimeDescription');
+var usedByBoxes= new Array('usedBy_EnvironmentType');
+var sourceBoxes= new Array('source_EnvironmentType_ObjectTemperature', 
+				'source_EnvironmentType_AmbientTemperature', 
+				'source_EnvironmentType_RelativeHumidity', 
+				'source_EnvironmentType_DateAndTime', 
+				'source_EnvironmentType_TimeDescription', 
+				'source_EnvironmentType');
+var instanceBoxes= new Array('instance_EnvironmentType_TimeDescription');
+var diagramBoxes= new Array('diagram_EnvironmentType_ObjectTemperature', 
+				'diagram_EnvironmentType_AmbientTemperature', 
+				'diagram_EnvironmentType_RelativeHumidity', 
+				'diagram_EnvironmentType_DateAndTime', 
+				'diagram_EnvironmentType_TimeDescription', 
+				'diagram_EnvironmentType');
+var annotationBoxes= new Array('annotations_EnvironmentType_ObjectTemperature', 
+				'annotations_EnvironmentType_AmbientTemperature', 
+				'annotations_EnvironmentType_RelativeHumidity', 
+				'annotations_EnvironmentType_DateAndTime', 
+				'annotations_EnvironmentType_TimeDescription', 
+				'annotations_EnvironmentType');
+var attributesBoxes= new Array('attributes_EnvironmentType_ObjectTemperature', 
+				'attributes_EnvironmentType_AmbientTemperature', 
+				'attributes_EnvironmentType_RelativeHumidity');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="EnvironmentType_ObjectTemperature"></a><div class="componentTitle">Element <span class="qname"><b><a href="Traceability_xsd_Complex_Type_EnvironmentType.html#EnvironmentType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EnvironmentType')">EnvironmentType</a></b> / ObjectTemperature</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EnvironmentType_ObjectTemperature" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EnvironmentType_ObjectTemperature');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EnvironmentType_ObjectTemperature" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional ObjectTemperature element is the temperature of the product or feature to which an environment instance is attached.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_EnvironmentType_ObjectTemperature" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_EnvironmentType_ObjectTemperature');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_EnvironmentType_ObjectTemperature" style="display:block"><img alt="Diagram" border="0" src="img/Traceability_xsd_Element_ObjectTemperature.jpeg" usemap="#Traceability_xsd_Element_ObjectTemperature" /><map name="Traceability_xsd_Element_ObjectTemperature" id="Traceability_xsd_Element_ObjectTemperature">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="266,275,412,304" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="266,350,428,379" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="237,95,528,121" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_combinedUncertainty" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" coords="250,553,433,582" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_meanError" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" coords="250,644,371,673" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" coords="221,49,516,75" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredTemperatureValueType.tmp#MeasuredTemperatureValueType_temperatureUnit" href="Units_xsd_Complex_Type_MeasuredTemperatureValueType.html#MeasuredTemperatureValueType_temperatureUnit" coords="234,863,387,892" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredTemperatureValueType.tmp#MeasuredTemperatureValueType" href="Units_xsd_Complex_Type_MeasuredTemperatureValueType.html#MeasuredTemperatureValueType" coords="205,3,458,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_MeasuredTemperatureValueType.html#MeasuredTemperatureValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredTemperatureValueType')">MeasuredTemperatureValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredDecimalType')">MeasuredDecimalType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredTemperatureValueType.html#MeasuredTemperatureValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredTemperatureValueType')">MeasuredTemperatureValueType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_EnvironmentType_ObjectTemperature" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_EnvironmentType_ObjectTemperature');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_EnvironmentType_ObjectTemperature" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_EnvironmentType_ObjectTemperature" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_EnvironmentType_ObjectTemperature');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_EnvironmentType_ObjectTemperature" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component combinedUncertainty')">combinedUncertainty</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional combinedUncertainty attribute is a value expressing the combined uncertainty assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component meanError')">meanError</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional meanError attribute is a value expressing the mean error assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredTemperatureValueType.html#MeasuredTemperatureValueType_temperatureUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component temperatureUnit')">temperatureUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional temperatureUnit attribute defines the UnitName for the TemperatureValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EnvironmentType_ObjectTemperature" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EnvironmentType_ObjectTemperature');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EnvironmentType_ObjectTemperature" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ObjectTemperature"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredTemperatureValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ObjectTemperature element is the temperature of the product or feature to which an environment instance is attached.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Traceability.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="EnvironmentType_AmbientTemperature"></a><div class="componentTitle">Element <span class="qname"><b><a href="Traceability_xsd_Complex_Type_EnvironmentType.html#EnvironmentType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EnvironmentType')">EnvironmentType</a></b> / AmbientTemperature</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EnvironmentType_AmbientTemperature" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EnvironmentType_AmbientTemperature');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EnvironmentType_AmbientTemperature" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional AmbientTemperature element is the temperature of the air in the area in which the inspection is performed.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_EnvironmentType_AmbientTemperature" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_EnvironmentType_AmbientTemperature');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_EnvironmentType_AmbientTemperature" style="display:block"><img alt="Diagram" border="0" src="img/Traceability_xsd_Element_AmbientTemperature.jpeg" usemap="#Traceability_xsd_Element_AmbientTemperature" /><map name="Traceability_xsd_Element_AmbientTemperature" id="Traceability_xsd_Element_AmbientTemperature">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="276,275,422,304" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="276,350,438,379" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="247,95,538,121" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_combinedUncertainty" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" coords="260,553,443,582" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_meanError" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" coords="260,644,381,673" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" coords="231,49,526,75" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredTemperatureValueType.tmp#MeasuredTemperatureValueType_temperatureUnit" href="Units_xsd_Complex_Type_MeasuredTemperatureValueType.html#MeasuredTemperatureValueType_temperatureUnit" coords="244,863,397,892" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredTemperatureValueType.tmp#MeasuredTemperatureValueType" href="Units_xsd_Complex_Type_MeasuredTemperatureValueType.html#MeasuredTemperatureValueType" coords="215,3,468,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_MeasuredTemperatureValueType.html#MeasuredTemperatureValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredTemperatureValueType')">MeasuredTemperatureValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredDecimalType')">MeasuredDecimalType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredTemperatureValueType.html#MeasuredTemperatureValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredTemperatureValueType')">MeasuredTemperatureValueType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_EnvironmentType_AmbientTemperature" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_EnvironmentType_AmbientTemperature');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_EnvironmentType_AmbientTemperature" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_EnvironmentType_AmbientTemperature" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_EnvironmentType_AmbientTemperature');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_EnvironmentType_AmbientTemperature" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component combinedUncertainty')">combinedUncertainty</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional combinedUncertainty attribute is a value expressing the combined uncertainty assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component meanError')">meanError</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional meanError attribute is a value expressing the mean error assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredTemperatureValueType.html#MeasuredTemperatureValueType_temperatureUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component temperatureUnit')">temperatureUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional temperatureUnit attribute defines the UnitName for the TemperatureValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EnvironmentType_AmbientTemperature" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EnvironmentType_AmbientTemperature');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EnvironmentType_AmbientTemperature" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"AmbientTemperature"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredTemperatureValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional AmbientTemperature element is the temperature of the air in the area in which the inspection is performed.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Traceability.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="EnvironmentType_RelativeHumidity"></a><div class="componentTitle">Element <span class="qname"><b><a href="Traceability_xsd_Complex_Type_EnvironmentType.html#EnvironmentType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EnvironmentType')">EnvironmentType</a></b> / RelativeHumidity</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EnvironmentType_RelativeHumidity" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EnvironmentType_RelativeHumidity');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EnvironmentType_RelativeHumidity" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional RelativeHumidity element is the relative humidity of the air in the area in which the inspection is performed. The RelativeHumidity value must be between 0 and 100.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_EnvironmentType_RelativeHumidity" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_EnvironmentType_RelativeHumidity');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_EnvironmentType_RelativeHumidity" style="display:block"><img alt="Diagram" border="0" src="img/Traceability_xsd_Element_RelativeHumidity.jpeg" usemap="#Traceability_xsd_Element_RelativeHumidity" /><map name="Traceability_xsd_Element_RelativeHumidity" id="Traceability_xsd_Element_RelativeHumidity">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="236,229,382,258" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="236,304,398,333" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="207,49,498,75" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_combinedUncertainty" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" coords="220,507,403,536" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_meanError" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" coords="220,598,341,627" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" coords="191,3,386,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredDecimalType')">MeasuredDecimalType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredDecimalType')">MeasuredDecimalType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_EnvironmentType_RelativeHumidity" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_EnvironmentType_RelativeHumidity');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_EnvironmentType_RelativeHumidity" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_EnvironmentType_RelativeHumidity" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_EnvironmentType_RelativeHumidity');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_EnvironmentType_RelativeHumidity" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component combinedUncertainty')">combinedUncertainty</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional combinedUncertainty attribute is a value expressing the combined uncertainty assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component meanError')">meanError</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional meanError attribute is a value expressing the mean error assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EnvironmentType_RelativeHumidity" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EnvironmentType_RelativeHumidity');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EnvironmentType_RelativeHumidity" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"RelativeHumidity"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredDecimalType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional RelativeHumidity element is the relative humidity of the air in the area in which the inspection is performed. The RelativeHumidity value must be between 0 and 100.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Traceability.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="EnvironmentType_DateAndTime"></a><div class="componentTitle">Element <span class="qname"><b><a href="Traceability_xsd_Complex_Type_EnvironmentType.html#EnvironmentType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EnvironmentType')">EnvironmentType</a></b> / DateAndTime</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EnvironmentType_DateAndTime" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EnvironmentType_DateAndTime');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EnvironmentType_DateAndTime" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The DateAndTime element gives the date and time at which the environment data is recorded.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_EnvironmentType_DateAndTime" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_EnvironmentType_DateAndTime');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_EnvironmentType_DateAndTime" style="display:block"><img alt="Diagram" border="0" src="img/Traceability_xsd_Element_DateAndTime.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:dateTime</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_EnvironmentType_DateAndTime" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_EnvironmentType_DateAndTime');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_EnvironmentType_DateAndTime" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EnvironmentType_DateAndTime" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EnvironmentType_DateAndTime');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EnvironmentType_DateAndTime" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DateAndTime"</span><span class="tAN"> type=</span><span class="tAV">"xs:dateTime"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The DateAndTime element gives the date and time at which the environment data is recorded.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Traceability.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="EnvironmentType_TimeDescription"></a><div class="componentTitle">Element <span class="qname"><b><a href="Traceability_xsd_Complex_Type_EnvironmentType.html#EnvironmentType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EnvironmentType')">EnvironmentType</a></b> / TimeDescription</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EnvironmentType_TimeDescription" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EnvironmentType_TimeDescription');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EnvironmentType_TimeDescription" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional TimeDescription element gives the time, relative to the inspection, at which the environment data is measured.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_EnvironmentType_TimeDescription" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_EnvironmentType_TimeDescription');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_EnvironmentType_TimeDescription" style="display:block"><img alt="Diagram" border="0" src="img/Traceability_xsd_Element_TimeDescription.jpeg" usemap="#Traceability_xsd_Element_TimeDescription" /><map name="Traceability_xsd_Element_TimeDescription" id="Traceability_xsd_Element_TimeDescription">
+                                 <area alt="Traceability_xsd_Complex_Type_TimeDescriptionType.tmp#TimeDescriptionType_TimeDescriptionEnum" href="Traceability_xsd_Complex_Type_TimeDescriptionType.html#TimeDescriptionType_TimeDescriptionEnum" coords="286,46,451,75" />
+                                 <area alt="Traceability_xsd_Complex_Type_TimeDescriptionType.tmp#TimeDescriptionType_OtherTimeDescription" href="Traceability_xsd_Complex_Type_TimeDescriptionType.html#TimeDescriptionType_OtherTimeDescription" coords="286,137,449,166" />
+                                 <area alt="Traceability_xsd_Complex_Type_TimeDescriptionType.tmp#TimeDescriptionType" href="Traceability_xsd_Complex_Type_TimeDescriptionType.html#TimeDescriptionType" coords="188,3,372,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Traceability_xsd_Complex_Type_TimeDescriptionType.html#TimeDescriptionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeDescriptionType')">TimeDescriptionType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_EnvironmentType_TimeDescription" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_EnvironmentType_TimeDescription');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_EnvironmentType_TimeDescription" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Traceability_xsd_Complex_Type_TimeDescriptionType.html#TimeDescriptionType_OtherTimeDescription" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherTimeDescription')">OtherTimeDescription</a></b>, <b><a href="Traceability_xsd_Complex_Type_TimeDescriptionType.html#TimeDescriptionType_TimeDescriptionEnum" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeDescriptionEnum')">TimeDescriptionEnum</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_EnvironmentType_TimeDescription" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_EnvironmentType_TimeDescription');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_EnvironmentType_TimeDescription" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;TimeDescription</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TimeDescriptionEnum</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/TimeDescriptionEnum&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;OtherTimeDescription</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/OtherTimeDescription&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/TimeDescription&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EnvironmentType_TimeDescription" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EnvironmentType_TimeDescription');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EnvironmentType_TimeDescription" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TimeDescription"</span><span class="tAN"> type=</span><span class="tAV">"TimeDescriptionType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional TimeDescription element gives the time, relative to the inspection, at which the environment data is measured.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Traceability.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="EnvironmentType"></a><div class="componentTitle">Complex Type <span class="qname">EnvironmentType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EnvironmentType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EnvironmentType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EnvironmentType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The EnvironmentType defines information about the temperature and/or humidity at a particular time during a measurement process.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_EnvironmentType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_EnvironmentType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_EnvironmentType" style="display:block"><img alt="Diagram" border="0" src="img/Traceability_xsd_Complex_Type_EnvironmentType.jpeg" usemap="#Traceability_xsd_Complex_Type_EnvironmentType" /><map name="Traceability_xsd_Complex_Type_EnvironmentType" id="Traceability_xsd_Complex_Type_EnvironmentType">
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="306,0,400,29" />
+                                 <area alt="Traceability_xsd_Complex_Type_EnvironmentType.tmp#EnvironmentType_ObjectTemperature" href="Traceability_xsd_Complex_Type_EnvironmentType.html#EnvironmentType_ObjectTemperature" coords="306,107,454,136" />
+                                 <area alt="Traceability_xsd_Complex_Type_EnvironmentType.tmp#EnvironmentType_AmbientTemperature" href="Traceability_xsd_Complex_Type_EnvironmentType.html#EnvironmentType_AmbientTemperature" coords="306,214,464,243" />
+                                 <area alt="Traceability_xsd_Complex_Type_EnvironmentType.tmp#EnvironmentType_RelativeHumidity" href="Traceability_xsd_Complex_Type_EnvironmentType.html#EnvironmentType_RelativeHumidity" coords="306,321,440,350" />
+                                 <area alt="Traceability_xsd_Complex_Type_EnvironmentType.tmp#EnvironmentType_DateAndTime" href="Traceability_xsd_Complex_Type_EnvironmentType.html#EnvironmentType_DateAndTime" coords="306,412,422,441" />
+                                 <area alt="Traceability_xsd_Complex_Type_EnvironmentType.tmp#EnvironmentType_TimeDescription" href="Traceability_xsd_Complex_Type_EnvironmentType.html#EnvironmentType_TimeDescription" coords="306,503,437,532" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_EnvironmentType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_EnvironmentType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_EnvironmentType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Traceability_xsd_Complex_Type_EnvironmentsType.html#EnvironmentsType_Environment" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EnvironmentsType/Environment')">EnvironmentsType/Environment</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Traceability_xsd_Complex_Type_EnvironmentType.html#EnvironmentType_AmbientTemperature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AmbientTemperature')">AmbientTemperature</a></b>, <b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Traceability_xsd_Complex_Type_EnvironmentType.html#EnvironmentType_DateAndTime" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DateAndTime')">DateAndTime</a></b>, <b><a href="Traceability_xsd_Complex_Type_EnvironmentType.html#EnvironmentType_ObjectTemperature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ObjectTemperature')">ObjectTemperature</a></b>, <b><a href="Traceability_xsd_Complex_Type_EnvironmentType.html#EnvironmentType_RelativeHumidity" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RelativeHumidity')">RelativeHumidity</a></b>, <b><a href="Traceability_xsd_Complex_Type_EnvironmentType.html#EnvironmentType_TimeDescription" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeDescription')">TimeDescription</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EnvironmentType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EnvironmentType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EnvironmentType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"EnvironmentType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The EnvironmentType defines information about the temperature and/or humidity at a particular time during a measurement process.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> ref=</span><span class="tAV">"Attributes"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Attributes element contains user defined attributes (typified, binary array, or XML structured).</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ObjectTemperature"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredTemperatureValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ObjectTemperature element is the temperature of the product or feature to which an environment instance is attached.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"AmbientTemperature"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredTemperatureValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional AmbientTemperature element is the temperature of the air in the area in which the inspection is performed.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"RelativeHumidity"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredDecimalType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional RelativeHumidity element is the relative humidity of the air in the area in which the inspection is performed. The RelativeHumidity value must be between 0 and 100.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DateAndTime"</span><span class="tAN"> type=</span><span class="tAV">"xs:dateTime"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The DateAndTime element gives the date and time at which the environment data is recorded.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TimeDescription"</span><span class="tAN"> type=</span><span class="tAV">"TimeDescriptionType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional TimeDescription element gives the time, relative to the inspection, at which the environment data is measured.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Traceability.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

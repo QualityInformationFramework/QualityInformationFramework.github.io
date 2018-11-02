@@ -1,0 +1,1105 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component MaterialCondition</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_CompositeSegmentPositionDefinitionType_MaterialCondition', 
+				'properties_CompositeSegmentPositionDefinitionType_ZoneShape', 
+				'properties_CompositeSegmentPositionDefinitionType_MaximumToleranceValue', 
+				'properties_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone');
+var facetsBoxes= new Array('facets_CompositeSegmentPositionDefinitionType_MaterialCondition');
+var usedByBoxes= new Array('usedBy_CompositeSegmentPositionDefinitionType');
+var sourceBoxes= new Array('source_CompositeSegmentPositionDefinitionType_MaterialCondition', 
+				'source_CompositeSegmentPositionDefinitionType_ZoneShape', 
+				'source_CompositeSegmentPositionDefinitionType_MaximumToleranceValue', 
+				'source_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone', 
+				'source_CompositeSegmentPositionDefinitionType');
+var instanceBoxes= new Array('instance_CompositeSegmentPositionDefinitionType_ZoneShape');
+var diagramBoxes= new Array('diagram_CompositeSegmentPositionDefinitionType_MaterialCondition', 
+				'diagram_CompositeSegmentPositionDefinitionType_ZoneShape', 
+				'diagram_CompositeSegmentPositionDefinitionType_MaximumToleranceValue', 
+				'diagram_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone', 
+				'diagram_CompositeSegmentPositionDefinitionType');
+var annotationBoxes= new Array('annotations_CompositeSegmentPositionDefinitionType_MaterialCondition', 
+				'annotations_CompositeSegmentPositionDefinitionType_ZoneShape', 
+				'annotations_CompositeSegmentPositionDefinitionType_MaximumToleranceValue', 
+				'annotations_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone', 
+				'annotations_CompositeSegmentPositionDefinitionType');
+var attributesBoxes= new Array('attributes_CompositeSegmentPositionDefinitionType_MaximumToleranceValue', 
+				'attributes_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="CompositeSegmentPositionDefinitionType_MaterialCondition"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.html#CompositeSegmentPositionDefinitionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentPositionDefinitionType')">CompositeSegmentPositionDefinitionType</a></b> / MaterialCondition</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CompositeSegmentPositionDefinitionType_MaterialCondition" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CompositeSegmentPositionDefinitionType_MaterialCondition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CompositeSegmentPositionDefinitionType_MaterialCondition" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The MaterialCondition element is the material condition modifier for the tolerance characteristic in the segment.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CompositeSegmentPositionDefinitionType_MaterialCondition" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CompositeSegmentPositionDefinitionType_MaterialCondition');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CompositeSegmentPositionDefinitionType_MaterialCondition" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_MaterialCondition.jpeg" usemap="#Characteristics_xsd_Element_MaterialCondition" /><map name="Characteristics_xsd_Element_MaterialCondition" id="Characteristics_xsd_Element_MaterialCondition">
+                                 <area alt="IntermediatesPMI_xsd_Simple_Type_MaterialModifierEnumType.tmp#MaterialModifierEnumType" href="IntermediatesPMI_xsd_Simple_Type_MaterialModifierEnumType.html#MaterialModifierEnumType" coords="192,0,413,31" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Simple_Type_MaterialModifierEnumType.html#MaterialModifierEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MaterialModifierEnumType')">MaterialModifierEnumType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CompositeSegmentPositionDefinitionType_MaterialCondition" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CompositeSegmentPositionDefinitionType_MaterialCondition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CompositeSegmentPositionDefinitionType_MaterialCondition" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_CompositeSegmentPositionDefinitionType_MaterialCondition" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_CompositeSegmentPositionDefinitionType_MaterialCondition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_CompositeSegmentPositionDefinitionType_MaterialCondition" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>REGARDLESS</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>LEAST</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>MAXIMUM</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>LEAST_RPR</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>MAXIMUM_RPR</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>NONE</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CompositeSegmentPositionDefinitionType_MaterialCondition" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CompositeSegmentPositionDefinitionType_MaterialCondition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CompositeSegmentPositionDefinitionType_MaterialCondition" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MaterialCondition"</span><span class="tAN"> type=</span><span class="tAV">"MaterialModifierEnumType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The MaterialCondition element is the material condition modifier for the tolerance characteristic in the segment.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CompositeSegmentPositionDefinitionType_ZoneShape"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.html#CompositeSegmentPositionDefinitionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentPositionDefinitionType')">CompositeSegmentPositionDefinitionType</a></b> / ZoneShape</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CompositeSegmentPositionDefinitionType_ZoneShape" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CompositeSegmentPositionDefinitionType_ZoneShape');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CompositeSegmentPositionDefinitionType_ZoneShape" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The ZoneShape element describes the shape of the tolerance zone in this segment.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CompositeSegmentPositionDefinitionType_ZoneShape" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CompositeSegmentPositionDefinitionType_ZoneShape');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CompositeSegmentPositionDefinitionType_ZoneShape" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_ZoneShape.jpeg" usemap="#Characteristics_xsd_Element_ZoneShape" /><map name="Characteristics_xsd_Element_ZoneShape" id="Characteristics_xsd_Element_ZoneShape">
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionZoneShapeType.tmp#PositionZoneShapeType_SphericalZone" href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType_SphericalZone" coords="278,46,398,75" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionZoneShapeType.tmp#PositionZoneShapeType_DiametricalZone" href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType_DiametricalZone" coords="278,153,409,182" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionZoneShapeType.tmp#PositionZoneShapeType_NonDiametricalZone" href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType_NonDiametricalZone" coords="278,260,432,289" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionZoneShapeType.tmp#PositionZoneShapeType" href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType" coords="160,3,363,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionZoneShapeType')">PositionZoneShapeType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CompositeSegmentPositionDefinitionType_ZoneShape" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CompositeSegmentPositionDefinitionType_ZoneShape');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CompositeSegmentPositionDefinitionType_ZoneShape" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType_DiametricalZone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DiametricalZone')">DiametricalZone</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType_NonDiametricalZone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonDiametricalZone')">NonDiametricalZone</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType_SphericalZone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphericalZone')">SphericalZone</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_CompositeSegmentPositionDefinitionType_ZoneShape" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_CompositeSegmentPositionDefinitionType_ZoneShape');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_CompositeSegmentPositionDefinitionType_ZoneShape" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;ZoneShape</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SphericalZone</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/SphericalZone&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DiametricalZone</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/DiametricalZone&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NonDiametricalZone</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/NonDiametricalZone&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/ZoneShape&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CompositeSegmentPositionDefinitionType_ZoneShape" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CompositeSegmentPositionDefinitionType_ZoneShape');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CompositeSegmentPositionDefinitionType_ZoneShape" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ZoneShape"</span><span class="tAN"> type=</span><span class="tAV">"PositionZoneShapeType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ZoneShape element describes the shape of the tolerance zone in this segment.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CompositeSegmentPositionDefinitionType_MaximumToleranceValue"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.html#CompositeSegmentPositionDefinitionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentPositionDefinitionType')">CompositeSegmentPositionDefinitionType</a></b> / MaximumToleranceValue</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CompositeSegmentPositionDefinitionType_MaximumToleranceValue" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CompositeSegmentPositionDefinitionType_MaximumToleranceValue');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CompositeSegmentPositionDefinitionType_MaximumToleranceValue" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional MaximumToleranceValue element is the maximum tolerance value in cases where bonus is available.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CompositeSegmentPositionDefinitionType_MaximumToleranceValue" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CompositeSegmentPositionDefinitionType_MaximumToleranceValue');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CompositeSegmentPositionDefinitionType_MaximumToleranceValue" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_MaximumToleranceValue.jpeg" usemap="#Characteristics_xsd_Element_MaximumToleranceValue" /><map name="Characteristics_xsd_Element_MaximumToleranceValue" id="Characteristics_xsd_Element_MaximumToleranceValue">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="286,229,432,258" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="286,304,448,333" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="257,49,548,75" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType_linearUnit" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" coords="270,507,385,536" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" coords="241,3,400,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CompositeSegmentPositionDefinitionType_MaximumToleranceValue" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CompositeSegmentPositionDefinitionType_MaximumToleranceValue');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CompositeSegmentPositionDefinitionType_MaximumToleranceValue" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_CompositeSegmentPositionDefinitionType_MaximumToleranceValue" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_CompositeSegmentPositionDefinitionType_MaximumToleranceValue');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_CompositeSegmentPositionDefinitionType_MaximumToleranceValue" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the UnitName for the LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CompositeSegmentPositionDefinitionType_MaximumToleranceValue" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CompositeSegmentPositionDefinitionType_MaximumToleranceValue');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CompositeSegmentPositionDefinitionType_MaximumToleranceValue" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MaximumToleranceValue"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional MaximumToleranceValue element is the maximum tolerance value in cases where bonus is available.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CompositeSegmentPositionDefinitionType_ProjectedToleranceZone"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.html#CompositeSegmentPositionDefinitionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentPositionDefinitionType')">CompositeSegmentPositionDefinitionType</a></b> / ProjectedToleranceZone</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional ProjectedToleranceZone element is the length of the projected tolerance zone.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_ProjectedToleranceZone.jpeg" usemap="#Characteristics_xsd_Element_ProjectedToleranceZone" /><map name="Characteristics_xsd_Element_ProjectedToleranceZone" id="Characteristics_xsd_Element_ProjectedToleranceZone">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="279,229,425,258" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="279,304,441,333" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="250,49,541,75" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType_linearUnit" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" coords="263,507,378,536" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" coords="234,3,393,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the UnitName for the LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CompositeSegmentPositionDefinitionType_ProjectedToleranceZone" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ProjectedToleranceZone"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ProjectedToleranceZone element is the length of the projected tolerance zone.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CompositeSegmentPositionDefinitionType"></a><div class="componentTitle">Complex Type <span class="qname">CompositeSegmentPositionDefinitionType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CompositeSegmentPositionDefinitionType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CompositeSegmentPositionDefinitionType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CompositeSegmentPositionDefinitionType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The CompositeSegmentPositionDefinitionType defines information that can be common to more than one composite segment position characteristic.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CompositeSegmentPositionDefinitionType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CompositeSegmentPositionDefinitionType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CompositeSegmentPositionDefinitionType" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.jpeg" usemap="#Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType" /><map name="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType" id="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType">
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentDefinitionBaseType.tmp#CompositeSegmentDefinitionBaseType_DatumReferenceFrameId" href="Characteristics_xsd_Complex_Type_CompositeSegmentDefinitionBaseType.html#CompositeSegmentDefinitionBaseType_DatumReferenceFrameId" coords="465,46,646,75" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentDefinitionBaseType.tmp#CompositeSegmentDefinitionBaseType_ToleranceValue" href="Characteristics_xsd_Complex_Type_CompositeSegmentDefinitionBaseType.html#CompositeSegmentDefinitionBaseType_ToleranceValue" coords="465,137,592,166" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentDefinitionBaseType.tmp#CompositeSegmentDefinitionBaseType_ToleranceDualValue" href="Characteristics_xsd_Complex_Type_CompositeSegmentDefinitionBaseType.html#CompositeSegmentDefinitionBaseType_ToleranceDualValue" coords="465,228,618,257" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentDefinitionBaseType.tmp#CompositeSegmentDefinitionBaseType_CharacteristicDesignator" href="Characteristics_xsd_Complex_Type_CompositeSegmentDefinitionBaseType.html#CompositeSegmentDefinitionBaseType_CharacteristicDesignator" coords="465,319,645,348" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentDefinitionBaseType.tmp#CompositeSegmentDefinitionBaseType" href="Characteristics_xsd_Complex_Type_CompositeSegmentDefinitionBaseType.html#CompositeSegmentDefinitionBaseType" coords="367,3,755,29" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.tmp#CompositeSegmentPositionDefinitionType_MaterialCondition" href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.html#CompositeSegmentPositionDefinitionType_MaterialCondition" coords="449,469,587,498" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.tmp#CompositeSegmentPositionDefinitionType_ZoneShape" href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.html#CompositeSegmentPositionDefinitionType_ZoneShape" coords="449,560,552,589" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.tmp#CompositeSegmentPositionDefinitionType_MaximumToleranceValue" href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.html#CompositeSegmentPositionDefinitionType_MaximumToleranceValue" coords="449,651,633,680" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.tmp#CompositeSegmentPositionDefinitionType_ProjectedToleranceZone" href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.html#CompositeSegmentPositionDefinitionType_ProjectedToleranceZone" coords="449,742,626,771" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentDefinitionBaseType.html#CompositeSegmentDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentDefinitionBaseType')">CompositeSegmentDefinitionBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentDefinitionBaseType.html#CompositeSegmentDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentDefinitionBaseType')">CompositeSegmentDefinitionBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.html#CompositeSegmentPositionDefinitionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentPositionDefinitionType')">CompositeSegmentPositionDefinitionType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_CompositeSegmentPositionDefinitionType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_CompositeSegmentPositionDefinitionType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_CompositeSegmentPositionDefinitionType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Elements </td>
+                                    <td><b><a href="Characteristics_xsd_Complex_Type_PositionCharacteristicDefinitionType.html#PositionCharacteristicDefinitionType_FourthCompositeSegmentPositionDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionCharacteristicDefinitionType/FourthCompositeSegmentPositionDefinition')">PositionCharacteristicDefinitionType/FourthCompositeSegmentPositionDefinition</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionCharacteristicDefinitionType.html#PositionCharacteristicDefinitionType_SecondCompositeSegmentPositionDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionCharacteristicDefinitionType/SecondCompositeSegmentPositionDefinition')">PositionCharacteristicDefinitionType/SecondCompositeSegmentPositionDefinition</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionCharacteristicDefinitionType.html#PositionCharacteristicDefinitionType_ThirdCompositeSegmentPositionDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionCharacteristicDefinitionType/ThirdCompositeSegmentPositionDefinition')">PositionCharacteristicDefinitionType/ThirdCompositeSegmentPositionDefinition</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentDefinitionBaseType.html#CompositeSegmentDefinitionBaseType_CharacteristicDesignator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDesignator')">CharacteristicDesignator</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentDefinitionBaseType.html#CompositeSegmentDefinitionBaseType_DatumReferenceFrameId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DatumReferenceFrameId')">DatumReferenceFrameId</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.html#CompositeSegmentPositionDefinitionType_MaterialCondition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MaterialCondition')">MaterialCondition</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.html#CompositeSegmentPositionDefinitionType_MaximumToleranceValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MaximumToleranceValue')">MaximumToleranceValue</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.html#CompositeSegmentPositionDefinitionType_ProjectedToleranceZone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProjectedToleranceZone')">ProjectedToleranceZone</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentDefinitionBaseType.html#CompositeSegmentDefinitionBaseType_ToleranceDualValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToleranceDualValue')">ToleranceDualValue</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentDefinitionBaseType.html#CompositeSegmentDefinitionBaseType_ToleranceValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToleranceValue')">ToleranceValue</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.html#CompositeSegmentPositionDefinitionType_ZoneShape" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ZoneShape')">ZoneShape</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CompositeSegmentPositionDefinitionType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CompositeSegmentPositionDefinitionType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CompositeSegmentPositionDefinitionType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"CompositeSegmentPositionDefinitionType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The CompositeSegmentPositionDefinitionType defines information that can be common to more than one composite segment position characteristic.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"CompositeSegmentDefinitionBaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MaterialCondition"</span><span class="tAN"> type=</span><span class="tAV">"MaterialModifierEnumType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The MaterialCondition element is the material condition modifier for the tolerance characteristic in the segment.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ZoneShape"</span><span class="tAN"> type=</span><span class="tAV">"PositionZoneShapeType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ZoneShape element describes the shape of the tolerance zone in this segment.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MaximumToleranceValue"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional MaximumToleranceValue element is the maximum tolerance value in cases where bonus is available.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ProjectedToleranceZone"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ProjectedToleranceZone element is the length of the projected tolerance zone.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

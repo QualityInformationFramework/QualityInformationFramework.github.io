@@ -1,0 +1,1511 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component CenterPlane</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_OppositeAngledPlanesFeatureNominalType_CenterPlane', 
+				'properties_OppositeAngledPlanesFeatureNominalType_LengthVector', 
+				'properties_OppositeAngledPlanesFeatureNominalType_DepthVector', 
+				'properties_OppositeAngledPlanesFeatureNominalType_DraftVector', 
+				'properties_OppositeAngledPlanesFeatureNominalType_Constructed');
+var usedByBoxes= new Array('usedBy_OppositeAngledPlanesFeatureNominalType');
+var sourceBoxes= new Array('source_OppositeAngledPlanesFeatureNominalType_CenterPlane', 
+				'source_OppositeAngledPlanesFeatureNominalType_LengthVector', 
+				'source_OppositeAngledPlanesFeatureNominalType_DepthVector', 
+				'source_OppositeAngledPlanesFeatureNominalType_DraftVector', 
+				'source_OppositeAngledPlanesFeatureNominalType_Constructed', 
+				'source_OppositeAngledPlanesFeatureNominalType');
+var instanceBoxes= new Array('instance_OppositeAngledPlanesFeatureNominalType_CenterPlane', 
+				'instance_OppositeAngledPlanesFeatureNominalType_Constructed');
+var diagramBoxes= new Array('diagram_OppositeAngledPlanesFeatureNominalType_CenterPlane', 
+				'diagram_OppositeAngledPlanesFeatureNominalType_LengthVector', 
+				'diagram_OppositeAngledPlanesFeatureNominalType_DepthVector', 
+				'diagram_OppositeAngledPlanesFeatureNominalType_DraftVector', 
+				'diagram_OppositeAngledPlanesFeatureNominalType_Constructed', 
+				'diagram_OppositeAngledPlanesFeatureNominalType');
+var annotationBoxes= new Array('annotations_OppositeAngledPlanesFeatureNominalType_CenterPlane', 
+				'annotations_OppositeAngledPlanesFeatureNominalType_LengthVector', 
+				'annotations_OppositeAngledPlanesFeatureNominalType_DepthVector', 
+				'annotations_OppositeAngledPlanesFeatureNominalType_DraftVector', 
+				'annotations_OppositeAngledPlanesFeatureNominalType_Constructed', 
+				'annotations_OppositeAngledPlanesFeatureNominalType');
+var attributesBoxes= new Array('attributes_OppositeAngledPlanesFeatureNominalType_LengthVector', 
+				'attributes_OppositeAngledPlanesFeatureNominalType_DepthVector', 
+				'attributes_OppositeAngledPlanesFeatureNominalType_DraftVector', 
+				'attributes_OppositeAngledPlanesFeatureNominalType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="OppositeAngledPlanesFeatureNominalType_CenterPlane"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.html#OppositeAngledPlanesFeatureNominalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesFeatureNominalType')">OppositeAngledPlanesFeatureNominalType</a></b> / CenterPlane</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_OppositeAngledPlanesFeatureNominalType_CenterPlane" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_OppositeAngledPlanesFeatureNominalType_CenterPlane');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_OppositeAngledPlanesFeatureNominalType_CenterPlane" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The CenterPlane element is the nominal location point and a unit vector normal of the center plane of the opposite angled planes feature. The location point is both midway between the sides and between the ends (real or virtual). Or in other words, the sides are located half the width away from the location point in directions along and against the center plane normal. The ends are located half the length away from the location point in directions along and against the length vector.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_OppositeAngledPlanesFeatureNominalType_CenterPlane" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_OppositeAngledPlanesFeatureNominalType_CenterPlane');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_OppositeAngledPlanesFeatureNominalType_CenterPlane" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_CenterPlane_4.jpeg" usemap="#Features_xsd_Element_CenterPlane_4" /><map name="Features_xsd_Element_CenterPlane_4" id="Features_xsd_Element_CenterPlane_4">
+                                 <area alt="Primitives_xsd_Complex_Type_PlaneType.tmp#PlaneType_Point" href="Primitives_xsd_Complex_Type_PlaneType.html#PlaneType_Point" coords="264,46,332,75" />
+                                 <area alt="Primitives_xsd_Complex_Type_PlaneType.tmp#PlaneType_Normal" href="Primitives_xsd_Complex_Type_PlaneType.html#PlaneType_Normal" coords="264,121,343,150" />
+                                 <area alt="Primitives_xsd_Complex_Type_PlaneType.tmp#PlaneType" href="Primitives_xsd_Complex_Type_PlaneType.html#PlaneType" coords="166,3,290,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_PlaneType.html#PlaneType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneType')">PlaneType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_OppositeAngledPlanesFeatureNominalType_CenterPlane" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_OppositeAngledPlanesFeatureNominalType_CenterPlane');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_OppositeAngledPlanesFeatureNominalType_CenterPlane" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_PlaneType.html#PlaneType_Normal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Normal')">Normal</a></b>, <b><a href="Primitives_xsd_Complex_Type_PlaneType.html#PlaneType_Point" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Point')">Point</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_OppositeAngledPlanesFeatureNominalType_CenterPlane" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_OppositeAngledPlanesFeatureNominalType_CenterPlane');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_OppositeAngledPlanesFeatureNominalType_CenterPlane" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;CenterPlane</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Point</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">validity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">ySignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zValidity=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Point&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Normal</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">validity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">ySignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zValidity=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Normal&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/CenterPlane&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_OppositeAngledPlanesFeatureNominalType_CenterPlane" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OppositeAngledPlanesFeatureNominalType_CenterPlane');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_OppositeAngledPlanesFeatureNominalType_CenterPlane" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CenterPlane"</span><span class="tAN"> type=</span><span class="tAV">"PlaneType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The CenterPlane element is the nominal location point and a unit vector normal of the center plane of the opposite angled planes feature. The location point is both midway between the sides and between the ends (real or virtual). Or in other words, the sides are located half the width away from the location point in directions along and against the center plane normal. The ends are located half the length away from the location point in directions along and against the length vector.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="OppositeAngledPlanesFeatureNominalType_LengthVector"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.html#OppositeAngledPlanesFeatureNominalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesFeatureNominalType')">OppositeAngledPlanesFeatureNominalType</a></b> / LengthVector</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_OppositeAngledPlanesFeatureNominalType_LengthVector" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_OppositeAngledPlanesFeatureNominalType_LengthVector');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_OppositeAngledPlanesFeatureNominalType_LengthVector" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional LengthVector element is the nominal unit vector of the long axis of the feature.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_OppositeAngledPlanesFeatureNominalType_LengthVector" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_OppositeAngledPlanesFeatureNominalType_LengthVector');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_OppositeAngledPlanesFeatureNominalType_LengthVector" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_LengthVector_2.jpeg" usemap="#Features_xsd_Element_LengthVector_2" /><map name="Features_xsd_Element_LengthVector_2" id="Features_xsd_Element_LengthVector_2">
+                                 <area alt="Primitives_xsd_Simple_Type_UnitVectorSimpleType.tmp#UnitVectorSimpleType" href="Primitives_xsd_Simple_Type_UnitVectorSimpleType.html#UnitVectorSimpleType" coords="185,46,382,77" />
+                                 <area alt="Primitives_xsd_Attribute_Group_AttrPoint.tmp#AttrPoint" href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint" coords="204,186,323,217" />
+                                 <area alt="Primitives_xsd_Complex_Type_UnitVectorType.tmp#UnitVectorType" href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" coords="172,3,324,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorType')">UnitVectorType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:anySimpleType</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_ListDoubleType.html#ListDoubleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ListDoubleType')">ListDoubleType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_UnitVectorSimpleType.html#UnitVectorSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorSimpleType')">UnitVectorSimpleType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorType')">UnitVectorType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_OppositeAngledPlanesFeatureNominalType_LengthVector" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_OppositeAngledPlanesFeatureNominalType_LengthVector');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_OppositeAngledPlanesFeatureNominalType_LengthVector" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_OppositeAngledPlanesFeatureNominalType_LengthVector" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_OppositeAngledPlanesFeatureNominalType_LengthVector');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_OppositeAngledPlanesFeatureNominalType_LengthVector" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th></th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_validity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component validity')">validity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xDecimalPlaces')">xDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xSignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xSignificantFigures')">xSignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xValidity')">xValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_yDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yDecimalPlaces')">yDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_ySignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component ySignificantFigures')">ySignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_yValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yValidity')">yValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zDecimalPlaces')">zDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zSignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zSignificantFigures')">zSignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zValidity')">zValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_OppositeAngledPlanesFeatureNominalType_LengthVector" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OppositeAngledPlanesFeatureNominalType_LengthVector');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_OppositeAngledPlanesFeatureNominalType_LengthVector" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"LengthVector"</span><span class="tAN"> type=</span><span class="tAV">"UnitVectorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional LengthVector element is the nominal unit vector of the long axis of the feature.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="OppositeAngledPlanesFeatureNominalType_DepthVector"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.html#OppositeAngledPlanesFeatureNominalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesFeatureNominalType')">OppositeAngledPlanesFeatureNominalType</a></b> / DepthVector</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_OppositeAngledPlanesFeatureNominalType_DepthVector" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_OppositeAngledPlanesFeatureNominalType_DepthVector');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_OppositeAngledPlanesFeatureNominalType_DepthVector" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional DepthVector element is the nominal unit vector pointing out of the feature (away from the bottom if there is one) and is perpendicular to both the LengthVector and the normal to the center plane.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_OppositeAngledPlanesFeatureNominalType_DepthVector" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_OppositeAngledPlanesFeatureNominalType_DepthVector');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_OppositeAngledPlanesFeatureNominalType_DepthVector" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_DepthVector_4.jpeg" usemap="#Features_xsd_Element_DepthVector_4" /><map name="Features_xsd_Element_DepthVector_4" id="Features_xsd_Element_DepthVector_4">
+                                 <area alt="Primitives_xsd_Simple_Type_UnitVectorSimpleType.tmp#UnitVectorSimpleType" href="Primitives_xsd_Simple_Type_UnitVectorSimpleType.html#UnitVectorSimpleType" coords="180,46,377,77" />
+                                 <area alt="Primitives_xsd_Attribute_Group_AttrPoint.tmp#AttrPoint" href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint" coords="199,186,318,217" />
+                                 <area alt="Primitives_xsd_Complex_Type_UnitVectorType.tmp#UnitVectorType" href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" coords="167,3,319,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorType')">UnitVectorType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:anySimpleType</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_ListDoubleType.html#ListDoubleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ListDoubleType')">ListDoubleType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_UnitVectorSimpleType.html#UnitVectorSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorSimpleType')">UnitVectorSimpleType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorType')">UnitVectorType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_OppositeAngledPlanesFeatureNominalType_DepthVector" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_OppositeAngledPlanesFeatureNominalType_DepthVector');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_OppositeAngledPlanesFeatureNominalType_DepthVector" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_OppositeAngledPlanesFeatureNominalType_DepthVector" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_OppositeAngledPlanesFeatureNominalType_DepthVector');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_OppositeAngledPlanesFeatureNominalType_DepthVector" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th></th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_validity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component validity')">validity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xDecimalPlaces')">xDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xSignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xSignificantFigures')">xSignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xValidity')">xValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_yDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yDecimalPlaces')">yDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_ySignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component ySignificantFigures')">ySignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_yValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yValidity')">yValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zDecimalPlaces')">zDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zSignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zSignificantFigures')">zSignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zValidity')">zValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_OppositeAngledPlanesFeatureNominalType_DepthVector" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OppositeAngledPlanesFeatureNominalType_DepthVector');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_OppositeAngledPlanesFeatureNominalType_DepthVector" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DepthVector"</span><span class="tAN"> type=</span><span class="tAV">"UnitVectorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional DepthVector element is the nominal unit vector pointing out of the feature (away from the bottom if there is one) and is perpendicular to both the LengthVector and the normal to the center plane.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="OppositeAngledPlanesFeatureNominalType_DraftVector"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.html#OppositeAngledPlanesFeatureNominalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesFeatureNominalType')">OppositeAngledPlanesFeatureNominalType</a></b> / DraftVector</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_OppositeAngledPlanesFeatureNominalType_DraftVector" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_OppositeAngledPlanesFeatureNominalType_DraftVector');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_OppositeAngledPlanesFeatureNominalType_DraftVector" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional DraftVector element is the nominal unit vector defining the direction in which the draft angle is applied when it is different than the depth vector and like the depth vector generally points out of the feature. It is not necessarily perpendicular to either the LengthVector or the normal to the center plane.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_OppositeAngledPlanesFeatureNominalType_DraftVector" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_OppositeAngledPlanesFeatureNominalType_DraftVector');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_OppositeAngledPlanesFeatureNominalType_DraftVector" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_DraftVector.jpeg" usemap="#Features_xsd_Element_DraftVector" /><map name="Features_xsd_Element_DraftVector" id="Features_xsd_Element_DraftVector">
+                                 <area alt="Primitives_xsd_Simple_Type_UnitVectorSimpleType.tmp#UnitVectorSimpleType" href="Primitives_xsd_Simple_Type_UnitVectorSimpleType.html#UnitVectorSimpleType" coords="173,46,370,77" />
+                                 <area alt="Primitives_xsd_Attribute_Group_AttrPoint.tmp#AttrPoint" href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint" coords="192,186,311,217" />
+                                 <area alt="Primitives_xsd_Complex_Type_UnitVectorType.tmp#UnitVectorType" href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" coords="160,3,312,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorType')">UnitVectorType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:anySimpleType</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_ListDoubleType.html#ListDoubleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ListDoubleType')">ListDoubleType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_UnitVectorSimpleType.html#UnitVectorSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorSimpleType')">UnitVectorSimpleType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorType')">UnitVectorType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_OppositeAngledPlanesFeatureNominalType_DraftVector" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_OppositeAngledPlanesFeatureNominalType_DraftVector');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_OppositeAngledPlanesFeatureNominalType_DraftVector" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_OppositeAngledPlanesFeatureNominalType_DraftVector" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_OppositeAngledPlanesFeatureNominalType_DraftVector');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_OppositeAngledPlanesFeatureNominalType_DraftVector" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th></th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_validity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component validity')">validity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xDecimalPlaces')">xDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xSignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xSignificantFigures')">xSignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xValidity')">xValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_yDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yDecimalPlaces')">yDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_ySignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component ySignificantFigures')">ySignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_yValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yValidity')">yValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zDecimalPlaces')">zDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zSignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zSignificantFigures')">zSignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zValidity')">zValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_OppositeAngledPlanesFeatureNominalType_DraftVector" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OppositeAngledPlanesFeatureNominalType_DraftVector');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_OppositeAngledPlanesFeatureNominalType_DraftVector" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DraftVector"</span><span class="tAN"> type=</span><span class="tAV">"UnitVectorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional DraftVector element is the nominal unit vector defining the direction in which the draft angle is applied when it is different than the depth vector and like the depth vector generally points out of the feature. It is not necessarily perpendicular to either the LengthVector or the normal to the center plane.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="OppositeAngledPlanesFeatureNominalType_Constructed"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.html#OppositeAngledPlanesFeatureNominalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesFeatureNominalType')">OppositeAngledPlanesFeatureNominalType</a></b> / Constructed</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_OppositeAngledPlanesFeatureNominalType_Constructed" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_OppositeAngledPlanesFeatureNominalType_Constructed');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_OppositeAngledPlanesFeatureNominalType_Constructed" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Constructed element signifies that the opposite angled planes feature is constructed and provides details of the construction method.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_OppositeAngledPlanesFeatureNominalType_Constructed" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_OppositeAngledPlanesFeatureNominalType_Constructed');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_OppositeAngledPlanesFeatureNominalType_Constructed" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Constructed_33.jpeg" usemap="#Features_xsd_Element_Constructed_33" /><map name="Features_xsd_Element_Constructed_33" id="Features_xsd_Element_Constructed_33">
+                                 <area alt="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.tmp#OppositeAngledPlanesConstructionMethodType_BestFit" href="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.html#OppositeAngledPlanesConstructionMethodType_BestFit" coords="283,46,363,75" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.tmp#OppositeAngledPlanesConstructionMethodType_Recompensated" href="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.html#OppositeAngledPlanesConstructionMethodType_Recompensated" coords="283,153,415,182" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.tmp#OppositeAngledPlanesConstructionMethodType_Copy" href="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.html#OppositeAngledPlanesConstructionMethodType_Copy" coords="283,260,351,289" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.tmp#OppositeAngledPlanesConstructionMethodType_Cast" href="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.html#OppositeAngledPlanesConstructionMethodType_Cast" coords="283,367,348,396" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.tmp#OppositeAngledPlanesConstructionMethodType_Transform" href="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.html#OppositeAngledPlanesConstructionMethodType_Transform" coords="283,490,378,519" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.tmp#OppositeAngledPlanesConstructionMethodType_FromScan" href="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.html#OppositeAngledPlanesConstructionMethodType_FromScan" coords="283,597,381,626" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.tmp#OppositeAngledPlanesConstructionMethodType" href="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.html#OppositeAngledPlanesConstructionMethodType" coords="165,3,504,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.html#OppositeAngledPlanesConstructionMethodType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesConstructionMethodType')">OppositeAngledPlanesConstructionMethodType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_OppositeAngledPlanesFeatureNominalType_Constructed" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_OppositeAngledPlanesFeatureNominalType_Constructed');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_OppositeAngledPlanesFeatureNominalType_Constructed" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.html#OppositeAngledPlanesConstructionMethodType_BestFit" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BestFit')">BestFit</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.html#OppositeAngledPlanesConstructionMethodType_Cast" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Cast')">Cast</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.html#OppositeAngledPlanesConstructionMethodType_Copy" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Copy')">Copy</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.html#OppositeAngledPlanesConstructionMethodType_FromScan" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FromScan')">FromScan</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.html#OppositeAngledPlanesConstructionMethodType_Recompensated" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Recompensated')">Recompensated</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesConstructionMethodType.html#OppositeAngledPlanesConstructionMethodType_Transform" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Transform')">Transform</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_OppositeAngledPlanesFeatureNominalType_Constructed" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_OppositeAngledPlanesFeatureNominalType_Constructed');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_OppositeAngledPlanesFeatureNominalType_Constructed" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Constructed</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BestFit</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BestFit&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Recompensated</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Recompensated&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Copy</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Copy&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Cast</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Cast&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Transform</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Transform&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;FromScan</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/FromScan&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Constructed&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_OppositeAngledPlanesFeatureNominalType_Constructed" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OppositeAngledPlanesFeatureNominalType_Constructed');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_OppositeAngledPlanesFeatureNominalType_Constructed" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Constructed"</span><span class="tAN"> type=</span><span class="tAV">"OppositeAngledPlanesConstructionMethodType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Constructed element signifies that the opposite angled planes feature is constructed and provides details of the construction method.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="OppositeAngledPlanesFeatureNominalType"></a><div class="componentTitle">Complex Type <span class="qname">OppositeAngledPlanesFeatureNominalType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_OppositeAngledPlanesFeatureNominalType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_OppositeAngledPlanesFeatureNominalType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_OppositeAngledPlanesFeatureNominalType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The OppositeAngledPlanesFeatureNominalType defines the opposite angled planes feature nominal information for an individual opposite angled planes feature.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_OppositeAngledPlanesFeatureNominalType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_OppositeAngledPlanesFeatureNominalType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_OppositeAngledPlanesFeatureNominalType" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.jpeg" usemap="#Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType" /><map name="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType" id="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType">
+                                 <area alt="Features_xsd_Complex_Type_FeatureBaseType.tmp#FeatureBaseType_id" href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType_id" coords="453,228,534,257" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="522,332,616,361" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureBaseType.tmp#FeatureBaseType" href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType" coords="424,141,689,167" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_Name" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_Name" coords="506,498,578,527" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_UUID" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_UUID" coords="506,589,574,618" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_FeatureDefinitionId" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_FeatureDefinitionId" coords="506,696,651,725" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_ParentFeatureNominalId" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_ParentFeatureNominalId" coords="506,787,683,816" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_EntityInternalIds" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_EntityInternalIds" coords="506,878,637,907" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType_EntityExternalIds" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_EntityExternalIds" coords="506,985,643,1014" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureNominalBaseType.tmp#FeatureNominalBaseType" href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType" coords="408,95,720,121" />
+                                 <area alt="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.tmp#ShapeFeatureNominalBaseType_PointList" href="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.html#ShapeFeatureNominalBaseType_PointList" coords="490,1151,579,1180" />
+                                 <area alt="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.tmp#ShapeFeatureNominalBaseType_SubstituteFeatureAlgorithm" href="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.html#ShapeFeatureNominalBaseType_SubstituteFeatureAlgorithm" coords="490,1258,686,1287" />
+                                 <area alt="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.tmp#ShapeFeatureNominalBaseType" href="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.html#ShapeFeatureNominalBaseType" coords="392,49,741,75" />
+                                 <area alt="Features_xsd_Complex_Type_SurfaceFeatureNominalBaseType.tmp#SurfaceFeatureNominalBaseType" href="Features_xsd_Complex_Type_SurfaceFeatureNominalBaseType.html#SurfaceFeatureNominalBaseType" coords="376,3,732,29" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.tmp#OppositeAngledPlanesFeatureNominalType_CenterPlane" href="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.html#OppositeAngledPlanesFeatureNominalType_CenterPlane" coords="458,1467,567,1496" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.tmp#OppositeAngledPlanesFeatureNominalType_LengthVector" href="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.html#OppositeAngledPlanesFeatureNominalType_LengthVector" coords="458,1574,573,1603" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.tmp#OppositeAngledPlanesFeatureNominalType_DepthVector" href="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.html#OppositeAngledPlanesFeatureNominalType_DepthVector" coords="458,1665,568,1694" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.tmp#OppositeAngledPlanesFeatureNominalType_DraftVector" href="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.html#OppositeAngledPlanesFeatureNominalType_DraftVector" coords="458,1772,561,1801" />
+                                 <area alt="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.tmp#OppositeAngledPlanesFeatureNominalType_Constructed" href="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.html#OppositeAngledPlanesFeatureNominalType_Constructed" coords="458,1879,566,1908" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="Features_xsd_Complex_Type_SurfaceFeatureNominalBaseType.html#SurfaceFeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceFeatureNominalBaseType')">SurfaceFeatureNominalBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureBaseType')">FeatureBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureNominalBaseType')">FeatureNominalBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.html#ShapeFeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ShapeFeatureNominalBaseType')">ShapeFeatureNominalBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Features_xsd_Complex_Type_SurfaceFeatureNominalBaseType.html#SurfaceFeatureNominalBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceFeatureNominalBaseType')">SurfaceFeatureNominalBaseType</a></b><ul class="internal">
+                                                      <li class="internal"><b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.html#OppositeAngledPlanesFeatureNominalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesFeatureNominalType')">OppositeAngledPlanesFeatureNominalType</a></b></li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_OppositeAngledPlanesFeatureNominalType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_OppositeAngledPlanesFeatureNominalType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_OppositeAngledPlanesFeatureNominalType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Features_xsd_Element_OppositeAngledPlanesFeatureNominal.html#OppositeAngledPlanesFeatureNominal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesFeatureNominal')">OppositeAngledPlanesFeatureNominal</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.html#OppositeAngledPlanesFeatureNominalType_CenterPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CenterPlane')">CenterPlane</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.html#OppositeAngledPlanesFeatureNominalType_Constructed" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Constructed')">Constructed</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.html#OppositeAngledPlanesFeatureNominalType_DepthVector" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DepthVector')">DepthVector</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.html#OppositeAngledPlanesFeatureNominalType_DraftVector" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DraftVector')">DraftVector</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_EntityExternalIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EntityExternalIds')">EntityExternalIds</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_EntityInternalIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EntityInternalIds')">EntityInternalIds</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_FeatureDefinitionId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureDefinitionId')">FeatureDefinitionId</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesFeatureNominalType.html#OppositeAngledPlanesFeatureNominalType_LengthVector" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LengthVector')">LengthVector</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_ParentFeatureNominalId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ParentFeatureNominalId')">ParentFeatureNominalId</a></b>, <b><a href="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.html#ShapeFeatureNominalBaseType_PointList" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointList')">PointList</a></b>, <b><a href="Features_xsd_Complex_Type_ShapeFeatureNominalBaseType.html#ShapeFeatureNominalBaseType_SubstituteFeatureAlgorithm" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SubstituteFeatureAlgorithm')">SubstituteFeatureAlgorithm</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureNominalBaseType.html#FeatureNominalBaseType_UUID" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UUID')">UUID</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_OppositeAngledPlanesFeatureNominalType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_OppositeAngledPlanesFeatureNominalType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_OppositeAngledPlanesFeatureNominalType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the feature, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_OppositeAngledPlanesFeatureNominalType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_OppositeAngledPlanesFeatureNominalType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_OppositeAngledPlanesFeatureNominalType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"OppositeAngledPlanesFeatureNominalType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The OppositeAngledPlanesFeatureNominalType defines the opposite angled planes feature nominal information for an individual opposite angled planes feature.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"SurfaceFeatureNominalBaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CenterPlane"</span><span class="tAN"> type=</span><span class="tAV">"PlaneType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The CenterPlane element is the nominal location point and a unit vector normal of the center plane of the opposite angled planes feature. The location point is both midway between the sides and between the ends (real or virtual). Or in other words, the sides are located half the width away from the location point in directions along and against the center plane normal. The ends are located half the length away from the location point in directions along and against the length vector.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"LengthVector"</span><span class="tAN"> type=</span><span class="tAV">"UnitVectorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional LengthVector element is the nominal unit vector of the long axis of the feature.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DepthVector"</span><span class="tAN"> type=</span><span class="tAV">"UnitVectorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional DepthVector element is the nominal unit vector pointing out of the feature (away from the bottom if there is one) and is perpendicular to both the LengthVector and the normal to the center plane.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DraftVector"</span><span class="tAN"> type=</span><span class="tAV">"UnitVectorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional DraftVector element is the nominal unit vector defining the direction in which the draft angle is applied when it is different than the depth vector and like the depth vector generally points out of the feature. It is not necessarily perpendicular to either the LengthVector or the normal to the center plane.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Constructed"</span><span class="tAN"> type=</span><span class="tAV">"OppositeAngledPlanesConstructionMethodType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Constructed element signifies that the opposite angled planes feature is constructed and provides details of the construction method.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

@@ -1,0 +1,642 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Checked</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_PointDefinedSurfaceMeasurementDeterminationType_Checked', 
+				'properties_PointDefinedSurfaceMeasurementDeterminationType_Set');
+var usedByBoxes= new Array('usedBy_PointDefinedSurfaceMeasurementDeterminationType');
+var sourceBoxes= new Array('source_PointDefinedSurfaceMeasurementDeterminationType_Checked', 
+				'source_PointDefinedSurfaceMeasurementDeterminationType_Set', 
+				'source_PointDefinedSurfaceMeasurementDeterminationType');
+var instanceBoxes= new Array('instance_PointDefinedSurfaceMeasurementDeterminationType_Checked');
+var diagramBoxes= new Array('diagram_PointDefinedSurfaceMeasurementDeterminationType_Checked', 
+				'diagram_PointDefinedSurfaceMeasurementDeterminationType_Set', 
+				'diagram_PointDefinedSurfaceMeasurementDeterminationType');
+var annotationBoxes= new Array('annotations_PointDefinedSurfaceMeasurementDeterminationType_Checked', 
+				'annotations_PointDefinedSurfaceMeasurementDeterminationType_Set', 
+				'annotations_PointDefinedSurfaceMeasurementDeterminationType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="PointDefinedSurfaceMeasurementDeterminationType_Checked"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_PointDefinedSurfaceMeasurementDeterminationType.html#PointDefinedSurfaceMeasurementDeterminationType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedSurfaceMeasurementDeterminationType')">PointDefinedSurfaceMeasurementDeterminationType</a></b> / Checked</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PointDefinedSurfaceMeasurementDeterminationType_Checked" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PointDefinedSurfaceMeasurementDeterminationType_Checked');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PointDefinedSurfaceMeasurementDeterminationType_Checked" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Checked element signifies that the point-defined surface is checked from measured data, either directly measured or constructed.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PointDefinedSurfaceMeasurementDeterminationType_Checked" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PointDefinedSurfaceMeasurementDeterminationType_Checked');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PointDefinedSurfaceMeasurementDeterminationType_Checked" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Checked_22.jpeg" usemap="#Features_xsd_Element_Checked_22" /><map name="Features_xsd_Element_Checked_22" id="Features_xsd_Element_Checked_22">
+                                 <area alt="Features_xsd_Complex_Type_PointDefinedSurfaceCheckedFeatureType.tmp#PointDefinedSurfaceCheckedFeatureType_CheckDetails" href="Features_xsd_Complex_Type_PointDefinedSurfaceCheckedFeatureType.html#PointDefinedSurfaceCheckedFeatureType_CheckDetails" coords="244,50,359,79" />
+                                 <area alt="Features_xsd_Complex_Type_PointDefinedSurfaceCheckedFeatureType.tmp#PointDefinedSurfaceCheckedFeatureType" href="Features_xsd_Complex_Type_PointDefinedSurfaceCheckedFeatureType.html#PointDefinedSurfaceCheckedFeatureType" coords="146,3,449,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_PointDefinedSurfaceCheckedFeatureType.html#PointDefinedSurfaceCheckedFeatureType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedSurfaceCheckedFeatureType')">PointDefinedSurfaceCheckedFeatureType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PointDefinedSurfaceMeasurementDeterminationType_Checked" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PointDefinedSurfaceMeasurementDeterminationType_Checked');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PointDefinedSurfaceMeasurementDeterminationType_Checked" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_PointDefinedSurfaceCheckedFeatureType.html#PointDefinedSurfaceCheckedFeatureType_CheckDetails" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CheckDetails')">CheckDetails</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_PointDefinedSurfaceMeasurementDeterminationType_Checked" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_PointDefinedSurfaceMeasurementDeterminationType_Checked');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_PointDefinedSurfaceMeasurementDeterminationType_Checked" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Checked</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;CheckDetails</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/CheckDetails&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Checked&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PointDefinedSurfaceMeasurementDeterminationType_Checked" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PointDefinedSurfaceMeasurementDeterminationType_Checked');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PointDefinedSurfaceMeasurementDeterminationType_Checked" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Checked"</span><span class="tAN"> type=</span><span class="tAV">"PointDefinedSurfaceCheckedFeatureType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Checked element signifies that the point-defined surface is checked from measured data, either directly measured or constructed.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PointDefinedSurfaceMeasurementDeterminationType_Set"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_PointDefinedSurfaceMeasurementDeterminationType.html#PointDefinedSurfaceMeasurementDeterminationType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedSurfaceMeasurementDeterminationType')">PointDefinedSurfaceMeasurementDeterminationType</a></b> / Set</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PointDefinedSurfaceMeasurementDeterminationType_Set" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PointDefinedSurfaceMeasurementDeterminationType_Set');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PointDefinedSurfaceMeasurementDeterminationType_Set" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Set element signifies that the point-defined surface measurement is set to its nominal value.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PointDefinedSurfaceMeasurementDeterminationType_Set" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PointDefinedSurfaceMeasurementDeterminationType_Set');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PointDefinedSurfaceMeasurementDeterminationType_Set" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_Set_22.jpeg" usemap="#Features_xsd_Element_Set_22" /><map name="Features_xsd_Element_Set_22" id="Features_xsd_Element_Set_22">
+                                 <area alt="Features_xsd_Complex_Type_SetFeatureType.tmp#SetFeatureType" href="Features_xsd_Complex_Type_SetFeatureType.html#SetFeatureType" coords="115,3,257,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_SetFeatureType.html#SetFeatureType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SetFeatureType')">SetFeatureType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PointDefinedSurfaceMeasurementDeterminationType_Set" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PointDefinedSurfaceMeasurementDeterminationType_Set');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PointDefinedSurfaceMeasurementDeterminationType_Set" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PointDefinedSurfaceMeasurementDeterminationType_Set" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PointDefinedSurfaceMeasurementDeterminationType_Set');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PointDefinedSurfaceMeasurementDeterminationType_Set" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Set"</span><span class="tAN"> type=</span><span class="tAV">"SetFeatureType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Set element signifies that the point-defined surface measurement is set to its nominal value.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PointDefinedSurfaceMeasurementDeterminationType"></a><div class="componentTitle">Complex Type <span class="qname">PointDefinedSurfaceMeasurementDeterminationType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PointDefinedSurfaceMeasurementDeterminationType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PointDefinedSurfaceMeasurementDeterminationType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PointDefinedSurfaceMeasurementDeterminationType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The PointDefinedSurfaceMeasurementDeterminationType defines how the point-defined surface measurement is determined, either by being set or by being checked (directly measured or constructed).</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PointDefinedSurfaceMeasurementDeterminationType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PointDefinedSurfaceMeasurementDeterminationType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PointDefinedSurfaceMeasurementDeterminationType" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Complex_Type_PointDefinedSurfaceMeasurementDeterminationType.jpeg" usemap="#Features_xsd_Complex_Type_PointDefinedSurfaceMeasurementDeterminationType" /><map name="Features_xsd_Complex_Type_PointDefinedSurfaceMeasurementDeterminationType" id="Features_xsd_Complex_Type_PointDefinedSurfaceMeasurementDeterminationType">
+                                 <area alt="Features_xsd_Complex_Type_PointDefinedSurfaceMeasurementDeterminationType.tmp#PointDefinedSurfaceMeasurementDeterminationType_Checked" href="Features_xsd_Complex_Type_PointDefinedSurfaceMeasurementDeterminationType.html#PointDefinedSurfaceMeasurementDeterminationType_Checked" coords="511,0,600,29" />
+                                 <area alt="Features_xsd_Complex_Type_PointDefinedSurfaceMeasurementDeterminationType.tmp#PointDefinedSurfaceMeasurementDeterminationType_Set" href="Features_xsd_Complex_Type_PointDefinedSurfaceMeasurementDeterminationType.html#PointDefinedSurfaceMeasurementDeterminationType_Set" coords="511,107,569,136" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_PointDefinedSurfaceMeasurementDeterminationType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_PointDefinedSurfaceMeasurementDeterminationType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_PointDefinedSurfaceMeasurementDeterminationType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Features_xsd_Complex_Type_PointDefinedSurfaceFeatureItemType.html#PointDefinedSurfaceFeatureItemType_DeterminationMode" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedSurfaceFeatureItemType/DeterminationMode')">PointDefinedSurfaceFeatureItemType/DeterminationMode</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_PointDefinedSurfaceMeasurementDeterminationType.html#PointDefinedSurfaceMeasurementDeterminationType_Checked" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Checked')">Checked</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedSurfaceMeasurementDeterminationType.html#PointDefinedSurfaceMeasurementDeterminationType_Set" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Set')">Set</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PointDefinedSurfaceMeasurementDeterminationType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PointDefinedSurfaceMeasurementDeterminationType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PointDefinedSurfaceMeasurementDeterminationType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"PointDefinedSurfaceMeasurementDeterminationType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The PointDefinedSurfaceMeasurementDeterminationType defines how the point-defined surface measurement is determined, either by being set or by being checked (directly measured or constructed).</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Checked"</span><span class="tAN"> type=</span><span class="tAV">"PointDefinedSurfaceCheckedFeatureType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Checked element signifies that the point-defined surface is checked from measured data, either directly measured or constructed.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Set"</span><span class="tAN"> type=</span><span class="tAV">"SetFeatureType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Set element signifies that the point-defined surface measurement is set to its nominal value.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component PerpendicularityCharacteristicDefinition</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_PerpendicularityCharacteristicDefinition');
+var sourceBoxes= new Array('source_PerpendicularityCharacteristicDefinition');
+var instanceBoxes= new Array('instance_PerpendicularityCharacteristicDefinition');
+var diagramBoxes= new Array('diagram_PerpendicularityCharacteristicDefinition');
+var annotationBoxes= new Array('annotations_PerpendicularityCharacteristicDefinition');
+var attributesBoxes= new Array('attributes_PerpendicularityCharacteristicDefinition');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="PerpendicularityCharacteristicDefinition"></a><div class="componentTitle">Element <span class="qname">PerpendicularityCharacteristicDefinition</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PerpendicularityCharacteristicDefinition" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PerpendicularityCharacteristicDefinition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PerpendicularityCharacteristicDefinition" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The global PerpendicularityCharacteristicDefinition element gives information about a perpendicularity characteristic definition.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PerpendicularityCharacteristicDefinition" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PerpendicularityCharacteristicDefinition');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PerpendicularityCharacteristicDefinition" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_PerpendicularityCharacteristicDefinition.jpeg" usemap="#Characteristics_xsd_Element_PerpendicularityCharacteristicDefinition" /><map name="Characteristics_xsd_Element_PerpendicularityCharacteristicDefinition" id="Characteristics_xsd_Element_PerpendicularityCharacteristicDefinition">
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType_id" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_id" coords="414,274,495,303" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="483,374,577,403" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType_Description" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_Description" coords="483,481,586,510" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType" coords="385,187,686,213" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_Name" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_Name" coords="467,631,539,660" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_CharacteristicDesignator" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CharacteristicDesignator" coords="467,722,647,751" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_FreeState" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_FreeState" coords="467,813,562,842" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_StatisticalCharacteristic" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_StatisticalCharacteristic" coords="467,920,643,949" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_CommonZone" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CommonZone" coords="467,1011,585,1040" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_CommonTolerance" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CommonTolerance" coords="467,1118,613,1147" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_MedianFeature" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_MedianFeature" coords="467,1225,591,1254" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_EnvelopeRequirement" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_EnvelopeRequirement" coords="467,1332,630,1361" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_Independency" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_Independency" coords="467,1439,585,1468" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" coords="467,1546,665,1575" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_SeparateZone" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_SeparateZone" coords="467,1653,585,1682" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType" coords="369,141,723,167" />
+                                 <area alt="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.tmp#GeometricCharacteristicDefinitionBaseType_AssociatedTolerancedFeatureSpecificationElement" href="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.html#GeometricCharacteristicDefinitionBaseType_AssociatedTolerancedFeatureSpecificationElement" coords="556,1819,888,1848" />
+                                 <area alt="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.tmp#GeometricCharacteristicDefinitionBaseType_ReferenceFeatureAssociationSpecificationElement" href="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.html#GeometricCharacteristicDefinitionBaseType_ReferenceFeatureAssociationSpecificationElement" coords="556,1910,886,1939" />
+                                 <area alt="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.tmp#GeometricCharacteristicDefinitionBaseType_DirectionFeature" href="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.html#GeometricCharacteristicDefinitionBaseType_DirectionFeature" coords="451,2184,584,2213" />
+                                 <area alt="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.tmp#GeometricCharacteristicDefinitionBaseType_CollectionPlane" href="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.html#GeometricCharacteristicDefinitionBaseType_CollectionPlane" coords="451,2291,579,2320" />
+                                 <area alt="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.tmp#GeometricCharacteristicDefinitionBaseType_IntersectionPlane" href="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.html#GeometricCharacteristicDefinitionBaseType_IntersectionPlane" coords="451,2398,589,2427" />
+                                 <area alt="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.tmp#GeometricCharacteristicDefinitionBaseType_OrientationPlane" href="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.html#GeometricCharacteristicDefinitionBaseType_OrientationPlane" coords="451,2505,585,2534" />
+                                 <area alt="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.tmp#GeometricCharacteristicDefinitionBaseType" href="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.html#GeometricCharacteristicDefinitionBaseType" coords="353,95,767,121" />
+                                 <area alt="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.tmp#OrientationCharacteristicDefinitionBaseType_ToleranceValue" href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_ToleranceValue" coords="435,2639,562,2668" />
+                                 <area alt="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.tmp#OrientationCharacteristicDefinitionBaseType_ToleranceDualValue" href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_ToleranceDualValue" coords="435,2730,588,2759" />
+                                 <area alt="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.tmp#OrientationCharacteristicDefinitionBaseType_DatumReferenceFrameId" href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_DatumReferenceFrameId" coords="435,2821,616,2850" />
+                                 <area alt="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.tmp#OrientationCharacteristicDefinitionBaseType_MaterialCondition" href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_MaterialCondition" coords="435,2912,573,2941" />
+                                 <area alt="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.tmp#OrientationCharacteristicDefinitionBaseType_SizeCharacteristicDefinitionId" href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_SizeCharacteristicDefinitionId" coords="435,3003,642,3032" />
+                                 <area alt="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.tmp#OrientationCharacteristicDefinitionBaseType_ZoneShape" href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_ZoneShape" coords="435,3094,538,3123" />
+                                 <area alt="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.tmp#OrientationCharacteristicDefinitionBaseType_TangentPlane" href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_TangentPlane" coords="435,3185,552,3214" />
+                                 <area alt="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.tmp#OrientationCharacteristicDefinitionBaseType_MaximumToleranceValue" href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_MaximumToleranceValue" coords="435,3292,619,3321" />
+                                 <area alt="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.tmp#OrientationCharacteristicDefinitionBaseType_ProjectedToleranceZoneValue" href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_ProjectedToleranceZoneValue" coords="435,3383,645,3412" />
+                                 <area alt="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.tmp#OrientationCharacteristicDefinitionBaseType_EachRadialElement" href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_EachRadialElement" coords="540,3474,692,3503" />
+                                 <area alt="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.tmp#OrientationCharacteristicDefinitionBaseType_EachElement" href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_EachElement" coords="540,3581,656,3610" />
+                                 <area alt="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.tmp#OrientationCharacteristicDefinitionBaseType" href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType" coords="337,49,754,75" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PerpendicularityCharacteristicDefinitionType.tmp#PerpendicularityCharacteristicDefinitionType" href="Characteristics_xsd_Complex_Type_PerpendicularityCharacteristicDefinitionType.html#PerpendicularityCharacteristicDefinitionType" coords="321,3,638,29" />
+                                 <area alt="Characteristics_xsd_Element_CharacteristicDefinition.tmp#CharacteristicDefinition" href="Characteristics_xsd_Element_CharacteristicDefinition.html#CharacteristicDefinition" coords="334,3961,505,3990" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_PerpendicularityCharacteristicDefinitionType.html#PerpendicularityCharacteristicDefinitionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PerpendicularityCharacteristicDefinitionType')">PerpendicularityCharacteristicDefinitionType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicBaseType')">CharacteristicBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDefinitionBaseType')">CharacteristicDefinitionBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.html#GeometricCharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component GeometricCharacteristicDefinitionBaseType')">GeometricCharacteristicDefinitionBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OrientationCharacteristicDefinitionBaseType')">OrientationCharacteristicDefinitionBaseType</a></b><ul class="internal">
+                                                      <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_PerpendicularityCharacteristicDefinitionType.html#PerpendicularityCharacteristicDefinitionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PerpendicularityCharacteristicDefinitionType')">PerpendicularityCharacteristicDefinitionType</a></b></li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PerpendicularityCharacteristicDefinition" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PerpendicularityCharacteristicDefinition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PerpendicularityCharacteristicDefinition" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Substitution Group Affiliation</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_CharacteristicDefinition.html#CharacteristicDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDefinition')">CharacteristicDefinition</a></b></li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.html#GeometricCharacteristicDefinitionBaseType_AssociatedTolerancedFeatureSpecificationElement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AssociatedTolerancedFeatureSpecificationElement')">AssociatedTolerancedFeatureSpecificationElement</a></b>, <b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CharacteristicDesignator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDesignator')">CharacteristicDesignator</a></b>, <b><a href="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.html#GeometricCharacteristicDefinitionBaseType_CollectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CollectionPlane')">CollectionPlane</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CommonTolerance" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CommonTolerance')">CommonTolerance</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CommonZone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CommonZone')">CommonZone</a></b>, <b><a href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_DatumReferenceFrameId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DatumReferenceFrameId')">DatumReferenceFrameId</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.html#GeometricCharacteristicDefinitionBaseType_DirectionFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DirectionFeature')">DirectionFeature</a></b>, <b><a href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_EachElement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EachElement')">EachElement</a></b>, <b><a href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_EachRadialElement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EachRadialElement')">EachRadialElement</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_EnvelopeRequirement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EnvelopeRequirement')">EnvelopeRequirement</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_FreeState" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FreeState')">FreeState</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_Independency" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Independency')">Independency</a></b>, <b><a href="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.html#GeometricCharacteristicDefinitionBaseType_IntersectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component IntersectionPlane')">IntersectionPlane</a></b>, <b><a href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_MaterialCondition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MaterialCondition')">MaterialCondition</a></b>, <b><a href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_MaximumToleranceValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MaximumToleranceValue')">MaximumToleranceValue</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_MedianFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MedianFeature')">MedianFeature</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.html#GeometricCharacteristicDefinitionBaseType_OrientationPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OrientationPlane')">OrientationPlane</a></b>, <b><a href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_ProjectedToleranceZoneValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProjectedToleranceZoneValue')">ProjectedToleranceZoneValue</a></b>, <b><a href="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.html#GeometricCharacteristicDefinitionBaseType_ReferenceFeatureAssociationSpecificationElement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReferenceFeatureAssociationSpecificationElement')">ReferenceFeatureAssociationSpecificationElement</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_SeparateZone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SeparateZone')">SeparateZone</a></b>, <b><a href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_SizeCharacteristicDefinitionId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SizeCharacteristicDefinitionId')">SizeCharacteristicDefinitionId</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_StatisticalCharacteristic" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StatisticalCharacteristic')">StatisticalCharacteristic</a></b>, <b><a href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_TangentPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TangentPlane')">TangentPlane</a></b>, <b><a href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_ToleranceDualValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToleranceDualValue')">ToleranceDualValue</a></b>, <b><a href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_ToleranceValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToleranceValue')">ToleranceValue</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitedOrContinuousFeature')">UnitedOrContinuousFeature</a></b>, <b><a href="Characteristics_xsd_Complex_Type_OrientationCharacteristicDefinitionBaseType.html#OrientationCharacteristicDefinitionBaseType_ZoneShape" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ZoneShape')">ZoneShape</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_PerpendicularityCharacteristicDefinition" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_PerpendicularityCharacteristicDefinition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_PerpendicularityCharacteristicDefinition" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;PerpendicularityCharacteristicDefinition</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Description</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Description&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Name&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;CharacteristicDesignator</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/CharacteristicDesignator&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;FreeState</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/FreeState&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;StatisticalCharacteristic</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/StatisticalCharacteristic&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;CommonZone</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/CommonZone&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;CommonTolerance</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/CommonTolerance&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MedianFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MedianFeature&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;EnvelopeRequirement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/EnvelopeRequirement&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Independency</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Independency&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitedOrContinuousFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/UnitedOrContinuousFeature&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SeparateZone</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SeparateZone&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;AssociatedTolerancedFeatureSpecificationElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/AssociatedTolerancedFeatureSpecificationElement&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ReferenceFeatureAssociationSpecificationElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ReferenceFeatureAssociationSpecificationElement&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DirectionFeature</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/DirectionFeature&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;CollectionPlane</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/CollectionPlane&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;IntersectionPlane</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/IntersectionPlane&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;OrientationPlane</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/OrientationPlane&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ToleranceValue</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ToleranceValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ToleranceDualValue</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ToleranceDualValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DatumReferenceFrameId</span><span class="tT"> </span><span class="tAN">asmPathId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">asmPathXId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/DatumReferenceFrameId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MaterialCondition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/MaterialCondition&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SizeCharacteristicDefinitionId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SizeCharacteristicDefinitionId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ZoneShape</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ZoneShape&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TangentPlane</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/TangentPlane&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MaximumToleranceValue</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MaximumToleranceValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ProjectedToleranceZoneValue</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ProjectedToleranceZoneValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;EachRadialElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/EachRadialElement&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;EachElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/EachElement&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/PerpendicularityCharacteristicDefinition&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_PerpendicularityCharacteristicDefinition" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_PerpendicularityCharacteristicDefinition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_PerpendicularityCharacteristicDefinition" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the characteristic, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PerpendicularityCharacteristicDefinition" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PerpendicularityCharacteristicDefinition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PerpendicularityCharacteristicDefinition" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PerpendicularityCharacteristicDefinition"</span><span class="tAN"> type=</span><span class="tAV">"PerpendicularityCharacteristicDefinitionType"</span><span class="tAN"> substitutionGroup=</span><span class="tAV">"CharacteristicDefinition"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The global PerpendicularityCharacteristicDefinition element gives information about a perpendicularity characteristic definition.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

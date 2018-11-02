@@ -1,0 +1,858 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component FirstAxis</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_UserDefinedWorkingVolumeType_FirstAxis', 
+				'properties_UserDefinedWorkingVolumeType_SecondAxis', 
+				'properties_UserDefinedWorkingVolumeType_ThirdAxis');
+var usedByBoxes= new Array('usedBy_UserDefinedWorkingVolumeType');
+var sourceBoxes= new Array('source_UserDefinedWorkingVolumeType_FirstAxis', 
+				'source_UserDefinedWorkingVolumeType_SecondAxis', 
+				'source_UserDefinedWorkingVolumeType_ThirdAxis', 
+				'source_UserDefinedWorkingVolumeType');
+var instanceBoxes= new Array('instance_UserDefinedWorkingVolumeType_FirstAxis', 
+				'instance_UserDefinedWorkingVolumeType_SecondAxis', 
+				'instance_UserDefinedWorkingVolumeType_ThirdAxis');
+var diagramBoxes= new Array('diagram_UserDefinedWorkingVolumeType_FirstAxis', 
+				'diagram_UserDefinedWorkingVolumeType_SecondAxis', 
+				'diagram_UserDefinedWorkingVolumeType_ThirdAxis', 
+				'diagram_UserDefinedWorkingVolumeType');
+var annotationBoxes= new Array('annotations_UserDefinedWorkingVolumeType_FirstAxis', 
+				'annotations_UserDefinedWorkingVolumeType_SecondAxis', 
+				'annotations_UserDefinedWorkingVolumeType_ThirdAxis', 
+				'annotations_UserDefinedWorkingVolumeType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="UserDefinedWorkingVolumeType_FirstAxis"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType.html#UserDefinedWorkingVolumeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedWorkingVolumeType')">UserDefinedWorkingVolumeType</a></b> / FirstAxis</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_UserDefinedWorkingVolumeType_FirstAxis" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_UserDefinedWorkingVolumeType_FirstAxis');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_UserDefinedWorkingVolumeType_FirstAxis" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The FirstAxis element gives the axis length or angle and other details for the first axis of a user defined working volume.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_UserDefinedWorkingVolumeType_FirstAxis" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_UserDefinedWorkingVolumeType_FirstAxis');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_UserDefinedWorkingVolumeType_FirstAxis" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_FirstAxis.jpeg" usemap="#QIFMeasurementResources_xsd_Element_FirstAxis" /><map name="QIFMeasurementResources_xsd_Element_FirstAxis" id="QIFMeasurementResources_xsd_Element_FirstAxis">
+                                 <area alt="QIFMeasurementResources_xsd_Element_Axis.tmp#Axis" href="QIFMeasurementResources_xsd_Element_Axis.html#Axis" coords="261,96,325,125" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_LinearOrRotaryAxisType.tmp#LinearOrRotaryAxisType" href="QIFMeasurementResources_xsd_Complex_Type_LinearOrRotaryAxisType.html#LinearOrRotaryAxisType" coords="163,49,467,75" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="245,214,339,243" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.tmp#UserDefinedAxisType_AxisName" href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.html#UserDefinedAxisType_AxisName" coords="245,321,343,350" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.tmp#UserDefinedAxisType" href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.html#UserDefinedAxisType" coords="147,3,334,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.html#UserDefinedAxisType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedAxisType')">UserDefinedAxisType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_LinearOrRotaryAxisType.html#LinearOrRotaryAxisType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearOrRotaryAxisType')">LinearOrRotaryAxisType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.html#UserDefinedAxisType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedAxisType')">UserDefinedAxisType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_UserDefinedWorkingVolumeType_FirstAxis" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_UserDefinedWorkingVolumeType_FirstAxis');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_UserDefinedWorkingVolumeType_FirstAxis" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="QIFMeasurementResources_xsd_Element_Axis.html#Axis" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Axis')">Axis</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.html#UserDefinedAxisType_AxisName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AxisName')">AxisName</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_UserDefinedWorkingVolumeType_FirstAxis" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_UserDefinedWorkingVolumeType_FirstAxis');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_UserDefinedWorkingVolumeType_FirstAxis" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;FirstAxis</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Axis</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Axis&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;AxisName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/AxisName&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/FirstAxis&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_UserDefinedWorkingVolumeType_FirstAxis" type="image" src="img/btM.gif" value="-" onclick="switchState('source_UserDefinedWorkingVolumeType_FirstAxis');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_UserDefinedWorkingVolumeType_FirstAxis" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FirstAxis"</span><span class="tAN"> type=</span><span class="tAV">"UserDefinedAxisType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FirstAxis element gives the axis length or angle and other details for the first axis of a user defined working volume.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="UserDefinedWorkingVolumeType_SecondAxis"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType.html#UserDefinedWorkingVolumeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedWorkingVolumeType')">UserDefinedWorkingVolumeType</a></b> / SecondAxis</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_UserDefinedWorkingVolumeType_SecondAxis" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_UserDefinedWorkingVolumeType_SecondAxis');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_UserDefinedWorkingVolumeType_SecondAxis" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The SecondAxis element gives the axis length or angle and other details for the second axis of a user defined working volume.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_UserDefinedWorkingVolumeType_SecondAxis" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_UserDefinedWorkingVolumeType_SecondAxis');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_UserDefinedWorkingVolumeType_SecondAxis" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_SecondAxis.jpeg" usemap="#QIFMeasurementResources_xsd_Element_SecondAxis" /><map name="QIFMeasurementResources_xsd_Element_SecondAxis" id="QIFMeasurementResources_xsd_Element_SecondAxis">
+                                 <area alt="QIFMeasurementResources_xsd_Element_Axis.tmp#Axis" href="QIFMeasurementResources_xsd_Element_Axis.html#Axis" coords="279,96,343,125" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_LinearOrRotaryAxisType.tmp#LinearOrRotaryAxisType" href="QIFMeasurementResources_xsd_Complex_Type_LinearOrRotaryAxisType.html#LinearOrRotaryAxisType" coords="181,49,485,75" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="263,214,357,243" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.tmp#UserDefinedAxisType_AxisName" href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.html#UserDefinedAxisType_AxisName" coords="263,321,361,350" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.tmp#UserDefinedAxisType" href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.html#UserDefinedAxisType" coords="165,3,352,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.html#UserDefinedAxisType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedAxisType')">UserDefinedAxisType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_LinearOrRotaryAxisType.html#LinearOrRotaryAxisType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearOrRotaryAxisType')">LinearOrRotaryAxisType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.html#UserDefinedAxisType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedAxisType')">UserDefinedAxisType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_UserDefinedWorkingVolumeType_SecondAxis" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_UserDefinedWorkingVolumeType_SecondAxis');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_UserDefinedWorkingVolumeType_SecondAxis" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="QIFMeasurementResources_xsd_Element_Axis.html#Axis" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Axis')">Axis</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.html#UserDefinedAxisType_AxisName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AxisName')">AxisName</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_UserDefinedWorkingVolumeType_SecondAxis" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_UserDefinedWorkingVolumeType_SecondAxis');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_UserDefinedWorkingVolumeType_SecondAxis" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;SecondAxis</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Axis</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Axis&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;AxisName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/AxisName&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/SecondAxis&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_UserDefinedWorkingVolumeType_SecondAxis" type="image" src="img/btM.gif" value="-" onclick="switchState('source_UserDefinedWorkingVolumeType_SecondAxis');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_UserDefinedWorkingVolumeType_SecondAxis" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SecondAxis"</span><span class="tAN"> type=</span><span class="tAV">"UserDefinedAxisType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The SecondAxis element gives the axis length or angle and other details for the second axis of a user defined working volume.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="UserDefinedWorkingVolumeType_ThirdAxis"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType.html#UserDefinedWorkingVolumeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedWorkingVolumeType')">UserDefinedWorkingVolumeType</a></b> / ThirdAxis</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_UserDefinedWorkingVolumeType_ThirdAxis" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_UserDefinedWorkingVolumeType_ThirdAxis');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_UserDefinedWorkingVolumeType_ThirdAxis" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The ThirdAxis element gives the axis length or angle and other details for the third axis of a user defined working volume.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_UserDefinedWorkingVolumeType_ThirdAxis" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_UserDefinedWorkingVolumeType_ThirdAxis');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_UserDefinedWorkingVolumeType_ThirdAxis" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_ThirdAxis.jpeg" usemap="#QIFMeasurementResources_xsd_Element_ThirdAxis" /><map name="QIFMeasurementResources_xsd_Element_ThirdAxis" id="QIFMeasurementResources_xsd_Element_ThirdAxis">
+                                 <area alt="QIFMeasurementResources_xsd_Element_Axis.tmp#Axis" href="QIFMeasurementResources_xsd_Element_Axis.html#Axis" coords="263,96,327,125" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_LinearOrRotaryAxisType.tmp#LinearOrRotaryAxisType" href="QIFMeasurementResources_xsd_Complex_Type_LinearOrRotaryAxisType.html#LinearOrRotaryAxisType" coords="165,49,469,75" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="247,214,341,243" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.tmp#UserDefinedAxisType_AxisName" href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.html#UserDefinedAxisType_AxisName" coords="247,321,345,350" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.tmp#UserDefinedAxisType" href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.html#UserDefinedAxisType" coords="149,3,336,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.html#UserDefinedAxisType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedAxisType')">UserDefinedAxisType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_LinearOrRotaryAxisType.html#LinearOrRotaryAxisType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearOrRotaryAxisType')">LinearOrRotaryAxisType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.html#UserDefinedAxisType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedAxisType')">UserDefinedAxisType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_UserDefinedWorkingVolumeType_ThirdAxis" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_UserDefinedWorkingVolumeType_ThirdAxis');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_UserDefinedWorkingVolumeType_ThirdAxis" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="QIFMeasurementResources_xsd_Element_Axis.html#Axis" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Axis')">Axis</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedAxisType.html#UserDefinedAxisType_AxisName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AxisName')">AxisName</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_UserDefinedWorkingVolumeType_ThirdAxis" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_UserDefinedWorkingVolumeType_ThirdAxis');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_UserDefinedWorkingVolumeType_ThirdAxis" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;ThirdAxis</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Axis</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Axis&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;AxisName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/AxisName&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/ThirdAxis&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_UserDefinedWorkingVolumeType_ThirdAxis" type="image" src="img/btM.gif" value="-" onclick="switchState('source_UserDefinedWorkingVolumeType_ThirdAxis');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_UserDefinedWorkingVolumeType_ThirdAxis" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ThirdAxis"</span><span class="tAN"> type=</span><span class="tAV">"UserDefinedAxisType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ThirdAxis element gives the axis length or angle and other details for the third axis of a user defined working volume.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="UserDefinedWorkingVolumeType"></a><div class="componentTitle">Complex Type <span class="qname">UserDefinedWorkingVolumeType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_UserDefinedWorkingVolumeType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_UserDefinedWorkingVolumeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_UserDefinedWorkingVolumeType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The UserDefinedWorkingVolumeType defines a 3 dimensional working volume by three user defined axes.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_UserDefinedWorkingVolumeType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_UserDefinedWorkingVolumeType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_UserDefinedWorkingVolumeType" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType.jpeg" usemap="#QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType" /><map name="QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType" id="QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType">
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_WorkingVolumeBaseType.tmp#WorkingVolumeBaseType" href="QIFMeasurementResources_xsd_Complex_Type_WorkingVolumeBaseType.html#WorkingVolumeBaseType" coords="315,3,615,29" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType.tmp#UserDefinedWorkingVolumeType_FirstAxis" href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType.html#UserDefinedWorkingVolumeType_FirstAxis" coords="397,112,487,141" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType.tmp#UserDefinedWorkingVolumeType_SecondAxis" href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType.html#UserDefinedWorkingVolumeType_SecondAxis" coords="397,219,505,248" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType.tmp#UserDefinedWorkingVolumeType_ThirdAxis" href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType.html#UserDefinedWorkingVolumeType_ThirdAxis" coords="397,326,489,355" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="QIFMeasurementResources_xsd_Complex_Type_WorkingVolumeBaseType.html#WorkingVolumeBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WorkingVolumeBaseType')">WorkingVolumeBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_WorkingVolumeBaseType.html#WorkingVolumeBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WorkingVolumeBaseType')">WorkingVolumeBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType.html#UserDefinedWorkingVolumeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedWorkingVolumeType')">UserDefinedWorkingVolumeType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_UserDefinedWorkingVolumeType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_UserDefinedWorkingVolumeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_UserDefinedWorkingVolumeType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="QIFMeasurementResources_xsd_Element_UserDefinedWorkingVolume.html#UserDefinedWorkingVolume" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedWorkingVolume')">UserDefinedWorkingVolume</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType.html#UserDefinedWorkingVolumeType_FirstAxis" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FirstAxis')">FirstAxis</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType.html#UserDefinedWorkingVolumeType_SecondAxis" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SecondAxis')">SecondAxis</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_UserDefinedWorkingVolumeType.html#UserDefinedWorkingVolumeType_ThirdAxis" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThirdAxis')">ThirdAxis</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_UserDefinedWorkingVolumeType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_UserDefinedWorkingVolumeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_UserDefinedWorkingVolumeType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"UserDefinedWorkingVolumeType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The UserDefinedWorkingVolumeType defines a 3 dimensional working volume by three user defined axes.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"WorkingVolumeBaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FirstAxis"</span><span class="tAN"> type=</span><span class="tAV">"UserDefinedAxisType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FirstAxis element gives the axis length or angle and other details for the first axis of a user defined working volume.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SecondAxis"</span><span class="tAN"> type=</span><span class="tAV">"UserDefinedAxisType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The SecondAxis element gives the axis length or angle and other details for the second axis of a user defined working volume.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ThirdAxis"</span><span class="tAN"> type=</span><span class="tAV">"UserDefinedAxisType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ThirdAxis element gives the axis length or angle and other details for the third axis of a user defined working volume.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

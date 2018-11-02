@@ -1,0 +1,1700 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Name</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_CharacteristicDefinitionBaseType_Name', 
+				'properties_CharacteristicDefinitionBaseType_CharacteristicDesignator', 
+				'properties_CharacteristicDefinitionBaseType_FreeState', 
+				'properties_CharacteristicDefinitionBaseType_StatisticalCharacteristic', 
+				'properties_CharacteristicDefinitionBaseType_CommonZone', 
+				'properties_CharacteristicDefinitionBaseType_CommonTolerance', 
+				'properties_CharacteristicDefinitionBaseType_MedianFeature', 
+				'properties_CharacteristicDefinitionBaseType_EnvelopeRequirement', 
+				'properties_CharacteristicDefinitionBaseType_Independency', 
+				'properties_CharacteristicDefinitionBaseType_UnitedOrContinuousFeature', 
+				'properties_CharacteristicDefinitionBaseType_SeparateZone', 
+				'properties_CharacteristicDefinitionBaseType');
+var usedByBoxes= new Array('usedBy_CharacteristicDefinitionBaseType');
+var sourceBoxes= new Array('source_CharacteristicDefinitionBaseType_Name', 
+				'source_CharacteristicDefinitionBaseType_CharacteristicDesignator', 
+				'source_CharacteristicDefinitionBaseType_FreeState', 
+				'source_CharacteristicDefinitionBaseType_StatisticalCharacteristic', 
+				'source_CharacteristicDefinitionBaseType_CommonZone', 
+				'source_CharacteristicDefinitionBaseType_CommonTolerance', 
+				'source_CharacteristicDefinitionBaseType_MedianFeature', 
+				'source_CharacteristicDefinitionBaseType_EnvelopeRequirement', 
+				'source_CharacteristicDefinitionBaseType_Independency', 
+				'source_CharacteristicDefinitionBaseType_UnitedOrContinuousFeature', 
+				'source_CharacteristicDefinitionBaseType_SeparateZone', 
+				'source_CharacteristicDefinitionBaseType');
+var instanceBoxes= new Array('instance_CharacteristicDefinitionBaseType_CharacteristicDesignator');
+var diagramBoxes= new Array('diagram_CharacteristicDefinitionBaseType_Name', 
+				'diagram_CharacteristicDefinitionBaseType_CharacteristicDesignator', 
+				'diagram_CharacteristicDefinitionBaseType_FreeState', 
+				'diagram_CharacteristicDefinitionBaseType_StatisticalCharacteristic', 
+				'diagram_CharacteristicDefinitionBaseType_CommonZone', 
+				'diagram_CharacteristicDefinitionBaseType_CommonTolerance', 
+				'diagram_CharacteristicDefinitionBaseType_MedianFeature', 
+				'diagram_CharacteristicDefinitionBaseType_EnvelopeRequirement', 
+				'diagram_CharacteristicDefinitionBaseType_Independency', 
+				'diagram_CharacteristicDefinitionBaseType_UnitedOrContinuousFeature', 
+				'diagram_CharacteristicDefinitionBaseType_SeparateZone', 
+				'diagram_CharacteristicDefinitionBaseType');
+var annotationBoxes= new Array('annotations_CharacteristicDefinitionBaseType_Name', 
+				'annotations_CharacteristicDefinitionBaseType_CharacteristicDesignator', 
+				'annotations_CharacteristicDefinitionBaseType_FreeState', 
+				'annotations_CharacteristicDefinitionBaseType_StatisticalCharacteristic', 
+				'annotations_CharacteristicDefinitionBaseType_CommonZone', 
+				'annotations_CharacteristicDefinitionBaseType_CommonTolerance', 
+				'annotations_CharacteristicDefinitionBaseType_MedianFeature', 
+				'annotations_CharacteristicDefinitionBaseType_EnvelopeRequirement', 
+				'annotations_CharacteristicDefinitionBaseType_Independency', 
+				'annotations_CharacteristicDefinitionBaseType_UnitedOrContinuousFeature', 
+				'annotations_CharacteristicDefinitionBaseType_SeparateZone', 
+				'annotations_CharacteristicDefinitionBaseType');
+var attributesBoxes= new Array('attributes_CharacteristicDefinitionBaseType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="CharacteristicDefinitionBaseType_Name"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDefinitionBaseType')">CharacteristicDefinitionBaseType</a></b> / Name</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CharacteristicDefinitionBaseType_Name" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CharacteristicDefinitionBaseType_Name');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CharacteristicDefinitionBaseType_Name" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Name element is the name identifying the characteristic.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CharacteristicDefinitionBaseType_Name" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CharacteristicDefinitionBaseType_Name');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CharacteristicDefinitionBaseType_Name" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_Name.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:token</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CharacteristicDefinitionBaseType_Name" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CharacteristicDefinitionBaseType_Name');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CharacteristicDefinitionBaseType_Name" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CharacteristicDefinitionBaseType_Name" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CharacteristicDefinitionBaseType_Name');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CharacteristicDefinitionBaseType_Name" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Name"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Name element is the name identifying the characteristic.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CharacteristicDefinitionBaseType_CharacteristicDesignator"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDefinitionBaseType')">CharacteristicDefinitionBaseType</a></b> / CharacteristicDesignator</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CharacteristicDefinitionBaseType_CharacteristicDesignator" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CharacteristicDefinitionBaseType_CharacteristicDesignator');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CharacteristicDefinitionBaseType_CharacteristicDesignator" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional CharacteristicDesignator element is the designator of a characteristic together with an optional level of criticality and optional UUID. The designator element of the CharacteristicDesignator will typically be at the most general level when used in this CharacteristicDefinitionBaseType. For example, an instance of CharacteristicDefinitionBaseType might have a CharacteristicDesignator element with the Designator K. Then there might be three instances of CharacteristicItemBaseType referencing the CharacteristicDefinitionBaseType instance and having CharacteristicDesignator elements using Designators K-1, K-2, and K-3.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CharacteristicDefinitionBaseType_CharacteristicDesignator" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CharacteristicDefinitionBaseType_CharacteristicDesignator');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CharacteristicDefinitionBaseType_CharacteristicDesignator" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_CharacteristicDesignator.jpeg" usemap="#Characteristics_xsd_Element_CharacteristicDesignator" /><map name="Characteristics_xsd_Element_CharacteristicDesignator" id="Characteristics_xsd_Element_CharacteristicDesignator">
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDesignatorType.tmp#CharacteristicDesignatorType_Designator" href="Characteristics_xsd_Complex_Type_CharacteristicDesignatorType.html#CharacteristicDesignatorType_Designator" coords="335,46,435,75" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDesignatorType.tmp#CharacteristicDesignatorType_UUID" href="Characteristics_xsd_Complex_Type_CharacteristicDesignatorType.html#CharacteristicDesignatorType_UUID" coords="335,153,403,182" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDesignatorType.tmp#CharacteristicDesignatorType_Criticality" href="Characteristics_xsd_Complex_Type_CharacteristicDesignatorType.html#CharacteristicDesignatorType_Criticality" coords="335,260,427,289" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDesignatorType.tmp#CharacteristicDesignatorType_Balloon" href="Characteristics_xsd_Complex_Type_CharacteristicDesignatorType.html#CharacteristicDesignatorType_Balloon" coords="335,351,416,380" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDesignatorType.tmp#CharacteristicDesignatorType" href="Characteristics_xsd_Complex_Type_CharacteristicDesignatorType.html#CharacteristicDesignatorType" coords="237,3,470,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_CharacteristicDesignatorType.html#CharacteristicDesignatorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDesignatorType')">CharacteristicDesignatorType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CharacteristicDefinitionBaseType_CharacteristicDesignator" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CharacteristicDefinitionBaseType_CharacteristicDesignator');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CharacteristicDefinitionBaseType_CharacteristicDesignator" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_CharacteristicDesignatorType.html#CharacteristicDesignatorType_Balloon" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Balloon')">Balloon</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDesignatorType.html#CharacteristicDesignatorType_Criticality" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Criticality')">Criticality</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDesignatorType.html#CharacteristicDesignatorType_Designator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Designator')">Designator</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDesignatorType.html#CharacteristicDesignatorType_UUID" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UUID')">UUID</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_CharacteristicDefinitionBaseType_CharacteristicDesignator" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_CharacteristicDefinitionBaseType_CharacteristicDesignator');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_CharacteristicDefinitionBaseType_CharacteristicDesignator" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;CharacteristicDesignator</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Designator</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Designator&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UUID</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/UUID&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Criticality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Criticality&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Balloon</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Balloon&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/CharacteristicDesignator&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CharacteristicDefinitionBaseType_CharacteristicDesignator" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CharacteristicDefinitionBaseType_CharacteristicDesignator');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CharacteristicDefinitionBaseType_CharacteristicDesignator" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CharacteristicDesignator"</span><span class="tAN"> type=</span><span class="tAV">"CharacteristicDesignatorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional CharacteristicDesignator element is the designator of a characteristic together with an optional level of criticality and optional UUID. The designator element of the CharacteristicDesignator will typically be at the most general level when used in this CharacteristicDefinitionBaseType. For example, an instance of CharacteristicDefinitionBaseType might have a CharacteristicDesignator element with the Designator K. Then there might be three instances of CharacteristicItemBaseType referencing the CharacteristicDefinitionBaseType instance and having CharacteristicDesignator elements using Designators K-1, K-2, and K-3.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CharacteristicDefinitionBaseType_FreeState"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDefinitionBaseType')">CharacteristicDefinitionBaseType</a></b> / FreeState</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CharacteristicDefinitionBaseType_FreeState" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CharacteristicDefinitionBaseType_FreeState');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CharacteristicDefinitionBaseType_FreeState" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional FreeState element indicates whether the characteristic is applied to the product in free state or constrained: "true" for free state, "false" or not present for constrained.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">ASME Y14.5-1994 - 3.3.19</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CharacteristicDefinitionBaseType_FreeState" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CharacteristicDefinitionBaseType_FreeState');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CharacteristicDefinitionBaseType_FreeState" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_FreeState.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:boolean</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CharacteristicDefinitionBaseType_FreeState" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CharacteristicDefinitionBaseType_FreeState');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CharacteristicDefinitionBaseType_FreeState" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CharacteristicDefinitionBaseType_FreeState" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CharacteristicDefinitionBaseType_FreeState');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CharacteristicDefinitionBaseType_FreeState" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FreeState"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional FreeState element indicates whether the characteristic is applied to the product in free state or constrained: "true" for free state, "false" or not present for constrained.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASME Y14.5-1994 - 3.3.19</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CharacteristicDefinitionBaseType_StatisticalCharacteristic"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDefinitionBaseType')">CharacteristicDefinitionBaseType</a></b> / StatisticalCharacteristic</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CharacteristicDefinitionBaseType_StatisticalCharacteristic" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CharacteristicDefinitionBaseType_StatisticalCharacteristic');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CharacteristicDefinitionBaseType_StatisticalCharacteristic" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional StatisticalCharacteristic element indicates whether the characteristic is applied on a per-product basis or statistically over a set of products. The element is set to "true" for statistical, and is set to "false" or is not present for per-product.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">ASME Y14.5-1994 - 3.3.10 - RE: SPC Control Limits</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CharacteristicDefinitionBaseType_StatisticalCharacteristic" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CharacteristicDefinitionBaseType_StatisticalCharacteristic');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CharacteristicDefinitionBaseType_StatisticalCharacteristic" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_StatisticalCharacteristic.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:boolean</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CharacteristicDefinitionBaseType_StatisticalCharacteristic" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CharacteristicDefinitionBaseType_StatisticalCharacteristic');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CharacteristicDefinitionBaseType_StatisticalCharacteristic" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CharacteristicDefinitionBaseType_StatisticalCharacteristic" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CharacteristicDefinitionBaseType_StatisticalCharacteristic');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CharacteristicDefinitionBaseType_StatisticalCharacteristic" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"StatisticalCharacteristic"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional StatisticalCharacteristic element indicates whether the characteristic is applied on a per-product basis or statistically over a set of products. The element is set to "true" for statistical, and is set to "false" or is not present for per-product.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASME Y14.5-1994 - 3.3.10 - RE: SPC Control Limits</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CharacteristicDefinitionBaseType_CommonZone"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDefinitionBaseType')">CharacteristicDefinitionBaseType</a></b> / CommonZone</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CharacteristicDefinitionBaseType_CommonZone" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CharacteristicDefinitionBaseType_CommonZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CharacteristicDefinitionBaseType_CommonZone" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">(ISO specific CZ) The optional CommonZone element indicates whether the characteristic is applied to two or more features using a common tolerance zone: "true" for common zone, "false" or not present for no common zone or not applicable.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CharacteristicDefinitionBaseType_CommonZone" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CharacteristicDefinitionBaseType_CommonZone');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CharacteristicDefinitionBaseType_CommonZone" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_CommonZone.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:boolean</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CharacteristicDefinitionBaseType_CommonZone" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CharacteristicDefinitionBaseType_CommonZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CharacteristicDefinitionBaseType_CommonZone" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CharacteristicDefinitionBaseType_CommonZone" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CharacteristicDefinitionBaseType_CommonZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CharacteristicDefinitionBaseType_CommonZone" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CommonZone"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">(ISO specific CZ) The optional CommonZone element indicates whether the characteristic is applied to two or more features using a common tolerance zone: "true" for common zone, "false" or not present for no common zone or not applicable.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CharacteristicDefinitionBaseType_CommonTolerance"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDefinitionBaseType')">CharacteristicDefinitionBaseType</a></b> / CommonTolerance</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CharacteristicDefinitionBaseType_CommonTolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CharacteristicDefinitionBaseType_CommonTolerance');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CharacteristicDefinitionBaseType_CommonTolerance" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">(ISO specific CT) The optional CommonTolerance element indicates whether the characteristic is applied to two or more features using a common tolerance: "true" for common tolerance, "false" or not present for no common tolerance or not applicable.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CharacteristicDefinitionBaseType_CommonTolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CharacteristicDefinitionBaseType_CommonTolerance');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CharacteristicDefinitionBaseType_CommonTolerance" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_CommonTolerance.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:boolean</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CharacteristicDefinitionBaseType_CommonTolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CharacteristicDefinitionBaseType_CommonTolerance');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CharacteristicDefinitionBaseType_CommonTolerance" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CharacteristicDefinitionBaseType_CommonTolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CharacteristicDefinitionBaseType_CommonTolerance');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CharacteristicDefinitionBaseType_CommonTolerance" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CommonTolerance"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">(ISO specific CT) The optional CommonTolerance element indicates whether the characteristic is applied to two or more features using a common tolerance: "true" for common tolerance, "false" or not present for no common tolerance or not applicable.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CharacteristicDefinitionBaseType_MedianFeature"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDefinitionBaseType')">CharacteristicDefinitionBaseType</a></b> / MedianFeature</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CharacteristicDefinitionBaseType_MedianFeature" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CharacteristicDefinitionBaseType_MedianFeature');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CharacteristicDefinitionBaseType_MedianFeature" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">(ISO specific (A)) The optional MedianFeature element indicates whether the characteristic is applied to the median feature (center-line, center-plane, etc.): "true" for median feature, "false" or not present for no median feature or not applicable.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CharacteristicDefinitionBaseType_MedianFeature" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CharacteristicDefinitionBaseType_MedianFeature');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CharacteristicDefinitionBaseType_MedianFeature" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_MedianFeature.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:boolean</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CharacteristicDefinitionBaseType_MedianFeature" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CharacteristicDefinitionBaseType_MedianFeature');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CharacteristicDefinitionBaseType_MedianFeature" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CharacteristicDefinitionBaseType_MedianFeature" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CharacteristicDefinitionBaseType_MedianFeature');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CharacteristicDefinitionBaseType_MedianFeature" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MedianFeature"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">(ISO specific (A)) The optional MedianFeature element indicates whether the characteristic is applied to the median feature (center-line, center-plane, etc.): "true" for median feature, "false" or not present for no median feature or not applicable.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CharacteristicDefinitionBaseType_EnvelopeRequirement"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDefinitionBaseType')">CharacteristicDefinitionBaseType</a></b> / EnvelopeRequirement</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CharacteristicDefinitionBaseType_EnvelopeRequirement" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CharacteristicDefinitionBaseType_EnvelopeRequirement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CharacteristicDefinitionBaseType_EnvelopeRequirement" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">(ISO specific (E)) The optional EnvelopeRequirement element indicates whether the characteristic is applied with the ISO envelope requirement: "true" for envelope requirement, "false" or not present for no envelope requirement or not applicable.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CharacteristicDefinitionBaseType_EnvelopeRequirement" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CharacteristicDefinitionBaseType_EnvelopeRequirement');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CharacteristicDefinitionBaseType_EnvelopeRequirement" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_EnvelopeRequirement.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:boolean</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CharacteristicDefinitionBaseType_EnvelopeRequirement" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CharacteristicDefinitionBaseType_EnvelopeRequirement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CharacteristicDefinitionBaseType_EnvelopeRequirement" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CharacteristicDefinitionBaseType_EnvelopeRequirement" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CharacteristicDefinitionBaseType_EnvelopeRequirement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CharacteristicDefinitionBaseType_EnvelopeRequirement" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"EnvelopeRequirement"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">(ISO specific (E)) The optional EnvelopeRequirement element indicates whether the characteristic is applied with the ISO envelope requirement: "true" for envelope requirement, "false" or not present for no envelope requirement or not applicable.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CharacteristicDefinitionBaseType_Independency"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDefinitionBaseType')">CharacteristicDefinitionBaseType</a></b> / Independency</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CharacteristicDefinitionBaseType_Independency" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CharacteristicDefinitionBaseType_Independency');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CharacteristicDefinitionBaseType_Independency" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">(ISO specific (I)) The optional Independency element indicates whether the characteristic is applied with the ISO independency requirement: "true" for independency requirement, "false" or not present for no independency requirement or not applicable.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CharacteristicDefinitionBaseType_Independency" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CharacteristicDefinitionBaseType_Independency');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CharacteristicDefinitionBaseType_Independency" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_Independency.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:boolean</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CharacteristicDefinitionBaseType_Independency" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CharacteristicDefinitionBaseType_Independency');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CharacteristicDefinitionBaseType_Independency" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CharacteristicDefinitionBaseType_Independency" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CharacteristicDefinitionBaseType_Independency');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CharacteristicDefinitionBaseType_Independency" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Independency"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">(ISO specific (I)) The optional Independency element indicates whether the characteristic is applied with the ISO independency requirement: "true" for independency requirement, "false" or not present for no independency requirement or not applicable.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CharacteristicDefinitionBaseType_UnitedOrContinuousFeature"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDefinitionBaseType')">CharacteristicDefinitionBaseType</a></b> / UnitedOrContinuousFeature</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CharacteristicDefinitionBaseType_UnitedOrContinuousFeature');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">(ISO specific UF, ASME specific CF) The optional UnitedOrContinuousFeature element indicates whether the characteristic is applied to two or more features as if the features were one, united or continuous feature: "true" for united or continuous feature, "false" or not present for no united or continuous feature or not applicable.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CharacteristicDefinitionBaseType_UnitedOrContinuousFeature');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_UnitedOrContinuousFeature.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:boolean</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CharacteristicDefinitionBaseType_UnitedOrContinuousFeature');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CharacteristicDefinitionBaseType_UnitedOrContinuousFeature');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"UnitedOrContinuousFeature"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">(ISO specific UF, ASME specific CF) The optional UnitedOrContinuousFeature element indicates whether the characteristic is applied to two or more features as if the features were one, united or continuous feature: "true" for united or continuous feature, "false" or not present for no united or continuous feature or not applicable.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CharacteristicDefinitionBaseType_SeparateZone"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDefinitionBaseType')">CharacteristicDefinitionBaseType</a></b> / SeparateZone</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CharacteristicDefinitionBaseType_SeparateZone" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CharacteristicDefinitionBaseType_SeparateZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CharacteristicDefinitionBaseType_SeparateZone" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">(ISO specific SZ) The optional SeparateZone element indicates whether the characteristic is applied to two or more features using separate tolerance zones: "true" for separate zone, "false" or not present for no separate zone or not applicable.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CharacteristicDefinitionBaseType_SeparateZone" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CharacteristicDefinitionBaseType_SeparateZone');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CharacteristicDefinitionBaseType_SeparateZone" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_SeparateZone.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:boolean</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CharacteristicDefinitionBaseType_SeparateZone" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CharacteristicDefinitionBaseType_SeparateZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CharacteristicDefinitionBaseType_SeparateZone" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CharacteristicDefinitionBaseType_SeparateZone" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CharacteristicDefinitionBaseType_SeparateZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CharacteristicDefinitionBaseType_SeparateZone" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SeparateZone"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">(ISO specific SZ) The optional SeparateZone element indicates whether the characteristic is applied to two or more features using separate tolerance zones: "true" for separate zone, "false" or not present for no separate zone or not applicable.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CharacteristicDefinitionBaseType"></a><div class="componentTitle">Complex Type <span class="qname">CharacteristicDefinitionBaseType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CharacteristicDefinitionBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CharacteristicDefinitionBaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CharacteristicDefinitionBaseType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The CharacteristicDefinitionBaseType is the abstract base type that defines information that can be common to more than one characteristic.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CharacteristicDefinitionBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CharacteristicDefinitionBaseType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CharacteristicDefinitionBaseType" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.jpeg" usemap="#Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType" /><map name="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType" id="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType">
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType_id" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_id" coords="345,90,426,119" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="414,190,508,219" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType_Description" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_Description" coords="414,297,517,326" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType" coords="316,3,617,29" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_Name" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_Name" coords="398,447,470,476" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_CharacteristicDesignator" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CharacteristicDesignator" coords="398,538,578,567" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_FreeState" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_FreeState" coords="398,629,493,658" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_StatisticalCharacteristic" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_StatisticalCharacteristic" coords="398,736,574,765" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_CommonZone" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CommonZone" coords="398,827,516,856" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_CommonTolerance" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CommonTolerance" coords="398,934,544,963" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_MedianFeature" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_MedianFeature" coords="398,1041,522,1070" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_EnvelopeRequirement" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_EnvelopeRequirement" coords="398,1148,561,1177" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_Independency" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_Independency" coords="398,1255,516,1284" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" coords="398,1362,596,1391" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_SeparateZone" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_SeparateZone" coords="398,1469,516,1498" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicBaseType')">CharacteristicBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicBaseType')">CharacteristicBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDefinitionBaseType')">CharacteristicDefinitionBaseType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CharacteristicDefinitionBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CharacteristicDefinitionBaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CharacteristicDefinitionBaseType" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">abstract</td>
+                                    <td><b>true</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_CharacteristicDefinitionBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_CharacteristicDefinitionBaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_CharacteristicDefinitionBaseType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Characteristics_xsd_Element_CharacteristicDefinition.html#CharacteristicDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDefinition')">CharacteristicDefinition</a></b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">Complex Types </td>
+                                    <td><b><a href="Characteristics_xsd_Complex_Type_AreaCharacteristicDefinitionBaseType.html#AreaCharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AreaCharacteristicDefinitionBaseType')">AreaCharacteristicDefinitionBaseType</a></b>, <b><a href="Characteristics_xsd_Complex_Type_DimensionalCharacteristicDefinitionBaseType.html#DimensionalCharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DimensionalCharacteristicDefinitionBaseType')">DimensionalCharacteristicDefinitionBaseType</a></b>, <b><a href="Characteristics_xsd_Complex_Type_ForceCharacteristicDefinitionBaseType.html#ForceCharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ForceCharacteristicDefinitionBaseType')">ForceCharacteristicDefinitionBaseType</a></b>, <b><a href="Characteristics_xsd_Complex_Type_GeometricCharacteristicDefinitionBaseType.html#GeometricCharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component GeometricCharacteristicDefinitionBaseType')">GeometricCharacteristicDefinitionBaseType</a></b>, <b><a href="Characteristics_xsd_Complex_Type_MassCharacteristicDefinitionBaseType.html#MassCharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MassCharacteristicDefinitionBaseType')">MassCharacteristicDefinitionBaseType</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PressureCharacteristicDefinitionBaseType.html#PressureCharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PressureCharacteristicDefinitionBaseType')">PressureCharacteristicDefinitionBaseType</a></b>, <b><a href="Characteristics_xsd_Complex_Type_SpeedCharacteristicDefinitionBaseType.html#SpeedCharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpeedCharacteristicDefinitionBaseType')">SpeedCharacteristicDefinitionBaseType</a></b>, <b><a href="Characteristics_xsd_Complex_Type_SurfaceTextureCharacteristicDefinitionType.html#SurfaceTextureCharacteristicDefinitionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceTextureCharacteristicDefinitionType')">SurfaceTextureCharacteristicDefinitionType</a></b>, <b><a href="Characteristics_xsd_Complex_Type_TemperatureCharacteristicDefinitionBaseType.html#TemperatureCharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TemperatureCharacteristicDefinitionBaseType')">TemperatureCharacteristicDefinitionBaseType</a></b>, <b><a href="Characteristics_xsd_Complex_Type_ThreadCharacteristicDefinitionType.html#ThreadCharacteristicDefinitionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadCharacteristicDefinitionType')">ThreadCharacteristicDefinitionType</a></b>, <b><a href="Characteristics_xsd_Complex_Type_TimeCharacteristicDefinitionBaseType.html#TimeCharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeCharacteristicDefinitionBaseType')">TimeCharacteristicDefinitionBaseType</a></b>, <b><a href="Characteristics_xsd_Complex_Type_UserDefinedAttributeCharacteristicDefinitionType.html#UserDefinedAttributeCharacteristicDefinitionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedAttributeCharacteristicDefinitionType')">UserDefinedAttributeCharacteristicDefinitionType</a></b>, <b><a href="Characteristics_xsd_Complex_Type_UserDefinedUnitCharacteristicDefinitionType.html#UserDefinedUnitCharacteristicDefinitionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedUnitCharacteristicDefinitionType')">UserDefinedUnitCharacteristicDefinitionType</a></b>, <b><a href="Characteristics_xsd_Complex_Type_WeldCharacteristicDefinitionBaseType.html#WeldCharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldCharacteristicDefinitionBaseType')">WeldCharacteristicDefinitionBaseType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CharacteristicDesignator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDesignator')">CharacteristicDesignator</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CommonTolerance" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CommonTolerance')">CommonTolerance</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CommonZone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CommonZone')">CommonZone</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_EnvelopeRequirement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EnvelopeRequirement')">EnvelopeRequirement</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_FreeState" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FreeState')">FreeState</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_Independency" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Independency')">Independency</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_MedianFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MedianFeature')">MedianFeature</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_SeparateZone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SeparateZone')">SeparateZone</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_StatisticalCharacteristic" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StatisticalCharacteristic')">StatisticalCharacteristic</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitedOrContinuousFeature')">UnitedOrContinuousFeature</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_CharacteristicDefinitionBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_CharacteristicDefinitionBaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_CharacteristicDefinitionBaseType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the characteristic, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CharacteristicDefinitionBaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CharacteristicDefinitionBaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CharacteristicDefinitionBaseType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"CharacteristicDefinitionBaseType"</span><span class="tAN"> abstract=</span><span class="tAV">"true"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The CharacteristicDefinitionBaseType is the abstract base type that defines information that can be common to more than one characteristic.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"CharacteristicBaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Name"</span><span class="tAN"> type=</span><span class="tAV">"xs:token"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Name element is the name identifying the characteristic.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CharacteristicDesignator"</span><span class="tAN"> type=</span><span class="tAV">"CharacteristicDesignatorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional CharacteristicDesignator element is the designator of a characteristic together with an optional level of criticality and optional UUID. The designator element of the CharacteristicDesignator will typically be at the most general level when used in this CharacteristicDefinitionBaseType. For example, an instance of CharacteristicDefinitionBaseType might have a CharacteristicDesignator element with the Designator K. Then there might be three instances of CharacteristicItemBaseType referencing the CharacteristicDefinitionBaseType instance and having CharacteristicDesignator elements using Designators K-1, K-2, and K-3.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FreeState"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional FreeState element indicates whether the characteristic is applied to the product in free state or constrained: "true" for free state, "false" or not present for constrained.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASME Y14.5-1994 - 3.3.19</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"StatisticalCharacteristic"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional StatisticalCharacteristic element indicates whether the characteristic is applied on a per-product basis or statistically over a set of products. The element is set to "true" for statistical, and is set to "false" or is not present for per-product.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASME Y14.5-1994 - 3.3.10 - RE: SPC Control Limits</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CommonZone"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">(ISO specific CZ) The optional CommonZone element indicates whether the characteristic is applied to two or more features using a common tolerance zone: "true" for common zone, "false" or not present for no common zone or not applicable.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CommonTolerance"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">(ISO specific CT) The optional CommonTolerance element indicates whether the characteristic is applied to two or more features using a common tolerance: "true" for common tolerance, "false" or not present for no common tolerance or not applicable.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MedianFeature"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">(ISO specific (A)) The optional MedianFeature element indicates whether the characteristic is applied to the median feature (center-line, center-plane, etc.): "true" for median feature, "false" or not present for no median feature or not applicable.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"EnvelopeRequirement"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">(ISO specific (E)) The optional EnvelopeRequirement element indicates whether the characteristic is applied with the ISO envelope requirement: "true" for envelope requirement, "false" or not present for no envelope requirement or not applicable.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Independency"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">(ISO specific (I)) The optional Independency element indicates whether the characteristic is applied with the ISO independency requirement: "true" for independency requirement, "false" or not present for no independency requirement or not applicable.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"UnitedOrContinuousFeature"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">(ISO specific UF, ASME specific CF) The optional UnitedOrContinuousFeature element indicates whether the characteristic is applied to two or more features as if the features were one, united or continuous feature: "true" for united or continuous feature, "false" or not present for no united or continuous feature or not applicable.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SeparateZone"</span><span class="tAN"> type=</span><span class="tAV">"xs:boolean"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">(ISO specific SZ) The optional SeparateZone element indicates whether the characteristic is applied to two or more features using separate tolerance zones: "true" for separate zone, "false" or not present for no separate zone or not applicable.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

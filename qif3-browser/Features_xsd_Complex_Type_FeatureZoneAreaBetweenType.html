@@ -1,0 +1,1744 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component FromPointZoneId</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_FeatureZoneAreaBetweenType_FromPointZoneId', 
+				'properties_FeatureZoneAreaBetweenType_FromCurveZoneId', 
+				'properties_FeatureZoneAreaBetweenType_ToPointZoneId', 
+				'properties_FeatureZoneAreaBetweenType_ToCurveZoneId', 
+				'properties_FeatureZoneAreaBetweenType_StartDirection', 
+				'properties_FeatureZoneAreaBetweenType_PlaneNormal');
+var usedByBoxes= new Array('usedBy_FeatureZoneAreaBetweenType');
+var sourceBoxes= new Array('source_FeatureZoneAreaBetweenType_FromPointZoneId', 
+				'source_FeatureZoneAreaBetweenType_FromCurveZoneId', 
+				'source_FeatureZoneAreaBetweenType_ToPointZoneId', 
+				'source_FeatureZoneAreaBetweenType_ToCurveZoneId', 
+				'source_FeatureZoneAreaBetweenType_StartDirection', 
+				'source_FeatureZoneAreaBetweenType_PlaneNormal', 
+				'source_FeatureZoneAreaBetweenType');
+var diagramBoxes= new Array('diagram_FeatureZoneAreaBetweenType_FromPointZoneId', 
+				'diagram_FeatureZoneAreaBetweenType_FromCurveZoneId', 
+				'diagram_FeatureZoneAreaBetweenType_ToPointZoneId', 
+				'diagram_FeatureZoneAreaBetweenType_ToCurveZoneId', 
+				'diagram_FeatureZoneAreaBetweenType_StartDirection', 
+				'diagram_FeatureZoneAreaBetweenType_PlaneNormal', 
+				'diagram_FeatureZoneAreaBetweenType');
+var annotationBoxes= new Array('annotations_FeatureZoneAreaBetweenType_FromPointZoneId', 
+				'annotations_FeatureZoneAreaBetweenType_FromCurveZoneId', 
+				'annotations_FeatureZoneAreaBetweenType_ToPointZoneId', 
+				'annotations_FeatureZoneAreaBetweenType_ToCurveZoneId', 
+				'annotations_FeatureZoneAreaBetweenType_StartDirection', 
+				'annotations_FeatureZoneAreaBetweenType_PlaneNormal', 
+				'annotations_FeatureZoneAreaBetweenType');
+var attributesBoxes= new Array('attributes_FeatureZoneAreaBetweenType_FromPointZoneId', 
+				'attributes_FeatureZoneAreaBetweenType_FromCurveZoneId', 
+				'attributes_FeatureZoneAreaBetweenType_ToPointZoneId', 
+				'attributes_FeatureZoneAreaBetweenType_ToCurveZoneId', 
+				'attributes_FeatureZoneAreaBetweenType_StartDirection', 
+				'attributes_FeatureZoneAreaBetweenType_PlaneNormal', 
+				'attributes_FeatureZoneAreaBetweenType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="FeatureZoneAreaBetweenType_FromPointZoneId"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureZoneAreaBetweenType')">FeatureZoneAreaBetweenType</a></b> / FromPointZoneId</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_FeatureZoneAreaBetweenType_FromPointZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_FeatureZoneAreaBetweenType_FromPointZoneId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_FeatureZoneAreaBetweenType_FromPointZoneId" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The FromPointZone element is the QIF id of a point that represents the first boundary of the between zone.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_FeatureZoneAreaBetweenType_FromPointZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_FeatureZoneAreaBetweenType_FromPointZoneId');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_FeatureZoneAreaBetweenType_FromPointZoneId" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_FromPointZoneId.jpeg" usemap="#Features_xsd_Element_FromPointZoneId" /><map name="Features_xsd_Element_FromPointZoneId" id="Features_xsd_Element_FromPointZoneId">
+                                 <area alt="Primitives_xsd_Simple_Type_QIFReferenceBaseType.tmp#QIFReferenceBaseType" href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" coords="222,92,427,123" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType_xId" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" coords="238,229,319,258" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" coords="209,49,479,75" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType_asmPathId" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathId" coords="222,448,345,477" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType_asmPathXId" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathXId" coords="222,555,352,584" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" coords="193,3,384,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceFullType')">QIFReferenceFullType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceBaseType')">QIFReferenceBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b><ul class="internal">
+                                                      <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceFullType')">QIFReferenceFullType</a></b></li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_FeatureZoneAreaBetweenType_FromPointZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_FeatureZoneAreaBetweenType_FromPointZoneId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_FeatureZoneAreaBetweenType_FromPointZoneId" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_FeatureZoneAreaBetweenType_FromPointZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_FeatureZoneAreaBetweenType_FromPointZoneId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_FeatureZoneAreaBetweenType_FromPointZoneId" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component asmPathId')">asmPathId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional asmPathId attribute is a reference used for locating the id of an assembly path. If the asmPathXId attribute is not used, the asmPathId is a reference to an assembly path in the AsmPaths of the local document. If the asmPathXId is used, the asmPathId is the local id of an external QIF document, and the asmPathXId is a reference to an assembly path in the external QIF document. The assembly path (instantiation chain) unambiguously identifies a model entity within an assembly.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathXId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component asmPathXId')">asmPathXId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional asmPathXId attribute, if used, is a reference to the id of an assembly path in the external document identified by the asmPathId. The asmPathXId must not be used if the asmPathId is not used.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xId')">xId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional xId attribute is a reference to the id of a QIF object in an external document. A QIF object in an external QIF document can be referenced by using references to two QIF ids: the id of the external document reference of type ExternalQIFDocumentReferenceType found in the local document and the id of the object found in the external document.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_FeatureZoneAreaBetweenType_FromPointZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('source_FeatureZoneAreaBetweenType_FromPointZoneId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_FeatureZoneAreaBetweenType_FromPointZoneId" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FromPointZoneId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceFullType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FromPointZone element is the QIF id of a point that represents the first boundary of the between zone.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="FeatureZoneAreaBetweenType_FromCurveZoneId"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureZoneAreaBetweenType')">FeatureZoneAreaBetweenType</a></b> / FromCurveZoneId</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_FeatureZoneAreaBetweenType_FromCurveZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_FeatureZoneAreaBetweenType_FromCurveZoneId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_FeatureZoneAreaBetweenType_FromCurveZoneId" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The FromCurveZone element is the QIF id of a curve that represents the first boundary of the between zone.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_FeatureZoneAreaBetweenType_FromCurveZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_FeatureZoneAreaBetweenType_FromCurveZoneId');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_FeatureZoneAreaBetweenType_FromCurveZoneId" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_FromCurveZoneId.jpeg" usemap="#Features_xsd_Element_FromCurveZoneId" /><map name="Features_xsd_Element_FromCurveZoneId" id="Features_xsd_Element_FromCurveZoneId">
+                                 <area alt="Primitives_xsd_Simple_Type_QIFReferenceBaseType.tmp#QIFReferenceBaseType" href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" coords="224,92,429,123" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType_xId" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" coords="240,229,321,258" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" coords="211,49,481,75" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType_asmPathId" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathId" coords="224,448,347,477" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType_asmPathXId" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathXId" coords="224,555,354,584" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" coords="195,3,386,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceFullType')">QIFReferenceFullType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceBaseType')">QIFReferenceBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b><ul class="internal">
+                                                      <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceFullType')">QIFReferenceFullType</a></b></li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_FeatureZoneAreaBetweenType_FromCurveZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_FeatureZoneAreaBetweenType_FromCurveZoneId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_FeatureZoneAreaBetweenType_FromCurveZoneId" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_FeatureZoneAreaBetweenType_FromCurveZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_FeatureZoneAreaBetweenType_FromCurveZoneId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_FeatureZoneAreaBetweenType_FromCurveZoneId" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component asmPathId')">asmPathId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional asmPathId attribute is a reference used for locating the id of an assembly path. If the asmPathXId attribute is not used, the asmPathId is a reference to an assembly path in the AsmPaths of the local document. If the asmPathXId is used, the asmPathId is the local id of an external QIF document, and the asmPathXId is a reference to an assembly path in the external QIF document. The assembly path (instantiation chain) unambiguously identifies a model entity within an assembly.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathXId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component asmPathXId')">asmPathXId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional asmPathXId attribute, if used, is a reference to the id of an assembly path in the external document identified by the asmPathId. The asmPathXId must not be used if the asmPathId is not used.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xId')">xId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional xId attribute is a reference to the id of a QIF object in an external document. A QIF object in an external QIF document can be referenced by using references to two QIF ids: the id of the external document reference of type ExternalQIFDocumentReferenceType found in the local document and the id of the object found in the external document.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_FeatureZoneAreaBetweenType_FromCurveZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('source_FeatureZoneAreaBetweenType_FromCurveZoneId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_FeatureZoneAreaBetweenType_FromCurveZoneId" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FromCurveZoneId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceFullType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FromCurveZone element is the QIF id of a curve that represents the first boundary of the between zone.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="FeatureZoneAreaBetweenType_ToPointZoneId"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureZoneAreaBetweenType')">FeatureZoneAreaBetweenType</a></b> / ToPointZoneId</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_FeatureZoneAreaBetweenType_ToPointZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_FeatureZoneAreaBetweenType_ToPointZoneId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_FeatureZoneAreaBetweenType_ToPointZoneId" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The ToPointZone element is the QIF id of a point that represents the second boundary of the between zone.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_FeatureZoneAreaBetweenType_ToPointZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_FeatureZoneAreaBetweenType_ToPointZoneId');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_FeatureZoneAreaBetweenType_ToPointZoneId" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_ToPointZoneId.jpeg" usemap="#Features_xsd_Element_ToPointZoneId" /><map name="Features_xsd_Element_ToPointZoneId" id="Features_xsd_Element_ToPointZoneId">
+                                 <area alt="Primitives_xsd_Simple_Type_QIFReferenceBaseType.tmp#QIFReferenceBaseType" href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" coords="206,92,411,123" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType_xId" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" coords="222,229,303,258" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" coords="193,49,463,75" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType_asmPathId" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathId" coords="206,448,329,477" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType_asmPathXId" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathXId" coords="206,555,336,584" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" coords="177,3,368,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceFullType')">QIFReferenceFullType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceBaseType')">QIFReferenceBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b><ul class="internal">
+                                                      <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceFullType')">QIFReferenceFullType</a></b></li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_FeatureZoneAreaBetweenType_ToPointZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_FeatureZoneAreaBetweenType_ToPointZoneId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_FeatureZoneAreaBetweenType_ToPointZoneId" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_FeatureZoneAreaBetweenType_ToPointZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_FeatureZoneAreaBetweenType_ToPointZoneId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_FeatureZoneAreaBetweenType_ToPointZoneId" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component asmPathId')">asmPathId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional asmPathId attribute is a reference used for locating the id of an assembly path. If the asmPathXId attribute is not used, the asmPathId is a reference to an assembly path in the AsmPaths of the local document. If the asmPathXId is used, the asmPathId is the local id of an external QIF document, and the asmPathXId is a reference to an assembly path in the external QIF document. The assembly path (instantiation chain) unambiguously identifies a model entity within an assembly.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathXId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component asmPathXId')">asmPathXId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional asmPathXId attribute, if used, is a reference to the id of an assembly path in the external document identified by the asmPathId. The asmPathXId must not be used if the asmPathId is not used.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xId')">xId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional xId attribute is a reference to the id of a QIF object in an external document. A QIF object in an external QIF document can be referenced by using references to two QIF ids: the id of the external document reference of type ExternalQIFDocumentReferenceType found in the local document and the id of the object found in the external document.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_FeatureZoneAreaBetweenType_ToPointZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('source_FeatureZoneAreaBetweenType_ToPointZoneId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_FeatureZoneAreaBetweenType_ToPointZoneId" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ToPointZoneId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceFullType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ToPointZone element is the QIF id of a point that represents the second boundary of the between zone.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="FeatureZoneAreaBetweenType_ToCurveZoneId"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureZoneAreaBetweenType')">FeatureZoneAreaBetweenType</a></b> / ToCurveZoneId</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_FeatureZoneAreaBetweenType_ToCurveZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_FeatureZoneAreaBetweenType_ToCurveZoneId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_FeatureZoneAreaBetweenType_ToCurveZoneId" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The ToCurveZone element is the QIF id of a curve that represents the second boundary of the between zone.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_FeatureZoneAreaBetweenType_ToCurveZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_FeatureZoneAreaBetweenType_ToCurveZoneId');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_FeatureZoneAreaBetweenType_ToCurveZoneId" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_ToCurveZoneId.jpeg" usemap="#Features_xsd_Element_ToCurveZoneId" /><map name="Features_xsd_Element_ToCurveZoneId" id="Features_xsd_Element_ToCurveZoneId">
+                                 <area alt="Primitives_xsd_Simple_Type_QIFReferenceBaseType.tmp#QIFReferenceBaseType" href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" coords="208,92,413,123" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType_xId" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" coords="224,229,305,258" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" coords="195,49,465,75" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType_asmPathId" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathId" coords="208,448,331,477" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType_asmPathXId" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathXId" coords="208,555,338,584" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" coords="179,3,370,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceFullType')">QIFReferenceFullType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceBaseType')">QIFReferenceBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b><ul class="internal">
+                                                      <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceFullType')">QIFReferenceFullType</a></b></li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_FeatureZoneAreaBetweenType_ToCurveZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_FeatureZoneAreaBetweenType_ToCurveZoneId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_FeatureZoneAreaBetweenType_ToCurveZoneId" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_FeatureZoneAreaBetweenType_ToCurveZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_FeatureZoneAreaBetweenType_ToCurveZoneId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_FeatureZoneAreaBetweenType_ToCurveZoneId" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component asmPathId')">asmPathId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional asmPathId attribute is a reference used for locating the id of an assembly path. If the asmPathXId attribute is not used, the asmPathId is a reference to an assembly path in the AsmPaths of the local document. If the asmPathXId is used, the asmPathId is the local id of an external QIF document, and the asmPathXId is a reference to an assembly path in the external QIF document. The assembly path (instantiation chain) unambiguously identifies a model entity within an assembly.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathXId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component asmPathXId')">asmPathXId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional asmPathXId attribute, if used, is a reference to the id of an assembly path in the external document identified by the asmPathId. The asmPathXId must not be used if the asmPathId is not used.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xId')">xId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional xId attribute is a reference to the id of a QIF object in an external document. A QIF object in an external QIF document can be referenced by using references to two QIF ids: the id of the external document reference of type ExternalQIFDocumentReferenceType found in the local document and the id of the object found in the external document.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_FeatureZoneAreaBetweenType_ToCurveZoneId" type="image" src="img/btM.gif" value="-" onclick="switchState('source_FeatureZoneAreaBetweenType_ToCurveZoneId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_FeatureZoneAreaBetweenType_ToCurveZoneId" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ToCurveZoneId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceFullType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ToCurveZone element is the QIF id of a curve that represents the second boundary of the between zone.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="FeatureZoneAreaBetweenType_StartDirection"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureZoneAreaBetweenType')">FeatureZoneAreaBetweenType</a></b> / StartDirection</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_FeatureZoneAreaBetweenType_StartDirection" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_FeatureZoneAreaBetweenType_StartDirection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_FeatureZoneAreaBetweenType_StartDirection" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional StartDirection element is the unit vector that specifies the initial direction of the tolerance zone limit going from the FromPoint to the ToPoint when the path between the two points would otherwise be ambiguous.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_FeatureZoneAreaBetweenType_StartDirection" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_FeatureZoneAreaBetweenType_StartDirection');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_FeatureZoneAreaBetweenType_StartDirection" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_StartDirection.jpeg" usemap="#Features_xsd_Element_StartDirection" /><map name="Features_xsd_Element_StartDirection" id="Features_xsd_Element_StartDirection">
+                                 <area alt="Primitives_xsd_Simple_Type_UnitVectorSimpleType.tmp#UnitVectorSimpleType" href="Primitives_xsd_Simple_Type_UnitVectorSimpleType.html#UnitVectorSimpleType" coords="187,46,384,77" />
+                                 <area alt="Primitives_xsd_Attribute_Group_AttrPoint.tmp#AttrPoint" href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint" coords="206,186,325,217" />
+                                 <area alt="Primitives_xsd_Complex_Type_UnitVectorType.tmp#UnitVectorType" href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" coords="174,3,326,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorType')">UnitVectorType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:anySimpleType</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_ListDoubleType.html#ListDoubleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ListDoubleType')">ListDoubleType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_UnitVectorSimpleType.html#UnitVectorSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorSimpleType')">UnitVectorSimpleType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorType')">UnitVectorType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_FeatureZoneAreaBetweenType_StartDirection" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_FeatureZoneAreaBetweenType_StartDirection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_FeatureZoneAreaBetweenType_StartDirection" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_FeatureZoneAreaBetweenType_StartDirection" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_FeatureZoneAreaBetweenType_StartDirection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_FeatureZoneAreaBetweenType_StartDirection" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th></th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_validity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component validity')">validity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xDecimalPlaces')">xDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xSignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xSignificantFigures')">xSignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xValidity')">xValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_yDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yDecimalPlaces')">yDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_ySignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component ySignificantFigures')">ySignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_yValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yValidity')">yValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zDecimalPlaces')">zDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zSignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zSignificantFigures')">zSignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zValidity')">zValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_FeatureZoneAreaBetweenType_StartDirection" type="image" src="img/btM.gif" value="-" onclick="switchState('source_FeatureZoneAreaBetweenType_StartDirection');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_FeatureZoneAreaBetweenType_StartDirection" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"StartDirection"</span><span class="tAN"> type=</span><span class="tAV">"UnitVectorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional StartDirection element is the unit vector that specifies the initial direction of the tolerance zone limit going from the FromPoint to the ToPoint when the path between the two points would otherwise be ambiguous.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="FeatureZoneAreaBetweenType_PlaneNormal"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureZoneAreaBetweenType')">FeatureZoneAreaBetweenType</a></b> / PlaneNormal</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_FeatureZoneAreaBetweenType_PlaneNormal" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_FeatureZoneAreaBetweenType_PlaneNormal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_FeatureZoneAreaBetweenType_PlaneNormal" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional PlaneNormal element is the unit vector that specifies the normal of the plane in which the tolerance zone limit is defined.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_FeatureZoneAreaBetweenType_PlaneNormal" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_FeatureZoneAreaBetweenType_PlaneNormal');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_FeatureZoneAreaBetweenType_PlaneNormal" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_PlaneNormal.jpeg" usemap="#Features_xsd_Element_PlaneNormal" /><map name="Features_xsd_Element_PlaneNormal" id="Features_xsd_Element_PlaneNormal">
+                                 <area alt="Primitives_xsd_Simple_Type_UnitVectorSimpleType.tmp#UnitVectorSimpleType" href="Primitives_xsd_Simple_Type_UnitVectorSimpleType.html#UnitVectorSimpleType" coords="182,46,379,77" />
+                                 <area alt="Primitives_xsd_Attribute_Group_AttrPoint.tmp#AttrPoint" href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint" coords="201,186,320,217" />
+                                 <area alt="Primitives_xsd_Complex_Type_UnitVectorType.tmp#UnitVectorType" href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" coords="169,3,321,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorType')">UnitVectorType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:anySimpleType</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_ListDoubleType.html#ListDoubleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ListDoubleType')">ListDoubleType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_UnitVectorSimpleType.html#UnitVectorSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorSimpleType')">UnitVectorSimpleType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_UnitVectorType.html#UnitVectorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitVectorType')">UnitVectorType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_FeatureZoneAreaBetweenType_PlaneNormal" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_FeatureZoneAreaBetweenType_PlaneNormal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_FeatureZoneAreaBetweenType_PlaneNormal" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_FeatureZoneAreaBetweenType_PlaneNormal" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_FeatureZoneAreaBetweenType_PlaneNormal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_FeatureZoneAreaBetweenType_PlaneNormal" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th></th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_validity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component validity')">validity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xDecimalPlaces')">xDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xSignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xSignificantFigures')">xSignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_xValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xValidity')">xValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_yDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yDecimalPlaces')">yDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_ySignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component ySignificantFigures')">ySignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_yValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component yValidity')">yValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zDecimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zDecimalPlaces')">zDecimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zSignificantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zSignificantFigures')">zSignificantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Attribute_Group_AttrPoint.html#AttrPoint_zValidity" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zValidity')">zValidity</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_ValidityEnumType.html#ValidityEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidityEnumType')">ValidityEnumType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_FeatureZoneAreaBetweenType_PlaneNormal" type="image" src="img/btM.gif" value="-" onclick="switchState('source_FeatureZoneAreaBetweenType_PlaneNormal');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_FeatureZoneAreaBetweenType_PlaneNormal" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PlaneNormal"</span><span class="tAN"> type=</span><span class="tAV">"UnitVectorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional PlaneNormal element is the unit vector that specifies the normal of the plane in which the tolerance zone limit is defined.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="FeatureZoneAreaBetweenType"></a><div class="componentTitle">Complex Type <span class="qname">FeatureZoneAreaBetweenType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_FeatureZoneAreaBetweenType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_FeatureZoneAreaBetweenType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_FeatureZoneAreaBetweenType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The FeatureZoneAreaBetweenType defines a feature zone as the area between two other feature zones.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_FeatureZoneAreaBetweenType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_FeatureZoneAreaBetweenType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_FeatureZoneAreaBetweenType" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.jpeg" usemap="#Features_xsd_Complex_Type_FeatureZoneAreaBetweenType" /><map name="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType" id="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType">
+                                 <area alt="Features_xsd_Complex_Type_FeatureZoneBaseType.tmp#FeatureZoneBaseType_id" href="Features_xsd_Complex_Type_FeatureZoneBaseType.html#FeatureZoneBaseType_id" coords="347,136,428,165" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="416,236,510,265" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureZoneBaseType.tmp#FeatureZoneBaseType_Label" href="Features_xsd_Complex_Type_FeatureZoneBaseType.html#FeatureZoneBaseType_Label" coords="416,343,485,372" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureZoneBaseType.tmp#FeatureZoneBaseType_SurfaceFeatureNominalId" href="Features_xsd_Complex_Type_FeatureZoneBaseType.html#FeatureZoneBaseType_SurfaceFeatureNominalId" coords="416,434,599,463" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureZoneBaseType.tmp#FeatureZoneBaseType" href="Features_xsd_Complex_Type_FeatureZoneBaseType.html#FeatureZoneBaseType" coords="318,49,611,75" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureZoneAreaBaseType.tmp#FeatureZoneAreaBaseType_FaceIds" href="Features_xsd_Complex_Type_FeatureZoneAreaBaseType.html#FeatureZoneAreaBaseType_FaceIds" coords="400,584,484,613" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureZoneAreaBaseType.tmp#FeatureZoneAreaBaseType_EdgeIds" href="Features_xsd_Complex_Type_FeatureZoneAreaBaseType.html#FeatureZoneAreaBaseType_EdgeIds" coords="400,675,485,704" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureZoneAreaBaseType.tmp#FeatureZoneAreaBaseType" href="Features_xsd_Complex_Type_FeatureZoneAreaBaseType.html#FeatureZoneAreaBaseType" coords="302,3,622,29" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.tmp#FeatureZoneAreaBetweenType_FromPointZoneId" href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType_FromPointZoneId" coords="469,825,605,854" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.tmp#FeatureZoneAreaBetweenType_FromCurveZoneId" href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType_FromCurveZoneId" coords="469,916,607,945" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.tmp#FeatureZoneAreaBetweenType_ToPointZoneId" href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType_ToPointZoneId" coords="469,1007,589,1036" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.tmp#FeatureZoneAreaBetweenType_ToCurveZoneId" href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType_ToCurveZoneId" coords="469,1098,591,1127" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.tmp#FeatureZoneAreaBetweenType_StartDirection" href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType_StartDirection" coords="384,1189,501,1218" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.tmp#FeatureZoneAreaBetweenType_PlaneNormal" href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType_PlaneNormal" coords="384,1296,496,1325" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBaseType.html#FeatureZoneAreaBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureZoneAreaBaseType')">FeatureZoneAreaBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_FeatureZoneBaseType.html#FeatureZoneBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureZoneBaseType')">FeatureZoneBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBaseType.html#FeatureZoneAreaBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureZoneAreaBaseType')">FeatureZoneAreaBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureZoneAreaBetweenType')">FeatureZoneAreaBetweenType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_FeatureZoneAreaBetweenType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_FeatureZoneAreaBetweenType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_FeatureZoneAreaBetweenType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Features_xsd_Element_FeatureZoneAreaBetween.html#FeatureZoneAreaBetween" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureZoneAreaBetween')">FeatureZoneAreaBetween</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBaseType.html#FeatureZoneAreaBaseType_EdgeIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgeIds')">EdgeIds</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBaseType.html#FeatureZoneAreaBaseType_FaceIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FaceIds')">FaceIds</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType_FromCurveZoneId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FromCurveZoneId')">FromCurveZoneId</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType_FromPointZoneId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FromPointZoneId')">FromPointZoneId</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureZoneBaseType.html#FeatureZoneBaseType_Label" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Label')">Label</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType_PlaneNormal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneNormal')">PlaneNormal</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType_StartDirection" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StartDirection')">StartDirection</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureZoneBaseType.html#FeatureZoneBaseType_SurfaceFeatureNominalId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceFeatureNominalId')">SurfaceFeatureNominalId</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType_ToCurveZoneId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToCurveZoneId')">ToCurveZoneId</a></b>, <b><a href="Features_xsd_Complex_Type_FeatureZoneAreaBetweenType.html#FeatureZoneAreaBetweenType_ToPointZoneId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToPointZoneId')">ToPointZoneId</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_FeatureZoneAreaBetweenType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_FeatureZoneAreaBetweenType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_FeatureZoneAreaBetweenType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Features_xsd_Complex_Type_FeatureZoneBaseType.html#FeatureZoneBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the feature zone, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_FeatureZoneAreaBetweenType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_FeatureZoneAreaBetweenType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_FeatureZoneAreaBetweenType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"FeatureZoneAreaBetweenType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FeatureZoneAreaBetweenType defines a feature zone as the area between two other feature zones.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"FeatureZoneAreaBaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FromPointZoneId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceFullType"</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FromPointZone element is the QIF id of a point that represents the first boundary of the between zone.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FromCurveZoneId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceFullType"</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FromCurveZone element is the QIF id of a curve that represents the first boundary of the between zone.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ToPointZoneId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceFullType"</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ToPointZone element is the QIF id of a point that represents the second boundary of the between zone.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ToCurveZoneId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceFullType"</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+              </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ToCurveZone element is the QIF id of a curve that represents the second boundary of the between zone.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"StartDirection"</span><span class="tAN"> type=</span><span class="tAV">"UnitVectorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional StartDirection element is the unit vector that specifies the initial direction of the tolerance zone limit going from the FromPoint to the ToPoint when the path between the two points would otherwise be ambiguous.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PlaneNormal"</span><span class="tAN"> type=</span><span class="tAV">"UnitVectorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional PlaneNormal element is the unit vector that specifies the normal of the plane in which the tolerance zone limit is defined.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

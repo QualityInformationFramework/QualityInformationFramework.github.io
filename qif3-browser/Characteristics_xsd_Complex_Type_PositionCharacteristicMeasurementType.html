@@ -1,0 +1,1337 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Bonus</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_PositionCharacteristicMeasurementType_Bonus', 
+				'properties_PositionCharacteristicMeasurementType_DRFTransformActualId', 
+				'properties_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement', 
+				'properties_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement', 
+				'properties_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement');
+var usedByBoxes= new Array('usedBy_PositionCharacteristicMeasurementType');
+var sourceBoxes= new Array('source_PositionCharacteristicMeasurementType_Bonus', 
+				'source_PositionCharacteristicMeasurementType_DRFTransformActualId', 
+				'source_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement', 
+				'source_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement', 
+				'source_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement', 
+				'source_PositionCharacteristicMeasurementType');
+var instanceBoxes= new Array('instance_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement', 
+				'instance_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement', 
+				'instance_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement');
+var diagramBoxes= new Array('diagram_PositionCharacteristicMeasurementType_Bonus', 
+				'diagram_PositionCharacteristicMeasurementType_DRFTransformActualId', 
+				'diagram_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement', 
+				'diagram_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement', 
+				'diagram_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement', 
+				'diagram_PositionCharacteristicMeasurementType');
+var annotationBoxes= new Array('annotations_PositionCharacteristicMeasurementType_Bonus', 
+				'annotations_PositionCharacteristicMeasurementType_DRFTransformActualId', 
+				'annotations_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement', 
+				'annotations_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement', 
+				'annotations_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement', 
+				'annotations_PositionCharacteristicMeasurementType');
+var attributesBoxes= new Array('attributes_PositionCharacteristicMeasurementType_Bonus', 
+				'attributes_PositionCharacteristicMeasurementType_DRFTransformActualId', 
+				'attributes_PositionCharacteristicMeasurementType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="PositionCharacteristicMeasurementType_Bonus"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.html#PositionCharacteristicMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionCharacteristicMeasurementType')">PositionCharacteristicMeasurementType</a></b> / Bonus</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PositionCharacteristicMeasurementType_Bonus" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PositionCharacteristicMeasurementType_Bonus');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PositionCharacteristicMeasurementType_Bonus" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Bonus element is the size of the applied bonus.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PositionCharacteristicMeasurementType_Bonus" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PositionCharacteristicMeasurementType_Bonus');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PositionCharacteristicMeasurementType_Bonus" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_Bonus_3.jpeg" usemap="#Characteristics_xsd_Element_Bonus_3" /><map name="Characteristics_xsd_Element_Bonus_3" id="Characteristics_xsd_Element_Bonus_3">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="193,275,339,304" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="193,350,355,379" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="164,95,455,121" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_combinedUncertainty" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" coords="177,553,360,582" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_meanError" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" coords="177,644,298,673" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" coords="148,49,443,75" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredLinearValueType.tmp#MeasuredLinearValueType_linearUnit" href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType_linearUnit" coords="161,863,276,892" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredLinearValueType.tmp#MeasuredLinearValueType" href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" coords="132,3,348,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredLinearValueType')">MeasuredLinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredDecimalType')">MeasuredDecimalType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredLinearValueType')">MeasuredLinearValueType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PositionCharacteristicMeasurementType_Bonus" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PositionCharacteristicMeasurementType_Bonus');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PositionCharacteristicMeasurementType_Bonus" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_PositionCharacteristicMeasurementType_Bonus" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_PositionCharacteristicMeasurementType_Bonus');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_PositionCharacteristicMeasurementType_Bonus" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component combinedUncertainty')">combinedUncertainty</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional combinedUncertainty attribute is a value expressing the combined uncertainty assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the unit used by LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component meanError')">meanError</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional meanError attribute is a value expressing the mean error assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PositionCharacteristicMeasurementType_Bonus" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PositionCharacteristicMeasurementType_Bonus');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PositionCharacteristicMeasurementType_Bonus" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Bonus"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredLinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Bonus element is the size of the applied bonus.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PositionCharacteristicMeasurementType_DRFTransformActualId"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.html#PositionCharacteristicMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionCharacteristicMeasurementType')">PositionCharacteristicMeasurementType</a></b> / DRFTransformActualId</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PositionCharacteristicMeasurementType_DRFTransformActualId" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PositionCharacteristicMeasurementType_DRFTransformActualId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PositionCharacteristicMeasurementType_DRFTransformActualId" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional DRFTransformActualId element is the QIF id of the actual transform associated with the mobile DRF of this characteristic.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PositionCharacteristicMeasurementType_DRFTransformActualId" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PositionCharacteristicMeasurementType_DRFTransformActualId');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PositionCharacteristicMeasurementType_DRFTransformActualId" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_DRFTransformActualId_2.jpeg" usemap="#Characteristics_xsd_Element_DRFTransformActualId_2" /><map name="Characteristics_xsd_Element_DRFTransformActualId_2" id="Characteristics_xsd_Element_DRFTransformActualId_2">
+                                 <area alt="Primitives_xsd_Simple_Type_QIFReferenceBaseType.tmp#QIFReferenceBaseType" href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" coords="238,46,443,77" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType_xId" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" coords="254,183,335,212" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" coords="225,3,395,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceBaseType')">QIFReferenceBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PositionCharacteristicMeasurementType_DRFTransformActualId" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PositionCharacteristicMeasurementType_DRFTransformActualId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PositionCharacteristicMeasurementType_DRFTransformActualId" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_PositionCharacteristicMeasurementType_DRFTransformActualId" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_PositionCharacteristicMeasurementType_DRFTransformActualId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_PositionCharacteristicMeasurementType_DRFTransformActualId" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xId')">xId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional xId attribute is a reference to the id of a QIF object in an external document. A QIF object in an external QIF document can be referenced by using references to two QIF ids: the id of the external document reference of type ExternalQIFDocumentReferenceType found in the local document and the id of the object found in the external document.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PositionCharacteristicMeasurementType_DRFTransformActualId" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PositionCharacteristicMeasurementType_DRFTransformActualId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PositionCharacteristicMeasurementType_DRFTransformActualId" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DRFTransformActualId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional DRFTransformActualId element is the QIF id of the actual transform associated with the mobile DRF of this characteristic.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.html#PositionCharacteristicMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionCharacteristicMeasurementType')">PositionCharacteristicMeasurementType</a></b> / SecondCompositeSegmentPositionMeasurement</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional SecondCompositeSegmentPositionMeasurement gives information about the second measured composite segment characteristic evaluation.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_SecondCompositeSegmentPositionMeasurement.jpeg" usemap="#Characteristics_xsd_Element_SecondCompositeSegmentPositionMeasurement" /><map name="Characteristics_xsd_Element_SecondCompositeSegmentPositionMeasurement" id="Characteristics_xsd_Element_SecondCompositeSegmentPositionMeasurement">
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_Value" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_Value" coords="493,92,564,121" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_MaxValue" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_MaxValue" coords="493,183,589,212" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_MinValue" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_MinValue" coords="493,274,585,303" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_Status" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_Status" coords="493,365,569,394" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_DRFTransformActualId" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_DRFTransformActualId" coords="493,456,661,485" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_ZoneDataSet" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_ZoneDataSet" coords="493,547,606,576" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType" coords="395,49,809,75" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentPositionMeasurementType.tmp#CompositeSegmentPositionMeasurementType" href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionMeasurementType.html#CompositeSegmentPositionMeasurementType" coords="379,3,710,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionMeasurementType.html#CompositeSegmentPositionMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentPositionMeasurementType')">CompositeSegmentPositionMeasurementType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentMeasurementBaseType')">CompositeSegmentMeasurementBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionMeasurementType.html#CompositeSegmentPositionMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentPositionMeasurementType')">CompositeSegmentPositionMeasurementType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_DRFTransformActualId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DRFTransformActualId')">DRFTransformActualId</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_MaxValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MaxValue')">MaxValue</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_MinValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MinValue')">MinValue</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_Status" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Status')">Status</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_Value" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Value')">Value</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_ZoneDataSet" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ZoneDataSet')">ZoneDataSet</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;SecondCompositeSegmentPositionMeasurement</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Value</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Value&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MaxValue</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MaxValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MinValue</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MinValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Status</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Status&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DRFTransformActualId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/DRFTransformActualId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ZoneDataSet</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ZoneDataSet&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/SecondCompositeSegmentPositionMeasurement&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SecondCompositeSegmentPositionMeasurement"</span><span class="tAN"> type=</span><span class="tAV">"CompositeSegmentPositionMeasurementType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional SecondCompositeSegmentPositionMeasurement gives information about the second measured composite segment characteristic evaluation.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.html#PositionCharacteristicMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionCharacteristicMeasurementType')">PositionCharacteristicMeasurementType</a></b> / ThirdCompositeSegmentPositionMeasurement</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional ThirdCompositeSegmentPositionMeasurement gives information about the third measured composite segment characteristic evaluation. This element may be used only if the SecondCompositeSegmentPositionMeasurement element is used.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_ThirdCompositeSegmentPositionMeasurement.jpeg" usemap="#Characteristics_xsd_Element_ThirdCompositeSegmentPositionMeasurement" /><map name="Characteristics_xsd_Element_ThirdCompositeSegmentPositionMeasurement" id="Characteristics_xsd_Element_ThirdCompositeSegmentPositionMeasurement">
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_Value" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_Value" coords="477,92,548,121" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_MaxValue" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_MaxValue" coords="477,183,573,212" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_MinValue" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_MinValue" coords="477,274,569,303" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_Status" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_Status" coords="477,365,553,394" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_DRFTransformActualId" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_DRFTransformActualId" coords="477,456,645,485" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_ZoneDataSet" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_ZoneDataSet" coords="477,547,590,576" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType" coords="379,49,793,75" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentPositionMeasurementType.tmp#CompositeSegmentPositionMeasurementType" href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionMeasurementType.html#CompositeSegmentPositionMeasurementType" coords="363,3,694,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionMeasurementType.html#CompositeSegmentPositionMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentPositionMeasurementType')">CompositeSegmentPositionMeasurementType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentMeasurementBaseType')">CompositeSegmentMeasurementBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionMeasurementType.html#CompositeSegmentPositionMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentPositionMeasurementType')">CompositeSegmentPositionMeasurementType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_DRFTransformActualId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DRFTransformActualId')">DRFTransformActualId</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_MaxValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MaxValue')">MaxValue</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_MinValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MinValue')">MinValue</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_Status" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Status')">Status</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_Value" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Value')">Value</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_ZoneDataSet" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ZoneDataSet')">ZoneDataSet</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;ThirdCompositeSegmentPositionMeasurement</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Value</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Value&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MaxValue</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MaxValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MinValue</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MinValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Status</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Status&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DRFTransformActualId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/DRFTransformActualId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ZoneDataSet</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ZoneDataSet&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/ThirdCompositeSegmentPositionMeasurement&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ThirdCompositeSegmentPositionMeasurement"</span><span class="tAN"> type=</span><span class="tAV">"CompositeSegmentPositionMeasurementType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ThirdCompositeSegmentPositionMeasurement gives information about the third measured composite segment characteristic evaluation. This element may be used only if the SecondCompositeSegmentPositionMeasurement element is used.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.html#PositionCharacteristicMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionCharacteristicMeasurementType')">PositionCharacteristicMeasurementType</a></b> / FourthCompositeSegmentPositionMeasurement</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional FourthCompositeSegmentPositionMeasurement gives information about the fourth measured composite segment characteristic evaluation. This element may be used only if the ThirdCompositeSegmentPositionMeasurement element is used.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_FourthCompositeSegmentPositionMeasurement.jpeg" usemap="#Characteristics_xsd_Element_FourthCompositeSegmentPositionMeasurement" /><map name="Characteristics_xsd_Element_FourthCompositeSegmentPositionMeasurement" id="Characteristics_xsd_Element_FourthCompositeSegmentPositionMeasurement">
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_Value" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_Value" coords="486,92,557,121" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_MaxValue" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_MaxValue" coords="486,183,582,212" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_MinValue" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_MinValue" coords="486,274,578,303" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_Status" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_Status" coords="486,365,562,394" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_DRFTransformActualId" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_DRFTransformActualId" coords="486,456,654,485" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType_ZoneDataSet" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_ZoneDataSet" coords="486,547,599,576" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.tmp#CompositeSegmentMeasurementBaseType" href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType" coords="388,49,802,75" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CompositeSegmentPositionMeasurementType.tmp#CompositeSegmentPositionMeasurementType" href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionMeasurementType.html#CompositeSegmentPositionMeasurementType" coords="372,3,703,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionMeasurementType.html#CompositeSegmentPositionMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentPositionMeasurementType')">CompositeSegmentPositionMeasurementType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentMeasurementBaseType')">CompositeSegmentMeasurementBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionMeasurementType.html#CompositeSegmentPositionMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentPositionMeasurementType')">CompositeSegmentPositionMeasurementType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_DRFTransformActualId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DRFTransformActualId')">DRFTransformActualId</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_MaxValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MaxValue')">MaxValue</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_MinValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MinValue')">MinValue</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_Status" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Status')">Status</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_Value" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Value')">Value</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentMeasurementBaseType.html#CompositeSegmentMeasurementBaseType_ZoneDataSet" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ZoneDataSet')">ZoneDataSet</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;FourthCompositeSegmentPositionMeasurement</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Value</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Value&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MaxValue</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MaxValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MinValue</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MinValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Status</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Status&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DRFTransformActualId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/DRFTransformActualId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ZoneDataSet</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ZoneDataSet&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/FourthCompositeSegmentPositionMeasurement&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FourthCompositeSegmentPositionMeasurement"</span><span class="tAN"> type=</span><span class="tAV">"CompositeSegmentPositionMeasurementType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional FourthCompositeSegmentPositionMeasurement gives information about the fourth measured composite segment characteristic evaluation. This element may be used only if the ThirdCompositeSegmentPositionMeasurement element is used.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PositionCharacteristicMeasurementType"></a><div class="componentTitle">Complex Type <span class="qname">PositionCharacteristicMeasurementType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PositionCharacteristicMeasurementType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PositionCharacteristicMeasurementType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PositionCharacteristicMeasurementType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The PositionCharacteristicMeasurementType defines the results of a measured position characteristic evaluation.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PositionCharacteristicMeasurementType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PositionCharacteristicMeasurementType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PositionCharacteristicMeasurementType" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.jpeg" usemap="#Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType" /><map name="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType" id="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType">
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType_id" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_id" coords="436,228,517,257" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="505,328,599,357" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType_Description" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_Description" coords="505,435,608,464" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType" coords="407,141,708,167" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_Status" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_Status" coords="489,585,565,614" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_CharacteristicItemId" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_CharacteristicItemId" coords="489,692,642,721" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_TimeStamp" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_TimeStamp" coords="489,783,593,812" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_FeatureMeasurementIds" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_FeatureMeasurementIds" coords="489,874,667,903" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_SubstituteFeatureAlgorithm" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_SubstituteFeatureAlgorithm" coords="489,965,685,994" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_ActualComponentId" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_ActualComponentId" coords="489,1056,640,1085" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_MeasurementDeviceIds" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_MeasurementDeviceIds" coords="489,1147,661,1176" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_ManufacturingProcessId" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_ManufacturingProcessId" coords="489,1254,666,1283" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_NotedEventIds" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_NotedEventIds" coords="489,1345,610,1374" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_NonConformanceDesignator" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_NonConformanceDesignator" coords="489,1452,688,1481" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType" coords="391,95,771,121" />
+                                 <area alt="Characteristics_xsd_Complex_Type_GeometricCharacteristicMeasurementBaseType.tmp#GeometricCharacteristicMeasurementBaseType_Value" href="Characteristics_xsd_Complex_Type_GeometricCharacteristicMeasurementBaseType.html#GeometricCharacteristicMeasurementBaseType_Value" coords="473,1602,544,1631" />
+                                 <area alt="Characteristics_xsd_Complex_Type_GeometricCharacteristicMeasurementBaseType.tmp#GeometricCharacteristicMeasurementBaseType_MaxValue" href="Characteristics_xsd_Complex_Type_GeometricCharacteristicMeasurementBaseType.html#GeometricCharacteristicMeasurementBaseType_MaxValue" coords="473,1709,569,1738" />
+                                 <area alt="Characteristics_xsd_Complex_Type_GeometricCharacteristicMeasurementBaseType.tmp#GeometricCharacteristicMeasurementBaseType_MinValue" href="Characteristics_xsd_Complex_Type_GeometricCharacteristicMeasurementBaseType.html#GeometricCharacteristicMeasurementBaseType_MinValue" coords="473,1800,565,1829" />
+                                 <area alt="Characteristics_xsd_Complex_Type_GeometricCharacteristicMeasurementBaseType.tmp#GeometricCharacteristicMeasurementBaseType" href="Characteristics_xsd_Complex_Type_GeometricCharacteristicMeasurementBaseType.html#GeometricCharacteristicMeasurementBaseType" coords="375,49,815,75" />
+                                 <area alt="Characteristics_xsd_Complex_Type_LocationCharacteristicMeasurementBaseType.tmp#LocationCharacteristicMeasurementBaseType_ZoneDataSet" href="Characteristics_xsd_Complex_Type_LocationCharacteristicMeasurementBaseType.html#LocationCharacteristicMeasurementBaseType_ZoneDataSet" coords="457,1950,570,1979" />
+                                 <area alt="Characteristics_xsd_Complex_Type_LocationCharacteristicMeasurementBaseType.tmp#LocationCharacteristicMeasurementBaseType_DatumsOk" href="Characteristics_xsd_Complex_Type_LocationCharacteristicMeasurementBaseType.html#LocationCharacteristicMeasurementBaseType_DatumsOk" coords="457,2057,557,2086" />
+                                 <area alt="Characteristics_xsd_Complex_Type_LocationCharacteristicMeasurementBaseType.tmp#LocationCharacteristicMeasurementBaseType" href="Characteristics_xsd_Complex_Type_LocationCharacteristicMeasurementBaseType.html#LocationCharacteristicMeasurementBaseType" coords="359,3,788,29" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.tmp#PositionCharacteristicMeasurementType_Bonus" href="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.html#PositionCharacteristicMeasurementType_Bonus" coords="441,2223,516,2252" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.tmp#PositionCharacteristicMeasurementType_DRFTransformActualId" href="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.html#PositionCharacteristicMeasurementType_DRFTransformActualId" coords="441,2314,609,2343" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.tmp#PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement" href="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.html#PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement" coords="441,2405,763,2434" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.tmp#PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement" href="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.html#PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement" coords="441,2496,747,2525" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.tmp#PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement" href="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.html#PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement" coords="441,2587,756,2616" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="Characteristics_xsd_Complex_Type_LocationCharacteristicMeasurementBaseType.html#LocationCharacteristicMeasurementBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LocationCharacteristicMeasurementBaseType')">LocationCharacteristicMeasurementBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicBaseType')">CharacteristicBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicMeasurementBaseType')">CharacteristicMeasurementBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_GeometricCharacteristicMeasurementBaseType.html#GeometricCharacteristicMeasurementBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component GeometricCharacteristicMeasurementBaseType')">GeometricCharacteristicMeasurementBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_LocationCharacteristicMeasurementBaseType.html#LocationCharacteristicMeasurementBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LocationCharacteristicMeasurementBaseType')">LocationCharacteristicMeasurementBaseType</a></b><ul class="internal">
+                                                      <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.html#PositionCharacteristicMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionCharacteristicMeasurementType')">PositionCharacteristicMeasurementType</a></b></li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_PositionCharacteristicMeasurementType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_PositionCharacteristicMeasurementType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_PositionCharacteristicMeasurementType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Characteristics_xsd_Element_PositionCharacteristicMeasurement.html#PositionCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionCharacteristicMeasurement')">PositionCharacteristicMeasurement</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_ActualComponentId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ActualComponentId')">ActualComponentId</a></b>, <b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.html#PositionCharacteristicMeasurementType_Bonus" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Bonus')">Bonus</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_CharacteristicItemId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicItemId')">CharacteristicItemId</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.html#PositionCharacteristicMeasurementType_DRFTransformActualId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DRFTransformActualId')">DRFTransformActualId</a></b>, <b><a href="Characteristics_xsd_Complex_Type_LocationCharacteristicMeasurementBaseType.html#LocationCharacteristicMeasurementBaseType_DatumsOk" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DatumsOk')">DatumsOk</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_FeatureMeasurementIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureMeasurementIds')">FeatureMeasurementIds</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.html#PositionCharacteristicMeasurementType_FourthCompositeSegmentPositionMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FourthCompositeSegmentPositionMeasurement')">FourthCompositeSegmentPositionMeasurement</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_ManufacturingProcessId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ManufacturingProcessId')">ManufacturingProcessId</a></b>, <b><a href="Characteristics_xsd_Complex_Type_GeometricCharacteristicMeasurementBaseType.html#GeometricCharacteristicMeasurementBaseType_MaxValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MaxValue')">MaxValue</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_MeasurementDeviceIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementDeviceIds')">MeasurementDeviceIds</a></b>, <b><a href="Characteristics_xsd_Complex_Type_GeometricCharacteristicMeasurementBaseType.html#GeometricCharacteristicMeasurementBaseType_MinValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MinValue')">MinValue</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_NonConformanceDesignator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonConformanceDesignator')">NonConformanceDesignator</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_NotedEventIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NotedEventIds')">NotedEventIds</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.html#PositionCharacteristicMeasurementType_SecondCompositeSegmentPositionMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SecondCompositeSegmentPositionMeasurement')">SecondCompositeSegmentPositionMeasurement</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_Status" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Status')">Status</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_SubstituteFeatureAlgorithm" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SubstituteFeatureAlgorithm')">SubstituteFeatureAlgorithm</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionCharacteristicMeasurementType.html#PositionCharacteristicMeasurementType_ThirdCompositeSegmentPositionMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThirdCompositeSegmentPositionMeasurement')">ThirdCompositeSegmentPositionMeasurement</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_TimeStamp" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeStamp')">TimeStamp</a></b>, <b><a href="Characteristics_xsd_Complex_Type_GeometricCharacteristicMeasurementBaseType.html#GeometricCharacteristicMeasurementBaseType_Value" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Value')">Value</a></b>, <b><a href="Characteristics_xsd_Complex_Type_LocationCharacteristicMeasurementBaseType.html#LocationCharacteristicMeasurementBaseType_ZoneDataSet" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ZoneDataSet')">ZoneDataSet</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_PositionCharacteristicMeasurementType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_PositionCharacteristicMeasurementType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_PositionCharacteristicMeasurementType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the characteristic, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PositionCharacteristicMeasurementType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PositionCharacteristicMeasurementType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PositionCharacteristicMeasurementType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"PositionCharacteristicMeasurementType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The PositionCharacteristicMeasurementType defines the results of a measured position characteristic evaluation.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"LocationCharacteristicMeasurementBaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Bonus"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredLinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Bonus element is the size of the applied bonus.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DRFTransformActualId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional DRFTransformActualId element is the QIF id of the actual transform associated with the mobile DRF of this characteristic.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SecondCompositeSegmentPositionMeasurement"</span><span class="tAN"> type=</span><span class="tAV">"CompositeSegmentPositionMeasurementType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional SecondCompositeSegmentPositionMeasurement gives information about the second measured composite segment characteristic evaluation.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ThirdCompositeSegmentPositionMeasurement"</span><span class="tAN"> type=</span><span class="tAV">"CompositeSegmentPositionMeasurementType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ThirdCompositeSegmentPositionMeasurement gives information about the third measured composite segment characteristic evaluation. This element may be used only if the SecondCompositeSegmentPositionMeasurement element is used.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FourthCompositeSegmentPositionMeasurement"</span><span class="tAN"> type=</span><span class="tAV">"CompositeSegmentPositionMeasurementType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional FourthCompositeSegmentPositionMeasurement gives information about the fourth measured composite segment characteristic evaluation. This element may be used only if the ThirdCompositeSegmentPositionMeasurement element is used.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

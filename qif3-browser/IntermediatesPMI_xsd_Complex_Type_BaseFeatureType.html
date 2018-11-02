@@ -1,0 +1,741 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component ReferencedComponent</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_BaseFeatureType_ReferencedComponent', 
+				'properties_BaseFeatureType_FeatureId');
+var facetsBoxes= new Array('facets_BaseFeatureType_ReferencedComponent');
+var usedByBoxes= new Array('usedBy_BaseFeatureType');
+var sourceBoxes= new Array('source_BaseFeatureType_ReferencedComponent', 
+				'source_BaseFeatureType_FeatureId', 
+				'source_BaseFeatureType');
+var diagramBoxes= new Array('diagram_BaseFeatureType_ReferencedComponent', 
+				'diagram_BaseFeatureType_FeatureId', 
+				'diagram_BaseFeatureType');
+var annotationBoxes= new Array('annotations_BaseFeatureType_ReferencedComponent', 
+				'annotations_BaseFeatureType_FeatureId', 
+				'annotations_BaseFeatureType');
+var attributesBoxes= new Array('attributes_BaseFeatureType_FeatureId');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="BaseFeatureType_ReferencedComponent"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_BaseFeatureType.html#BaseFeatureType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseFeatureType')">BaseFeatureType</a></b> / ReferencedComponent</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BaseFeatureType_ReferencedComponent" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BaseFeatureType_ReferencedComponent');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BaseFeatureType_ReferencedComponent" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The ReferencedComponent element identifies whether the measured or nominal component of this feature is used in the construction or alignment.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BaseFeatureType_ReferencedComponent" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BaseFeatureType_ReferencedComponent');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BaseFeatureType_ReferencedComponent" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_ReferencedComponent_1.jpeg" usemap="#IntermediatesPMI_xsd_Element_ReferencedComponent_1" /><map name="IntermediatesPMI_xsd_Element_ReferencedComponent_1" id="IntermediatesPMI_xsd_Element_ReferencedComponent_1">
+                                 <area alt="IntermediatesPMI_xsd_Simple_Type_ReferencedComponentEnumType.tmp#ReferencedComponentEnumType" href="IntermediatesPMI_xsd_Simple_Type_ReferencedComponentEnumType.html#ReferencedComponentEnumType" coords="223,0,484,31" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Simple_Type_ReferencedComponentEnumType.html#ReferencedComponentEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReferencedComponentEnumType')">ReferencedComponentEnumType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_BaseFeatureType_ReferencedComponent" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_BaseFeatureType_ReferencedComponent');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_BaseFeatureType_ReferencedComponent" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_BaseFeatureType_ReferencedComponent" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_BaseFeatureType_ReferencedComponent');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_BaseFeatureType_ReferencedComponent" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>NOMINAL</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>ACTUAL</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BaseFeatureType_ReferencedComponent" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BaseFeatureType_ReferencedComponent');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BaseFeatureType_ReferencedComponent" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ReferencedComponent"</span><span class="tAN"> type=</span><span class="tAV">"ReferencedComponentEnumType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ReferencedComponent element identifies whether the measured or nominal component of this feature is used in the construction or alignment.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="BaseFeatureType_FeatureId"></a><div class="componentTitle">Element <span class="qname"><b><a href="IntermediatesPMI_xsd_Complex_Type_BaseFeatureType.html#BaseFeatureType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseFeatureType')">BaseFeatureType</a></b> / FeatureId</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BaseFeatureType_FeatureId" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BaseFeatureType_FeatureId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BaseFeatureType_FeatureId" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The FeatureId element is the QIF id of a feature nominal in the case where a construction is defined at the feature nominal level, or the QIF id of a feature item in the case where a construction is defined at the feature item level. The allowed values of FeatureId are restricted by key/keyref pairs.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BaseFeatureType_FeatureId" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BaseFeatureType_FeatureId');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BaseFeatureType_FeatureId" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Element_FeatureId.jpeg" usemap="#IntermediatesPMI_xsd_Element_FeatureId" /><map name="IntermediatesPMI_xsd_Element_FeatureId" id="IntermediatesPMI_xsd_Element_FeatureId">
+                                 <area alt="Primitives_xsd_Simple_Type_QIFReferenceBaseType.tmp#QIFReferenceBaseType" href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" coords="178,92,383,123" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType_xId" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" coords="194,229,275,258" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" coords="165,49,435,75" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType_asmPathId" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathId" coords="178,448,301,477" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType_asmPathXId" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathXId" coords="178,555,308,584" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceFullType.tmp#QIFReferenceFullType" href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" coords="149,3,340,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceFullType')">QIFReferenceFullType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceBaseType')">QIFReferenceBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b><ul class="internal">
+                                                      <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceFullType')">QIFReferenceFullType</a></b></li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_BaseFeatureType_FeatureId" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_BaseFeatureType_FeatureId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_BaseFeatureType_FeatureId" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_BaseFeatureType_FeatureId" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_BaseFeatureType_FeatureId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_BaseFeatureType_FeatureId" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component asmPathId')">asmPathId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional asmPathId attribute is a reference used for locating the id of an assembly path. If the asmPathXId attribute is not used, the asmPathId is a reference to an assembly path in the AsmPaths of the local document. If the asmPathXId is used, the asmPathId is the local id of an external QIF document, and the asmPathXId is a reference to an assembly path in the external QIF document. The assembly path (instantiation chain) unambiguously identifies a model entity within an assembly.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceFullType.html#QIFReferenceFullType_asmPathXId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component asmPathXId')">asmPathXId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional asmPathXId attribute, if used, is a reference to the id of an assembly path in the external document identified by the asmPathId. The asmPathXId must not be used if the asmPathId is not used.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xId')">xId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional xId attribute is a reference to the id of a QIF object in an external document. A QIF object in an external QIF document can be referenced by using references to two QIF ids: the id of the external document reference of type ExternalQIFDocumentReferenceType found in the local document and the id of the object found in the external document.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BaseFeatureType_FeatureId" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BaseFeatureType_FeatureId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BaseFeatureType_FeatureId" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FeatureId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceFullType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FeatureId element is the QIF id of a feature nominal in the case where a construction is defined at the feature nominal level, or the QIF id of a feature item in the case where a construction is defined at the feature item level. The allowed values of FeatureId are restricted by key/keyref pairs.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="BaseFeatureType"></a><div class="componentTitle">Complex Type <span class="qname">BaseFeatureType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BaseFeatureType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BaseFeatureType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BaseFeatureType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The BaseFeatureType defines a feature used in a construction or alignment.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BaseFeatureType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BaseFeatureType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BaseFeatureType" style="display:block"><img alt="Diagram" border="0" src="img/IntermediatesPMI_xsd_Complex_Type_BaseFeatureType.jpeg" usemap="#IntermediatesPMI_xsd_Complex_Type_BaseFeatureType" /><map name="IntermediatesPMI_xsd_Complex_Type_BaseFeatureType" id="IntermediatesPMI_xsd_Complex_Type_BaseFeatureType">
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_BaseFeatureType.tmp#BaseFeatureType_ReferencedComponent" href="IntermediatesPMI_xsd_Complex_Type_BaseFeatureType.html#BaseFeatureType_ReferencedComponent" coords="309,0,478,29" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_BaseFeatureType.tmp#BaseFeatureType_FeatureId" href="IntermediatesPMI_xsd_Complex_Type_BaseFeatureType.html#BaseFeatureType_FeatureId" coords="309,107,401,136" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_BaseFeatureType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_BaseFeatureType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_BaseFeatureType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="IntermediatesPMI_xsd_Complex_Type_SequencedBaseFeatureType.html#SequencedBaseFeatureType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SequencedBaseFeatureType')">SequencedBaseFeatureType</a></b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">Elements </td>
+                                    <td><b><a href="IntermediatesPMI_xsd_Complex_Type_AlignmentFeatureType.html#AlignmentFeatureType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AlignmentFeatureType/BaseFeature')">AlignmentFeatureType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_CircleCastType.html#CircleCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleCastType/BaseFeature')">CircleCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_CircleCopyType.html#CircleCopyType_BaseCircle" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleCopyType/BaseCircle')">CircleCopyType/BaseCircle</a></b>, <b><a href="Features_xsd_Complex_Type_CircleFromScanType.html#CircleFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleFromScanType/SurfaceFeature')">CircleFromScanType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_CircleProjectionType.html#CircleProjectionType_ProjectionCircle" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleProjectionType/ProjectionCircle')">CircleProjectionType/ProjectionCircle</a></b>, <b><a href="Features_xsd_Complex_Type_CircleProjectionType.html#CircleProjectionType_ProjectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleProjectionType/ProjectionPlane')">CircleProjectionType/ProjectionPlane</a></b>, <b><a href="Features_xsd_Complex_Type_CircleTangentThroughType.html#CircleTangentThroughType_PointFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleTangentThroughType/PointFeature')">CircleTangentThroughType/PointFeature</a></b>, <b><a href="Features_xsd_Complex_Type_CircleTangentThroughType.html#CircleTangentThroughType_TangentFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleTangentThroughType/TangentFeature')">CircleTangentThroughType/TangentFeature</a></b>, <b><a href="Features_xsd_Complex_Type_CircleTransformType.html#CircleTransformType_BaseCircle" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleTransformType/BaseCircle')">CircleTransformType/BaseCircle</a></b>, <b><a href="Features_xsd_Complex_Type_CircularArcCastType.html#CircularArcCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcCastType/BaseFeature')">CircularArcCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_CircularArcCopyType.html#CircularArcCopyType_BaseArc" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcCopyType/BaseArc')">CircularArcCopyType/BaseArc</a></b>, <b><a href="Features_xsd_Complex_Type_CircularArcExtractType.html#CircularArcExtractType_CurveFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcExtractType/CurveFeature')">CircularArcExtractType/CurveFeature</a></b>, <b><a href="Features_xsd_Complex_Type_CircularArcFromScanType.html#CircularArcFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcFromScanType/SurfaceFeature')">CircularArcFromScanType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_CircularArcProjectionType.html#CircularArcProjectionType_ProjectionArc" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcProjectionType/ProjectionArc')">CircularArcProjectionType/ProjectionArc</a></b>, <b><a href="Features_xsd_Complex_Type_CircularArcProjectionType.html#CircularArcProjectionType_ProjectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcProjectionType/ProjectionPlane')">CircularArcProjectionType/ProjectionPlane</a></b>, <b><a href="Features_xsd_Complex_Type_CircularArcTransformType.html#CircularArcTransformType_BaseArc" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcTransformType/BaseArc')">CircularArcTransformType/BaseArc</a></b>, <b><a href="Features_xsd_Complex_Type_ConeCastType.html#ConeCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConeCastType/BaseFeature')">ConeCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ConeCopyType.html#ConeCopyType_BaseCone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConeCopyType/BaseCone')">ConeCopyType/BaseCone</a></b>, <b><a href="Features_xsd_Complex_Type_ConeFromScanType.html#ConeFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConeFromScanType/SurfaceFeature')">ConeFromScanType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ConeTransformType.html#ConeTransformType_BaseCone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConeTransformType/BaseCone')">ConeTransformType/BaseCone</a></b>, <b><a href="Features_xsd_Complex_Type_ConicalSegmentCastType.html#ConicalSegmentCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConicalSegmentCastType/BaseFeature')">ConicalSegmentCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ConicalSegmentCopyType.html#ConicalSegmentCopyType_BaseConicalSegment" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConicalSegmentCopyType/BaseConicalSegment')">ConicalSegmentCopyType/BaseConicalSegment</a></b>, <b><a href="Features_xsd_Complex_Type_ConicalSegmentTransformType.html#ConicalSegmentTransformType_BaseConicalSegment" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConicalSegmentTransformType/BaseConicalSegment')">ConicalSegmentTransformType/BaseConicalSegment</a></b>, <b><a href="Features_xsd_Complex_Type_CylinderCastType.html#CylinderCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylinderCastType/BaseFeature')">CylinderCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_CylinderCopyType.html#CylinderCopyType_BaseCylinder" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylinderCopyType/BaseCylinder')">CylinderCopyType/BaseCylinder</a></b>, <b><a href="Features_xsd_Complex_Type_CylinderFromScanType.html#CylinderFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylinderFromScanType/SurfaceFeature')">CylinderFromScanType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_CylinderTransformType.html#CylinderTransformType_BaseCylinder" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylinderTransformType/BaseCylinder')">CylinderTransformType/BaseCylinder</a></b>, <b><a href="Features_xsd_Complex_Type_CylindricalSegmentCastType.html#CylindricalSegmentCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylindricalSegmentCastType/BaseFeature')">CylindricalSegmentCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_CylindricalSegmentCopyType.html#CylindricalSegmentCopyType_BaseCylindricalSegment" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylindricalSegmentCopyType/BaseCylindricalSegment')">CylindricalSegmentCopyType/BaseCylindricalSegment</a></b>, <b><a href="Features_xsd_Complex_Type_CylindricalSegmentTransformType.html#CylindricalSegmentTransformType_BaseCylindricalSegment" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylindricalSegmentTransformType/BaseCylindricalSegment')">CylindricalSegmentTransformType/BaseCylindricalSegment</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_DirectionalOffsetType.html#DirectionalOffsetType_FeatureDirection" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DirectionalOffsetType/FeatureDirection')">DirectionalOffsetType/FeatureDirection</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointCastType.html#EdgePointCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointCastType/BaseFeature')">EdgePointCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointCopyType.html#EdgePointCopyType_BaseEdgePoint" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointCopyType/BaseEdgePoint')">EdgePointCopyType/BaseEdgePoint</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointFromScanType.html#EdgePointFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointFromScanType/SurfaceFeature')">EdgePointFromScanType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_EdgePointTransformType.html#EdgePointTransformType_BaseEdgePoint" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointTransformType/BaseEdgePoint')">EdgePointTransformType/BaseEdgePoint</a></b>, <b><a href="Features_xsd_Complex_Type_EllipseCastType.html#EllipseCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseCastType/BaseFeature')">EllipseCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_EllipseCopyType.html#EllipseCopyType_BaseEllipse" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseCopyType/BaseEllipse')">EllipseCopyType/BaseEllipse</a></b>, <b><a href="Features_xsd_Complex_Type_EllipseFromScanType.html#EllipseFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseFromScanType/SurfaceFeature')">EllipseFromScanType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_EllipseIntersectionType.html#EllipseIntersectionType_IntersectionFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseIntersectionType/IntersectionFeature')">EllipseIntersectionType/IntersectionFeature</a></b>, <b><a href="Features_xsd_Complex_Type_EllipseIntersectionType.html#EllipseIntersectionType_IntersectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseIntersectionType/IntersectionPlane')">EllipseIntersectionType/IntersectionPlane</a></b>, <b><a href="Features_xsd_Complex_Type_EllipseProjectionType.html#EllipseProjectionType_ProjectionFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseProjectionType/ProjectionFeature')">EllipseProjectionType/ProjectionFeature</a></b>, <b><a href="Features_xsd_Complex_Type_EllipseProjectionType.html#EllipseProjectionType_ProjectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseProjectionType/ProjectionPlane')">EllipseProjectionType/ProjectionPlane</a></b>, <b><a href="Features_xsd_Complex_Type_EllipseTransformType.html#EllipseTransformType_BaseEllipse" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseTransformType/BaseEllipse')">EllipseTransformType/BaseEllipse</a></b>, <b><a href="Features_xsd_Complex_Type_EllipticalArcCastType.html#EllipticalArcCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcCastType/BaseFeature')">EllipticalArcCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_EllipticalArcCopyType.html#EllipticalArcCopyType_BaseEllipticalArc" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcCopyType/BaseEllipticalArc')">EllipticalArcCopyType/BaseEllipticalArc</a></b>, <b><a href="Features_xsd_Complex_Type_EllipticalArcFromScanType.html#EllipticalArcFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcFromScanType/SurfaceFeature')">EllipticalArcFromScanType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_EllipticalArcIntersectionType.html#EllipticalArcIntersectionType_IntersectionFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcIntersectionType/IntersectionFeature')">EllipticalArcIntersectionType/IntersectionFeature</a></b>, <b><a href="Features_xsd_Complex_Type_EllipticalArcIntersectionType.html#EllipticalArcIntersectionType_IntersectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcIntersectionType/IntersectionPlane')">EllipticalArcIntersectionType/IntersectionPlane</a></b>, <b><a href="Features_xsd_Complex_Type_EllipticalArcProjectionType.html#EllipticalArcProjectionType_ProjectionFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcProjectionType/ProjectionFeature')">EllipticalArcProjectionType/ProjectionFeature</a></b>, <b><a href="Features_xsd_Complex_Type_EllipticalArcProjectionType.html#EllipticalArcProjectionType_ProjectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcProjectionType/ProjectionPlane')">EllipticalArcProjectionType/ProjectionPlane</a></b>, <b><a href="Features_xsd_Complex_Type_EllipticalArcTransformType.html#EllipticalArcTransformType_BaseEllipticalArc" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcTransformType/BaseEllipticalArc')">EllipticalArcTransformType/BaseEllipticalArc</a></b>, <b><a href="Features_xsd_Complex_Type_ElongatedCircleCastType.html#ElongatedCircleCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCircleCastType/BaseFeature')">ElongatedCircleCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ElongatedCircleCopyType.html#ElongatedCircleCopyType_BaseElongatedCircle" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCircleCopyType/BaseElongatedCircle')">ElongatedCircleCopyType/BaseElongatedCircle</a></b>, <b><a href="Features_xsd_Complex_Type_ElongatedCircleTransformType.html#ElongatedCircleTransformType_BaseElongatedCircle" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCircleTransformType/BaseElongatedCircle')">ElongatedCircleTransformType/BaseElongatedCircle</a></b>, <b><a href="Features_xsd_Complex_Type_ElongatedCylinderCastType.html#ElongatedCylinderCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCylinderCastType/BaseFeature')">ElongatedCylinderCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ElongatedCylinderCopyType.html#ElongatedCylinderCopyType_BaseElongatedCylinder" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCylinderCopyType/BaseElongatedCylinder')">ElongatedCylinderCopyType/BaseElongatedCylinder</a></b>, <b><a href="Features_xsd_Complex_Type_ElongatedCylinderTransformType.html#ElongatedCylinderTransformType_BaseElongatedCylinder" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCylinderTransformType/BaseElongatedCylinder')">ElongatedCylinderTransformType/BaseElongatedCylinder</a></b>, <b><a href="Features_xsd_Complex_Type_ExtrudedCrossSectionCastType.html#ExtrudedCrossSectionCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ExtrudedCrossSectionCastType/BaseFeature')">ExtrudedCrossSectionCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ExtrudedCrossSectionCopyType.html#ExtrudedCrossSectionCopyType_BaseExtrudedCrossSection" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ExtrudedCrossSectionCopyType/BaseExtrudedCrossSection')">ExtrudedCrossSectionCopyType/BaseExtrudedCrossSection</a></b>, <b><a href="Features_xsd_Complex_Type_ExtrudedCrossSectionTransformType.html#ExtrudedCrossSectionTransformType_BaseExtrudedCrossSection" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ExtrudedCrossSectionTransformType/BaseExtrudedCrossSection')">ExtrudedCrossSectionTransformType/BaseExtrudedCrossSection</a></b>, <b><a href="Features_xsd_Complex_Type_LineCastType.html#LineCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineCastType/BaseFeature')">LineCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_LineCopyType.html#LineCopyType_BaseLine" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineCopyType/BaseLine')">LineCopyType/BaseLine</a></b>, <b><a href="Features_xsd_Complex_Type_LineExtractType.html#LineExtractType_CurveFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineExtractType/CurveFeature')">LineExtractType/CurveFeature</a></b>, <b><a href="Features_xsd_Complex_Type_LineFromScanType.html#LineFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineFromScanType/SurfaceFeature')">LineFromScanType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_LineParallelType.html#LineParallelType_ParallelFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineParallelType/ParallelFeature')">LineParallelType/ParallelFeature</a></b>, <b><a href="Features_xsd_Complex_Type_LineParallelType.html#LineParallelType_PointFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineParallelType/PointFeature')">LineParallelType/PointFeature</a></b>, <b><a href="Features_xsd_Complex_Type_LinePerpendicularType.html#LinePerpendicularType_PerpendicularFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinePerpendicularType/PerpendicularFeature')">LinePerpendicularType/PerpendicularFeature</a></b>, <b><a href="Features_xsd_Complex_Type_LinePerpendicularType.html#LinePerpendicularType_PointFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinePerpendicularType/PointFeature')">LinePerpendicularType/PointFeature</a></b>, <b><a href="Features_xsd_Complex_Type_LineProjectionType.html#LineProjectionType_ProjectionLine" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineProjectionType/ProjectionLine')">LineProjectionType/ProjectionLine</a></b>, <b><a href="Features_xsd_Complex_Type_LineProjectionType.html#LineProjectionType_ProjectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineProjectionType/ProjectionPlane')">LineProjectionType/ProjectionPlane</a></b>, <b><a href="Features_xsd_Complex_Type_LineTangentThroughType.html#LineTangentThroughType_PointFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineTangentThroughType/PointFeature')">LineTangentThroughType/PointFeature</a></b>, <b><a href="Features_xsd_Complex_Type_LineTangentThroughType.html#LineTangentThroughType_TangentFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineTangentThroughType/TangentFeature')">LineTangentThroughType/TangentFeature</a></b>, <b><a href="Features_xsd_Complex_Type_LineTransformType.html#LineTransformType_BaseLine" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineTransformType/BaseLine')">LineTransformType/BaseLine</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledLinesCastType.html#OppositeAngledLinesCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesCastType/BaseFeature')">OppositeAngledLinesCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledLinesCopyType.html#OppositeAngledLinesCopyType_BaseOppositeAngledLines" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesCopyType/BaseOppositeAngledLines')">OppositeAngledLinesCopyType/BaseOppositeAngledLines</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledLinesFromScanType.html#OppositeAngledLinesFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesFromScanType/SurfaceFeature')">OppositeAngledLinesFromScanType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledLinesIntersectionType.html#OppositeAngledLinesIntersectionType_IntersectionFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesIntersectionType/IntersectionFeature')">OppositeAngledLinesIntersectionType/IntersectionFeature</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledLinesIntersectionType.html#OppositeAngledLinesIntersectionType_IntersectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesIntersectionType/IntersectionPlane')">OppositeAngledLinesIntersectionType/IntersectionPlane</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledLinesProjectionType.html#OppositeAngledLinesProjectionType_ProjectionOppositeAngledLines" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesProjectionType/ProjectionOppositeAngledLines')">OppositeAngledLinesProjectionType/ProjectionOppositeAngledLines</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledLinesProjectionType.html#OppositeAngledLinesProjectionType_ProjectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesProjectionType/ProjectionPlane')">OppositeAngledLinesProjectionType/ProjectionPlane</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledLinesTransformType.html#OppositeAngledLinesTransformType_BaseOppositeAngledLines" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesTransformType/BaseOppositeAngledLines')">OppositeAngledLinesTransformType/BaseOppositeAngledLines</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesCastType.html#OppositeAngledPlanesCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesCastType/BaseFeature')">OppositeAngledPlanesCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesCopyType.html#OppositeAngledPlanesCopyType_BaseOppositeAngledPlanes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesCopyType/BaseOppositeAngledPlanes')">OppositeAngledPlanesCopyType/BaseOppositeAngledPlanes</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesFromScanType.html#OppositeAngledPlanesFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesFromScanType/SurfaceFeature')">OppositeAngledPlanesFromScanType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeAngledPlanesTransformType.html#OppositeAngledPlanesTransformType_BaseOppositeAngledPlanes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesTransformType/BaseOppositeAngledPlanes')">OppositeAngledPlanesTransformType/BaseOppositeAngledPlanes</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesCastType.html#OppositeParallelLinesCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesCastType/BaseFeature')">OppositeParallelLinesCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesCopyType.html#OppositeParallelLinesCopyType_BaseOppositeParallelLines" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesCopyType/BaseOppositeParallelLines')">OppositeParallelLinesCopyType/BaseOppositeParallelLines</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesFromScanType.html#OppositeParallelLinesFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesFromScanType/SurfaceFeature')">OppositeParallelLinesFromScanType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesIntersectionType.html#OppositeParallelLinesIntersectionType_IntersectionFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesIntersectionType/IntersectionFeature')">OppositeParallelLinesIntersectionType/IntersectionFeature</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesIntersectionType.html#OppositeParallelLinesIntersectionType_IntersectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesIntersectionType/IntersectionPlane')">OppositeParallelLinesIntersectionType/IntersectionPlane</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesProjectionType.html#OppositeParallelLinesProjectionType_ProjectionOppositeParallelLines" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesProjectionType/ProjectionOppositeParallelLines')">OppositeParallelLinesProjectionType/ProjectionOppositeParallelLines</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesProjectionType.html#OppositeParallelLinesProjectionType_ProjectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesProjectionType/ProjectionPlane')">OppositeParallelLinesProjectionType/ProjectionPlane</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelLinesTransformType.html#OppositeParallelLinesTransformType_BaseOppositeParallelLines" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesTransformType/BaseOppositeParallelLines')">OppositeParallelLinesTransformType/BaseOppositeParallelLines</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelPlanesCastType.html#OppositeParallelPlanesCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelPlanesCastType/BaseFeature')">OppositeParallelPlanesCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelPlanesCopyType.html#OppositeParallelPlanesCopyType_BaseOppositeParallelPlanes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelPlanesCopyType/BaseOppositeParallelPlanes')">OppositeParallelPlanesCopyType/BaseOppositeParallelPlanes</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelPlanesFromScanType.html#OppositeParallelPlanesFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelPlanesFromScanType/SurfaceFeature')">OppositeParallelPlanesFromScanType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_OppositeParallelPlanesTransformType.html#OppositeParallelPlanesTransformType_BaseOppositeParallelPlanes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelPlanesTransformType/BaseOppositeParallelPlanes')">OppositeParallelPlanesTransformType/BaseOppositeParallelPlanes</a></b>, <b><a href="Features_xsd_Complex_Type_OtherCurveFeatureCopyType.html#OtherCurveFeatureCopyType_BaseOtherCurveFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherCurveFeatureCopyType/BaseOtherCurveFeature')">OtherCurveFeatureCopyType/BaseOtherCurveFeature</a></b>, <b><a href="Features_xsd_Complex_Type_OtherShapeFeatureCopyType.html#OtherShapeFeatureCopyType_BaseOtherShapeFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherShapeFeatureCopyType/BaseOtherShapeFeature')">OtherShapeFeatureCopyType/BaseOtherShapeFeature</a></b>, <b><a href="Features_xsd_Complex_Type_OtherSurfaceFeatureCopyType.html#OtherSurfaceFeatureCopyType_BaseOtherSurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherSurfaceFeatureCopyType/BaseOtherSurfaceFeature')">OtherSurfaceFeatureCopyType/BaseOtherSurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneCastType.html#PlaneCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneCastType/BaseFeature')">PlaneCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneCopyType.html#PlaneCopyType_BasePlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneCopyType/BasePlane')">PlaneCopyType/BasePlane</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneExtractType.html#PlaneExtractType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneExtractType/SurfaceFeature')">PlaneExtractType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneOffsetType.html#PlaneOffsetType_BasePlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneOffsetType/BasePlane')">PlaneOffsetType/BasePlane</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneParallelType.html#PlaneParallelType_ParallelFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneParallelType/ParallelFeature')">PlaneParallelType/ParallelFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneParallelType.html#PlaneParallelType_PointFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneParallelType/PointFeature')">PlaneParallelType/PointFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PlanePerpendicularType.html#PlanePerpendicularType_PerpendicularFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlanePerpendicularType/PerpendicularFeature')">PlanePerpendicularType/PerpendicularFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PlanePerpendicularType.html#PlanePerpendicularType_PointFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlanePerpendicularType/PointFeature')">PlanePerpendicularType/PointFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneTangentThroughType.html#PlaneTangentThroughType_PointFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneTangentThroughType/PointFeature')">PlaneTangentThroughType/PointFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneTangentThroughType.html#PlaneTangentThroughType_TangentFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneTangentThroughType/TangentFeature')">PlaneTangentThroughType/TangentFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PlaneTransformType.html#PlaneTransformType_BasePlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneTransformType/BasePlane')">PlaneTransformType/BasePlane</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedCurveCopyType.html#PointDefinedCurveCopyType_BasePointDefinedCurve" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedCurveCopyType/BasePointDefinedCurve')">PointDefinedCurveCopyType/BasePointDefinedCurve</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedCurveExtractType.html#PointDefinedCurveExtractType_CurveFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedCurveExtractType/CurveFeature')">PointDefinedCurveExtractType/CurveFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedCurveFromScanType.html#PointDefinedCurveFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedCurveFromScanType/SurfaceFeature')">PointDefinedCurveFromScanType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedCurveTransformType.html#PointDefinedCurveTransformType_BasePointDefinedCurve" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedCurveTransformType/BasePointDefinedCurve')">PointDefinedCurveTransformType/BasePointDefinedCurve</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedSurfaceCopyType.html#PointDefinedSurfaceCopyType_BasePointDefinedSurface" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedSurfaceCopyType/BasePointDefinedSurface')">PointDefinedSurfaceCopyType/BasePointDefinedSurface</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedSurfaceExtractType.html#PointDefinedSurfaceExtractType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedSurfaceExtractType/SurfaceFeature')">PointDefinedSurfaceExtractType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PointDefinedSurfaceTransformType.html#PointDefinedSurfaceTransformType_BasePointDefinedSurface" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedSurfaceTransformType/BasePointDefinedSurface')">PointDefinedSurfaceTransformType/BasePointDefinedSurface</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureCastType.html#PointFeatureCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureCastType/BaseFeature')">PointFeatureCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureCenterOfGravityType.html#PointFeatureCenterOfGravityType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureCenterOfGravityType/BaseFeature')">PointFeatureCenterOfGravityType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureCopyType.html#PointFeatureCopyType_BasePointFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureCopyType/BasePointFeature')">PointFeatureCopyType/BasePointFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureExtremeType.html#PointFeatureExtremeType_BaseAxisFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureExtremeType/BaseAxisFeature')">PointFeatureExtremeType/BaseAxisFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureExtremeType.html#PointFeatureExtremeType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureExtremeType/BaseFeature')">PointFeatureExtremeType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureFromConeType.html#PointFeatureFromConeType_BaseCone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureFromConeType/BaseCone')">PointFeatureFromConeType/BaseCone</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureFromScanType.html#PointFeatureFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureFromScanType/SurfaceFeature')">PointFeatureFromScanType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureMovePointAxisType.html#PointFeatureMovePointAxisType_BaseAxisFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureMovePointAxisType/BaseAxisFeature')">PointFeatureMovePointAxisType/BaseAxisFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureMovePointAxisType.html#PointFeatureMovePointAxisType_BaseLocationFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureMovePointAxisType/BaseLocationFeature')">PointFeatureMovePointAxisType/BaseLocationFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureMovePointType.html#PointFeatureMovePointType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureMovePointType/BaseFeature')">PointFeatureMovePointType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureMovePointVectorType.html#PointFeatureMovePointVectorType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureMovePointVectorType/BaseFeature')">PointFeatureMovePointVectorType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeaturePierceType.html#PointFeaturePierceType_CurveFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeaturePierceType/CurveFeature')">PointFeaturePierceType/CurveFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeaturePierceType.html#PointFeaturePierceType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeaturePierceType/SurfaceFeature')">PointFeaturePierceType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureProjectionType.html#PointFeatureProjectionType_ProjectionFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureProjectionType/ProjectionFeature')">PointFeatureProjectionType/ProjectionFeature</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureProjectionType.html#PointFeatureProjectionType_ProjectionPlane" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureProjectionType/ProjectionPlane')">PointFeatureProjectionType/ProjectionPlane</a></b>, <b><a href="Features_xsd_Complex_Type_PointFeatureTransformType.html#PointFeatureTransformType_BasePointFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureTransformType/BasePointFeature')">PointFeatureTransformType/BasePointFeature</a></b>, <b><a href="Features_xsd_Complex_Type_SphereCastType.html#SphereCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphereCastType/BaseFeature')">SphereCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_SphereCopyType.html#SphereCopyType_BaseSphere" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphereCopyType/BaseSphere')">SphereCopyType/BaseSphere</a></b>, <b><a href="Features_xsd_Complex_Type_SphereFromScanType.html#SphereFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphereFromScanType/SurfaceFeature')">SphereFromScanType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_SphereTransformType.html#SphereTransformType_BaseSphere" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphereTransformType/BaseSphere')">SphereTransformType/BaseSphere</a></b>, <b><a href="Features_xsd_Complex_Type_SphericalSegmentCastType.html#SphericalSegmentCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphericalSegmentCastType/BaseFeature')">SphericalSegmentCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_SphericalSegmentCopyType.html#SphericalSegmentCopyType_BaseSphericalSegment" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphericalSegmentCopyType/BaseSphericalSegment')">SphericalSegmentCopyType/BaseSphericalSegment</a></b>, <b><a href="Features_xsd_Complex_Type_SphericalSegmentTransformType.html#SphericalSegmentTransformType_BaseSphericalSegment" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphericalSegmentTransformType/BaseSphericalSegment')">SphericalSegmentTransformType/BaseSphericalSegment</a></b>, <b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionCastType.html#SurfaceOfRevolutionCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionCastType/BaseFeature')">SurfaceOfRevolutionCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionCopyType.html#SurfaceOfRevolutionCopyType_BaseSurfaceOfRevolution" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionCopyType/BaseSurfaceOfRevolution')">SurfaceOfRevolutionCopyType/BaseSurfaceOfRevolution</a></b>, <b><a href="Features_xsd_Complex_Type_SurfaceOfRevolutionTransformType.html#SurfaceOfRevolutionTransformType_BaseSurfaceOfRevolution" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionTransformType/BaseSurfaceOfRevolution')">SurfaceOfRevolutionTransformType/BaseSurfaceOfRevolution</a></b>, <b><a href="Features_xsd_Complex_Type_ThreadedFeatureCastType.html#ThreadedFeatureCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadedFeatureCastType/BaseFeature')">ThreadedFeatureCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ThreadedFeatureCopyType.html#ThreadedFeatureCopyType_BaseThreadedFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadedFeatureCopyType/BaseThreadedFeature')">ThreadedFeatureCopyType/BaseThreadedFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ThreadedFeatureFromCylinderType.html#ThreadedFeatureFromCylinderType_BaseCylinder" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadedFeatureFromCylinderType/BaseCylinder')">ThreadedFeatureFromCylinderType/BaseCylinder</a></b>, <b><a href="Features_xsd_Complex_Type_ThreadedFeatureTransformType.html#ThreadedFeatureTransformType_BaseThreadedFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadedFeatureTransformType/BaseThreadedFeature')">ThreadedFeatureTransformType/BaseThreadedFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ToroidalSegmentCastType.html#ToroidalSegmentCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentCastType/BaseFeature')">ToroidalSegmentCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_ToroidalSegmentCopyType.html#ToroidalSegmentCopyType_BaseToroidalSegment" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentCopyType/BaseToroidalSegment')">ToroidalSegmentCopyType/BaseToroidalSegment</a></b>, <b><a href="Features_xsd_Complex_Type_ToroidalSegmentTransformType.html#ToroidalSegmentTransformType_BaseToroidalSegment" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentTransformType/BaseToroidalSegment')">ToroidalSegmentTransformType/BaseToroidalSegment</a></b>, <b><a href="Features_xsd_Complex_Type_TorusCastType.html#TorusCastType_BaseFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TorusCastType/BaseFeature')">TorusCastType/BaseFeature</a></b>, <b><a href="Features_xsd_Complex_Type_TorusCopyType.html#TorusCopyType_BaseTorus" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TorusCopyType/BaseTorus')">TorusCopyType/BaseTorus</a></b>, <b><a href="Features_xsd_Complex_Type_TorusFromScanType.html#TorusFromScanType_SurfaceFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TorusFromScanType/SurfaceFeature')">TorusFromScanType/SurfaceFeature</a></b>, <b><a href="Features_xsd_Complex_Type_TorusTransformType.html#TorusTransformType_BaseTorus" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TorusTransformType/BaseTorus')">TorusTransformType/BaseTorus</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_BaseFeatureType.html#BaseFeatureType_FeatureId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureId')">FeatureId</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_BaseFeatureType.html#BaseFeatureType_ReferencedComponent" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReferencedComponent')">ReferencedComponent</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BaseFeatureType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BaseFeatureType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BaseFeatureType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"BaseFeatureType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The BaseFeatureType defines a feature used in a construction or alignment.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ReferencedComponent"</span><span class="tAN"> type=</span><span class="tAV">"ReferencedComponentEnumType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ReferencedComponent element identifies whether the measured or nominal component of this feature is used in the construction or alignment.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FeatureId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceFullType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FeatureId element is the QIF id of a feature nominal in the case where a construction is defined at the feature nominal level, or the QIF id of a feature item in the case where a construction is defined at the feature item level. The allowed values of FeatureId are restricted by key/keyref pairs.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/IntermediatesPMI.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

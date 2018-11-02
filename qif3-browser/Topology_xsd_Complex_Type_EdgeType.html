@@ -1,0 +1,1199 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Validation</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_EdgeType_Validation', 
+				'properties_EdgeType_Curve', 
+				'properties_EdgeType_VertexBeg', 
+				'properties_EdgeType_VertexEnd', 
+				'properties_EdgeType_tolerance');
+var usedByBoxes= new Array('usedBy_EdgeType', 
+				'usedBy_EdgeType_tolerance');
+var sourceBoxes= new Array('source_EdgeType_Validation', 
+				'source_EdgeType_Curve', 
+				'source_EdgeType_VertexBeg', 
+				'source_EdgeType_VertexEnd', 
+				'source_EdgeType', 
+				'source_EdgeType_tolerance');
+var instanceBoxes= new Array('instance_EdgeType_Validation', 
+				'instance_EdgeType_Curve', 
+				'instance_EdgeType_VertexBeg', 
+				'instance_EdgeType_VertexEnd');
+var diagramBoxes= new Array('diagram_EdgeType_Validation', 
+				'diagram_EdgeType_Curve', 
+				'diagram_EdgeType_VertexBeg', 
+				'diagram_EdgeType_VertexEnd', 
+				'diagram_EdgeType');
+var annotationBoxes= new Array('annotations_EdgeType_Validation', 
+				'annotations_EdgeType_Curve', 
+				'annotations_EdgeType_VertexBeg', 
+				'annotations_EdgeType_VertexEnd', 
+				'annotations_EdgeType', 
+				'annotations_EdgeType_tolerance');
+var attributesBoxes= new Array('attributes_EdgeType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="EdgeType_Validation"></a><div class="componentTitle">Element <span class="qname"><b><a href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgeType')">EdgeType</a></b> / Validation</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EdgeType_Validation" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EdgeType_Validation');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EdgeType_Validation" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Validation element is a set of edge validation properties.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_EdgeType_Validation" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_EdgeType_Validation');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_EdgeType_Validation" style="display:block"><img alt="Diagram" border="0" src="img/Topology_xsd_Element_Validation.jpeg" usemap="#Topology_xsd_Element_Validation" /><map name="Topology_xsd_Element_Validation" id="Topology_xsd_Element_Validation">
+                                 <area alt="Topology_xsd_Complex_Type_ValidationEdgeType.tmp#ValidationEdgeType_Length" href="Topology_xsd_Complex_Type_ValidationEdgeType.html#ValidationEdgeType_Length" coords="250,46,327,75" />
+                                 <area alt="Topology_xsd_Complex_Type_ValidationEdgeType.tmp#ValidationEdgeType_Centroid" href="Topology_xsd_Complex_Type_ValidationEdgeType.html#ValidationEdgeType_Centroid" coords="250,137,336,166" />
+                                 <area alt="Topology_xsd_Complex_Type_ValidationEdgeType.tmp#ValidationEdgeType_Box" href="Topology_xsd_Complex_Type_ValidationEdgeType.html#ValidationEdgeType_Box" coords="250,228,311,257" />
+                                 <area alt="Topology_xsd_Complex_Type_ValidationEdgeType.tmp#ValidationEdgeType_Points" href="Topology_xsd_Complex_Type_ValidationEdgeType.html#ValidationEdgeType_Points" coords="250,319,325,348" />
+                                 <area alt="Topology_xsd_Complex_Type_ValidationEdgeType.tmp#ValidationEdgeType" href="Topology_xsd_Complex_Type_ValidationEdgeType.html#ValidationEdgeType" coords="152,3,330,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Topology_xsd_Complex_Type_ValidationEdgeType.html#ValidationEdgeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ValidationEdgeType')">ValidationEdgeType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_EdgeType_Validation" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_EdgeType_Validation');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_EdgeType_Validation" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Topology_xsd_Complex_Type_ValidationEdgeType.html#ValidationEdgeType_Box" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Box')">Box</a></b>, <b><a href="Topology_xsd_Complex_Type_ValidationEdgeType.html#ValidationEdgeType_Centroid" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Centroid')">Centroid</a></b>, <b><a href="Topology_xsd_Complex_Type_ValidationEdgeType.html#ValidationEdgeType_Length" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Length')">Length</a></b>, <b><a href="Topology_xsd_Complex_Type_ValidationEdgeType.html#ValidationEdgeType_Points" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Points')">Points</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_EdgeType_Validation" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_EdgeType_Validation');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_EdgeType_Validation" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Validation</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Length</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Length&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Centroid</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Centroid&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Box</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Box&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Points</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Points&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Validation&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EdgeType_Validation" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EdgeType_Validation');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EdgeType_Validation" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Validation"</span><span class="tAN"> type=</span><span class="tAV">"ValidationEdgeType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Validation element is a set of edge validation properties.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Topology.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="EdgeType_Curve"></a><div class="componentTitle">Element <span class="qname"><b><a href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgeType')">EdgeType</a></b> / Curve</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EdgeType_Curve" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EdgeType_Curve');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EdgeType_Curve" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Curve element is the identifier of a 3D curve that is the underlying geometry of this edge.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_EdgeType_Curve" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_EdgeType_Curve');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_EdgeType_Curve" style="display:block"><img alt="Diagram" border="0" src="img/Topology_xsd_Element_Curve.jpeg" usemap="#Topology_xsd_Element_Curve" /><map name="Topology_xsd_Element_Curve" id="Topology_xsd_Element_Curve">
+                                 <area alt="Primitives_xsd_Complex_Type_ElementReferenceType.tmp#ElementReferenceType_Id" href="Primitives_xsd_Complex_Type_ElementReferenceType.html#ElementReferenceType_Id" coords="225,50,283,79" />
+                                 <area alt="Primitives_xsd_Complex_Type_ElementReferenceType.tmp#ElementReferenceType" href="Primitives_xsd_Complex_Type_ElementReferenceType.html#ElementReferenceType" coords="127,3,324,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ElementReferenceType.html#ElementReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElementReferenceType')">ElementReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_EdgeType_Curve" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_EdgeType_Curve');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_EdgeType_Curve" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ElementReferenceType.html#ElementReferenceType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_EdgeType_Curve" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_EdgeType_Curve');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_EdgeType_Curve" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Curve</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Curve&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EdgeType_Curve" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EdgeType_Curve');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EdgeType_Curve" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Curve"</span><span class="tAN"> type=</span><span class="tAV">"ElementReferenceType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Curve element is the identifier of a 3D curve that is the underlying geometry of this edge.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Topology.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="EdgeType_VertexBeg"></a><div class="componentTitle">Element <span class="qname"><b><a href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgeType')">EdgeType</a></b> / VertexBeg</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EdgeType_VertexBeg" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EdgeType_VertexBeg');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EdgeType_VertexBeg" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The VertexBeg element is the identifier of the vertex which bounds this edge at the beginning of the edge. The 'underlying' parameter of VertexBeg must be less then the 'underlying' parameter of VertexEnd. Or, in other words, the edge always follows the natural parameterization of the underlying 3D curve. If there is a need to pass an edge in the opposite (to the natural parameterization of the underlying curve) direction then the corresponding flag must be defined on the loop level.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_EdgeType_VertexBeg" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_EdgeType_VertexBeg');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_EdgeType_VertexBeg" style="display:block"><img alt="Diagram" border="0" src="img/Topology_xsd_Element_VertexBeg.jpeg" usemap="#Topology_xsd_Element_VertexBeg" /><map name="Topology_xsd_Element_VertexBeg" id="Topology_xsd_Element_VertexBeg">
+                                 <area alt="Primitives_xsd_Complex_Type_ElementReferenceType.tmp#ElementReferenceType_Id" href="Primitives_xsd_Complex_Type_ElementReferenceType.html#ElementReferenceType_Id" coords="254,50,312,79" />
+                                 <area alt="Primitives_xsd_Complex_Type_ElementReferenceType.tmp#ElementReferenceType" href="Primitives_xsd_Complex_Type_ElementReferenceType.html#ElementReferenceType" coords="156,3,353,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ElementReferenceType.html#ElementReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElementReferenceType')">ElementReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_EdgeType_VertexBeg" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_EdgeType_VertexBeg');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_EdgeType_VertexBeg" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ElementReferenceType.html#ElementReferenceType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_EdgeType_VertexBeg" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_EdgeType_VertexBeg');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_EdgeType_VertexBeg" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;VertexBeg</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/VertexBeg&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EdgeType_VertexBeg" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EdgeType_VertexBeg');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EdgeType_VertexBeg" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"VertexBeg"</span><span class="tAN"> type=</span><span class="tAV">"ElementReferenceType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The VertexBeg element is the identifier of the vertex which bounds this edge at the beginning of the edge. The 'underlying' parameter of VertexBeg must be less then the 'underlying' parameter of VertexEnd. Or, in other words, the edge always follows the natural parameterization of the underlying 3D curve. If there is a need to pass an edge in the opposite (to the natural parameterization of the underlying curve) direction then the corresponding flag must be defined on the loop level.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Topology.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="EdgeType_VertexEnd"></a><div class="componentTitle">Element <span class="qname"><b><a href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgeType')">EdgeType</a></b> / VertexEnd</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EdgeType_VertexEnd" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EdgeType_VertexEnd');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EdgeType_VertexEnd" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The VertexEnd element is the identifier of the vertex which bounds this edge at the end of the edge. The 'underlying' parameter of VertexEnd must be bigger then the 'underlying' parameter of VertexBeg. Or, in other words, the edge always follows the natural parameterization of the underlying 3D curve. If there is a need to pass an edge in the opposite (to the natural parameterization of the underlying curve) direction then the corresponding flag must be defined on the loop level.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_EdgeType_VertexEnd" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_EdgeType_VertexEnd');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_EdgeType_VertexEnd" style="display:block"><img alt="Diagram" border="0" src="img/Topology_xsd_Element_VertexEnd.jpeg" usemap="#Topology_xsd_Element_VertexEnd" /><map name="Topology_xsd_Element_VertexEnd" id="Topology_xsd_Element_VertexEnd">
+                                 <area alt="Primitives_xsd_Complex_Type_ElementReferenceType.tmp#ElementReferenceType_Id" href="Primitives_xsd_Complex_Type_ElementReferenceType.html#ElementReferenceType_Id" coords="254,50,312,79" />
+                                 <area alt="Primitives_xsd_Complex_Type_ElementReferenceType.tmp#ElementReferenceType" href="Primitives_xsd_Complex_Type_ElementReferenceType.html#ElementReferenceType" coords="156,3,353,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ElementReferenceType.html#ElementReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElementReferenceType')">ElementReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_EdgeType_VertexEnd" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_EdgeType_VertexEnd');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_EdgeType_VertexEnd" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ElementReferenceType.html#ElementReferenceType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_EdgeType_VertexEnd" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_EdgeType_VertexEnd');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_EdgeType_VertexEnd" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;VertexEnd</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/VertexEnd&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EdgeType_VertexEnd" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EdgeType_VertexEnd');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EdgeType_VertexEnd" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"VertexEnd"</span><span class="tAN"> type=</span><span class="tAV">"ElementReferenceType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The VertexEnd element is the identifier of the vertex which bounds this edge at the end of the edge. The 'underlying' parameter of VertexEnd must be bigger then the 'underlying' parameter of VertexBeg. Or, in other words, the edge always follows the natural parameterization of the underlying 3D curve. If there is a need to pass an edge in the opposite (to the natural parameterization of the underlying curve) direction then the corresponding flag must be defined on the loop level.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Topology.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="EdgeType"></a><div class="componentTitle">Complex Type <span class="qname">EdgeType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EdgeType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EdgeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EdgeType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The EdgeType is the b-rep edge type - a topological entity. It represents a bounded piece of a 3D curve.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_EdgeType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_EdgeType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_EdgeType" style="display:block"><img alt="Diagram" border="0" src="img/Topology_xsd_Complex_Type_EdgeType.jpeg" usemap="#Topology_xsd_Complex_Type_EdgeType" /><map name="Topology_xsd_Complex_Type_EdgeType" id="Topology_xsd_Complex_Type_EdgeType">
+                                 <area alt="PrimitivesPD_xsd_Complex_Type_NodeBaseType.tmp#NodeBaseType_label" href="PrimitivesPD_xsd_Complex_Type_NodeBaseType.html#NodeBaseType_label" coords="260,228,348,257" />
+                                 <area alt="PrimitivesPD_xsd_Complex_Type_NodeBaseType.tmp#NodeBaseType" href="PrimitivesPD_xsd_Complex_Type_NodeBaseType.html#NodeBaseType" coords="231,141,482,167" />
+                                 <area alt="PrimitivesPD_xsd_Complex_Type_NodeWithIdBaseType.tmp#NodeWithIdBaseType_id" href="PrimitivesPD_xsd_Complex_Type_NodeWithIdBaseType.html#NodeWithIdBaseType_id" coords="244,447,325,476" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="313,551,407,580" />
+                                 <area alt="PrimitivesPD_xsd_Complex_Type_NodeWithIdBaseType.tmp#NodeWithIdBaseType" href="PrimitivesPD_xsd_Complex_Type_NodeWithIdBaseType.html#NodeWithIdBaseType" coords="215,95,503,121" />
+                                 <area alt="PrimitivesPD_xsd_Attribute_Group_AttrDrawable.tmp#AttrDrawable" href="PrimitivesPD_xsd_Attribute_Group_AttrDrawable.html#AttrDrawable" coords="231,764,373,795" />
+                                 <area alt="PrimitivesPD_xsd_Complex_Type_DrawableBaseType.tmp#DrawableBaseType" href="PrimitivesPD_xsd_Complex_Type_DrawableBaseType.html#DrawableBaseType" coords="199,49,473,75" />
+                                 <area alt="Topology_xsd_Complex_Type_TopologyBaseType.tmp#TopologyBaseType" href="Topology_xsd_Complex_Type_TopologyBaseType.html#TopologyBaseType" coords="183,3,456,29" />
+                                 <area alt="Topology_xsd_Complex_Type_EdgeType.tmp#EdgeType_tolerance" href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType_tolerance" coords="196,967,310,996" />
+                                 <area alt="Topology_xsd_Complex_Type_EdgeType.tmp#EdgeType_Validation" href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType_Validation" coords="265,1067,360,1096" />
+                                 <area alt="Topology_xsd_Complex_Type_EdgeType.tmp#EdgeType_Curve" href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType_Curve" coords="265,1158,335,1187" />
+                                 <area alt="Topology_xsd_Complex_Type_EdgeType.tmp#EdgeType_VertexBeg" href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType_VertexBeg" coords="265,1265,364,1294" />
+                                 <area alt="Topology_xsd_Complex_Type_EdgeType.tmp#EdgeType_VertexEnd" href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType_VertexEnd" coords="265,1372,364,1401" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="Topology_xsd_Complex_Type_TopologyBaseType.html#TopologyBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TopologyBaseType')">TopologyBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="PrimitivesPD_xsd_Complex_Type_NodeBaseType.html#NodeBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NodeBaseType')">NodeBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="PrimitivesPD_xsd_Complex_Type_NodeWithIdBaseType.html#NodeWithIdBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NodeWithIdBaseType')">NodeWithIdBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="PrimitivesPD_xsd_Complex_Type_DrawableBaseType.html#DrawableBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DrawableBaseType')">DrawableBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Topology_xsd_Complex_Type_TopologyBaseType.html#TopologyBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TopologyBaseType')">TopologyBaseType</a></b><ul class="internal">
+                                                      <li class="internal"><b><a href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgeType')">EdgeType</a></b></li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_EdgeType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_EdgeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_EdgeType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Topology_xsd_Element_Edge.html#Edge" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Edge')">Edge</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType_Curve" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Curve')">Curve</a></b>, <b><a href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType_Validation" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Validation')">Validation</a></b>, <b><a href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType_VertexBeg" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component VertexBeg')">VertexBeg</a></b>, <b><a href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType_VertexEnd" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component VertexEnd')">VertexEnd</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_EdgeType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_EdgeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_EdgeType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="10%">Default</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPD_xsd_Attribute_Group_AttrDrawable.html#AttrDrawable_color" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component color')">color</a></b></td>
+                                    <td><b><a href="PrimitivesPD_xsd_Simple_Type_ColorType.html#ColorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ColorType')">ColorType</a></b></td>
+                                    <td></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional color attribute defines the RGB color property of a model entity.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPD_xsd_Attribute_Group_AttrDrawable.html#AttrDrawable_hidden" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component hidden')">hidden</a></b></td>
+                                    <td><b>xs:boolean</b></td>
+                                    <td>0</td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional hidden attribute defines the visibility property of a model entity in the graphical window.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPD_xsd_Complex_Type_NodeWithIdBaseType.html#NodeWithIdBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required id attribute is the unique model entity identifier.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPD_xsd_Complex_Type_NodeBaseType.html#NodeBaseType_label" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component label')">label</a></b></td>
+                                    <td><b>xs:string</b></td>
+                                    <td></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional label attribute is the model entity "nameplate". Normally it can be seen at the entity item in the project tree.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPD_xsd_Attribute_Group_AttrDrawable.html#AttrDrawable_size" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component size')">size</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_DoublePositiveType.html#DoublePositiveType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DoublePositiveType')">DoublePositiveType</a></b></td>
+                                    <td></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional size attribute defines a recommended size for visualization of an infinite drawable element such as plane, cylinder, axis, etc., or objects without explicit geometric parameters (e.g. coordinate system).</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType_tolerance" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component tolerance')">tolerance</a></b></td>
+                                    <td><b>xs:double</b></td>
+                                    <td></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional tolerance attribute specifies the edge tolerance for the case of tolerant body.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="PrimitivesPD_xsd_Attribute_Group_AttrDrawable.html#AttrDrawable_transparency" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component transparency')">transparency</a></b></td>
+                                    <td><b><a href="PrimitivesPD_xsd_Simple_Type_TransparencyType.html#TransparencyType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TransparencyType')">TransparencyType</a></b></td>
+                                    <td>0.0</td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional transparency attribute defines the transparency property of a model entity.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EdgeType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EdgeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EdgeType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"EdgeType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The EdgeType is the b-rep edge type - a topological entity. It represents a bounded piece of a 3D curve.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"TopologyBaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Validation"</span><span class="tAN"> type=</span><span class="tAV">"ValidationEdgeType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Validation element is a set of edge validation properties.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Curve"</span><span class="tAN"> type=</span><span class="tAV">"ElementReferenceType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Curve element is the identifier of a 3D curve that is the underlying geometry of this edge.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"VertexBeg"</span><span class="tAN"> type=</span><span class="tAV">"ElementReferenceType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The VertexBeg element is the identifier of the vertex which bounds this edge at the beginning of the edge. The 'underlying' parameter of VertexBeg must be less then the 'underlying' parameter of VertexEnd. Or, in other words, the edge always follows the natural parameterization of the underlying 3D curve. If there is a need to pass an edge in the opposite (to the natural parameterization of the underlying curve) direction then the corresponding flag must be defined on the loop level.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"VertexEnd"</span><span class="tAN"> type=</span><span class="tAV">"ElementReferenceType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The VertexEnd element is the identifier of the vertex which bounds this edge at the end of the edge. The 'underlying' parameter of VertexEnd must be bigger then the 'underlying' parameter of VertexBeg. Or, in other words, the edge always follows the natural parameterization of the underlying 3D curve. If there is a need to pass an edge in the opposite (to the natural parameterization of the underlying curve) direction then the corresponding flag must be defined on the loop level.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"tolerance"</span><span class="tAN"> type=</span><span class="tAV">"xs:double"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional tolerance attribute specifies the edge tolerance for the case of tolerant body.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Topology.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="EdgeType_tolerance"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgeType')">EdgeType</a></b> / @tolerance</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_EdgeType_tolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_EdgeType_tolerance');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_EdgeType_tolerance" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional tolerance attribute specifies the edge tolerance for the case of tolerant body.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:double</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_EdgeType_tolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_EdgeType_tolerance');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_EdgeType_tolerance" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_EdgeType_tolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_EdgeType_tolerance');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_EdgeType_tolerance" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="Topology_xsd_Complex_Type_EdgeType.html#EdgeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgeType')">EdgeType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_EdgeType_tolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('source_EdgeType_tolerance');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_EdgeType_tolerance" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"tolerance"</span><span class="tAN"> type=</span><span class="tAV">"xs:double"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional tolerance attribute specifies the edge tolerance for the case of tolerant body.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Topology.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

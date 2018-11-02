@@ -1,0 +1,1343 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Vertices</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_Triangulation2dType_Vertices', 
+				'properties_Triangulation2dType_VerticesBinary', 
+				'properties_Triangulation2dType_Triangles', 
+				'properties_Triangulation2dType_TrianglesBinary', 
+				'properties_Triangulation2dType_TrianglesColor', 
+				'properties_Triangulation2dType_TrianglesColorBinary');
+var usedByBoxes= new Array('usedBy_Triangulation2dType');
+var sourceBoxes= new Array('source_Triangulation2dType_Vertices', 
+				'source_Triangulation2dType_VerticesBinary', 
+				'source_Triangulation2dType_Triangles', 
+				'source_Triangulation2dType_TrianglesBinary', 
+				'source_Triangulation2dType_TrianglesColor', 
+				'source_Triangulation2dType_TrianglesColorBinary', 
+				'source_Triangulation2dType');
+var diagramBoxes= new Array('diagram_Triangulation2dType_Vertices', 
+				'diagram_Triangulation2dType_VerticesBinary', 
+				'diagram_Triangulation2dType_Triangles', 
+				'diagram_Triangulation2dType_TrianglesBinary', 
+				'diagram_Triangulation2dType_TrianglesColor', 
+				'diagram_Triangulation2dType_TrianglesColorBinary', 
+				'diagram_Triangulation2dType');
+var annotationBoxes= new Array('annotations_Triangulation2dType_Vertices', 
+				'annotations_Triangulation2dType_VerticesBinary', 
+				'annotations_Triangulation2dType_Triangles', 
+				'annotations_Triangulation2dType_TrianglesBinary', 
+				'annotations_Triangulation2dType_TrianglesColor', 
+				'annotations_Triangulation2dType_TrianglesColorBinary', 
+				'annotations_Triangulation2dType');
+var attributesBoxes= new Array('attributes_Triangulation2dType_Vertices', 
+				'attributes_Triangulation2dType_VerticesBinary', 
+				'attributes_Triangulation2dType_Triangles', 
+				'attributes_Triangulation2dType_TrianglesBinary', 
+				'attributes_Triangulation2dType_TrianglesColor', 
+				'attributes_Triangulation2dType_TrianglesColorBinary');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="Triangulation2dType_Vertices"></a><div class="componentTitle">Element <span class="qname"><b><a href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Triangulation2dType')">Triangulation2dType</a></b> / Vertices</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_Triangulation2dType_Vertices" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_Triangulation2dType_Vertices');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_Triangulation2dType_Vertices" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Vertices element alternative is an array of 2D vertices of the mesh.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_Triangulation2dType_Vertices" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_Triangulation2dType_Vertices');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_Triangulation2dType_Vertices" style="display:block"><img alt="Diagram" border="0" src="img/Visualization_xsd_Element_Vertices_1.jpeg" usemap="#Visualization_xsd_Element_Vertices_1" /><map name="Visualization_xsd_Element_Vertices_1" id="Visualization_xsd_Element_Vertices_1">
+                                 <area alt="Primitives_xsd_Simple_Type_ListDoubleType.tmp#ListDoubleType" href="Primitives_xsd_Simple_Type_ListDoubleType.html#ListDoubleType" coords="156,46,313,77" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayPoint2dType.tmp#ArrayPoint2dType_count" href="Primitives_xsd_Complex_Type_ArrayPoint2dType.html#ArrayPoint2dType_count" coords="172,167,265,196" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayPoint2dType.tmp#ArrayPoint2dType" href="Primitives_xsd_Complex_Type_ArrayPoint2dType.html#ArrayPoint2dType" coords="143,3,309,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayPoint2dType.html#ArrayPoint2dType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayPoint2dType')">ArrayPoint2dType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:anySimpleType</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_ListDoubleType.html#ListDoubleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ListDoubleType')">ListDoubleType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Complex_Type_ArrayPoint2dType.html#ArrayPoint2dType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayPoint2dType')">ArrayPoint2dType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_Triangulation2dType_Vertices" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_Triangulation2dType_Vertices');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_Triangulation2dType_Vertices" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_Triangulation2dType_Vertices" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_Triangulation2dType_Vertices');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_Triangulation2dType_Vertices" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayPoint2dType.html#ArrayPoint2dType_count" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component count')">count</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required count attribute is the number of points represented by the array. The number of entries in the array must be 2*count.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_Triangulation2dType_Vertices" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Triangulation2dType_Vertices');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_Triangulation2dType_Vertices" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Vertices"</span><span class="tAN"> type=</span><span class="tAV">"ArrayPoint2dType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Vertices element alternative is an array of 2D vertices of the mesh.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Visualization.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="Triangulation2dType_VerticesBinary"></a><div class="componentTitle">Element <span class="qname"><b><a href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Triangulation2dType')">Triangulation2dType</a></b> / VerticesBinary</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_Triangulation2dType_VerticesBinary" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_Triangulation2dType_VerticesBinary');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_Triangulation2dType_VerticesBinary" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The VerticesBinary element alternative is a binary array of 2D vertices of the mesh.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_Triangulation2dType_VerticesBinary" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_Triangulation2dType_VerticesBinary');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_Triangulation2dType_VerticesBinary" style="display:block"><img alt="Diagram" border="0" src="img/Visualization_xsd_Element_VerticesBinary.jpeg" usemap="#Visualization_xsd_Element_VerticesBinary" /><map name="Visualization_xsd_Element_VerticesBinary" id="Visualization_xsd_Element_VerticesBinary">
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayBinaryType.tmp#ArrayBinaryType_count" href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType_count" coords="209,183,302,212" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayBinaryType.tmp#ArrayBinaryType_sizeElement" href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType_sizeElement" coords="209,274,342,303" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayBinaryType.tmp#ArrayBinaryType" href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType" coords="180,3,339,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayBinaryType')">ArrayBinaryType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_Triangulation2dType_VerticesBinary" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_Triangulation2dType_VerticesBinary');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_Triangulation2dType_VerticesBinary" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_Triangulation2dType_VerticesBinary" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_Triangulation2dType_VerticesBinary');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_Triangulation2dType_VerticesBinary" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType_count" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component count')">count</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required count attribute is the number of elements in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType_sizeElement" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component sizeElement')">sizeElement</a></b></td>
+                                    <td><b>xs:unsignedInt</b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required sizeElement attribute shows the size (in bytes) of one element stored in the array. The total size of the binary array can be calculated as: count*sizeElement.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_Triangulation2dType_VerticesBinary" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Triangulation2dType_VerticesBinary');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_Triangulation2dType_VerticesBinary" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"VerticesBinary"</span><span class="tAN"> type=</span><span class="tAV">"ArrayBinaryType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The VerticesBinary element alternative is a binary array of 2D vertices of the mesh.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Visualization.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="Triangulation2dType_Triangles"></a><div class="componentTitle">Element <span class="qname"><b><a href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Triangulation2dType')">Triangulation2dType</a></b> / Triangles</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_Triangulation2dType_Triangles" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_Triangulation2dType_Triangles');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_Triangulation2dType_Triangles" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Triangles element alternative is an array of indices of the triangle vertices. The number of array elements corresponds to the number of triangles in the mesh. Each element of this array is a triplet of integer numbers: index of the first vertex, index of the second vertex and index of the third vertex. All three vertex indexes of a triangle must be different and must lie in the range [0, ..., number of vertices - 1].</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_Triangulation2dType_Triangles" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_Triangulation2dType_Triangles');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_Triangulation2dType_Triangles" style="display:block"><img alt="Diagram" border="0" src="img/Visualization_xsd_Element_Triangles.jpeg" usemap="#Visualization_xsd_Element_Triangles" /><map name="Visualization_xsd_Element_Triangles" id="Visualization_xsd_Element_Triangles">
+                                 <area alt="Primitives_xsd_Simple_Type_ListIntType.tmp#ListIntType" href="Primitives_xsd_Simple_Type_ListIntType.html#ListIntType" coords="160,46,291,77" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayI3Type.tmp#ArrayI3Type_count" href="Primitives_xsd_Complex_Type_ArrayI3Type.html#ArrayI3Type_count" coords="176,167,269,196" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayI3Type.tmp#ArrayI3Type" href="Primitives_xsd_Complex_Type_ArrayI3Type.html#ArrayI3Type" coords="147,3,279,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayI3Type.html#ArrayI3Type" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayI3Type')">ArrayI3Type</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:anySimpleType</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_ListIntType.html#ListIntType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ListIntType')">ListIntType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Complex_Type_ArrayI3Type.html#ArrayI3Type" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayI3Type')">ArrayI3Type</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_Triangulation2dType_Triangles" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_Triangulation2dType_Triangles');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_Triangulation2dType_Triangles" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_Triangulation2dType_Triangles" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_Triangulation2dType_Triangles');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_Triangulation2dType_Triangles" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayI3Type.html#ArrayI3Type_count" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component count')">count</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required count attribute gives the number of integer triplets represented by the array. The number of entries in the array must be 3*count.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_Triangulation2dType_Triangles" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Triangulation2dType_Triangles');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_Triangulation2dType_Triangles" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Triangles"</span><span class="tAN"> type=</span><span class="tAV">"ArrayI3Type"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Triangles element alternative is an array of indices of the triangle vertices. The number of array elements corresponds to the number of triangles in the mesh. Each element of this array is a triplet of integer numbers: index of the first vertex, index of the second vertex and index of the third vertex. All three vertex indexes of a triangle must be different and must lie in the range [0, ..., number of vertices - 1].</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Visualization.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="Triangulation2dType_TrianglesBinary"></a><div class="componentTitle">Element <span class="qname"><b><a href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Triangulation2dType')">Triangulation2dType</a></b> / TrianglesBinary</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_Triangulation2dType_TrianglesBinary" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_Triangulation2dType_TrianglesBinary');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_Triangulation2dType_TrianglesBinary" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The TrianglesBinary element alternative is a binary array of indices of the triangle vertices. The number of array elements corresponds to the number of triangles in the mesh. Each element of this array is a triplet of 32-bit integer numbers: index of the first vertex, index of the second vertex and index of the third vertex. All three vertex indexes of a triangle must be different and must lie in the range [0, ..., number of vertices - 1].</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_Triangulation2dType_TrianglesBinary" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_Triangulation2dType_TrianglesBinary');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_Triangulation2dType_TrianglesBinary" style="display:block"><img alt="Diagram" border="0" src="img/Visualization_xsd_Element_TrianglesBinary.jpeg" usemap="#Visualization_xsd_Element_TrianglesBinary" /><map name="Visualization_xsd_Element_TrianglesBinary" id="Visualization_xsd_Element_TrianglesBinary">
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayBinaryType.tmp#ArrayBinaryType_count" href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType_count" coords="213,183,306,212" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayBinaryType.tmp#ArrayBinaryType_sizeElement" href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType_sizeElement" coords="213,274,346,303" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayBinaryType.tmp#ArrayBinaryType" href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType" coords="184,3,343,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayBinaryType')">ArrayBinaryType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_Triangulation2dType_TrianglesBinary" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_Triangulation2dType_TrianglesBinary');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_Triangulation2dType_TrianglesBinary" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_Triangulation2dType_TrianglesBinary" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_Triangulation2dType_TrianglesBinary');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_Triangulation2dType_TrianglesBinary" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType_count" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component count')">count</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required count attribute is the number of elements in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType_sizeElement" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component sizeElement')">sizeElement</a></b></td>
+                                    <td><b>xs:unsignedInt</b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required sizeElement attribute shows the size (in bytes) of one element stored in the array. The total size of the binary array can be calculated as: count*sizeElement.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_Triangulation2dType_TrianglesBinary" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Triangulation2dType_TrianglesBinary');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_Triangulation2dType_TrianglesBinary" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TrianglesBinary"</span><span class="tAN"> type=</span><span class="tAV">"ArrayBinaryType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The TrianglesBinary element alternative is a binary array of indices of the triangle vertices. The number of array elements corresponds to the number of triangles in the mesh. Each element of this array is a triplet of 32-bit integer numbers: index of the first vertex, index of the second vertex and index of the third vertex. All three vertex indexes of a triangle must be different and must lie in the range [0, ..., number of vertices - 1].</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Visualization.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="Triangulation2dType_TrianglesColor"></a><div class="componentTitle">Element <span class="qname"><b><a href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Triangulation2dType')">Triangulation2dType</a></b> / TrianglesColor</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_Triangulation2dType_TrianglesColor" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_Triangulation2dType_TrianglesColor');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_Triangulation2dType_TrianglesColor" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The TrianglesColor element is an array of unsigned byte values which defines the colors of the triangles. Each element of this array is a triplet of unsigned byte numbers - the RGB color: the red-component, the green-component and the blue-component. The number of array elements corresponds to the number of triangles.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_Triangulation2dType_TrianglesColor" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_Triangulation2dType_TrianglesColor');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_Triangulation2dType_TrianglesColor" style="display:block"><img alt="Diagram" border="0" src="img/Visualization_xsd_Element_TrianglesColor.jpeg" usemap="#Visualization_xsd_Element_TrianglesColor" /><map name="Visualization_xsd_Element_TrianglesColor" id="Visualization_xsd_Element_TrianglesColor">
+                                 <area alt="Primitives_xsd_Simple_Type_ListUnsignedByteType.tmp#ListUnsignedByteType" href="Primitives_xsd_Simple_Type_ListUnsignedByteType.html#ListUnsignedByteType" coords="190,46,388,77" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayUnsignedByteType.tmp#ArrayUnsignedByteType_count" href="Primitives_xsd_Complex_Type_ArrayUnsignedByteType.html#ArrayUnsignedByteType_count" coords="206,167,299,196" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayUnsignedByteType.tmp#ArrayUnsignedByteType" href="Primitives_xsd_Complex_Type_ArrayUnsignedByteType.html#ArrayUnsignedByteType" coords="177,3,380,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayUnsignedByteType.html#ArrayUnsignedByteType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayUnsignedByteType')">ArrayUnsignedByteType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:anySimpleType</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_ListUnsignedByteType.html#ListUnsignedByteType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ListUnsignedByteType')">ListUnsignedByteType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Complex_Type_ArrayUnsignedByteType.html#ArrayUnsignedByteType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayUnsignedByteType')">ArrayUnsignedByteType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_Triangulation2dType_TrianglesColor" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_Triangulation2dType_TrianglesColor');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_Triangulation2dType_TrianglesColor" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_Triangulation2dType_TrianglesColor" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_Triangulation2dType_TrianglesColor');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_Triangulation2dType_TrianglesColor" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayUnsignedByteType.html#ArrayUnsignedByteType_count" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component count')">count</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required count attribute is the number of unsigned byte values in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_Triangulation2dType_TrianglesColor" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Triangulation2dType_TrianglesColor');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_Triangulation2dType_TrianglesColor" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TrianglesColor"</span><span class="tAN"> type=</span><span class="tAV">"ArrayUnsignedByteType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The TrianglesColor element is an array of unsigned byte values which defines the colors of the triangles. Each element of this array is a triplet of unsigned byte numbers - the RGB color: the red-component, the green-component and the blue-component. The number of array elements corresponds to the number of triangles.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Visualization.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="Triangulation2dType_TrianglesColorBinary"></a><div class="componentTitle">Element <span class="qname"><b><a href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Triangulation2dType')">Triangulation2dType</a></b> / TrianglesColorBinary</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_Triangulation2dType_TrianglesColorBinary" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_Triangulation2dType_TrianglesColorBinary');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_Triangulation2dType_TrianglesColorBinary" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The TrianglesColorBinary element is a binary array of unsigned byte values which defines the colors of the triangles. Each element of this array is a triplet of unsigned byte numbers - the RGB color: the red-component, the green-component and the blue-component. The number of array elements corresponds to the number of triangles.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_Triangulation2dType_TrianglesColorBinary" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_Triangulation2dType_TrianglesColorBinary');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_Triangulation2dType_TrianglesColorBinary" style="display:block"><img alt="Diagram" border="0" src="img/Visualization_xsd_Element_TrianglesColorBinary.jpeg" usemap="#Visualization_xsd_Element_TrianglesColorBinary" /><map name="Visualization_xsd_Element_TrianglesColorBinary" id="Visualization_xsd_Element_TrianglesColorBinary">
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayBinaryType.tmp#ArrayBinaryType_count" href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType_count" coords="243,183,336,212" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayBinaryType.tmp#ArrayBinaryType_sizeElement" href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType_sizeElement" coords="243,274,376,303" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayBinaryType.tmp#ArrayBinaryType" href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType" coords="214,3,373,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayBinaryType')">ArrayBinaryType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_Triangulation2dType_TrianglesColorBinary" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_Triangulation2dType_TrianglesColorBinary');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_Triangulation2dType_TrianglesColorBinary" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_Triangulation2dType_TrianglesColorBinary" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_Triangulation2dType_TrianglesColorBinary');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_Triangulation2dType_TrianglesColorBinary" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType_count" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component count')">count</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required count attribute is the number of elements in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayBinaryType.html#ArrayBinaryType_sizeElement" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component sizeElement')">sizeElement</a></b></td>
+                                    <td><b>xs:unsignedInt</b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required sizeElement attribute shows the size (in bytes) of one element stored in the array. The total size of the binary array can be calculated as: count*sizeElement.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_Triangulation2dType_TrianglesColorBinary" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Triangulation2dType_TrianglesColorBinary');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_Triangulation2dType_TrianglesColorBinary" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TrianglesColorBinary"</span><span class="tAN"> type=</span><span class="tAV">"ArrayBinaryType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The TrianglesColorBinary element is a binary array of unsigned byte values which defines the colors of the triangles. Each element of this array is a triplet of unsigned byte numbers - the RGB color: the red-component, the green-component and the blue-component. The number of array elements corresponds to the number of triangles.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Visualization.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="Triangulation2dType"></a><div class="componentTitle">Complex Type <span class="qname">Triangulation2dType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_Triangulation2dType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_Triangulation2dType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_Triangulation2dType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Triangulation2dType defines a 2D triangle mesh.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_Triangulation2dType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_Triangulation2dType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_Triangulation2dType" style="display:block"><img alt="Diagram" border="0" src="img/Visualization_xsd_Complex_Type_Triangulation2dType.jpeg" usemap="#Visualization_xsd_Complex_Type_Triangulation2dType" /><map name="Visualization_xsd_Complex_Type_Triangulation2dType" id="Visualization_xsd_Complex_Type_Triangulation2dType">
+                                 <area alt="Visualization_xsd_Complex_Type_Triangulation2dType.tmp#Triangulation2dType_Vertices" href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType_Vertices" coords="427,0,513,29" />
+                                 <area alt="Visualization_xsd_Complex_Type_Triangulation2dType.tmp#Triangulation2dType_VerticesBinary" href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType_VerticesBinary" coords="427,91,550,120" />
+                                 <area alt="Visualization_xsd_Complex_Type_Triangulation2dType.tmp#Triangulation2dType_Triangles" href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType_Triangles" coords="427,269,517,298" />
+                                 <area alt="Visualization_xsd_Complex_Type_Triangulation2dType.tmp#Triangulation2dType_TrianglesBinary" href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType_TrianglesBinary" coords="427,376,554,405" />
+                                 <area alt="Visualization_xsd_Complex_Type_Triangulation2dType.tmp#Triangulation2dType_TrianglesColor" href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType_TrianglesColor" coords="427,483,547,512" />
+                                 <area alt="Visualization_xsd_Complex_Type_Triangulation2dType.tmp#Triangulation2dType_TrianglesColorBinary" href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType_TrianglesColorBinary" coords="427,590,584,619" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_Triangulation2dType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_Triangulation2dType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_Triangulation2dType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Visualization_xsd_Complex_Type_Area2dType.html#Area2dType_Triangulation" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Area2dType/Triangulation')">Area2dType/Triangulation</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType_Triangles" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Triangles')">Triangles</a></b>, <b><a href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType_TrianglesBinary" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TrianglesBinary')">TrianglesBinary</a></b>, <b><a href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType_TrianglesColor" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TrianglesColor')">TrianglesColor</a></b>, <b><a href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType_TrianglesColorBinary" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TrianglesColorBinary')">TrianglesColorBinary</a></b>, <b><a href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType_Vertices" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Vertices')">Vertices</a></b>, <b><a href="Visualization_xsd_Complex_Type_Triangulation2dType.html#Triangulation2dType_VerticesBinary" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component VerticesBinary')">VerticesBinary</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_Triangulation2dType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Triangulation2dType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_Triangulation2dType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"Triangulation2dType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Triangulation2dType defines a 2D triangle mesh.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This compositor provides a choice of the representation method for an array of 2D points.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Vertices"</span><span class="tAN"> type=</span><span class="tAV">"ArrayPoint2dType"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Vertices element alternative is an array of 2D vertices of the mesh.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"VerticesBinary"</span><span class="tAN"> type=</span><span class="tAV">"ArrayBinaryType"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The VerticesBinary element alternative is a binary array of 2D vertices of the mesh.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This compositor provides a choice of the representation method for indices of the triangle vertices.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Triangles"</span><span class="tAN"> type=</span><span class="tAV">"ArrayI3Type"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Triangles element alternative is an array of indices of the triangle vertices. The number of array elements corresponds to the number of triangles in the mesh. Each element of this array is a triplet of integer numbers: index of the first vertex, index of the second vertex and index of the third vertex. All three vertex indexes of a triangle must be different and must lie in the range [0, ..., number of vertices - 1].</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TrianglesBinary"</span><span class="tAN"> type=</span><span class="tAV">"ArrayBinaryType"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The TrianglesBinary element alternative is a binary array of indices of the triangle vertices. The number of array elements corresponds to the number of triangles in the mesh. Each element of this array is a triplet of 32-bit integer numbers: index of the first vertex, index of the second vertex and index of the third vertex. All three vertex indexes of a triangle must be different and must lie in the range [0, ..., number of vertices - 1].</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TrianglesColor"</span><span class="tAN"> type=</span><span class="tAV">"ArrayUnsignedByteType"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The TrianglesColor element is an array of unsigned byte values which defines the colors of the triangles. Each element of this array is a triplet of unsigned byte numbers - the RGB color: the red-component, the green-component and the blue-component. The number of array elements corresponds to the number of triangles.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TrianglesColorBinary"</span><span class="tAN"> type=</span><span class="tAV">"ArrayBinaryType"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The TrianglesColorBinary element is a binary array of unsigned byte values which defines the colors of the triangles. Each element of this array is a triplet of unsigned byte numbers - the RGB color: the red-component, the green-component and the blue-component. The number of array elements corresponds to the number of triangles.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Visualization.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

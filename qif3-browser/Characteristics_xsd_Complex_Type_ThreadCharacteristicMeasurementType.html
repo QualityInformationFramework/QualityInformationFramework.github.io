@@ -1,0 +1,929 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component PitchDiameter</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_ThreadCharacteristicMeasurementType_PitchDiameter', 
+				'properties_ThreadCharacteristicMeasurementType_FunctionalSize');
+var usedByBoxes= new Array('usedBy_ThreadCharacteristicMeasurementType');
+var sourceBoxes= new Array('source_ThreadCharacteristicMeasurementType_PitchDiameter', 
+				'source_ThreadCharacteristicMeasurementType_FunctionalSize', 
+				'source_ThreadCharacteristicMeasurementType');
+var diagramBoxes= new Array('diagram_ThreadCharacteristicMeasurementType_PitchDiameter', 
+				'diagram_ThreadCharacteristicMeasurementType_FunctionalSize', 
+				'diagram_ThreadCharacteristicMeasurementType');
+var annotationBoxes= new Array('annotations_ThreadCharacteristicMeasurementType_PitchDiameter', 
+				'annotations_ThreadCharacteristicMeasurementType_FunctionalSize', 
+				'annotations_ThreadCharacteristicMeasurementType');
+var attributesBoxes= new Array('attributes_ThreadCharacteristicMeasurementType_PitchDiameter', 
+				'attributes_ThreadCharacteristicMeasurementType_FunctionalSize', 
+				'attributes_ThreadCharacteristicMeasurementType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="ThreadCharacteristicMeasurementType_PitchDiameter"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_ThreadCharacteristicMeasurementType.html#ThreadCharacteristicMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadCharacteristicMeasurementType')">ThreadCharacteristicMeasurementType</a></b> / PitchDiameter</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ThreadCharacteristicMeasurementType_PitchDiameter" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ThreadCharacteristicMeasurementType_PitchDiameter');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ThreadCharacteristicMeasurementType_PitchDiameter" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional PitchDiameter element is the measured pitch diameter of the thread.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ThreadCharacteristicMeasurementType_PitchDiameter" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ThreadCharacteristicMeasurementType_PitchDiameter');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ThreadCharacteristicMeasurementType_PitchDiameter" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_PitchDiameter.jpeg" usemap="#Characteristics_xsd_Element_PitchDiameter" /><map name="Characteristics_xsd_Element_PitchDiameter" id="Characteristics_xsd_Element_PitchDiameter">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="238,275,384,304" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="238,350,400,379" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="209,95,500,121" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_combinedUncertainty" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" coords="222,553,405,582" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_meanError" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" coords="222,644,343,673" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" coords="193,49,488,75" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredLinearValueType.tmp#MeasuredLinearValueType_linearUnit" href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType_linearUnit" coords="206,863,321,892" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredLinearValueType.tmp#MeasuredLinearValueType" href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" coords="177,3,393,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredLinearValueType')">MeasuredLinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredDecimalType')">MeasuredDecimalType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredLinearValueType')">MeasuredLinearValueType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ThreadCharacteristicMeasurementType_PitchDiameter" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ThreadCharacteristicMeasurementType_PitchDiameter');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ThreadCharacteristicMeasurementType_PitchDiameter" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ThreadCharacteristicMeasurementType_PitchDiameter" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ThreadCharacteristicMeasurementType_PitchDiameter');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ThreadCharacteristicMeasurementType_PitchDiameter" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component combinedUncertainty')">combinedUncertainty</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional combinedUncertainty attribute is a value expressing the combined uncertainty assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the unit used by LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component meanError')">meanError</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional meanError attribute is a value expressing the mean error assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ThreadCharacteristicMeasurementType_PitchDiameter" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ThreadCharacteristicMeasurementType_PitchDiameter');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ThreadCharacteristicMeasurementType_PitchDiameter" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PitchDiameter"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredLinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional PitchDiameter element is the measured pitch diameter of the thread.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ThreadCharacteristicMeasurementType_FunctionalSize"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_ThreadCharacteristicMeasurementType.html#ThreadCharacteristicMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadCharacteristicMeasurementType')">ThreadCharacteristicMeasurementType</a></b> / FunctionalSize</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ThreadCharacteristicMeasurementType_FunctionalSize" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ThreadCharacteristicMeasurementType_FunctionalSize');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ThreadCharacteristicMeasurementType_FunctionalSize" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional FunctionalSize element is the measured functional size of the thread.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ThreadCharacteristicMeasurementType_FunctionalSize" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ThreadCharacteristicMeasurementType_FunctionalSize');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ThreadCharacteristicMeasurementType_FunctionalSize" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_FunctionalSize.jpeg" usemap="#Characteristics_xsd_Element_FunctionalSize" /><map name="Characteristics_xsd_Element_FunctionalSize" id="Characteristics_xsd_Element_FunctionalSize">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="242,275,388,304" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="242,350,404,379" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="213,95,504,121" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_combinedUncertainty" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" coords="226,553,409,582" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_meanError" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" coords="226,644,347,673" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" coords="197,49,492,75" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredLinearValueType.tmp#MeasuredLinearValueType_linearUnit" href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType_linearUnit" coords="210,863,325,892" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredLinearValueType.tmp#MeasuredLinearValueType" href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" coords="181,3,397,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredLinearValueType')">MeasuredLinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredDecimalType')">MeasuredDecimalType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredLinearValueType')">MeasuredLinearValueType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ThreadCharacteristicMeasurementType_FunctionalSize" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ThreadCharacteristicMeasurementType_FunctionalSize');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ThreadCharacteristicMeasurementType_FunctionalSize" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ThreadCharacteristicMeasurementType_FunctionalSize" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ThreadCharacteristicMeasurementType_FunctionalSize');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ThreadCharacteristicMeasurementType_FunctionalSize" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component combinedUncertainty')">combinedUncertainty</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional combinedUncertainty attribute is a value expressing the combined uncertainty assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredLinearValueType.html#MeasuredLinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the unit used by LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component meanError')">meanError</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional meanError attribute is a value expressing the mean error assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ThreadCharacteristicMeasurementType_FunctionalSize" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ThreadCharacteristicMeasurementType_FunctionalSize');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ThreadCharacteristicMeasurementType_FunctionalSize" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FunctionalSize"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredLinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional FunctionalSize element is the measured functional size of the thread.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ThreadCharacteristicMeasurementType"></a><div class="componentTitle">Complex Type <span class="qname">ThreadCharacteristicMeasurementType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ThreadCharacteristicMeasurementType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ThreadCharacteristicMeasurementType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ThreadCharacteristicMeasurementType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The ThreadCharacteristicMeasurementType defines the results of a measured thread characteristic evaluation.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ThreadCharacteristicMeasurementType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ThreadCharacteristicMeasurementType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ThreadCharacteristicMeasurementType" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Complex_Type_ThreadCharacteristicMeasurementType.jpeg" usemap="#Characteristics_xsd_Complex_Type_ThreadCharacteristicMeasurementType" /><map name="Characteristics_xsd_Complex_Type_ThreadCharacteristicMeasurementType" id="Characteristics_xsd_Complex_Type_ThreadCharacteristicMeasurementType">
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType_id" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_id" coords="396,136,477,165" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="465,236,559,265" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType_Description" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_Description" coords="465,343,568,372" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType" coords="367,49,668,75" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_Status" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_Status" coords="449,493,525,522" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_CharacteristicItemId" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_CharacteristicItemId" coords="449,600,602,629" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_TimeStamp" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_TimeStamp" coords="449,691,553,720" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_FeatureMeasurementIds" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_FeatureMeasurementIds" coords="449,782,627,811" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_SubstituteFeatureAlgorithm" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_SubstituteFeatureAlgorithm" coords="449,873,645,902" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_ActualComponentId" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_ActualComponentId" coords="449,964,600,993" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_MeasurementDeviceIds" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_MeasurementDeviceIds" coords="449,1055,621,1084" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_ManufacturingProcessId" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_ManufacturingProcessId" coords="449,1162,626,1191" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_NotedEventIds" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_NotedEventIds" coords="449,1253,570,1282" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_NonConformanceDesignator" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_NonConformanceDesignator" coords="449,1360,648,1389" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType" coords="351,3,731,29" />
+                                 <area alt="Characteristics_xsd_Complex_Type_ThreadCharacteristicMeasurementType.tmp#ThreadCharacteristicMeasurementType_PitchDiameter" href="Characteristics_xsd_Complex_Type_ThreadCharacteristicMeasurementType.html#ThreadCharacteristicMeasurementType_PitchDiameter" coords="433,1510,553,1539" />
+                                 <area alt="Characteristics_xsd_Complex_Type_ThreadCharacteristicMeasurementType.tmp#ThreadCharacteristicMeasurementType_FunctionalSize" href="Characteristics_xsd_Complex_Type_ThreadCharacteristicMeasurementType.html#ThreadCharacteristicMeasurementType_FunctionalSize" coords="433,1601,557,1630" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicMeasurementBaseType')">CharacteristicMeasurementBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicBaseType')">CharacteristicBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicMeasurementBaseType')">CharacteristicMeasurementBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_ThreadCharacteristicMeasurementType.html#ThreadCharacteristicMeasurementType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadCharacteristicMeasurementType')">ThreadCharacteristicMeasurementType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_ThreadCharacteristicMeasurementType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ThreadCharacteristicMeasurementType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_ThreadCharacteristicMeasurementType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Characteristics_xsd_Element_ThreadCharacteristicMeasurement.html#ThreadCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadCharacteristicMeasurement')">ThreadCharacteristicMeasurement</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_ActualComponentId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ActualComponentId')">ActualComponentId</a></b>, <b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_CharacteristicItemId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicItemId')">CharacteristicItemId</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_FeatureMeasurementIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureMeasurementIds')">FeatureMeasurementIds</a></b>, <b><a href="Characteristics_xsd_Complex_Type_ThreadCharacteristicMeasurementType.html#ThreadCharacteristicMeasurementType_FunctionalSize" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FunctionalSize')">FunctionalSize</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_ManufacturingProcessId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ManufacturingProcessId')">ManufacturingProcessId</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_MeasurementDeviceIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementDeviceIds')">MeasurementDeviceIds</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_NonConformanceDesignator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonConformanceDesignator')">NonConformanceDesignator</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_NotedEventIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NotedEventIds')">NotedEventIds</a></b>, <b><a href="Characteristics_xsd_Complex_Type_ThreadCharacteristicMeasurementType.html#ThreadCharacteristicMeasurementType_PitchDiameter" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PitchDiameter')">PitchDiameter</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_Status" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Status')">Status</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_SubstituteFeatureAlgorithm" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SubstituteFeatureAlgorithm')">SubstituteFeatureAlgorithm</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_TimeStamp" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeStamp')">TimeStamp</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ThreadCharacteristicMeasurementType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ThreadCharacteristicMeasurementType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ThreadCharacteristicMeasurementType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the characteristic, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ThreadCharacteristicMeasurementType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ThreadCharacteristicMeasurementType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ThreadCharacteristicMeasurementType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ThreadCharacteristicMeasurementType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ThreadCharacteristicMeasurementType defines the results of a measured thread characteristic evaluation.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"CharacteristicMeasurementBaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PitchDiameter"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredLinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional PitchDiameter element is the measured pitch diameter of the thread.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FunctionalSize"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredLinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional FunctionalSize element is the measured functional size of the thread.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

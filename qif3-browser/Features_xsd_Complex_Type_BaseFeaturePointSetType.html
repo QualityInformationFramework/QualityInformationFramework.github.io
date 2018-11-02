@@ -1,0 +1,957 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component FeatureId</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_BaseFeaturePointSetType_FeatureId', 
+				'properties_BaseFeaturePointSetType_PointIndex', 
+				'properties_BaseFeaturePointSetType_ReferencedComponent', 
+				'properties_BaseFeaturePointSetType_SequenceNumber');
+var facetsBoxes= new Array('facets_BaseFeaturePointSetType_ReferencedComponent', 
+				'facets_BaseFeaturePointSetType_SequenceNumber');
+var usedByBoxes= new Array('usedBy_BaseFeaturePointSetType');
+var sourceBoxes= new Array('source_BaseFeaturePointSetType_FeatureId', 
+				'source_BaseFeaturePointSetType_PointIndex', 
+				'source_BaseFeaturePointSetType_ReferencedComponent', 
+				'source_BaseFeaturePointSetType_SequenceNumber', 
+				'source_BaseFeaturePointSetType');
+var instanceBoxes= new Array('instance_BaseFeaturePointSetType_PointIndex');
+var diagramBoxes= new Array('diagram_BaseFeaturePointSetType_FeatureId', 
+				'diagram_BaseFeaturePointSetType_PointIndex', 
+				'diagram_BaseFeaturePointSetType_ReferencedComponent', 
+				'diagram_BaseFeaturePointSetType_SequenceNumber', 
+				'diagram_BaseFeaturePointSetType');
+var annotationBoxes= new Array('annotations_BaseFeaturePointSetType_FeatureId', 
+				'annotations_BaseFeaturePointSetType_PointIndex', 
+				'annotations_BaseFeaturePointSetType_ReferencedComponent', 
+				'annotations_BaseFeaturePointSetType_SequenceNumber', 
+				'annotations_BaseFeaturePointSetType');
+var attributesBoxes= new Array('attributes_BaseFeaturePointSetType_FeatureId');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="BaseFeaturePointSetType_FeatureId"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_BaseFeaturePointSetType.html#BaseFeaturePointSetType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseFeaturePointSetType')">BaseFeaturePointSetType</a></b> / FeatureId</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BaseFeaturePointSetType_FeatureId" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BaseFeaturePointSetType_FeatureId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BaseFeaturePointSetType_FeatureId" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The FeatureId element is the QIF id of a feature nominal in the case where a construction is defined at the feature nominal level, or the QIF id of a feature item in the case where a construction is defined at the feature item level. The allowed values of FeatureId are restricted by key/keyref pairs.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BaseFeaturePointSetType_FeatureId" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BaseFeaturePointSetType_FeatureId');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BaseFeaturePointSetType_FeatureId" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_FeatureId.jpeg" usemap="#Features_xsd_Element_FeatureId" /><map name="Features_xsd_Element_FeatureId" id="Features_xsd_Element_FeatureId">
+                                 <area alt="Primitives_xsd_Simple_Type_QIFReferenceBaseType.tmp#QIFReferenceBaseType" href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" coords="162,46,367,77" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType_xId" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" coords="178,183,259,212" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" coords="149,3,319,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceBaseType')">QIFReferenceBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_BaseFeaturePointSetType_FeatureId" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_BaseFeaturePointSetType_FeatureId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_BaseFeaturePointSetType_FeatureId" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_BaseFeaturePointSetType_FeatureId" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_BaseFeaturePointSetType_FeatureId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_BaseFeaturePointSetType_FeatureId" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xId')">xId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional xId attribute is a reference to the id of a QIF object in an external document. A QIF object in an external QIF document can be referenced by using references to two QIF ids: the id of the external document reference of type ExternalQIFDocumentReferenceType found in the local document and the id of the object found in the external document.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BaseFeaturePointSetType_FeatureId" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BaseFeaturePointSetType_FeatureId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BaseFeaturePointSetType_FeatureId" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FeatureId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FeatureId element is the QIF id of a feature nominal in the case where a construction is defined at the feature nominal level, or the QIF id of a feature item in the case where a construction is defined at the feature item level. The allowed values of FeatureId are restricted by key/keyref pairs.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="BaseFeaturePointSetType_PointIndex"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_BaseFeaturePointSetType.html#BaseFeaturePointSetType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseFeaturePointSetType')">BaseFeaturePointSetType</a></b> / PointIndex</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BaseFeaturePointSetType_PointIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BaseFeaturePointSetType_PointIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BaseFeaturePointSetType_PointIndex" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The PointIndex element is a reference to a measurement point by a single index, or to several measurement points by a range, or by specifying all measurement points.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BaseFeaturePointSetType_PointIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BaseFeaturePointSetType_PointIndex');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BaseFeaturePointSetType_PointIndex" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_PointIndex.jpeg" usemap="#Features_xsd_Element_PointIndex" /><map name="Features_xsd_Element_PointIndex" id="Features_xsd_Element_PointIndex">
+                                 <area alt="Features_xsd_Complex_Type_PointIndexType.tmp#PointIndexType_Single" href="Features_xsd_Complex_Type_PointIndexType.html#PointIndexType_Single" coords="254,46,328,75" />
+                                 <area alt="Features_xsd_Complex_Type_PointIndexType.tmp#PointIndexType_Range" href="Features_xsd_Complex_Type_PointIndexType.html#PointIndexType_Range" coords="254,153,329,182" />
+                                 <area alt="Features_xsd_Complex_Type_PointIndexType.tmp#PointIndexType_All" href="Features_xsd_Complex_Type_PointIndexType.html#PointIndexType_All" coords="254,244,312,273" />
+                                 <area alt="Features_xsd_Complex_Type_PointIndexType.tmp#PointIndexType" href="Features_xsd_Complex_Type_PointIndexType.html#PointIndexType" coords="156,3,308,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_PointIndexType.html#PointIndexType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointIndexType')">PointIndexType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_BaseFeaturePointSetType_PointIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_BaseFeaturePointSetType_PointIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_BaseFeaturePointSetType_PointIndex" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_PointIndexType.html#PointIndexType_All" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component All')">All</a></b>, <b><a href="Features_xsd_Complex_Type_PointIndexType.html#PointIndexType_Range" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Range')">Range</a></b>, <b><a href="Features_xsd_Complex_Type_PointIndexType.html#PointIndexType_Single" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Single')">Single</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_BaseFeaturePointSetType_PointIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_BaseFeaturePointSetType_PointIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_BaseFeaturePointSetType_PointIndex" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;PointIndex</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Single</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Single&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Range</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Range&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;All</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/All&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/PointIndex&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BaseFeaturePointSetType_PointIndex" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BaseFeaturePointSetType_PointIndex');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BaseFeaturePointSetType_PointIndex" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PointIndex"</span><span class="tAN"> type=</span><span class="tAV">"PointIndexType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The PointIndex element is a reference to a measurement point by a single index, or to several measurement points by a range, or by specifying all measurement points.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="BaseFeaturePointSetType_ReferencedComponent"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_BaseFeaturePointSetType.html#BaseFeaturePointSetType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseFeaturePointSetType')">BaseFeaturePointSetType</a></b> / ReferencedComponent</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BaseFeaturePointSetType_ReferencedComponent" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BaseFeaturePointSetType_ReferencedComponent');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BaseFeaturePointSetType_ReferencedComponent" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The ReferencedComponent element identifies whether the measured or nominal component of a measurement point or points on this feature is used in the construction.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BaseFeaturePointSetType_ReferencedComponent" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BaseFeaturePointSetType_ReferencedComponent');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BaseFeaturePointSetType_ReferencedComponent" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_ReferencedComponent.jpeg" usemap="#Features_xsd_Element_ReferencedComponent" /><map name="Features_xsd_Element_ReferencedComponent" id="Features_xsd_Element_ReferencedComponent">
+                                 <area alt="IntermediatesPMI_xsd_Simple_Type_ReferencedComponentEnumType.tmp#ReferencedComponentEnumType" href="IntermediatesPMI_xsd_Simple_Type_ReferencedComponentEnumType.html#ReferencedComponentEnumType" coords="223,0,484,31" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Simple_Type_ReferencedComponentEnumType.html#ReferencedComponentEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReferencedComponentEnumType')">ReferencedComponentEnumType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_BaseFeaturePointSetType_ReferencedComponent" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_BaseFeaturePointSetType_ReferencedComponent');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_BaseFeaturePointSetType_ReferencedComponent" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_BaseFeaturePointSetType_ReferencedComponent" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_BaseFeaturePointSetType_ReferencedComponent');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_BaseFeaturePointSetType_ReferencedComponent" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>NOMINAL</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>ACTUAL</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BaseFeaturePointSetType_ReferencedComponent" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BaseFeaturePointSetType_ReferencedComponent');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BaseFeaturePointSetType_ReferencedComponent" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ReferencedComponent"</span><span class="tAN"> type=</span><span class="tAV">"ReferencedComponentEnumType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ReferencedComponent element identifies whether the measured or nominal component of a measurement point or points on this feature is used in the construction.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="BaseFeaturePointSetType_SequenceNumber"></a><div class="componentTitle">Element <span class="qname"><b><a href="Features_xsd_Complex_Type_BaseFeaturePointSetType.html#BaseFeaturePointSetType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseFeaturePointSetType')">BaseFeaturePointSetType</a></b> / SequenceNumber</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BaseFeaturePointSetType_SequenceNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BaseFeaturePointSetType_SequenceNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BaseFeaturePointSetType_SequenceNumber" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The SequenceNumber element is an ordinal number defining the order of the base feature in the construction.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BaseFeaturePointSetType_SequenceNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BaseFeaturePointSetType_SequenceNumber');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BaseFeaturePointSetType_SequenceNumber" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_SequenceNumber.jpeg" usemap="#Features_xsd_Element_SequenceNumber" /><map name="Features_xsd_Element_SequenceNumber" id="Features_xsd_Element_SequenceNumber">
+                                 <area alt="Primitives_xsd_Simple_Type_NaturalType.tmp#NaturalType" href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" coords="195,0,332,31" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_BaseFeaturePointSetType_SequenceNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_BaseFeaturePointSetType_SequenceNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_BaseFeaturePointSetType_SequenceNumber" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_BaseFeaturePointSetType_SequenceNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_BaseFeaturePointSetType_SequenceNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_BaseFeaturePointSetType_SequenceNumber" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">minInclusive</td>
+                                    <td width="30%"><b>1</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BaseFeaturePointSetType_SequenceNumber" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BaseFeaturePointSetType_SequenceNumber');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BaseFeaturePointSetType_SequenceNumber" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SequenceNumber"</span><span class="tAN"> type=</span><span class="tAV">"NaturalType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The SequenceNumber element is an ordinal number defining the order of the base feature in the construction.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="BaseFeaturePointSetType"></a><div class="componentTitle">Complex Type <span class="qname">BaseFeaturePointSetType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_BaseFeaturePointSetType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_BaseFeaturePointSetType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_BaseFeaturePointSetType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The BaseFeaturePointSetType defines a measurement point or points from a feature to be used in a re-compensated-for-probe-size best-fit.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BaseFeaturePointSetType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BaseFeaturePointSetType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BaseFeaturePointSetType" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Complex_Type_BaseFeaturePointSetType.jpeg" usemap="#Features_xsd_Complex_Type_BaseFeaturePointSetType" /><map name="Features_xsd_Complex_Type_BaseFeaturePointSetType" id="Features_xsd_Complex_Type_BaseFeaturePointSetType">
+                                 <area alt="Features_xsd_Complex_Type_BaseFeaturePointSetType.tmp#BaseFeaturePointSetType_FeatureId" href="Features_xsd_Complex_Type_BaseFeaturePointSetType.html#BaseFeaturePointSetType_FeatureId" coords="359,0,451,29" />
+                                 <area alt="Features_xsd_Complex_Type_BaseFeaturePointSetType.tmp#BaseFeaturePointSetType_PointIndex" href="Features_xsd_Complex_Type_BaseFeaturePointSetType.html#BaseFeaturePointSetType_PointIndex" coords="359,107,458,136" />
+                                 <area alt="Features_xsd_Complex_Type_BaseFeaturePointSetType.tmp#BaseFeaturePointSetType_ReferencedComponent" href="Features_xsd_Complex_Type_BaseFeaturePointSetType.html#BaseFeaturePointSetType_ReferencedComponent" coords="359,214,528,243" />
+                                 <area alt="Features_xsd_Complex_Type_BaseFeaturePointSetType.tmp#BaseFeaturePointSetType_SequenceNumber" href="Features_xsd_Complex_Type_BaseFeaturePointSetType.html#BaseFeaturePointSetType_SequenceNumber" coords="359,321,500,350" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_BaseFeaturePointSetType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_BaseFeaturePointSetType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_BaseFeaturePointSetType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Features_xsd_Complex_Type_BaseFeaturePointListType.html#BaseFeaturePointListType_BaseFeaturePointSet" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseFeaturePointListType/BaseFeaturePointSet')">BaseFeaturePointListType/BaseFeaturePointSet</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_BaseFeaturePointSetType.html#BaseFeaturePointSetType_FeatureId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureId')">FeatureId</a></b>, <b><a href="Features_xsd_Complex_Type_BaseFeaturePointSetType.html#BaseFeaturePointSetType_PointIndex" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointIndex')">PointIndex</a></b>, <b><a href="Features_xsd_Complex_Type_BaseFeaturePointSetType.html#BaseFeaturePointSetType_ReferencedComponent" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReferencedComponent')">ReferencedComponent</a></b>, <b><a href="Features_xsd_Complex_Type_BaseFeaturePointSetType.html#BaseFeaturePointSetType_SequenceNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SequenceNumber')">SequenceNumber</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BaseFeaturePointSetType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BaseFeaturePointSetType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BaseFeaturePointSetType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"BaseFeaturePointSetType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The BaseFeaturePointSetType defines a measurement point or points from a feature to be used in a re-compensated-for-probe-size best-fit.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FeatureId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The FeatureId element is the QIF id of a feature nominal in the case where a construction is defined at the feature nominal level, or the QIF id of a feature item in the case where a construction is defined at the feature item level. The allowed values of FeatureId are restricted by key/keyref pairs.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PointIndex"</span><span class="tAN"> type=</span><span class="tAV">"PointIndexType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The PointIndex element is a reference to a measurement point by a single index, or to several measurement points by a range, or by specifying all measurement points.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ReferencedComponent"</span><span class="tAN"> type=</span><span class="tAV">"ReferencedComponentEnumType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ReferencedComponent element identifies whether the measured or nominal component of a measurement point or points on this feature is used in the construction.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SequenceNumber"</span><span class="tAN"> type=</span><span class="tAV">"NaturalType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The SequenceNumber element is an ordinal number defining the order of the base feature in the construction.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

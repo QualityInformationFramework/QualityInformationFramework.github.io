@@ -1,0 +1,1264 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component NumberOfSamples</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_ProcessDifferenceStudyResultsType_NumberOfSamples', 
+				'properties_ProcessDifferenceStudyResultsType_SubgroupSize', 
+				'properties_ProcessDifferenceStudyResultsType_ManufacturingProcessId', 
+				'properties_ProcessDifferenceStudyResultsType_AbsoluteDifferences', 
+				'properties_ProcessDifferenceStudyResultsType_RelativeDifference');
+var usedByBoxes= new Array('usedBy_ProcessDifferenceStudyResultsType');
+var sourceBoxes= new Array('source_ProcessDifferenceStudyResultsType_NumberOfSamples', 
+				'source_ProcessDifferenceStudyResultsType_SubgroupSize', 
+				'source_ProcessDifferenceStudyResultsType_ManufacturingProcessId', 
+				'source_ProcessDifferenceStudyResultsType_AbsoluteDifferences', 
+				'source_ProcessDifferenceStudyResultsType_RelativeDifference', 
+				'source_ProcessDifferenceStudyResultsType');
+var instanceBoxes= new Array('instance_ProcessDifferenceStudyResultsType_AbsoluteDifferences');
+var diagramBoxes= new Array('diagram_ProcessDifferenceStudyResultsType_NumberOfSamples', 
+				'diagram_ProcessDifferenceStudyResultsType_SubgroupSize', 
+				'diagram_ProcessDifferenceStudyResultsType_ManufacturingProcessId', 
+				'diagram_ProcessDifferenceStudyResultsType_AbsoluteDifferences', 
+				'diagram_ProcessDifferenceStudyResultsType_RelativeDifference', 
+				'diagram_ProcessDifferenceStudyResultsType');
+var annotationBoxes= new Array('annotations_ProcessDifferenceStudyResultsType_NumberOfSamples', 
+				'annotations_ProcessDifferenceStudyResultsType_SubgroupSize', 
+				'annotations_ProcessDifferenceStudyResultsType_ManufacturingProcessId', 
+				'annotations_ProcessDifferenceStudyResultsType_AbsoluteDifferences', 
+				'annotations_ProcessDifferenceStudyResultsType_RelativeDifference', 
+				'annotations_ProcessDifferenceStudyResultsType');
+var attributesBoxes= new Array('attributes_ProcessDifferenceStudyResultsType_ManufacturingProcessId', 
+				'attributes_ProcessDifferenceStudyResultsType_AbsoluteDifferences', 
+				'attributes_ProcessDifferenceStudyResultsType_RelativeDifference', 
+				'attributes_ProcessDifferenceStudyResultsType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="ProcessDifferenceStudyResultsType_NumberOfSamples"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.html#ProcessDifferenceStudyResultsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProcessDifferenceStudyResultsType')">ProcessDifferenceStudyResultsType</a></b> / NumberOfSamples</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ProcessDifferenceStudyResultsType_NumberOfSamples" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ProcessDifferenceStudyResultsType_NumberOfSamples');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ProcessDifferenceStudyResultsType_NumberOfSamples" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The NumberOfSamples element specifies the number of samples</span><span class="tI">
+</span><span class="tT">used in the statistical study.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ProcessDifferenceStudyResultsType_NumberOfSamples" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ProcessDifferenceStudyResultsType_NumberOfSamples');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ProcessDifferenceStudyResultsType_NumberOfSamples" style="display:block"><img alt="Diagram" border="0" src="img/QIFStatistics_xsd_Element_NumberOfSamples_2.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:positiveInteger</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ProcessDifferenceStudyResultsType_NumberOfSamples" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ProcessDifferenceStudyResultsType_NumberOfSamples');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ProcessDifferenceStudyResultsType_NumberOfSamples" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ProcessDifferenceStudyResultsType_NumberOfSamples" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProcessDifferenceStudyResultsType_NumberOfSamples');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ProcessDifferenceStudyResultsType_NumberOfSamples" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"NumberOfSamples"</span><span class="tAN"> type=</span><span class="tAV">"xs:positiveInteger"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The NumberOfSamples element specifies the number of samples used in the statistical study.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFStatistics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ProcessDifferenceStudyResultsType_SubgroupSize"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.html#ProcessDifferenceStudyResultsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProcessDifferenceStudyResultsType')">ProcessDifferenceStudyResultsType</a></b> / SubgroupSize</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ProcessDifferenceStudyResultsType_SubgroupSize" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ProcessDifferenceStudyResultsType_SubgroupSize');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ProcessDifferenceStudyResultsType_SubgroupSize" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The SubgroupSize element fixed the size of each subgroup</span><span class="tI">
+</span><span class="tT">used in the difference statistical study.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ProcessDifferenceStudyResultsType_SubgroupSize" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ProcessDifferenceStudyResultsType_SubgroupSize');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ProcessDifferenceStudyResultsType_SubgroupSize" style="display:block"><img alt="Diagram" border="0" src="img/QIFStatistics_xsd_Element_SubgroupSize_2.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:positiveInteger</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ProcessDifferenceStudyResultsType_SubgroupSize" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ProcessDifferenceStudyResultsType_SubgroupSize');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ProcessDifferenceStudyResultsType_SubgroupSize" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">fixed</td>
+                                    <td><b>2</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ProcessDifferenceStudyResultsType_SubgroupSize" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProcessDifferenceStudyResultsType_SubgroupSize');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ProcessDifferenceStudyResultsType_SubgroupSize" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SubgroupSize"</span><span class="tAN"> type=</span><span class="tAV">"xs:positiveInteger"</span><span class="tAN"> fixed=</span><span class="tAV">"2"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The SubgroupSize element fixed the size of each subgroup used in the difference statistical study.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFStatistics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ProcessDifferenceStudyResultsType_ManufacturingProcessId"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.html#ProcessDifferenceStudyResultsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProcessDifferenceStudyResultsType')">ProcessDifferenceStudyResultsType</a></b> / ManufacturingProcessId</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ProcessDifferenceStudyResultsType_ManufacturingProcessId" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ProcessDifferenceStudyResultsType_ManufacturingProcessId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ProcessDifferenceStudyResultsType_ManufacturingProcessId" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional ManufacturingProcessId element is a reference</span><span class="tI">
+</span><span class="tT">to the traceability information for the process on which</span><span class="tI">
+</span><span class="tT">the study was based.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ProcessDifferenceStudyResultsType_ManufacturingProcessId" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ProcessDifferenceStudyResultsType_ManufacturingProcessId');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ProcessDifferenceStudyResultsType_ManufacturingProcessId" style="display:block"><img alt="Diagram" border="0" src="img/QIFStatistics_xsd_Element_ManufacturingProcessId_1.jpeg" usemap="#QIFStatistics_xsd_Element_ManufacturingProcessId_1" /><map name="QIFStatistics_xsd_Element_ManufacturingProcessId_1" id="QIFStatistics_xsd_Element_ManufacturingProcessId_1">
+                                 <area alt="Primitives_xsd_Simple_Type_QIFReferenceBaseType.tmp#QIFReferenceBaseType" href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" coords="247,46,452,77" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType_xId" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" coords="263,183,344,212" />
+                                 <area alt="Primitives_xsd_Complex_Type_QIFReferenceType.tmp#QIFReferenceType" href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" coords="234,3,404,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFReferenceBaseType.html#QIFReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceBaseType')">QIFReferenceBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceType')">QIFReferenceType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ProcessDifferenceStudyResultsType_ManufacturingProcessId" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ProcessDifferenceStudyResultsType_ManufacturingProcessId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ProcessDifferenceStudyResultsType_ManufacturingProcessId" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ProcessDifferenceStudyResultsType_ManufacturingProcessId" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ProcessDifferenceStudyResultsType_ManufacturingProcessId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ProcessDifferenceStudyResultsType_ManufacturingProcessId" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_QIFReferenceType.html#QIFReferenceType_xId" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component xId')">xId</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFReferenceSimpleType.html#QIFReferenceSimpleType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFReferenceSimpleType')">QIFReferenceSimpleType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional xId attribute is a reference to the id of a QIF object in an external document. A QIF object in an external QIF document can be referenced by using references to two QIF ids: the id of the external document reference of type ExternalQIFDocumentReferenceType found in the local document and the id of the object found in the external document.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ProcessDifferenceStudyResultsType_ManufacturingProcessId" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProcessDifferenceStudyResultsType_ManufacturingProcessId');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ProcessDifferenceStudyResultsType_ManufacturingProcessId" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ManufacturingProcessId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ManufacturingProcessId element is a reference to the traceability information for the process on which the study was based.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFStatistics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ProcessDifferenceStudyResultsType_AbsoluteDifferences"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.html#ProcessDifferenceStudyResultsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProcessDifferenceStudyResultsType')">ProcessDifferenceStudyResultsType</a></b> / AbsoluteDifferences</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ProcessDifferenceStudyResultsType_AbsoluteDifferences" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ProcessDifferenceStudyResultsType_AbsoluteDifferences');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ProcessDifferenceStudyResultsType_AbsoluteDifferences" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional AbsoluteDifferences element defines the</span><span class="tI">
+</span><span class="tT">worst absolute differences between before and after</span><span class="tI">
+</span><span class="tT">over all characteristics for various units.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ProcessDifferenceStudyResultsType_AbsoluteDifferences" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ProcessDifferenceStudyResultsType_AbsoluteDifferences');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ProcessDifferenceStudyResultsType_AbsoluteDifferences" style="display:block"><img alt="Diagram" border="0" src="img/QIFStatistics_xsd_Element_AbsoluteDifferences_1.jpeg" usemap="#QIFStatistics_xsd_Element_AbsoluteDifferences_1" /><map name="QIFStatistics_xsd_Element_AbsoluteDifferences_1" id="QIFStatistics_xsd_Element_AbsoluteDifferences_1">
+                                 <area alt="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.tmp#AbsoluteMeasurementsByUnitType_n" href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_n" coords="239,90,320,119" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.tmp#AbsoluteMeasurementsByUnitType_LinearMeasurement" href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_LinearMeasurement" coords="333,206,485,235" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.tmp#AbsoluteMeasurementsByUnitType_AngularMeasurement" href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_AngularMeasurement" coords="333,297,494,326" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.tmp#AbsoluteMeasurementsByUnitType_AreaMeasurement" href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_AreaMeasurement" coords="333,388,477,417" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.tmp#AbsoluteMeasurementsByUnitType_ForceMeasurement" href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_ForceMeasurement" coords="333,479,483,508" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.tmp#AbsoluteMeasurementsByUnitType_MassMeasurement" href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_MassMeasurement" coords="333,570,482,599" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.tmp#AbsoluteMeasurementsByUnitType_PressureMeasurement" href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_PressureMeasurement" coords="333,661,502,690" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.tmp#AbsoluteMeasurementsByUnitType_SpeedMeasurement" href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_SpeedMeasurement" coords="333,752,487,781" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.tmp#AbsoluteMeasurementsByUnitType_TemperatureMeasurement" href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_TemperatureMeasurement" coords="333,843,522,872" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.tmp#AbsoluteMeasurementsByUnitType_TimeMeasurement" href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_TimeMeasurement" coords="333,934,478,963" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.tmp#AbsoluteMeasurementsByUnitType_UserDefinedUnitMeasurement" href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_UserDefinedUnitMeasurement" coords="333,1025,543,1054" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.tmp#AbsoluteMeasurementsByUnitType" href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType" coords="210,3,477,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AbsoluteMeasurementsByUnitType')">AbsoluteMeasurementsByUnitType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ProcessDifferenceStudyResultsType_AbsoluteDifferences" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ProcessDifferenceStudyResultsType_AbsoluteDifferences');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ProcessDifferenceStudyResultsType_AbsoluteDifferences" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_AngularMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AngularMeasurement')">AngularMeasurement</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_AreaMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AreaMeasurement')">AreaMeasurement</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_ForceMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ForceMeasurement')">ForceMeasurement</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_LinearMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearMeasurement')">LinearMeasurement</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_MassMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MassMeasurement')">MassMeasurement</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_PressureMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PressureMeasurement')">PressureMeasurement</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_SpeedMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpeedMeasurement')">SpeedMeasurement</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_TemperatureMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TemperatureMeasurement')">TemperatureMeasurement</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_TimeMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeMeasurement')">TimeMeasurement</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_UserDefinedUnitMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedUnitMeasurement')">UserDefinedUnitMeasurement</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_ProcessDifferenceStudyResultsType_AbsoluteDifferences" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_ProcessDifferenceStudyResultsType_AbsoluteDifferences');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_ProcessDifferenceStudyResultsType_AbsoluteDifferences" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;AbsoluteDifferences</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;LinearMeasurement</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/LinearMeasurement&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;AngularMeasurement</span><span class="tT"> </span><span class="tAN">angularUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/AngularMeasurement&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;AreaMeasurement</span><span class="tT"> </span><span class="tAN">areaUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/AreaMeasurement&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ForceMeasurement</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">forceUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ForceMeasurement&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MassMeasurement</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">massUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MassMeasurement&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;PressureMeasurement</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">pressureUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/PressureMeasurement&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SpeedMeasurement</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">speedUnit=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SpeedMeasurement&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TemperatureMeasurement</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">temperatureUnit=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/TemperatureMeasurement&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TimeMeasurement</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">timeUnit=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/TimeMeasurement&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UserDefinedUnitMeasurement</span><span class="tT"> </span><span class="tAN">combinedUncertainty=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">meanError=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">unitName=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/UserDefinedUnitMeasurement&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/AbsoluteDifferences&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ProcessDifferenceStudyResultsType_AbsoluteDifferences" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ProcessDifferenceStudyResultsType_AbsoluteDifferences');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ProcessDifferenceStudyResultsType_AbsoluteDifferences" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFStatistics_xsd_Complex_Type_AbsoluteMeasurementsByUnitType.html#AbsoluteMeasurementsByUnitType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of absolute measurement</span><span class="tI">
+</span><span class="tT">results defined in the list.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ProcessDifferenceStudyResultsType_AbsoluteDifferences" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProcessDifferenceStudyResultsType_AbsoluteDifferences');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ProcessDifferenceStudyResultsType_AbsoluteDifferences" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"AbsoluteDifferences"</span><span class="tAN"> type=</span><span class="tAV">"AbsoluteMeasurementsByUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional AbsoluteDifferences element defines the worst absolute differences between before and after over all characteristics for various units.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFStatistics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ProcessDifferenceStudyResultsType_RelativeDifference"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.html#ProcessDifferenceStudyResultsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProcessDifferenceStudyResultsType')">ProcessDifferenceStudyResultsType</a></b> / RelativeDifference</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ProcessDifferenceStudyResultsType_RelativeDifference" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ProcessDifferenceStudyResultsType_RelativeDifference');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ProcessDifferenceStudyResultsType_RelativeDifference" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional RelativeDifference element is the worst</span><span class="tI">
+</span><span class="tT">relative deviation between before and after over all</span><span class="tI">
+</span><span class="tT">characteristics</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ProcessDifferenceStudyResultsType_RelativeDifference" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ProcessDifferenceStudyResultsType_RelativeDifference');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ProcessDifferenceStudyResultsType_RelativeDifference" style="display:block"><img alt="Diagram" border="0" src="img/QIFStatistics_xsd_Element_RelativeDifference_1.jpeg" usemap="#QIFStatistics_xsd_Element_RelativeDifference_1" /><map name="QIFStatistics_xsd_Element_RelativeDifference_1" id="QIFStatistics_xsd_Element_RelativeDifference_1">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="242,229,388,258" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="242,304,404,333" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="213,49,504,75" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_combinedUncertainty" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" coords="226,507,409,536" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType_meanError" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" coords="226,598,347,627" />
+                                 <area alt="Units_xsd_Complex_Type_MeasuredDecimalType.tmp#MeasuredDecimalType" href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" coords="197,3,392,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredDecimalType')">MeasuredDecimalType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasuredDecimalType')">MeasuredDecimalType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ProcessDifferenceStudyResultsType_RelativeDifference" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ProcessDifferenceStudyResultsType_RelativeDifference');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ProcessDifferenceStudyResultsType_RelativeDifference" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ProcessDifferenceStudyResultsType_RelativeDifference" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ProcessDifferenceStudyResultsType_RelativeDifference');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ProcessDifferenceStudyResultsType_RelativeDifference" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_combinedUncertainty" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component combinedUncertainty')">combinedUncertainty</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional combinedUncertainty attribute is a value expressing the combined uncertainty assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MeasuredDecimalType.html#MeasuredDecimalType_meanError" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component meanError')">meanError</a></b></td>
+                                    <td><b><a href="Units_xsd_Simple_Type_NonNegativeDecimalType.html#NonNegativeDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonNegativeDecimalType')">NonNegativeDecimalType</a></b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional meanError attribute is a value expressing the mean error assigned to the SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ProcessDifferenceStudyResultsType_RelativeDifference" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProcessDifferenceStudyResultsType_RelativeDifference');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ProcessDifferenceStudyResultsType_RelativeDifference" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"RelativeDifference"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredDecimalType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional RelativeDifference element is the worst relative deviation between before and after over all characteristics</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFStatistics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ProcessDifferenceStudyResultsType"></a><div class="componentTitle">Complex Type <span class="qname">ProcessDifferenceStudyResultsType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ProcessDifferenceStudyResultsType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ProcessDifferenceStudyResultsType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ProcessDifferenceStudyResultsType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The ProcessDifferenceStudyResultsType defines information that is</span><span class="tI">
+</span><span class="tT">related the to the results of a difference statistical study where</span><span class="tI">
+</span><span class="tT">the same part was measured before and after a manufacturing process</span><span class="tI">
+</span><span class="tT">to determine any part distortion caused by that process.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ProcessDifferenceStudyResultsType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ProcessDifferenceStudyResultsType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ProcessDifferenceStudyResultsType" style="display:block"><img alt="Diagram" border="0" src="img/QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.jpeg" usemap="#QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType" /><map name="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType" id="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType">
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_id" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_id" coords="365,90,446,119" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_ThisStatisticalStudyResultsInstanceQPId" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ThisStatisticalStudyResultsInstanceQPId" coords="434,190,710,219" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="434,281,528,310" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_Status" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_Status" coords="434,388,510,417" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_SoftwareId" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_SoftwareId" coords="519,479,617,508" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_StandardId" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_StandardId" coords="519,586,619,615" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_StudyIssues" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_StudyIssues" coords="434,693,544,722" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_InspectionTraceability" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_InspectionTraceability" coords="434,800,597,829" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_Name" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_Name" coords="434,891,506,920" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_Description" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_Description" coords="434,982,537,1011" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_StudyId" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_StudyId" coords="434,1073,516,1102" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_ResultsIds" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ResultsIds" coords="564,1164,663,1193" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_ResultsQPIds" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ResultsQPIds" coords="564,1271,682,1300" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_ResultsFiles" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ResultsFiles" coords="564,1378,674,1407" />
+                                 <area alt="Statistics_xsd_Element_AverageFeatures.tmp#AverageFeatures" href="Statistics_xsd_Element_AverageFeatures.html#AverageFeatures" coords="434,1559,569,1588" />
+                                 <area alt="Statistics_xsd_Element_CharacteristicsStats.tmp#CharacteristicsStats" href="Statistics_xsd_Element_CharacteristicsStats.html#CharacteristicsStats" coords="434,1650,590,1679" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_LinearStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_LinearStatsSummaries" coords="434,1741,604,1770" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_AngularStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_AngularStatsSummaries" coords="434,1832,613,1861" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_AreaStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_AreaStatsSummaries" coords="434,1923,596,1952" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_ForceStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ForceStatsSummaries" coords="434,2014,602,2043" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_MassStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_MassStatsSummaries" coords="434,2105,601,2134" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_PressureStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_PressureStatsSummaries" coords="434,2196,621,2225" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_SpeedStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_SpeedStatsSummaries" coords="434,2287,606,2316" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_TemperatureStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_TemperatureStatsSummaries" coords="434,2378,641,2407" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_TimeStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_TimeStatsSummaries" coords="434,2469,597,2498" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_UserDefinedUnitStatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_UserDefinedUnitStatsSummaries" coords="434,2560,662,2589" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType_StatsSummaries" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_StatsSummaries" coords="434,2651,569,2680" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.tmp#StatisticalStudyResultsBaseType" href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType" coords="336,3,693,29" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.tmp#ProcessDifferenceStudyResultsType_NumberOfSamples" href="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.html#ProcessDifferenceStudyResultsType_NumberOfSamples" coords="418,2801,565,2830" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.tmp#ProcessDifferenceStudyResultsType_SubgroupSize" href="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.html#ProcessDifferenceStudyResultsType_SubgroupSize" coords="418,2892,537,2921" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.tmp#ProcessDifferenceStudyResultsType_ManufacturingProcessId" href="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.html#ProcessDifferenceStudyResultsType_ManufacturingProcessId" coords="418,2983,595,3012" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.tmp#ProcessDifferenceStudyResultsType_AbsoluteDifferences" href="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.html#ProcessDifferenceStudyResultsType_AbsoluteDifferences" coords="418,3074,571,3103" />
+                                 <area alt="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.tmp#ProcessDifferenceStudyResultsType_RelativeDifference" href="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.html#ProcessDifferenceStudyResultsType_RelativeDifference" coords="418,3181,558,3210" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StatisticalStudyResultsBaseType')">StatisticalStudyResultsBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StatisticalStudyResultsBaseType')">StatisticalStudyResultsBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.html#ProcessDifferenceStudyResultsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProcessDifferenceStudyResultsType')">ProcessDifferenceStudyResultsType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_ProcessDifferenceStudyResultsType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ProcessDifferenceStudyResultsType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_ProcessDifferenceStudyResultsType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="QIFStatistics_xsd_Element_ProcessDifferenceStudyResults.html#ProcessDifferenceStudyResults" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProcessDifferenceStudyResults')">ProcessDifferenceStudyResults</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.html#ProcessDifferenceStudyResultsType_AbsoluteDifferences" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AbsoluteDifferences')">AbsoluteDifferences</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_AngularStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AngularStatsSummaries')">AngularStatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_AreaStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AreaStatsSummaries')">AreaStatsSummaries</a></b>, <b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Statistics_xsd_Element_AverageFeatures.html#AverageFeatures" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AverageFeatures')">AverageFeatures</a></b>, <b><a href="Statistics_xsd_Element_CharacteristicsStats.html#CharacteristicsStats" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicsStats')">CharacteristicsStats</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ForceStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ForceStatsSummaries')">ForceStatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_InspectionTraceability" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionTraceability')">InspectionTraceability</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_LinearStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearStatsSummaries')">LinearStatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.html#ProcessDifferenceStudyResultsType_ManufacturingProcessId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ManufacturingProcessId')">ManufacturingProcessId</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_MassStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MassStatsSummaries')">MassStatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.html#ProcessDifferenceStudyResultsType_NumberOfSamples" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NumberOfSamples')">NumberOfSamples</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_PressureStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PressureStatsSummaries')">PressureStatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.html#ProcessDifferenceStudyResultsType_RelativeDifference" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RelativeDifference')">RelativeDifference</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ResultsFiles" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ResultsFiles')">ResultsFiles</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ResultsIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ResultsIds')">ResultsIds</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ResultsQPIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ResultsQPIds')">ResultsQPIds</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_SoftwareId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SoftwareId')">SoftwareId</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_SpeedStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpeedStatsSummaries')">SpeedStatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_StandardId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StandardId')">StandardId</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_StatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StatsSummaries')">StatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_Status" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Status')">Status</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_StudyId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StudyId')">StudyId</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_StudyIssues" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StudyIssues')">StudyIssues</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_ProcessDifferenceStudyResultsType.html#ProcessDifferenceStudyResultsType_SubgroupSize" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SubgroupSize')">SubgroupSize</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_TemperatureStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TemperatureStatsSummaries')">TemperatureStatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_ThisStatisticalStudyResultsInstanceQPId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThisStatisticalStudyResultsInstanceQPId')">ThisStatisticalStudyResultsInstanceQPId</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_TimeStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeStatsSummaries')">TimeStatsSummaries</a></b>, <b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_UserDefinedUnitStatsSummaries" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedUnitStatsSummaries')">UserDefinedUnitStatsSummaries</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ProcessDifferenceStudyResultsType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ProcessDifferenceStudyResultsType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ProcessDifferenceStudyResultsType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFStatistics_xsd_Complex_Type_StatisticalStudyResultsBaseType.html#StatisticalStudyResultsBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required id attribute is the QIF id of the statistical study</span><span class="tI">
+</span><span class="tT">results, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ProcessDifferenceStudyResultsType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ProcessDifferenceStudyResultsType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ProcessDifferenceStudyResultsType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ProcessDifferenceStudyResultsType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ProcessDifferenceStudyResultsType defines information that is related the to the results of a difference statistical study where the same part was measured before and after a manufacturing process to determine any part distortion caused by that process.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"StatisticalStudyResultsBaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"NumberOfSamples"</span><span class="tAN"> type=</span><span class="tAV">"xs:positiveInteger"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The NumberOfSamples element specifies the number of samples used in the statistical study.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SubgroupSize"</span><span class="tAN"> type=</span><span class="tAV">"xs:positiveInteger"</span><span class="tAN"> fixed=</span><span class="tAV">"2"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The SubgroupSize element fixed the size of each subgroup used in the difference statistical study.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ManufacturingProcessId"</span><span class="tAN"> type=</span><span class="tAV">"QIFReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ManufacturingProcessId element is a reference to the traceability information for the process on which the study was based.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"AbsoluteDifferences"</span><span class="tAN"> type=</span><span class="tAV">"AbsoluteMeasurementsByUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional AbsoluteDifferences element defines the worst absolute differences between before and after over all characteristics for various units.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"RelativeDifference"</span><span class="tAN"> type=</span><span class="tAV">"MeasuredDecimalType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional RelativeDifference element is the worst relative deviation between before and after over all characteristics</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFStatistics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

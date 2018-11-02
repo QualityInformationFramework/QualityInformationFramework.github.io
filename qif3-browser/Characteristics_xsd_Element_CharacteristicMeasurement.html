@@ -1,0 +1,611 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component CharacteristicMeasurement</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_CharacteristicMeasurement');
+var usedByBoxes= new Array('usedBy_CharacteristicMeasurement');
+var sourceBoxes= new Array('source_CharacteristicMeasurement');
+var instanceBoxes= new Array('instance_CharacteristicMeasurement');
+var diagramBoxes= new Array('diagram_CharacteristicMeasurement');
+var annotationBoxes= new Array('annotations_CharacteristicMeasurement');
+var attributesBoxes= new Array('attributes_CharacteristicMeasurement');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="CharacteristicMeasurement"></a><div class="componentTitle">Element <span class="qname">CharacteristicMeasurement</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_CharacteristicMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_CharacteristicMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_CharacteristicMeasurement" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The global CharacteristicMeasurement element is the head of a substitution group. Any element that is a member of the group may be substituted for the CharacteristicMeasurement element anywhere the CharacteristicMeasurement element may be used in an instance file.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CharacteristicMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CharacteristicMeasurement');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CharacteristicMeasurement" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_CharacteristicMeasurement.jpeg" usemap="#Characteristics_xsd_Element_CharacteristicMeasurement" /><map name="Characteristics_xsd_Element_CharacteristicMeasurement" id="Characteristics_xsd_Element_CharacteristicMeasurement">
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType_id" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_id" coords="299,136,380,165" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="368,236,462,265" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType_Description" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_Description" coords="368,343,471,372" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType" coords="270,49,571,75" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_Status" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_Status" coords="352,493,428,522" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_CharacteristicItemId" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_CharacteristicItemId" coords="352,600,505,629" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_TimeStamp" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_TimeStamp" coords="352,691,456,720" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_FeatureMeasurementIds" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_FeatureMeasurementIds" coords="352,782,530,811" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_SubstituteFeatureAlgorithm" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_SubstituteFeatureAlgorithm" coords="352,873,548,902" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_ActualComponentId" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_ActualComponentId" coords="352,964,503,993" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_MeasurementDeviceIds" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_MeasurementDeviceIds" coords="352,1055,524,1084" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_ManufacturingProcessId" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_ManufacturingProcessId" coords="352,1162,529,1191" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_NotedEventIds" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_NotedEventIds" coords="352,1253,473,1282" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType_NonConformanceDesignator" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_NonConformanceDesignator" coords="352,1360,551,1389" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.tmp#CharacteristicMeasurementBaseType" href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType" coords="254,3,534,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicMeasurementBaseType')">CharacteristicMeasurementBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicBaseType')">CharacteristicBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicMeasurementBaseType')">CharacteristicMeasurementBaseType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CharacteristicMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CharacteristicMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CharacteristicMeasurement" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">abstract</td>
+                                    <td><b>true</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Substitution Group</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_AngleBetweenCharacteristicMeasurement.html#AngleBetweenCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AngleBetweenCharacteristicMeasurement')">AngleBetweenCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_AngleCharacteristicMeasurement.html#AngleCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AngleCharacteristicMeasurement')">AngleCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_AngularCoordinateCharacteristicMeasurement.html#AngularCoordinateCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AngularCoordinateCharacteristicMeasurement')">AngularCoordinateCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_AngleFromCharacteristicMeasurement.html#AngleFromCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AngleFromCharacteristicMeasurement')">AngleFromCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_AngularityCharacteristicMeasurement.html#AngularityCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AngularityCharacteristicMeasurement')">AngularityCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_ChordCharacteristicMeasurement.html#ChordCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ChordCharacteristicMeasurement')">ChordCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_CircularityCharacteristicMeasurement.html#CircularityCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularityCharacteristicMeasurement')">CircularityCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_CircularRunoutCharacteristicMeasurement.html#CircularRunoutCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularRunoutCharacteristicMeasurement')">CircularRunoutCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_CoaxialityCharacteristicMeasurement.html#CoaxialityCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CoaxialityCharacteristicMeasurement')">CoaxialityCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_ConcentricityCharacteristicMeasurement.html#ConcentricityCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConcentricityCharacteristicMeasurement')">ConcentricityCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_ConicalTaperCharacteristicMeasurement.html#ConicalTaperCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConicalTaperCharacteristicMeasurement')">ConicalTaperCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_ConicityCharacteristicMeasurement.html#ConicityCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConicityCharacteristicMeasurement')">ConicityCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_CurveLengthCharacteristicMeasurement.html#CurveLengthCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CurveLengthCharacteristicMeasurement')">CurveLengthCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_CylindricityCharacteristicMeasurement.html#CylindricityCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylindricityCharacteristicMeasurement')">CylindricityCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_DepthCharacteristicMeasurement.html#DepthCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DepthCharacteristicMeasurement')">DepthCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_DiameterCharacteristicMeasurement.html#DiameterCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DiameterCharacteristicMeasurement')">DiameterCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_DistanceBetweenCharacteristicMeasurement.html#DistanceBetweenCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DistanceBetweenCharacteristicMeasurement')">DistanceBetweenCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_DistanceFromCharacteristicMeasurement.html#DistanceFromCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DistanceFromCharacteristicMeasurement')">DistanceFromCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_EllipticityCharacteristicMeasurement.html#EllipticityCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticityCharacteristicMeasurement')">EllipticityCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_FlatTaperCharacteristicMeasurement.html#FlatTaperCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FlatTaperCharacteristicMeasurement')">FlatTaperCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_FlatnessCharacteristicMeasurement.html#FlatnessCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FlatnessCharacteristicMeasurement')">FlatnessCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_HeightCharacteristicMeasurement.html#HeightCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component HeightCharacteristicMeasurement')">HeightCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_LengthCharacteristicMeasurement.html#LengthCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LengthCharacteristicMeasurement')">LengthCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_LinearCoordinateCharacteristicMeasurement.html#LinearCoordinateCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearCoordinateCharacteristicMeasurement')">LinearCoordinateCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_LineProfileCharacteristicMeasurement.html#LineProfileCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineProfileCharacteristicMeasurement')">LineProfileCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_OtherFormCharacteristicMeasurement.html#OtherFormCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherFormCharacteristicMeasurement')">OtherFormCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_ParallelismCharacteristicMeasurement.html#ParallelismCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ParallelismCharacteristicMeasurement')">ParallelismCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_PerpendicularityCharacteristicMeasurement.html#PerpendicularityCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PerpendicularityCharacteristicMeasurement')">PerpendicularityCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_PointProfileCharacteristicMeasurement.html#PointProfileCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointProfileCharacteristicMeasurement')">PointProfileCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_PositionCharacteristicMeasurement.html#PositionCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionCharacteristicMeasurement')">PositionCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_RadiusCharacteristicMeasurement.html#RadiusCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RadiusCharacteristicMeasurement')">RadiusCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_SphericalDiameterCharacteristicMeasurement.html#SphericalDiameterCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphericalDiameterCharacteristicMeasurement')">SphericalDiameterCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_SphericalRadiusCharacteristicMeasurement.html#SphericalRadiusCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphericalRadiusCharacteristicMeasurement')">SphericalRadiusCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_SphericityCharacteristicMeasurement.html#SphericityCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphericityCharacteristicMeasurement')">SphericityCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_SquareCharacteristicMeasurement.html#SquareCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SquareCharacteristicMeasurement')">SquareCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_StraightnessCharacteristicMeasurement.html#StraightnessCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StraightnessCharacteristicMeasurement')">StraightnessCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_SurfaceProfileCharacteristicMeasurement.html#SurfaceProfileCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceProfileCharacteristicMeasurement')">SurfaceProfileCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_SurfaceProfileNonUniformCharacteristicMeasurement.html#SurfaceProfileNonUniformCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceProfileNonUniformCharacteristicMeasurement')">SurfaceProfileNonUniformCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_SurfaceTextureCharacteristicMeasurement.html#SurfaceTextureCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceTextureCharacteristicMeasurement')">SurfaceTextureCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_SymmetryCharacteristicMeasurement.html#SymmetryCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SymmetryCharacteristicMeasurement')">SymmetryCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_ThicknessCharacteristicMeasurement.html#ThicknessCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThicknessCharacteristicMeasurement')">ThicknessCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_ThreadCharacteristicMeasurement.html#ThreadCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadCharacteristicMeasurement')">ThreadCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_ToroidicityCharacteristicMeasurement.html#ToroidicityCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidicityCharacteristicMeasurement')">ToroidicityCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_TotalRunoutCharacteristicMeasurement.html#TotalRunoutCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TotalRunoutCharacteristicMeasurement')">TotalRunoutCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_UserDefinedAttributeCharacteristicMeasurement.html#UserDefinedAttributeCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedAttributeCharacteristicMeasurement')">UserDefinedAttributeCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_UserDefinedLinearCharacteristicMeasurement.html#UserDefinedLinearCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedLinearCharacteristicMeasurement')">UserDefinedLinearCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_UserDefinedAngularCharacteristicMeasurement.html#UserDefinedAngularCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedAngularCharacteristicMeasurement')">UserDefinedAngularCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_UserDefinedTemperatureCharacteristicMeasurement.html#UserDefinedTemperatureCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedTemperatureCharacteristicMeasurement')">UserDefinedTemperatureCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_UserDefinedAreaCharacteristicMeasurement.html#UserDefinedAreaCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedAreaCharacteristicMeasurement')">UserDefinedAreaCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_UserDefinedForceCharacteristicMeasurement.html#UserDefinedForceCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedForceCharacteristicMeasurement')">UserDefinedForceCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_UserDefinedMassCharacteristicMeasurement.html#UserDefinedMassCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedMassCharacteristicMeasurement')">UserDefinedMassCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_UserDefinedPressureCharacteristicMeasurement.html#UserDefinedPressureCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedPressureCharacteristicMeasurement')">UserDefinedPressureCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_UserDefinedSpeedCharacteristicMeasurement.html#UserDefinedSpeedCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedSpeedCharacteristicMeasurement')">UserDefinedSpeedCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_UserDefinedTimeCharacteristicMeasurement.html#UserDefinedTimeCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedTimeCharacteristicMeasurement')">UserDefinedTimeCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_UserDefinedUnitCharacteristicMeasurement.html#UserDefinedUnitCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UserDefinedUnitCharacteristicMeasurement')">UserDefinedUnitCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WidthCharacteristicMeasurement.html#WidthCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WidthCharacteristicMeasurement')">WidthCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldFilletCharacteristicMeasurement.html#WeldFilletCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldFilletCharacteristicMeasurement')">WeldFilletCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldPlugCharacteristicMeasurement.html#WeldPlugCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldPlugCharacteristicMeasurement')">WeldPlugCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldSlotCharacteristicMeasurement.html#WeldSlotCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldSlotCharacteristicMeasurement')">WeldSlotCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldSpotCharacteristicMeasurement.html#WeldSpotCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldSpotCharacteristicMeasurement')">WeldSpotCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldStudCharacteristicMeasurement.html#WeldStudCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldStudCharacteristicMeasurement')">WeldStudCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldSeamCharacteristicMeasurement.html#WeldSeamCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldSeamCharacteristicMeasurement')">WeldSeamCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldSurfacingCharacteristicMeasurement.html#WeldSurfacingCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldSurfacingCharacteristicMeasurement')">WeldSurfacingCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldEdgeCharacteristicMeasurement.html#WeldEdgeCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldEdgeCharacteristicMeasurement')">WeldEdgeCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldSquareCharacteristicMeasurement.html#WeldSquareCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldSquareCharacteristicMeasurement')">WeldSquareCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldBevelCharacteristicMeasurement.html#WeldBevelCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldBevelCharacteristicMeasurement')">WeldBevelCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldVCharacteristicMeasurement.html#WeldVCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldVCharacteristicMeasurement')">WeldVCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldUCharacteristicMeasurement.html#WeldUCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldUCharacteristicMeasurement')">WeldUCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldJCharacteristicMeasurement.html#WeldJCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldJCharacteristicMeasurement')">WeldJCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldFlareVCharacteristicMeasurement.html#WeldFlareVCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldFlareVCharacteristicMeasurement')">WeldFlareVCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldFlareBevelCharacteristicMeasurement.html#WeldFlareBevelCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldFlareBevelCharacteristicMeasurement')">WeldFlareBevelCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldScarfCharacteristicMeasurement.html#WeldScarfCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldScarfCharacteristicMeasurement')">WeldScarfCharacteristicMeasurement</a></b></li>
+                              <li class="internal"><b><a href="Characteristics_xsd_Element_WeldCompoundCharacteristicMeasurement.html#WeldCompoundCharacteristicMeasurement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WeldCompoundCharacteristicMeasurement')">WeldCompoundCharacteristicMeasurement</a></b></li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_CharacteristicMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_CharacteristicMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_CharacteristicMeasurement" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementsType.html#CharacteristicMeasurementsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicMeasurementsType')">CharacteristicMeasurementsType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_ActualComponentId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ActualComponentId')">ActualComponentId</a></b>, <b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_CharacteristicItemId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicItemId')">CharacteristicItemId</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_FeatureMeasurementIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureMeasurementIds')">FeatureMeasurementIds</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_ManufacturingProcessId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ManufacturingProcessId')">ManufacturingProcessId</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_MeasurementDeviceIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementDeviceIds')">MeasurementDeviceIds</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_NonConformanceDesignator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonConformanceDesignator')">NonConformanceDesignator</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_NotedEventIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NotedEventIds')">NotedEventIds</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_Status" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Status')">Status</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_SubstituteFeatureAlgorithm" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SubstituteFeatureAlgorithm')">SubstituteFeatureAlgorithm</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicMeasurementBaseType.html#CharacteristicMeasurementBaseType_TimeStamp" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeStamp')">TimeStamp</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_CharacteristicMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_CharacteristicMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_CharacteristicMeasurement" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;CharacteristicMeasurement</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Description</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Description&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Status</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Status&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;CharacteristicItemId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/CharacteristicItemId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;TimeStamp</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/TimeStamp&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;FeatureMeasurementIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/FeatureMeasurementIds&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SubstituteFeatureAlgorithm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SubstituteFeatureAlgorithm&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ActualComponentId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ActualComponentId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MeasurementDeviceIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MeasurementDeviceIds&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ManufacturingProcessId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ManufacturingProcessId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NotedEventIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NotedEventIds&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NonConformanceDesignator</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NonConformanceDesignator&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/CharacteristicMeasurement&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_CharacteristicMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_CharacteristicMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_CharacteristicMeasurement" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the characteristic, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CharacteristicMeasurement" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CharacteristicMeasurement');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CharacteristicMeasurement" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CharacteristicMeasurement"</span><span class="tAN"> type=</span><span class="tAV">"CharacteristicMeasurementBaseType"</span><span class="tAN"> abstract=</span><span class="tAV">"true"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The global CharacteristicMeasurement element is the head of a substitution group. Any element that is a member of the group may be substituted for the CharacteristicMeasurement element anywhere the CharacteristicMeasurement element may be used in an instance file.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

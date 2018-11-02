@@ -1,0 +1,1781 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component AreaUnit</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_RulesUnitsType_AreaUnit', 
+				'properties_RulesUnitsType_AngularUnit', 
+				'properties_RulesUnitsType_ForceUnit', 
+				'properties_RulesUnitsType_LinearUnit', 
+				'properties_RulesUnitsType_MassUnit', 
+				'properties_RulesUnitsType_PressureUnit', 
+				'properties_RulesUnitsType_SpeedUnit', 
+				'properties_RulesUnitsType_TemperatureUnit', 
+				'properties_RulesUnitsType_TimeUnit', 
+				'properties_RulesUnitsType_n');
+var facetsBoxes= new Array('facets_RulesUnitsType_n');
+var usedByBoxes= new Array('usedBy_RulesUnitsType', 
+				'usedBy_RulesUnitsType_n');
+var sourceBoxes= new Array('source_RulesUnitsType_AreaUnit', 
+				'source_RulesUnitsType_AngularUnit', 
+				'source_RulesUnitsType_ForceUnit', 
+				'source_RulesUnitsType_LinearUnit', 
+				'source_RulesUnitsType_MassUnit', 
+				'source_RulesUnitsType_PressureUnit', 
+				'source_RulesUnitsType_SpeedUnit', 
+				'source_RulesUnitsType_TemperatureUnit', 
+				'source_RulesUnitsType_TimeUnit', 
+				'source_RulesUnitsType', 
+				'source_RulesUnitsType_n');
+var instanceBoxes= new Array('instance_RulesUnitsType_AreaUnit', 
+				'instance_RulesUnitsType_AngularUnit', 
+				'instance_RulesUnitsType_ForceUnit', 
+				'instance_RulesUnitsType_LinearUnit', 
+				'instance_RulesUnitsType_MassUnit', 
+				'instance_RulesUnitsType_PressureUnit', 
+				'instance_RulesUnitsType_SpeedUnit', 
+				'instance_RulesUnitsType_TemperatureUnit', 
+				'instance_RulesUnitsType_TimeUnit');
+var diagramBoxes= new Array('diagram_RulesUnitsType_AreaUnit', 
+				'diagram_RulesUnitsType_AngularUnit', 
+				'diagram_RulesUnitsType_ForceUnit', 
+				'diagram_RulesUnitsType_LinearUnit', 
+				'diagram_RulesUnitsType_MassUnit', 
+				'diagram_RulesUnitsType_PressureUnit', 
+				'diagram_RulesUnitsType_SpeedUnit', 
+				'diagram_RulesUnitsType_TemperatureUnit', 
+				'diagram_RulesUnitsType_TimeUnit', 
+				'diagram_RulesUnitsType');
+var annotationBoxes= new Array('annotations_RulesUnitsType_AreaUnit', 
+				'annotations_RulesUnitsType_AngularUnit', 
+				'annotations_RulesUnitsType_ForceUnit', 
+				'annotations_RulesUnitsType_LinearUnit', 
+				'annotations_RulesUnitsType_MassUnit', 
+				'annotations_RulesUnitsType_PressureUnit', 
+				'annotations_RulesUnitsType_SpeedUnit', 
+				'annotations_RulesUnitsType_TemperatureUnit', 
+				'annotations_RulesUnitsType_TimeUnit', 
+				'annotations_RulesUnitsType', 
+				'annotations_RulesUnitsType_n');
+var attributesBoxes= new Array('attributes_RulesUnitsType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="RulesUnitsType_AreaUnit"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RulesUnitsType')">RulesUnitsType</a></b> / AreaUnit</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_RulesUnitsType_AreaUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_RulesUnitsType_AreaUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_RulesUnitsType_AreaUnit" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional AreaUnit element defines units for area values.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_RulesUnitsType_AreaUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_RulesUnitsType_AreaUnit');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_RulesUnitsType_AreaUnit" style="display:block"><img alt="Diagram" border="0" src="img/QIFRules_xsd_Element_AreaUnit.jpeg" usemap="#QIFRules_xsd_Element_AreaUnit" /><map name="QIFRules_xsd_Element_AreaUnit" id="QIFRules_xsd_Element_AreaUnit">
+                                 <area alt="Units_xsd_Complex_Type_AreaUnitType.tmp#AreaUnitType_SIUnitName" href="Units_xsd_Complex_Type_AreaUnitType.html#AreaUnitType_SIUnitName" coords="243,46,350,75" />
+                                 <area alt="Units_xsd_Complex_Type_AreaUnitType.tmp#AreaUnitType_UnitName" href="Units_xsd_Complex_Type_AreaUnitType.html#AreaUnitType_UnitName" coords="243,153,338,182" />
+                                 <area alt="Units_xsd_Complex_Type_AreaUnitType.tmp#AreaUnitType_UnitConversion" href="Units_xsd_Complex_Type_AreaUnitType.html#AreaUnitType_UnitConversion" coords="243,244,367,273" />
+                                 <area alt="Units_xsd_Complex_Type_AreaUnitType.tmp#AreaUnitType" href="Units_xsd_Complex_Type_AreaUnitType.html#AreaUnitType" coords="145,3,286,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_AreaUnitType.html#AreaUnitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AreaUnitType')">AreaUnitType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_RulesUnitsType_AreaUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_RulesUnitsType_AreaUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_RulesUnitsType_AreaUnit" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_AreaUnitType.html#AreaUnitType_SIUnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SIUnitName')">SIUnitName</a></b>, <b><a href="Units_xsd_Complex_Type_AreaUnitType.html#AreaUnitType_UnitConversion" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitConversion')">UnitConversion</a></b>, <b><a href="Units_xsd_Complex_Type_AreaUnitType.html#AreaUnitType_UnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitName')">UnitName</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_RulesUnitsType_AreaUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_RulesUnitsType_AreaUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_RulesUnitsType_AreaUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;AreaUnit</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SIUnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SIUnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/UnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitConversion</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/UnitConversion&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/AreaUnit&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_RulesUnitsType_AreaUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('source_RulesUnitsType_AreaUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_RulesUnitsType_AreaUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"AreaUnit"</span><span class="tAN"> type=</span><span class="tAV">"AreaUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional AreaUnit element defines units for area values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFRules.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="RulesUnitsType_AngularUnit"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RulesUnitsType')">RulesUnitsType</a></b> / AngularUnit</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_RulesUnitsType_AngularUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_RulesUnitsType_AngularUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_RulesUnitsType_AngularUnit" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional AngularUnit element defines units for angle values.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_RulesUnitsType_AngularUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_RulesUnitsType_AngularUnit');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_RulesUnitsType_AngularUnit" style="display:block"><img alt="Diagram" border="0" src="img/QIFRules_xsd_Element_AngularUnit.jpeg" usemap="#QIFRules_xsd_Element_AngularUnit" /><map name="QIFRules_xsd_Element_AngularUnit" id="QIFRules_xsd_Element_AngularUnit">
+                                 <area alt="Units_xsd_Complex_Type_AngularUnitType.tmp#AngularUnitType_SIUnitName" href="Units_xsd_Complex_Type_AngularUnitType.html#AngularUnitType_SIUnitName" coords="260,46,367,75" />
+                                 <area alt="Units_xsd_Complex_Type_AngularUnitType.tmp#AngularUnitType_UnitName" href="Units_xsd_Complex_Type_AngularUnitType.html#AngularUnitType_UnitName" coords="260,153,355,182" />
+                                 <area alt="Units_xsd_Complex_Type_AngularUnitType.tmp#AngularUnitType_UnitConversion" href="Units_xsd_Complex_Type_AngularUnitType.html#AngularUnitType_UnitConversion" coords="260,244,384,273" />
+                                 <area alt="Units_xsd_Complex_Type_AngularUnitType.tmp#AngularUnitType" href="Units_xsd_Complex_Type_AngularUnitType.html#AngularUnitType" coords="162,3,320,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_AngularUnitType.html#AngularUnitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AngularUnitType')">AngularUnitType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_RulesUnitsType_AngularUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_RulesUnitsType_AngularUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_RulesUnitsType_AngularUnit" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_AngularUnitType.html#AngularUnitType_SIUnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SIUnitName')">SIUnitName</a></b>, <b><a href="Units_xsd_Complex_Type_AngularUnitType.html#AngularUnitType_UnitConversion" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitConversion')">UnitConversion</a></b>, <b><a href="Units_xsd_Complex_Type_AngularUnitType.html#AngularUnitType_UnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitName')">UnitName</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_RulesUnitsType_AngularUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_RulesUnitsType_AngularUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_RulesUnitsType_AngularUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;AngularUnit</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SIUnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SIUnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/UnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitConversion</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/UnitConversion&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/AngularUnit&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_RulesUnitsType_AngularUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('source_RulesUnitsType_AngularUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_RulesUnitsType_AngularUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"AngularUnit"</span><span class="tAN"> type=</span><span class="tAV">"AngularUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional AngularUnit element defines units for angle values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFRules.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="RulesUnitsType_ForceUnit"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RulesUnitsType')">RulesUnitsType</a></b> / ForceUnit</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_RulesUnitsType_ForceUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_RulesUnitsType_ForceUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_RulesUnitsType_ForceUnit" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional ForceUnit element defines units for force values.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_RulesUnitsType_ForceUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_RulesUnitsType_ForceUnit');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_RulesUnitsType_ForceUnit" style="display:block"><img alt="Diagram" border="0" src="img/QIFRules_xsd_Element_ForceUnit.jpeg" usemap="#QIFRules_xsd_Element_ForceUnit" /><map name="QIFRules_xsd_Element_ForceUnit" id="QIFRules_xsd_Element_ForceUnit">
+                                 <area alt="Units_xsd_Complex_Type_ForceUnitType.tmp#ForceUnitType_SIUnitName" href="Units_xsd_Complex_Type_ForceUnitType.html#ForceUnitType_SIUnitName" coords="249,46,356,75" />
+                                 <area alt="Units_xsd_Complex_Type_ForceUnitType.tmp#ForceUnitType_UnitName" href="Units_xsd_Complex_Type_ForceUnitType.html#ForceUnitType_UnitName" coords="249,153,344,182" />
+                                 <area alt="Units_xsd_Complex_Type_ForceUnitType.tmp#ForceUnitType_UnitConversion" href="Units_xsd_Complex_Type_ForceUnitType.html#ForceUnitType_UnitConversion" coords="249,244,373,273" />
+                                 <area alt="Units_xsd_Complex_Type_ForceUnitType.tmp#ForceUnitType" href="Units_xsd_Complex_Type_ForceUnitType.html#ForceUnitType" coords="151,3,298,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_ForceUnitType.html#ForceUnitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ForceUnitType')">ForceUnitType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_RulesUnitsType_ForceUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_RulesUnitsType_ForceUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_RulesUnitsType_ForceUnit" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_ForceUnitType.html#ForceUnitType_SIUnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SIUnitName')">SIUnitName</a></b>, <b><a href="Units_xsd_Complex_Type_ForceUnitType.html#ForceUnitType_UnitConversion" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitConversion')">UnitConversion</a></b>, <b><a href="Units_xsd_Complex_Type_ForceUnitType.html#ForceUnitType_UnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitName')">UnitName</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_RulesUnitsType_ForceUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_RulesUnitsType_ForceUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_RulesUnitsType_ForceUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;ForceUnit</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SIUnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SIUnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/UnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitConversion</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/UnitConversion&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/ForceUnit&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_RulesUnitsType_ForceUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('source_RulesUnitsType_ForceUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_RulesUnitsType_ForceUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ForceUnit"</span><span class="tAN"> type=</span><span class="tAV">"ForceUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ForceUnit element defines units for force values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFRules.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="RulesUnitsType_LinearUnit"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RulesUnitsType')">RulesUnitsType</a></b> / LinearUnit</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_RulesUnitsType_LinearUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_RulesUnitsType_LinearUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_RulesUnitsType_LinearUnit" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional LinearUnit element defines units for length values.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_RulesUnitsType_LinearUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_RulesUnitsType_LinearUnit');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_RulesUnitsType_LinearUnit" style="display:block"><img alt="Diagram" border="0" src="img/QIFRules_xsd_Element_LinearUnit.jpeg" usemap="#QIFRules_xsd_Element_LinearUnit" /><map name="QIFRules_xsd_Element_LinearUnit" id="QIFRules_xsd_Element_LinearUnit">
+                                 <area alt="Units_xsd_Complex_Type_LinearUnitType.tmp#LinearUnitType_SIUnitName" href="Units_xsd_Complex_Type_LinearUnitType.html#LinearUnitType_SIUnitName" coords="251,46,358,75" />
+                                 <area alt="Units_xsd_Complex_Type_LinearUnitType.tmp#LinearUnitType_UnitName" href="Units_xsd_Complex_Type_LinearUnitType.html#LinearUnitType_UnitName" coords="251,153,346,182" />
+                                 <area alt="Units_xsd_Complex_Type_LinearUnitType.tmp#LinearUnitType_UnitConversion" href="Units_xsd_Complex_Type_LinearUnitType.html#LinearUnitType_UnitConversion" coords="251,244,375,273" />
+                                 <area alt="Units_xsd_Complex_Type_LinearUnitType.tmp#LinearUnitType" href="Units_xsd_Complex_Type_LinearUnitType.html#LinearUnitType" coords="153,3,302,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_LinearUnitType.html#LinearUnitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearUnitType')">LinearUnitType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_RulesUnitsType_LinearUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_RulesUnitsType_LinearUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_RulesUnitsType_LinearUnit" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_LinearUnitType.html#LinearUnitType_SIUnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SIUnitName')">SIUnitName</a></b>, <b><a href="Units_xsd_Complex_Type_LinearUnitType.html#LinearUnitType_UnitConversion" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitConversion')">UnitConversion</a></b>, <b><a href="Units_xsd_Complex_Type_LinearUnitType.html#LinearUnitType_UnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitName')">UnitName</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_RulesUnitsType_LinearUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_RulesUnitsType_LinearUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_RulesUnitsType_LinearUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;LinearUnit</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SIUnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SIUnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/UnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitConversion</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/UnitConversion&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/LinearUnit&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_RulesUnitsType_LinearUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('source_RulesUnitsType_LinearUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_RulesUnitsType_LinearUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"LinearUnit"</span><span class="tAN"> type=</span><span class="tAV">"LinearUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional LinearUnit element defines units for length values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFRules.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="RulesUnitsType_MassUnit"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RulesUnitsType')">RulesUnitsType</a></b> / MassUnit</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_RulesUnitsType_MassUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_RulesUnitsType_MassUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_RulesUnitsType_MassUnit" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional MassUnit element defines units for mass values.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_RulesUnitsType_MassUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_RulesUnitsType_MassUnit');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_RulesUnitsType_MassUnit" style="display:block"><img alt="Diagram" border="0" src="img/QIFRules_xsd_Element_MassUnit.jpeg" usemap="#QIFRules_xsd_Element_MassUnit" /><map name="QIFRules_xsd_Element_MassUnit" id="QIFRules_xsd_Element_MassUnit">
+                                 <area alt="Units_xsd_Complex_Type_MassUnitType.tmp#MassUnitType_SIUnitName" href="Units_xsd_Complex_Type_MassUnitType.html#MassUnitType_SIUnitName" coords="248,46,355,75" />
+                                 <area alt="Units_xsd_Complex_Type_MassUnitType.tmp#MassUnitType_UnitName" href="Units_xsd_Complex_Type_MassUnitType.html#MassUnitType_UnitName" coords="248,153,343,182" />
+                                 <area alt="Units_xsd_Complex_Type_MassUnitType.tmp#MassUnitType_UnitConversion" href="Units_xsd_Complex_Type_MassUnitType.html#MassUnitType_UnitConversion" coords="248,244,372,273" />
+                                 <area alt="Units_xsd_Complex_Type_MassUnitType.tmp#MassUnitType" href="Units_xsd_Complex_Type_MassUnitType.html#MassUnitType" coords="150,3,296,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_MassUnitType.html#MassUnitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MassUnitType')">MassUnitType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_RulesUnitsType_MassUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_RulesUnitsType_MassUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_RulesUnitsType_MassUnit" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_MassUnitType.html#MassUnitType_SIUnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SIUnitName')">SIUnitName</a></b>, <b><a href="Units_xsd_Complex_Type_MassUnitType.html#MassUnitType_UnitConversion" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitConversion')">UnitConversion</a></b>, <b><a href="Units_xsd_Complex_Type_MassUnitType.html#MassUnitType_UnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitName')">UnitName</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_RulesUnitsType_MassUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_RulesUnitsType_MassUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_RulesUnitsType_MassUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;MassUnit</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SIUnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SIUnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/UnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitConversion</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/UnitConversion&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/MassUnit&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_RulesUnitsType_MassUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('source_RulesUnitsType_MassUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_RulesUnitsType_MassUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MassUnit"</span><span class="tAN"> type=</span><span class="tAV">"MassUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional MassUnit element defines units for mass values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFRules.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="RulesUnitsType_PressureUnit"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RulesUnitsType')">RulesUnitsType</a></b> / PressureUnit</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_RulesUnitsType_PressureUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_RulesUnitsType_PressureUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_RulesUnitsType_PressureUnit" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional PressureUnit element defines units for pressure values.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_RulesUnitsType_PressureUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_RulesUnitsType_PressureUnit');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_RulesUnitsType_PressureUnit" style="display:block"><img alt="Diagram" border="0" src="img/QIFRules_xsd_Element_PressureUnit.jpeg" usemap="#QIFRules_xsd_Element_PressureUnit" /><map name="QIFRules_xsd_Element_PressureUnit" id="QIFRules_xsd_Element_PressureUnit">
+                                 <area alt="Units_xsd_Complex_Type_PressureUnitType.tmp#PressureUnitType_SIUnitName" href="Units_xsd_Complex_Type_PressureUnitType.html#PressureUnitType_SIUnitName" coords="268,46,375,75" />
+                                 <area alt="Units_xsd_Complex_Type_PressureUnitType.tmp#PressureUnitType_UnitName" href="Units_xsd_Complex_Type_PressureUnitType.html#PressureUnitType_UnitName" coords="268,153,363,182" />
+                                 <area alt="Units_xsd_Complex_Type_PressureUnitType.tmp#PressureUnitType_UnitConversion" href="Units_xsd_Complex_Type_PressureUnitType.html#PressureUnitType_UnitConversion" coords="268,244,392,273" />
+                                 <area alt="Units_xsd_Complex_Type_PressureUnitType.tmp#PressureUnitType" href="Units_xsd_Complex_Type_PressureUnitType.html#PressureUnitType" coords="170,3,336,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_PressureUnitType.html#PressureUnitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PressureUnitType')">PressureUnitType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_RulesUnitsType_PressureUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_RulesUnitsType_PressureUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_RulesUnitsType_PressureUnit" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_PressureUnitType.html#PressureUnitType_SIUnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SIUnitName')">SIUnitName</a></b>, <b><a href="Units_xsd_Complex_Type_PressureUnitType.html#PressureUnitType_UnitConversion" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitConversion')">UnitConversion</a></b>, <b><a href="Units_xsd_Complex_Type_PressureUnitType.html#PressureUnitType_UnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitName')">UnitName</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_RulesUnitsType_PressureUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_RulesUnitsType_PressureUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_RulesUnitsType_PressureUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;PressureUnit</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SIUnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SIUnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/UnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitConversion</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/UnitConversion&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/PressureUnit&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_RulesUnitsType_PressureUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('source_RulesUnitsType_PressureUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_RulesUnitsType_PressureUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PressureUnit"</span><span class="tAN"> type=</span><span class="tAV">"PressureUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional PressureUnit element defines units for pressure values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFRules.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="RulesUnitsType_SpeedUnit"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RulesUnitsType')">RulesUnitsType</a></b> / SpeedUnit</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_RulesUnitsType_SpeedUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_RulesUnitsType_SpeedUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_RulesUnitsType_SpeedUnit" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional SpeedUnit element defines units for speed values.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_RulesUnitsType_SpeedUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_RulesUnitsType_SpeedUnit');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_RulesUnitsType_SpeedUnit" style="display:block"><img alt="Diagram" border="0" src="img/QIFRules_xsd_Element_SpeedUnit.jpeg" usemap="#QIFRules_xsd_Element_SpeedUnit" /><map name="QIFRules_xsd_Element_SpeedUnit" id="QIFRules_xsd_Element_SpeedUnit">
+                                 <area alt="Units_xsd_Complex_Type_SpeedUnitType.tmp#SpeedUnitType_SIUnitName" href="Units_xsd_Complex_Type_SpeedUnitType.html#SpeedUnitType_SIUnitName" coords="253,46,360,75" />
+                                 <area alt="Units_xsd_Complex_Type_SpeedUnitType.tmp#SpeedUnitType_UnitName" href="Units_xsd_Complex_Type_SpeedUnitType.html#SpeedUnitType_UnitName" coords="253,153,348,182" />
+                                 <area alt="Units_xsd_Complex_Type_SpeedUnitType.tmp#SpeedUnitType_UnitConversion" href="Units_xsd_Complex_Type_SpeedUnitType.html#SpeedUnitType_UnitConversion" coords="253,244,377,273" />
+                                 <area alt="Units_xsd_Complex_Type_SpeedUnitType.tmp#SpeedUnitType" href="Units_xsd_Complex_Type_SpeedUnitType.html#SpeedUnitType" coords="155,3,306,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_SpeedUnitType.html#SpeedUnitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpeedUnitType')">SpeedUnitType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_RulesUnitsType_SpeedUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_RulesUnitsType_SpeedUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_RulesUnitsType_SpeedUnit" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_SpeedUnitType.html#SpeedUnitType_SIUnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SIUnitName')">SIUnitName</a></b>, <b><a href="Units_xsd_Complex_Type_SpeedUnitType.html#SpeedUnitType_UnitConversion" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitConversion')">UnitConversion</a></b>, <b><a href="Units_xsd_Complex_Type_SpeedUnitType.html#SpeedUnitType_UnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitName')">UnitName</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_RulesUnitsType_SpeedUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_RulesUnitsType_SpeedUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_RulesUnitsType_SpeedUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;SpeedUnit</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SIUnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SIUnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/UnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitConversion</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/UnitConversion&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/SpeedUnit&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_RulesUnitsType_SpeedUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('source_RulesUnitsType_SpeedUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_RulesUnitsType_SpeedUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SpeedUnit"</span><span class="tAN"> type=</span><span class="tAV">"SpeedUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional SpeedUnit element defines units for speed values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFRules.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="RulesUnitsType_TemperatureUnit"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RulesUnitsType')">RulesUnitsType</a></b> / TemperatureUnit</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_RulesUnitsType_TemperatureUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_RulesUnitsType_TemperatureUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_RulesUnitsType_TemperatureUnit" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional TemperatureUnit element defines units for temperature values.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_RulesUnitsType_TemperatureUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_RulesUnitsType_TemperatureUnit');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_RulesUnitsType_TemperatureUnit" style="display:block"><img alt="Diagram" border="0" src="img/QIFRules_xsd_Element_TemperatureUnit.jpeg" usemap="#QIFRules_xsd_Element_TemperatureUnit" /><map name="QIFRules_xsd_Element_TemperatureUnit" id="QIFRules_xsd_Element_TemperatureUnit">
+                                 <area alt="Units_xsd_Complex_Type_TemperatureUnitType.tmp#TemperatureUnitType_SIUnitName" href="Units_xsd_Complex_Type_TemperatureUnitType.html#TemperatureUnitType_SIUnitName" coords="288,46,395,75" />
+                                 <area alt="Units_xsd_Complex_Type_TemperatureUnitType.tmp#TemperatureUnitType_UnitName" href="Units_xsd_Complex_Type_TemperatureUnitType.html#TemperatureUnitType_UnitName" coords="288,153,383,182" />
+                                 <area alt="Units_xsd_Complex_Type_TemperatureUnitType.tmp#TemperatureUnitType_UnitConversion" href="Units_xsd_Complex_Type_TemperatureUnitType.html#TemperatureUnitType_UnitConversion" coords="288,244,412,273" />
+                                 <area alt="Units_xsd_Complex_Type_TemperatureUnitType.tmp#TemperatureUnitType" href="Units_xsd_Complex_Type_TemperatureUnitType.html#TemperatureUnitType" coords="190,3,376,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_TemperatureUnitType.html#TemperatureUnitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TemperatureUnitType')">TemperatureUnitType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_RulesUnitsType_TemperatureUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_RulesUnitsType_TemperatureUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_RulesUnitsType_TemperatureUnit" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_TemperatureUnitType.html#TemperatureUnitType_SIUnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SIUnitName')">SIUnitName</a></b>, <b><a href="Units_xsd_Complex_Type_TemperatureUnitType.html#TemperatureUnitType_UnitConversion" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitConversion')">UnitConversion</a></b>, <b><a href="Units_xsd_Complex_Type_TemperatureUnitType.html#TemperatureUnitType_UnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitName')">UnitName</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_RulesUnitsType_TemperatureUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_RulesUnitsType_TemperatureUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_RulesUnitsType_TemperatureUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;TemperatureUnit</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SIUnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SIUnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/UnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitConversion</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/UnitConversion&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/TemperatureUnit&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_RulesUnitsType_TemperatureUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('source_RulesUnitsType_TemperatureUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_RulesUnitsType_TemperatureUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TemperatureUnit"</span><span class="tAN"> type=</span><span class="tAV">"TemperatureUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional TemperatureUnit element defines units for temperature values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFRules.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="RulesUnitsType_TimeUnit"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RulesUnitsType')">RulesUnitsType</a></b> / TimeUnit</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_RulesUnitsType_TimeUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_RulesUnitsType_TimeUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_RulesUnitsType_TimeUnit" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional TimeUnit element defines units for time values.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_RulesUnitsType_TimeUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_RulesUnitsType_TimeUnit');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_RulesUnitsType_TimeUnit" style="display:block"><img alt="Diagram" border="0" src="img/QIFRules_xsd_Element_TimeUnit.jpeg" usemap="#QIFRules_xsd_Element_TimeUnit" /><map name="QIFRules_xsd_Element_TimeUnit" id="QIFRules_xsd_Element_TimeUnit">
+                                 <area alt="Units_xsd_Complex_Type_TimeUnitType.tmp#TimeUnitType_SIUnitName" href="Units_xsd_Complex_Type_TimeUnitType.html#TimeUnitType_SIUnitName" coords="244,46,351,75" />
+                                 <area alt="Units_xsd_Complex_Type_TimeUnitType.tmp#TimeUnitType_UnitName" href="Units_xsd_Complex_Type_TimeUnitType.html#TimeUnitType_UnitName" coords="244,153,339,182" />
+                                 <area alt="Units_xsd_Complex_Type_TimeUnitType.tmp#TimeUnitType_UnitConversion" href="Units_xsd_Complex_Type_TimeUnitType.html#TimeUnitType_UnitConversion" coords="244,244,368,273" />
+                                 <area alt="Units_xsd_Complex_Type_TimeUnitType.tmp#TimeUnitType" href="Units_xsd_Complex_Type_TimeUnitType.html#TimeUnitType" coords="146,3,288,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_TimeUnitType.html#TimeUnitType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeUnitType')">TimeUnitType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_RulesUnitsType_TimeUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_RulesUnitsType_TimeUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_RulesUnitsType_TimeUnit" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_TimeUnitType.html#TimeUnitType_SIUnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SIUnitName')">SIUnitName</a></b>, <b><a href="Units_xsd_Complex_Type_TimeUnitType.html#TimeUnitType_UnitConversion" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitConversion')">UnitConversion</a></b>, <b><a href="Units_xsd_Complex_Type_TimeUnitType.html#TimeUnitType_UnitName" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitName')">UnitName</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_RulesUnitsType_TimeUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_RulesUnitsType_TimeUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_RulesUnitsType_TimeUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;TimeUnit</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SIUnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SIUnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/UnitName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;UnitConversion</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/UnitConversion&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/TimeUnit&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_RulesUnitsType_TimeUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('source_RulesUnitsType_TimeUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_RulesUnitsType_TimeUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TimeUnit"</span><span class="tAN"> type=</span><span class="tAV">"TimeUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional TimeUnit element defines units for time values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFRules.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="RulesUnitsType"></a><div class="componentTitle">Complex Type <span class="qname">RulesUnitsType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_RulesUnitsType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_RulesUnitsType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_RulesUnitsType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The RulesUnitsType defines units for various quantities. All unit types are optional. Each unit type may occur at most once, since individual numbers used in rules cannot have units assigned.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_RulesUnitsType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_RulesUnitsType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_RulesUnitsType" style="display:block"><img alt="Diagram" border="0" src="img/QIFRules_xsd_Complex_Type_RulesUnitsType.jpeg" usemap="#QIFRules_xsd_Complex_Type_RulesUnitsType" /><map name="QIFRules_xsd_Complex_Type_RulesUnitsType" id="QIFRules_xsd_Complex_Type_RulesUnitsType">
+                                 <area alt="QIFRules_xsd_Complex_Type_RulesUnitsType.tmp#RulesUnitsType_n" href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_n" coords="229,44,310,73" />
+                                 <area alt="QIFRules_xsd_Complex_Type_RulesUnitsType.tmp#RulesUnitsType_AreaUnit" href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_AreaUnit" coords="298,144,386,173" />
+                                 <area alt="QIFRules_xsd_Complex_Type_RulesUnitsType.tmp#RulesUnitsType_AngularUnit" href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_AngularUnit" coords="298,235,403,264" />
+                                 <area alt="QIFRules_xsd_Complex_Type_RulesUnitsType.tmp#RulesUnitsType_ForceUnit" href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_ForceUnit" coords="298,326,392,355" />
+                                 <area alt="QIFRules_xsd_Complex_Type_RulesUnitsType.tmp#RulesUnitsType_LinearUnit" href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_LinearUnit" coords="298,417,394,446" />
+                                 <area alt="QIFRules_xsd_Complex_Type_RulesUnitsType.tmp#RulesUnitsType_MassUnit" href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_MassUnit" coords="298,508,391,537" />
+                                 <area alt="QIFRules_xsd_Complex_Type_RulesUnitsType.tmp#RulesUnitsType_PressureUnit" href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_PressureUnit" coords="298,599,411,628" />
+                                 <area alt="QIFRules_xsd_Complex_Type_RulesUnitsType.tmp#RulesUnitsType_SpeedUnit" href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_SpeedUnit" coords="298,690,396,719" />
+                                 <area alt="QIFRules_xsd_Complex_Type_RulesUnitsType.tmp#RulesUnitsType_TemperatureUnit" href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_TemperatureUnit" coords="298,781,431,810" />
+                                 <area alt="QIFRules_xsd_Complex_Type_RulesUnitsType.tmp#RulesUnitsType_TimeUnit" href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_TimeUnit" coords="298,872,387,901" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_RulesUnitsType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_RulesUnitsType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_RulesUnitsType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="QIFRules_xsd_Complex_Type_QIFRulesType.html#QIFRulesType_RulesUnits" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFRulesType/RulesUnits')">QIFRulesType/RulesUnits</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_AngularUnit" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AngularUnit')">AngularUnit</a></b>, <b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_AreaUnit" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AreaUnit')">AreaUnit</a></b>, <b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_ForceUnit" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ForceUnit')">ForceUnit</a></b>, <b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_LinearUnit" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearUnit')">LinearUnit</a></b>, <b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_MassUnit" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MassUnit')">MassUnit</a></b>, <b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_PressureUnit" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PressureUnit')">PressureUnit</a></b>, <b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_SpeedUnit" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpeedUnit')">SpeedUnit</a></b>, <b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_TemperatureUnit" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TemperatureUnit')">TemperatureUnit</a></b>, <b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_TimeUnit" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TimeUnit')">TimeUnit</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_RulesUnitsType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_RulesUnitsType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_RulesUnitsType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of unit definitions in the set.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_RulesUnitsType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_RulesUnitsType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_RulesUnitsType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"RulesUnitsType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The RulesUnitsType defines units for various quantities. All unit types are optional. Each unit type may occur at most once, since individual numbers used in rules cannot have units assigned.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"AreaUnit"</span><span class="tAN"> type=</span><span class="tAV">"AreaUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional AreaUnit element defines units for area values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"AngularUnit"</span><span class="tAN"> type=</span><span class="tAV">"AngularUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional AngularUnit element defines units for angle values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ForceUnit"</span><span class="tAN"> type=</span><span class="tAV">"ForceUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ForceUnit element defines units for force values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"LinearUnit"</span><span class="tAN"> type=</span><span class="tAV">"LinearUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional LinearUnit element defines units for length values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MassUnit"</span><span class="tAN"> type=</span><span class="tAV">"MassUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional MassUnit element defines units for mass values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PressureUnit"</span><span class="tAN"> type=</span><span class="tAV">"PressureUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional PressureUnit element defines units for pressure values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SpeedUnit"</span><span class="tAN"> type=</span><span class="tAV">"SpeedUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional SpeedUnit element defines units for speed values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TemperatureUnit"</span><span class="tAN"> type=</span><span class="tAV">"TemperatureUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional TemperatureUnit element defines units for temperature values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TimeUnit"</span><span class="tAN"> type=</span><span class="tAV">"TimeUnitType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional TimeUnit element defines units for time values.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"n"</span><span class="tAN"> type=</span><span class="tAV">"NaturalType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The required n attribute is the number of unit definitions in the set.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFRules.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="RulesUnitsType_n"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RulesUnitsType')">RulesUnitsType</a></b> / @n</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_RulesUnitsType_n" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_RulesUnitsType_n');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_RulesUnitsType_n" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The required n attribute is the number of unit definitions in the set.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_RulesUnitsType_n" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_RulesUnitsType_n');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_RulesUnitsType_n" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">use</td>
+                                    <td><b>required</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_RulesUnitsType_n" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_RulesUnitsType_n');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_RulesUnitsType_n" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">minInclusive</td>
+                                    <td width="30%"><b>1</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_RulesUnitsType_n" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_RulesUnitsType_n');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_RulesUnitsType_n" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="QIFRules_xsd_Complex_Type_RulesUnitsType.html#RulesUnitsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component RulesUnitsType')">RulesUnitsType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_RulesUnitsType_n" type="image" src="img/btM.gif" value="-" onclick="switchState('source_RulesUnitsType_n');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_RulesUnitsType_n" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"n"</span><span class="tAN"> type=</span><span class="tAV">"NaturalType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The required n attribute is the number of unit definitions in the set.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFRules.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

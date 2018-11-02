@@ -1,0 +1,590 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component FeatureDefinition</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_FeatureDefinition');
+var usedByBoxes= new Array('usedBy_FeatureDefinition');
+var sourceBoxes= new Array('source_FeatureDefinition');
+var instanceBoxes= new Array('instance_FeatureDefinition');
+var diagramBoxes= new Array('diagram_FeatureDefinition');
+var annotationBoxes= new Array('annotations_FeatureDefinition');
+var attributesBoxes= new Array('attributes_FeatureDefinition');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="FeatureDefinition"></a><div class="componentTitle">Element <span class="qname">FeatureDefinition</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_FeatureDefinition" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_FeatureDefinition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_FeatureDefinition" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The abstract global FeatureDefinition element is the head of a substitution group. Any element that is a member of the group may be substituted for the FeatureDefinition element anywhere the FeatureDefinition element could be used in an instance file if it were not abstract.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_FeatureDefinition" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_FeatureDefinition');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_FeatureDefinition" style="display:block"><img alt="Diagram" border="0" src="img/Features_xsd_Element_FeatureDefinition.jpeg" usemap="#Features_xsd_Element_FeatureDefinition" /><map name="Features_xsd_Element_FeatureDefinition" id="Features_xsd_Element_FeatureDefinition">
+                                 <area alt="Features_xsd_Complex_Type_FeatureBaseType.tmp#FeatureBaseType_id" href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType_id" coords="237,136,318,165" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="306,240,400,269" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureBaseType.tmp#FeatureBaseType" href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType" coords="208,49,473,75" />
+                                 <area alt="Features_xsd_Complex_Type_FeatureDefinitionBaseType.tmp#FeatureDefinitionBaseType" href="Features_xsd_Complex_Type_FeatureDefinitionBaseType.html#FeatureDefinitionBaseType" coords="192,3,410,29" />
+                                 <area alt="Features_xsd_Element_CircleFeatureDefinition.tmp#CircleFeatureDefinition" href="Features_xsd_Element_CircleFeatureDefinition.html#CircleFeatureDefinition" coords="205,509,373,538" />
+                                 <area alt="Features_xsd_Element_CircularArcFeatureDefinition.tmp#CircularArcFeatureDefinition" href="Features_xsd_Element_CircularArcFeatureDefinition.html#CircularArcFeatureDefinition" coords="205,600,404,629" />
+                                 <area alt="Features_xsd_Element_ConeFeatureDefinition.tmp#ConeFeatureDefinition" href="Features_xsd_Element_ConeFeatureDefinition.html#ConeFeatureDefinition" coords="205,691,370,720" />
+                                 <area alt="Features_xsd_Element_ConicalSegmentFeatureDefinition.tmp#ConicalSegmentFeatureDefinition" href="Features_xsd_Element_ConicalSegmentFeatureDefinition.html#ConicalSegmentFeatureDefinition" coords="205,782,435,811" />
+                                 <area alt="Features_xsd_Element_CylinderFeatureDefinition.tmp#CylinderFeatureDefinition" href="Features_xsd_Element_CylinderFeatureDefinition.html#CylinderFeatureDefinition" coords="205,873,387,902" />
+                                 <area alt="Features_xsd_Element_CylindricalSegmentFeatureDefinition.tmp#CylindricalSegmentFeatureDefinition" href="Features_xsd_Element_CylindricalSegmentFeatureDefinition.html#CylindricalSegmentFeatureDefinition" coords="205,964,452,993" />
+                                 <area alt="Features_xsd_Element_EdgePointFeatureDefinition.tmp#EdgePointFeatureDefinition" href="Features_xsd_Element_EdgePointFeatureDefinition.html#EdgePointFeatureDefinition" coords="205,1055,400,1084" />
+                                 <area alt="Features_xsd_Element_EllipseFeatureDefinition.tmp#EllipseFeatureDefinition" href="Features_xsd_Element_EllipseFeatureDefinition.html#EllipseFeatureDefinition" coords="205,1146,379,1175" />
+                                 <area alt="Features_xsd_Element_EllipticalArcFeatureDefinition.tmp#EllipticalArcFeatureDefinition" href="Features_xsd_Element_EllipticalArcFeatureDefinition.html#EllipticalArcFeatureDefinition" coords="205,1237,409,1266" />
+                                 <area alt="Features_xsd_Element_ElongatedCircleFeatureDefinition.tmp#ElongatedCircleFeatureDefinition" href="Features_xsd_Element_ElongatedCircleFeatureDefinition.html#ElongatedCircleFeatureDefinition" coords="205,1328,431,1357" />
+                                 <area alt="Features_xsd_Element_ElongatedCylinderFeatureDefinition.tmp#ElongatedCylinderFeatureDefinition" href="Features_xsd_Element_ElongatedCylinderFeatureDefinition.html#ElongatedCylinderFeatureDefinition" coords="205,1419,445,1448" />
+                                 <area alt="Features_xsd_Element_ExtrudedCrossSectionFeatureDefinition.tmp#ExtrudedCrossSectionFeatureDefinition" href="Features_xsd_Element_ExtrudedCrossSectionFeatureDefinition.html#ExtrudedCrossSectionFeatureDefinition" coords="205,1510,470,1539" />
+                                 <area alt="Features_xsd_Element_GroupFeatureDefinition.tmp#GroupFeatureDefinition" href="Features_xsd_Element_GroupFeatureDefinition.html#GroupFeatureDefinition" coords="205,1601,375,1630" />
+                                 <area alt="Features_xsd_Element_LineFeatureDefinition.tmp#LineFeatureDefinition" href="Features_xsd_Element_LineFeatureDefinition.html#LineFeatureDefinition" coords="205,1692,364,1721" />
+                                 <area alt="Features_xsd_Element_MarkingFeatureDefinition.tmp#MarkingFeatureDefinition" href="Features_xsd_Element_MarkingFeatureDefinition.html#MarkingFeatureDefinition" coords="205,1783,386,1812" />
+                                 <area alt="Features_xsd_Element_OppositeAngledLinesFeatureDefinition.tmp#OppositeAngledLinesFeatureDefinition" href="Features_xsd_Element_OppositeAngledLinesFeatureDefinition.html#OppositeAngledLinesFeatureDefinition" coords="205,1874,463,1903" />
+                                 <area alt="Features_xsd_Element_OppositeAngledPlanesFeatureDefinition.tmp#OppositeAngledPlanesFeatureDefinition" href="Features_xsd_Element_OppositeAngledPlanesFeatureDefinition.html#OppositeAngledPlanesFeatureDefinition" coords="205,1965,472,1994" />
+                                 <area alt="Features_xsd_Element_OppositeParallelLinesFeatureDefinition.tmp#OppositeParallelLinesFeatureDefinition" href="Features_xsd_Element_OppositeParallelLinesFeatureDefinition.html#OppositeParallelLinesFeatureDefinition" coords="205,2056,466,2085" />
+                                 <area alt="Features_xsd_Element_OppositeParallelPlanesFeatureDefinition.tmp#OppositeParallelPlanesFeatureDefinition" href="Features_xsd_Element_OppositeParallelPlanesFeatureDefinition.html#OppositeParallelPlanesFeatureDefinition" coords="205,2147,475,2176" />
+                                 <area alt="Features_xsd_Element_OtherCurveFeatureDefinition.tmp#OtherCurveFeatureDefinition" href="Features_xsd_Element_OtherCurveFeatureDefinition.html#OtherCurveFeatureDefinition" coords="205,2238,404,2267" />
+                                 <area alt="Features_xsd_Element_OtherNonShapeFeatureDefinition.tmp#OtherNonShapeFeatureDefinition" href="Features_xsd_Element_OtherNonShapeFeatureDefinition.html#OtherNonShapeFeatureDefinition" coords="205,2329,432,2358" />
+                                 <area alt="Features_xsd_Element_OtherShapeFeatureDefinition.tmp#OtherShapeFeatureDefinition" href="Features_xsd_Element_OtherShapeFeatureDefinition.html#OtherShapeFeatureDefinition" coords="205,2420,409,2449" />
+                                 <area alt="Features_xsd_Element_OtherSurfaceFeatureDefinition.tmp#OtherSurfaceFeatureDefinition" href="Features_xsd_Element_OtherSurfaceFeatureDefinition.html#OtherSurfaceFeatureDefinition" coords="205,2511,416,2540" />
+                                 <area alt="Features_xsd_Element_PatternFeatureCircleDefinition.tmp#PatternFeatureCircleDefinition" href="Features_xsd_Element_PatternFeatureCircleDefinition.html#PatternFeatureCircleDefinition" coords="205,2602,415,2631" />
+                                 <area alt="Features_xsd_Element_PatternFeatureCircularArcDefinition.tmp#PatternFeatureCircularArcDefinition" href="Features_xsd_Element_PatternFeatureCircularArcDefinition.html#PatternFeatureCircularArcDefinition" coords="205,2693,446,2722" />
+                                 <area alt="Features_xsd_Element_PatternFeatureLinearDefinition.tmp#PatternFeatureLinearDefinition" href="Features_xsd_Element_PatternFeatureLinearDefinition.html#PatternFeatureLinearDefinition" coords="205,2784,417,2813" />
+                                 <area alt="Features_xsd_Element_PatternFeatureParallelogramDefinition.tmp#PatternFeatureParallelogramDefinition" href="Features_xsd_Element_PatternFeatureParallelogramDefinition.html#PatternFeatureParallelogramDefinition" coords="205,2875,461,2904" />
+                                 <area alt="Features_xsd_Element_PlaneFeatureDefinition.tmp#PlaneFeatureDefinition" href="Features_xsd_Element_PlaneFeatureDefinition.html#PlaneFeatureDefinition" coords="205,2966,373,2995" />
+                                 <area alt="Features_xsd_Element_PointDefinedCurveFeatureDefinition.tmp#PointDefinedCurveFeatureDefinition" href="Features_xsd_Element_PointDefinedCurveFeatureDefinition.html#PointDefinedCurveFeatureDefinition" coords="205,3057,445,3086" />
+                                 <area alt="Features_xsd_Element_PointDefinedSurfaceFeatureDefinition.tmp#PointDefinedSurfaceFeatureDefinition" href="Features_xsd_Element_PointDefinedSurfaceFeatureDefinition.html#PointDefinedSurfaceFeatureDefinition" coords="205,3148,457,3177" />
+                                 <area alt="Features_xsd_Element_PointFeatureDefinition.tmp#PointFeatureDefinition" href="Features_xsd_Element_PointFeatureDefinition.html#PointFeatureDefinition" coords="205,3239,370,3268" />
+                                 <area alt="Features_xsd_Element_SphereFeatureDefinition.tmp#SphereFeatureDefinition" href="Features_xsd_Element_SphereFeatureDefinition.html#SphereFeatureDefinition" coords="205,3330,381,3359" />
+                                 <area alt="Features_xsd_Element_SphericalSegmentFeatureDefinition.tmp#SphericalSegmentFeatureDefinition" href="Features_xsd_Element_SphericalSegmentFeatureDefinition.html#SphericalSegmentFeatureDefinition" coords="205,3421,446,3450" />
+                                 <area alt="Features_xsd_Element_SurfaceOfRevolutionFeatureDefinition.tmp#SurfaceOfRevolutionFeatureDefinition" href="Features_xsd_Element_SurfaceOfRevolutionFeatureDefinition.html#SurfaceOfRevolutionFeatureDefinition" coords="205,3512,456,3541" />
+                                 <area alt="Features_xsd_Element_ThreadedFeatureDefinition.tmp#ThreadedFeatureDefinition" href="Features_xsd_Element_ThreadedFeatureDefinition.html#ThreadedFeatureDefinition" coords="205,3603,393,3632" />
+                                 <area alt="Features_xsd_Element_ToroidalSegmentFeatureDefinition.tmp#ToroidalSegmentFeatureDefinition" href="Features_xsd_Element_ToroidalSegmentFeatureDefinition.html#ToroidalSegmentFeatureDefinition" coords="205,3694,437,3723" />
+                                 <area alt="Features_xsd_Element_TorusFeatureDefinition.tmp#TorusFeatureDefinition" href="Features_xsd_Element_TorusFeatureDefinition.html#TorusFeatureDefinition" coords="205,3785,372,3814" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Features_xsd_Complex_Type_FeatureDefinitionBaseType.html#FeatureDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureDefinitionBaseType')">FeatureDefinitionBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureBaseType')">FeatureBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Features_xsd_Complex_Type_FeatureDefinitionBaseType.html#FeatureDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureDefinitionBaseType')">FeatureDefinitionBaseType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_FeatureDefinition" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_FeatureDefinition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_FeatureDefinition" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">abstract</td>
+                                    <td><b>true</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Substitution Group</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Features_xsd_Element_CircleFeatureDefinition.html#CircleFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircleFeatureDefinition')">CircleFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_CircularArcFeatureDefinition.html#CircularArcFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CircularArcFeatureDefinition')">CircularArcFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_ConeFeatureDefinition.html#ConeFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConeFeatureDefinition')">ConeFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_ConicalSegmentFeatureDefinition.html#ConicalSegmentFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ConicalSegmentFeatureDefinition')">ConicalSegmentFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_CylinderFeatureDefinition.html#CylinderFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylinderFeatureDefinition')">CylinderFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_CylindricalSegmentFeatureDefinition.html#CylindricalSegmentFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CylindricalSegmentFeatureDefinition')">CylindricalSegmentFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_EdgePointFeatureDefinition.html#EdgePointFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EdgePointFeatureDefinition')">EdgePointFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_EllipseFeatureDefinition.html#EllipseFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipseFeatureDefinition')">EllipseFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_EllipticalArcFeatureDefinition.html#EllipticalArcFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EllipticalArcFeatureDefinition')">EllipticalArcFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_ElongatedCircleFeatureDefinition.html#ElongatedCircleFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCircleFeatureDefinition')">ElongatedCircleFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_ElongatedCylinderFeatureDefinition.html#ElongatedCylinderFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedCylinderFeatureDefinition')">ElongatedCylinderFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_ExtrudedCrossSectionFeatureDefinition.html#ExtrudedCrossSectionFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ExtrudedCrossSectionFeatureDefinition')">ExtrudedCrossSectionFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_GroupFeatureDefinition.html#GroupFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component GroupFeatureDefinition')">GroupFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_LineFeatureDefinition.html#LineFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LineFeatureDefinition')">LineFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_MarkingFeatureDefinition.html#MarkingFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MarkingFeatureDefinition')">MarkingFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_OppositeAngledLinesFeatureDefinition.html#OppositeAngledLinesFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledLinesFeatureDefinition')">OppositeAngledLinesFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_OppositeAngledPlanesFeatureDefinition.html#OppositeAngledPlanesFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeAngledPlanesFeatureDefinition')">OppositeAngledPlanesFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_OppositeParallelLinesFeatureDefinition.html#OppositeParallelLinesFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelLinesFeatureDefinition')">OppositeParallelLinesFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_OppositeParallelPlanesFeatureDefinition.html#OppositeParallelPlanesFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OppositeParallelPlanesFeatureDefinition')">OppositeParallelPlanesFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_OtherCurveFeatureDefinition.html#OtherCurveFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherCurveFeatureDefinition')">OtherCurveFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_OtherNonShapeFeatureDefinition.html#OtherNonShapeFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherNonShapeFeatureDefinition')">OtherNonShapeFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_OtherShapeFeatureDefinition.html#OtherShapeFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherShapeFeatureDefinition')">OtherShapeFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_OtherSurfaceFeatureDefinition.html#OtherSurfaceFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OtherSurfaceFeatureDefinition')">OtherSurfaceFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_PatternFeatureCircleDefinition.html#PatternFeatureCircleDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PatternFeatureCircleDefinition')">PatternFeatureCircleDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_PatternFeatureCircularArcDefinition.html#PatternFeatureCircularArcDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PatternFeatureCircularArcDefinition')">PatternFeatureCircularArcDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_PatternFeatureLinearDefinition.html#PatternFeatureLinearDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PatternFeatureLinearDefinition')">PatternFeatureLinearDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_PatternFeatureParallelogramDefinition.html#PatternFeatureParallelogramDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PatternFeatureParallelogramDefinition')">PatternFeatureParallelogramDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_PlaneFeatureDefinition.html#PlaneFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlaneFeatureDefinition')">PlaneFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_PointDefinedCurveFeatureDefinition.html#PointDefinedCurveFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedCurveFeatureDefinition')">PointDefinedCurveFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_PointDefinedSurfaceFeatureDefinition.html#PointDefinedSurfaceFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointDefinedSurfaceFeatureDefinition')">PointDefinedSurfaceFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_PointFeatureDefinition.html#PointFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PointFeatureDefinition')">PointFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_SphereFeatureDefinition.html#SphereFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphereFeatureDefinition')">SphereFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_SphericalSegmentFeatureDefinition.html#SphericalSegmentFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphericalSegmentFeatureDefinition')">SphericalSegmentFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_SurfaceOfRevolutionFeatureDefinition.html#SurfaceOfRevolutionFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SurfaceOfRevolutionFeatureDefinition')">SurfaceOfRevolutionFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_ThreadedFeatureDefinition.html#ThreadedFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ThreadedFeatureDefinition')">ThreadedFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_ToroidalSegmentFeatureDefinition.html#ToroidalSegmentFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToroidalSegmentFeatureDefinition')">ToroidalSegmentFeatureDefinition</a></b></li>
+                              <li class="internal"><b><a href="Features_xsd_Element_TorusFeatureDefinition.html#TorusFeatureDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TorusFeatureDefinition')">TorusFeatureDefinition</a></b></li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_FeatureDefinition" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_FeatureDefinition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_FeatureDefinition" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="Features_xsd_Complex_Type_FeatureDefinitionsType.html#FeatureDefinitionsType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FeatureDefinitionsType')">FeatureDefinitionsType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_FeatureDefinition" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_FeatureDefinition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_FeatureDefinition" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;FeatureDefinition</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/FeatureDefinition&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_FeatureDefinition" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_FeatureDefinition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_FeatureDefinition" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Features_xsd_Complex_Type_FeatureBaseType.html#FeatureBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the feature, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_FeatureDefinition" type="image" src="img/btM.gif" value="-" onclick="switchState('source_FeatureDefinition');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_FeatureDefinition" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"FeatureDefinition"</span><span class="tAN"> type=</span><span class="tAV">"FeatureDefinitionBaseType"</span><span class="tAN"> abstract=</span><span class="tAV">"true"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The abstract global FeatureDefinition element is the head of a substitution group. Any element that is a member of the group may be substituted for the FeatureDefinition element anywhere the FeatureDefinition element could be used in an instance file if it were not abstract.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Features.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

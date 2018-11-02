@@ -1,0 +1,1775 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component IlluminationUnit</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_MicroscopeType_IlluminationUnit', 
+				'properties_MicroscopeType_TotalMagnification', 
+				'properties_MicroscopeType_EyePieceMagnification', 
+				'properties_MicroscopeType_ObjectiveMagnification', 
+				'properties_MicroscopeType_MaxWorkpieceHeight', 
+				'properties_MicroscopeType_MaxWorkpieceWeight', 
+				'properties_MicroscopeType_Accuracy', 
+				'properties_MicroscopeType_StageSwivelingAngle', 
+				'properties_MicroscopeType_ToolIds');
+var usedByBoxes= new Array('usedBy_MicroscopeType');
+var sourceBoxes= new Array('source_MicroscopeType_IlluminationUnit', 
+				'source_MicroscopeType_TotalMagnification', 
+				'source_MicroscopeType_EyePieceMagnification', 
+				'source_MicroscopeType_ObjectiveMagnification', 
+				'source_MicroscopeType_MaxWorkpieceHeight', 
+				'source_MicroscopeType_MaxWorkpieceWeight', 
+				'source_MicroscopeType_Accuracy', 
+				'source_MicroscopeType_StageSwivelingAngle', 
+				'source_MicroscopeType_ToolIds', 
+				'source_MicroscopeType');
+var instanceBoxes= new Array('instance_MicroscopeType_Accuracy', 
+				'instance_MicroscopeType_ToolIds');
+var diagramBoxes= new Array('diagram_MicroscopeType_IlluminationUnit', 
+				'diagram_MicroscopeType_TotalMagnification', 
+				'diagram_MicroscopeType_EyePieceMagnification', 
+				'diagram_MicroscopeType_ObjectiveMagnification', 
+				'diagram_MicroscopeType_MaxWorkpieceHeight', 
+				'diagram_MicroscopeType_MaxWorkpieceWeight', 
+				'diagram_MicroscopeType_Accuracy', 
+				'diagram_MicroscopeType_StageSwivelingAngle', 
+				'diagram_MicroscopeType_ToolIds', 
+				'diagram_MicroscopeType');
+var annotationBoxes= new Array('annotations_MicroscopeType_IlluminationUnit', 
+				'annotations_MicroscopeType_TotalMagnification', 
+				'annotations_MicroscopeType_EyePieceMagnification', 
+				'annotations_MicroscopeType_ObjectiveMagnification', 
+				'annotations_MicroscopeType_MaxWorkpieceHeight', 
+				'annotations_MicroscopeType_MaxWorkpieceWeight', 
+				'annotations_MicroscopeType_Accuracy', 
+				'annotations_MicroscopeType_StageSwivelingAngle', 
+				'annotations_MicroscopeType_ToolIds', 
+				'annotations_MicroscopeType');
+var attributesBoxes= new Array('attributes_MicroscopeType_MaxWorkpieceHeight', 
+				'attributes_MicroscopeType_MaxWorkpieceWeight', 
+				'attributes_MicroscopeType_StageSwivelingAngle', 
+				'attributes_MicroscopeType_ToolIds', 
+				'attributes_MicroscopeType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="MicroscopeType_IlluminationUnit"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MicroscopeType')">MicroscopeType</a></b> / IlluminationUnit</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MicroscopeType_IlluminationUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MicroscopeType_IlluminationUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MicroscopeType_IlluminationUnit" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional IlluminationUnit element is the illumination used in the microscope.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MicroscopeType_IlluminationUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MicroscopeType_IlluminationUnit');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MicroscopeType_IlluminationUnit" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_IlluminationUnit.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MicroscopeType_IlluminationUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MicroscopeType_IlluminationUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MicroscopeType_IlluminationUnit" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MicroscopeType_IlluminationUnit" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MicroscopeType_IlluminationUnit');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MicroscopeType_IlluminationUnit" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"IlluminationUnit"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional IlluminationUnit element is the illumination used in the microscope.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MicroscopeType_TotalMagnification"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MicroscopeType')">MicroscopeType</a></b> / TotalMagnification</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MicroscopeType_TotalMagnification" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MicroscopeType_TotalMagnification');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MicroscopeType_TotalMagnification" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional TotalMagnification element is the total magnification of a microscope which is the product of eyepiece lens magnification and objective lens magnification.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MicroscopeType_TotalMagnification" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MicroscopeType_TotalMagnification');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MicroscopeType_TotalMagnification" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_TotalMagnification.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:decimal</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MicroscopeType_TotalMagnification" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MicroscopeType_TotalMagnification');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MicroscopeType_TotalMagnification" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MicroscopeType_TotalMagnification" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MicroscopeType_TotalMagnification');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MicroscopeType_TotalMagnification" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TotalMagnification"</span><span class="tAN"> type=</span><span class="tAV">"xs:decimal"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional TotalMagnification element is the total magnification of a microscope which is the product of eyepiece lens magnification and objective lens magnification.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MicroscopeType_EyePieceMagnification"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MicroscopeType')">MicroscopeType</a></b> / EyePieceMagnification</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MicroscopeType_EyePieceMagnification" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MicroscopeType_EyePieceMagnification');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MicroscopeType_EyePieceMagnification" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional EyePieceMagnification element is the eyepiece magnification of a microscope.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MicroscopeType_EyePieceMagnification" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MicroscopeType_EyePieceMagnification');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MicroscopeType_EyePieceMagnification" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_EyePieceMagnification.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:decimal</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MicroscopeType_EyePieceMagnification" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MicroscopeType_EyePieceMagnification');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MicroscopeType_EyePieceMagnification" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MicroscopeType_EyePieceMagnification" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MicroscopeType_EyePieceMagnification');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MicroscopeType_EyePieceMagnification" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"EyePieceMagnification"</span><span class="tAN"> type=</span><span class="tAV">"xs:decimal"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional EyePieceMagnification element is the eyepiece magnification of a microscope.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MicroscopeType_ObjectiveMagnification"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MicroscopeType')">MicroscopeType</a></b> / ObjectiveMagnification</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MicroscopeType_ObjectiveMagnification" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MicroscopeType_ObjectiveMagnification');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MicroscopeType_ObjectiveMagnification" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional ObjectiveMagnification element is the Objective magnification of a microscope.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MicroscopeType_ObjectiveMagnification" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MicroscopeType_ObjectiveMagnification');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MicroscopeType_ObjectiveMagnification" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_ObjectiveMagnification.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:decimal</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MicroscopeType_ObjectiveMagnification" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MicroscopeType_ObjectiveMagnification');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MicroscopeType_ObjectiveMagnification" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MicroscopeType_ObjectiveMagnification" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MicroscopeType_ObjectiveMagnification');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MicroscopeType_ObjectiveMagnification" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ObjectiveMagnification"</span><span class="tAN"> type=</span><span class="tAV">"xs:decimal"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ObjectiveMagnification element is the Objective magnification of a microscope.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MicroscopeType_MaxWorkpieceHeight"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MicroscopeType')">MicroscopeType</a></b> / MaxWorkpieceHeight</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MicroscopeType_MaxWorkpieceHeight" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MicroscopeType_MaxWorkpieceHeight');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MicroscopeType_MaxWorkpieceHeight" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional MaxWorkpieceHeight element is the maximum workpiece height that could be measured with a microscope.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MicroscopeType_MaxWorkpieceHeight" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MicroscopeType_MaxWorkpieceHeight');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MicroscopeType_MaxWorkpieceHeight" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_MaxWorkpieceHeight_2.jpeg" usemap="#QIFMeasurementResources_xsd_Element_MaxWorkpieceHeight_2" /><map name="QIFMeasurementResources_xsd_Element_MaxWorkpieceHeight_2" id="QIFMeasurementResources_xsd_Element_MaxWorkpieceHeight_2">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="264,229,410,258" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="264,304,426,333" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="235,49,526,75" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType_linearUnit" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" coords="248,507,363,536" />
+                                 <area alt="Units_xsd_Complex_Type_LinearValueType.tmp#LinearValueType" href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" coords="219,3,378,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearValueType')">LinearValueType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MicroscopeType_MaxWorkpieceHeight" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MicroscopeType_MaxWorkpieceHeight');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MicroscopeType_MaxWorkpieceHeight" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_MicroscopeType_MaxWorkpieceHeight" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_MicroscopeType_MaxWorkpieceHeight');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_MicroscopeType_MaxWorkpieceHeight" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_LinearValueType.html#LinearValueType_linearUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component linearUnit')">linearUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional linearUnit attribute defines the UnitName for the LinearValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MicroscopeType_MaxWorkpieceHeight" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MicroscopeType_MaxWorkpieceHeight');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MicroscopeType_MaxWorkpieceHeight" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MaxWorkpieceHeight"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional MaxWorkpieceHeight element is the maximum workpiece height that could be measured with a microscope.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MicroscopeType_MaxWorkpieceWeight"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MicroscopeType')">MicroscopeType</a></b> / MaxWorkpieceWeight</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MicroscopeType_MaxWorkpieceWeight" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MicroscopeType_MaxWorkpieceWeight');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MicroscopeType_MaxWorkpieceWeight" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional MaxWorkpieceWeight element is the maximum workpiece weight that could be mounted on a microscope stage.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MicroscopeType_MaxWorkpieceWeight" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MicroscopeType_MaxWorkpieceWeight');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MicroscopeType_MaxWorkpieceWeight" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_MaxWorkpieceWeight_1.jpeg" usemap="#QIFMeasurementResources_xsd_Element_MaxWorkpieceWeight_1" /><map name="QIFMeasurementResources_xsd_Element_MaxWorkpieceWeight_1" id="QIFMeasurementResources_xsd_Element_MaxWorkpieceWeight_1">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="268,229,414,258" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="268,304,430,333" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="239,49,530,75" />
+                                 <area alt="Units_xsd_Complex_Type_MassValueType.tmp#MassValueType_massUnit" href="Units_xsd_Complex_Type_MassValueType.html#MassValueType_massUnit" coords="252,507,368,536" />
+                                 <area alt="Units_xsd_Complex_Type_MassValueType.tmp#MassValueType" href="Units_xsd_Complex_Type_MassValueType.html#MassValueType" coords="223,3,379,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_MassValueType.html#MassValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MassValueType')">MassValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_MassValueType.html#MassValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MassValueType')">MassValueType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MicroscopeType_MaxWorkpieceWeight" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MicroscopeType_MaxWorkpieceWeight');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MicroscopeType_MaxWorkpieceWeight" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_MicroscopeType_MaxWorkpieceWeight" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_MicroscopeType_MaxWorkpieceWeight');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_MicroscopeType_MaxWorkpieceWeight" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_MassValueType.html#MassValueType_massUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component massUnit')">massUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional massUnit attribute defines the UnitName for the MassValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MicroscopeType_MaxWorkpieceWeight" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MicroscopeType_MaxWorkpieceWeight');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MicroscopeType_MaxWorkpieceWeight" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MaxWorkpieceWeight"</span><span class="tAN"> type=</span><span class="tAV">"MassValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional MaxWorkpieceWeight element is the maximum workpiece weight that could be mounted on a microscope stage.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MicroscopeType_Accuracy"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MicroscopeType')">MicroscopeType</a></b> / Accuracy</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MicroscopeType_Accuracy" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MicroscopeType_Accuracy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MicroscopeType_Accuracy" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Accuracy element is the accuracy of measurement with a microscope.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MicroscopeType_Accuracy" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MicroscopeType_Accuracy');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MicroscopeType_Accuracy" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_Accuracy_3.jpeg" usemap="#QIFMeasurementResources_xsd_Element_Accuracy_3" /><map name="QIFMeasurementResources_xsd_Element_Accuracy_3" id="QIFMeasurementResources_xsd_Element_Accuracy_3">
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_LinearErrorType.tmp#LinearErrorType_BaseError" href="QIFMeasurementResources_xsd_Complex_Type_LinearErrorType.html#LinearErrorType_BaseError" coords="248,46,344,75" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_LinearErrorType.tmp#LinearErrorType_ErrorRate" href="QIFMeasurementResources_xsd_Complex_Type_LinearErrorType.html#LinearErrorType_ErrorRate" coords="248,121,341,150" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_LinearErrorType.tmp#LinearErrorType" href="QIFMeasurementResources_xsd_Complex_Type_LinearErrorType.html#LinearErrorType" coords="150,3,304,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_LinearErrorType.html#LinearErrorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearErrorType')">LinearErrorType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MicroscopeType_Accuracy" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MicroscopeType_Accuracy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MicroscopeType_Accuracy" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_LinearErrorType.html#LinearErrorType_BaseError" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BaseError')">BaseError</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_LinearErrorType.html#LinearErrorType_ErrorRate" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ErrorRate')">ErrorRate</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MicroscopeType_Accuracy" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MicroscopeType_Accuracy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MicroscopeType_Accuracy" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Accuracy</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BaseError</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/BaseError&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ErrorRate</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ErrorRate&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Accuracy&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MicroscopeType_Accuracy" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MicroscopeType_Accuracy');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MicroscopeType_Accuracy" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Accuracy"</span><span class="tAN"> type=</span><span class="tAV">"LinearErrorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Accuracy element is the accuracy of measurement with a microscope.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MicroscopeType_StageSwivelingAngle"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MicroscopeType')">MicroscopeType</a></b> / StageSwivelingAngle</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MicroscopeType_StageSwivelingAngle" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MicroscopeType_StageSwivelingAngle');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MicroscopeType_StageSwivelingAngle" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional StageSwivelingAngle element is the swiveling angle of the table.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MicroscopeType_StageSwivelingAngle" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MicroscopeType_StageSwivelingAngle');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MicroscopeType_StageSwivelingAngle" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_StageSwivelingAngle.jpeg" usemap="#QIFMeasurementResources_xsd_Element_StageSwivelingAngle" /><map name="QIFMeasurementResources_xsd_Element_StageSwivelingAngle" id="QIFMeasurementResources_xsd_Element_StageSwivelingAngle">
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_decimalPlaces" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" coords="260,229,406,258" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType_significantFigures" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" coords="260,304,422,333" />
+                                 <area alt="Units_xsd_Complex_Type_SpecifiedDecimalType.tmp#SpecifiedDecimalType" href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" coords="231,49,522,75" />
+                                 <area alt="Units_xsd_Complex_Type_AngularValueType.tmp#AngularValueType_angularUnit" href="Units_xsd_Complex_Type_AngularValueType.html#AngularValueType_angularUnit" coords="244,507,370,536" />
+                                 <area alt="Units_xsd_Complex_Type_AngularValueType.tmp#AngularValueType" href="Units_xsd_Complex_Type_AngularValueType.html#AngularValueType" coords="215,3,383,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Units_xsd_Complex_Type_AngularValueType.html#AngularValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AngularValueType')">AngularValueType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:decimal</b><ul class="internal">
+                                    <li class="internal"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SpecifiedDecimalType')">SpecifiedDecimalType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Units_xsd_Complex_Type_AngularValueType.html#AngularValueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AngularValueType')">AngularValueType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MicroscopeType_StageSwivelingAngle" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MicroscopeType_StageSwivelingAngle');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MicroscopeType_StageSwivelingAngle" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_MicroscopeType_StageSwivelingAngle" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_MicroscopeType_StageSwivelingAngle');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_MicroscopeType_StageSwivelingAngle" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_AngularValueType.html#AngularValueType_angularUnit" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component angularUnit')">angularUnit</a></b></td>
+                                    <td><b>xs:token</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The optional angularUnit attribute defines the UnitName for the AngularValueType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_decimalPlaces" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component decimalPlaces')">decimalPlaces</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Units_xsd_Complex_Type_SpecifiedDecimalType.html#SpecifiedDecimalType_significantFigures" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component significantFigures')">significantFigures</a></b></td>
+                                    <td><b>xs:nonNegativeInteger</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">See documentation of SpecifiedDecimalType.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MicroscopeType_StageSwivelingAngle" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MicroscopeType_StageSwivelingAngle');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MicroscopeType_StageSwivelingAngle" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"StageSwivelingAngle"</span><span class="tAN"> type=</span><span class="tAV">"AngularValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional StageSwivelingAngle element is the swiveling angle of the table.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MicroscopeType_ToolIds"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MicroscopeType')">MicroscopeType</a></b> / ToolIds</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MicroscopeType_ToolIds" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MicroscopeType_ToolIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MicroscopeType_ToolIds" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional ToolIds element is a list of the QIF ids of microscope measurement tools associated with the microscope.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MicroscopeType_ToolIds" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MicroscopeType_ToolIds');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MicroscopeType_ToolIds" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_ToolIds_6.jpeg" usemap="#QIFMeasurementResources_xsd_Element_ToolIds_6" /><map name="QIFMeasurementResources_xsd_Element_ToolIds_6" id="QIFMeasurementResources_xsd_Element_ToolIds_6">
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_n" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" coords="165,90,246,119" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_Id" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" coords="259,194,317,223" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" coords="136,3,316,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayReferenceType')">ArrayReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_MicroscopeType_ToolIds" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_MicroscopeType_ToolIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_MicroscopeType_ToolIds" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_MicroscopeType_ToolIds" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_MicroscopeType_ToolIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_MicroscopeType_ToolIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;ToolIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/ToolIds&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_MicroscopeType_ToolIds" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_MicroscopeType_ToolIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_MicroscopeType_ToolIds" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of Id elements in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MicroscopeType_ToolIds" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MicroscopeType_ToolIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MicroscopeType_ToolIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ToolIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ToolIds element is a list of the QIF ids of microscope measurement tools associated with the microscope.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="MicroscopeType"></a><div class="componentTitle">Complex Type <span class="qname">MicroscopeType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_MicroscopeType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_MicroscopeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_MicroscopeType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The MicroscopeType defines a microscope.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_MicroscopeType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_MicroscopeType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_MicroscopeType" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.jpeg" usemap="#QIFMeasurementResources_xsd_Complex_Type_MicroscopeType" /><map name="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType" id="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType">
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_id" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_id" coords="281,182,362,211" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Name" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Name" coords="350,282,422,311" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Description" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Description" coords="350,373,453,402" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Manufacturer" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Manufacturer" coords="350,464,463,493" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_ModelNumber" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_ModelNumber" coords="350,555,468,584" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_SerialNumber" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_SerialNumber" coords="350,662,466,691" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Mass" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Mass" coords="350,769,420,798" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Size" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Size" coords="350,860,414,889" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_LocationId" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_LocationId" coords="455,967,552,996" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Location" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Location" coords="455,1074,542,1103" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="350,1260,444,1289" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType" coords="252,95,607,121" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.tmp#MeasurementDeviceType_Calibrations" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.html#MeasurementDeviceType_Calibrations" coords="334,1426,440,1455" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.tmp#MeasurementDeviceType_EnvironmentalRange" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.html#MeasurementDeviceType_EnvironmentalRange" coords="334,1517,490,1546" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.tmp#MeasurementDeviceType" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.html#MeasurementDeviceType" coords="236,49,544,75" />
+                                 <area alt="QIFMeasurementResources_xsd_Element_Resolution.tmp#Resolution" href="QIFMeasurementResources_xsd_Element_Resolution.html#Resolution" coords="318,1667,417,1696" />
+                                 <area alt="QIFMeasurementResources_xsd_Element_WorkingVolume.tmp#WorkingVolume" href="QIFMeasurementResources_xsd_Element_WorkingVolume.html#WorkingVolume" coords="318,1758,448,1787" />
+                                 <area alt="QIFMeasurementResources_xsd_Element_EffectiveWorkingVolume.tmp#EffectiveWorkingVolume" href="QIFMeasurementResources_xsd_Element_EffectiveWorkingVolume.html#EffectiveWorkingVolume" coords="318,1849,496,1878" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_UniversalDeviceType.tmp#UniversalDeviceType_TemperatureCompensation" href="QIFMeasurementResources_xsd_Complex_Type_UniversalDeviceType.html#UniversalDeviceType_TemperatureCompensation" coords="318,1940,511,1969" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_UniversalDeviceType.tmp#UniversalDeviceType" href="QIFMeasurementResources_xsd_Complex_Type_UniversalDeviceType.html#UniversalDeviceType" coords="220,3,501,29" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.tmp#MicroscopeType_IlluminationUnit" href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_IlluminationUnit" coords="302,2090,428,2119" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.tmp#MicroscopeType_TotalMagnification" href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_TotalMagnification" coords="302,2181,444,2210" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.tmp#MicroscopeType_EyePieceMagnification" href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_EyePieceMagnification" coords="302,2288,472,2317" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.tmp#MicroscopeType_ObjectiveMagnification" href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_ObjectiveMagnification" coords="302,2379,469,2408" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.tmp#MicroscopeType_MaxWorkpieceHeight" href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_MaxWorkpieceHeight" coords="302,2470,464,2499" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.tmp#MicroscopeType_MaxWorkpieceWeight" href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_MaxWorkpieceWeight" coords="302,2561,468,2590" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.tmp#MicroscopeType_Accuracy" href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_Accuracy" coords="302,2668,395,2697" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.tmp#MicroscopeType_StageSwivelingAngle" href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_StageSwivelingAngle" coords="302,2759,460,2788" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.tmp#MicroscopeType_ToolIds" href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_ToolIds" coords="302,2850,381,2879" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="QIFMeasurementResources_xsd_Complex_Type_UniversalDeviceType.html#UniversalDeviceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UniversalDeviceType')">UniversalDeviceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementResourceBaseType')">MeasurementResourceBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.html#MeasurementDeviceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementDeviceType')">MeasurementDeviceType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_UniversalDeviceType.html#UniversalDeviceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UniversalDeviceType')">UniversalDeviceType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MicroscopeType')">MicroscopeType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_MicroscopeType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_MicroscopeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_MicroscopeType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="QIFMeasurementResources_xsd_Element_Microscope.html#Microscope" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Microscope')">Microscope</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_Accuracy" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Accuracy')">Accuracy</a></b>, <b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.html#MeasurementDeviceType_Calibrations" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Calibrations')">Calibrations</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="QIFMeasurementResources_xsd_Element_EffectiveWorkingVolume.html#EffectiveWorkingVolume" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EffectiveWorkingVolume')">EffectiveWorkingVolume</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementDeviceType.html#MeasurementDeviceType_EnvironmentalRange" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EnvironmentalRange')">EnvironmentalRange</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_EyePieceMagnification" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EyePieceMagnification')">EyePieceMagnification</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_IlluminationUnit" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component IlluminationUnit')">IlluminationUnit</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Location" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Location')">Location</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_LocationId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LocationId')">LocationId</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Manufacturer" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Manufacturer')">Manufacturer</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Mass" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Mass')">Mass</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_MaxWorkpieceHeight" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MaxWorkpieceHeight')">MaxWorkpieceHeight</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_MaxWorkpieceWeight" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MaxWorkpieceWeight')">MaxWorkpieceWeight</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_ModelNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ModelNumber')">ModelNumber</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_ObjectiveMagnification" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ObjectiveMagnification')">ObjectiveMagnification</a></b>, <b><a href="QIFMeasurementResources_xsd_Element_Resolution.html#Resolution" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Resolution')">Resolution</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_SerialNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SerialNumber')">SerialNumber</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Size" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Size')">Size</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_StageSwivelingAngle" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StageSwivelingAngle')">StageSwivelingAngle</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_UniversalDeviceType.html#UniversalDeviceType_TemperatureCompensation" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TemperatureCompensation')">TemperatureCompensation</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_ToolIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToolIds')">ToolIds</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MicroscopeType.html#MicroscopeType_TotalMagnification" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component TotalMagnification')">TotalMagnification</a></b>, <b><a href="QIFMeasurementResources_xsd_Element_WorkingVolume.html#WorkingVolume" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WorkingVolume')">WorkingVolume</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_MicroscopeType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_MicroscopeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_MicroscopeType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required id attribute is the QIF id of the measurement resource, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_MicroscopeType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_MicroscopeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_MicroscopeType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"MicroscopeType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The MicroscopeType defines a microscope.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"UniversalDeviceType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"IlluminationUnit"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional IlluminationUnit element is the illumination used in the microscope.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"TotalMagnification"</span><span class="tAN"> type=</span><span class="tAV">"xs:decimal"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional TotalMagnification element is the total magnification of a microscope which is the product of eyepiece lens magnification and objective lens magnification.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"EyePieceMagnification"</span><span class="tAN"> type=</span><span class="tAV">"xs:decimal"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional EyePieceMagnification element is the eyepiece magnification of a microscope.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ObjectiveMagnification"</span><span class="tAN"> type=</span><span class="tAV">"xs:decimal"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ObjectiveMagnification element is the Objective magnification of a microscope.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MaxWorkpieceHeight"</span><span class="tAN"> type=</span><span class="tAV">"LinearValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional MaxWorkpieceHeight element is the maximum workpiece height that could be measured with a microscope.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"MaxWorkpieceWeight"</span><span class="tAN"> type=</span><span class="tAV">"MassValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional MaxWorkpieceWeight element is the maximum workpiece weight that could be mounted on a microscope stage.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Accuracy"</span><span class="tAN"> type=</span><span class="tAV">"LinearErrorType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Accuracy element is the accuracy of measurement with a microscope.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"StageSwivelingAngle"</span><span class="tAN"> type=</span><span class="tAV">"AngularValueType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional StageSwivelingAngle element is the swiveling angle of the table.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"ToolIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional ToolIds element is a list of the QIF ids of microscope measurement tools associated with the microscope.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

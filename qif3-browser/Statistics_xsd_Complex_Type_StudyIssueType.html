@@ -1,0 +1,1537 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Traceability</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_StudyIssueType_Traceability', 
+				'properties_StudyIssueType_AssignableCauseIds', 
+				'properties_StudyIssueType_CorrectiveActionIds', 
+				'properties_StudyIssueType_Resolution', 
+				'properties_StudyIssueType_CharacteristicMeasurementIds', 
+				'properties_StudyIssueType_SubgroupIds', 
+				'properties_StudyIssueType_id');
+var facetsBoxes= new Array('facets_StudyIssueType_id');
+var usedByBoxes= new Array('usedBy_StudyIssueType', 
+				'usedBy_StudyIssueType_id');
+var sourceBoxes= new Array('source_StudyIssueType_Traceability', 
+				'source_StudyIssueType_AssignableCauseIds', 
+				'source_StudyIssueType_CorrectiveActionIds', 
+				'source_StudyIssueType_Resolution', 
+				'source_StudyIssueType_CharacteristicMeasurementIds', 
+				'source_StudyIssueType_SubgroupIds', 
+				'source_StudyIssueType', 
+				'source_StudyIssueType_id');
+var instanceBoxes= new Array('instance_StudyIssueType_Traceability', 
+				'instance_StudyIssueType_AssignableCauseIds', 
+				'instance_StudyIssueType_CorrectiveActionIds', 
+				'instance_StudyIssueType_CharacteristicMeasurementIds', 
+				'instance_StudyIssueType_SubgroupIds');
+var diagramBoxes= new Array('diagram_StudyIssueType_Traceability', 
+				'diagram_StudyIssueType_AssignableCauseIds', 
+				'diagram_StudyIssueType_CorrectiveActionIds', 
+				'diagram_StudyIssueType_Resolution', 
+				'diagram_StudyIssueType_CharacteristicMeasurementIds', 
+				'diagram_StudyIssueType_SubgroupIds', 
+				'diagram_StudyIssueType');
+var annotationBoxes= new Array('annotations_StudyIssueType_Traceability', 
+				'annotations_StudyIssueType_AssignableCauseIds', 
+				'annotations_StudyIssueType_CorrectiveActionIds', 
+				'annotations_StudyIssueType_Resolution', 
+				'annotations_StudyIssueType_CharacteristicMeasurementIds', 
+				'annotations_StudyIssueType_SubgroupIds', 
+				'annotations_StudyIssueType', 
+				'annotations_StudyIssueType_id');
+var attributesBoxes= new Array('attributes_StudyIssueType_AssignableCauseIds', 
+				'attributes_StudyIssueType_CorrectiveActionIds', 
+				'attributes_StudyIssueType_CharacteristicMeasurementIds', 
+				'attributes_StudyIssueType_SubgroupIds', 
+				'attributes_StudyIssueType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="StudyIssueType_Traceability"></a><div class="componentTitle">Element <span class="qname"><b><a href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StudyIssueType')">StudyIssueType</a></b> / Traceability</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StudyIssueType_Traceability" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StudyIssueType_Traceability');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StudyIssueType_Traceability" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Traceability element is traceability information associated with the statistical study issue.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_StudyIssueType_Traceability" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_StudyIssueType_Traceability');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_StudyIssueType_Traceability" style="display:block"><img alt="Diagram" border="0" src="img/Statistics_xsd_Element_Traceability.jpeg" usemap="#Statistics_xsd_Element_Traceability" /><map name="Statistics_xsd_Element_Traceability" id="Statistics_xsd_Element_Traceability">
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_InspectingOrganization" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_InspectingOrganization" coords="259,46,429,75" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_CustomerOrganization" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_CustomerOrganization" coords="259,137,426,166" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_SupplierCode" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_SupplierCode" coords="259,244,374,273" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_PurchaseOrderNumber" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_PurchaseOrderNumber" coords="259,351,429,380" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_OrderNumber" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_OrderNumber" coords="259,442,374,471" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_ReportNumber" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_ReportNumber" coords="259,549,380,578" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_InspectionScope" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_InspectionScope" coords="259,656,393,685" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_InspectionMode" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_InspectionMode" coords="259,763,388,792" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_PartialInspection" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_PartialInspection" coords="259,870,393,899" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_NotableEvents" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_NotableEvents" coords="259,977,380,1006" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_NotedEvents" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_NotedEvents" coords="259,1068,370,1097" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_InspectionStart" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_InspectionStart" coords="259,1159,384,1188" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_InspectionEnd" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_InspectionEnd" coords="259,1266,379,1295" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_InspectionSoftwareItems" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_InspectionSoftwareItems" coords="259,1373,438,1402" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_InspectionProgram" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_InspectionProgram" coords="259,1464,405,1493" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_InspectionOperator" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_InspectionOperator" coords="259,1571,406,1600" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_ReportPreparer" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_ReportPreparer" coords="259,1678,384,1707" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_ReportPreparationDate" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_ReportPreparationDate" coords="259,1785,428,1814" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_ReportType" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_ReportType" coords="259,1876,363,1905" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_SecurityClassification" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_SecurityClassification" coords="259,1967,422,1996" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_PlantLocation" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_PlantLocation" coords="259,2058,376,2087" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_ReferencedQIFPlanInstance" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_ReferencedQIFPlanInstance" coords="364,2165,563,2194" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_ReferencedQIFPlan" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_ReferencedQIFPlan" coords="364,2256,514,2285" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType_Errors" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_Errors" coords="259,2498,332,2527" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="259,2605,353,2634" />
+                                 <area alt="Traceability_xsd_Complex_Type_InspectionTraceabilityType.tmp#InspectionTraceabilityType" href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType" coords="161,3,377,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionTraceabilityType')">InspectionTraceabilityType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_StudyIssueType_Traceability" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_StudyIssueType_Traceability');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_StudyIssueType_Traceability" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_CustomerOrganization" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CustomerOrganization')">CustomerOrganization</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_Errors" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Errors')">Errors</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_InspectingOrganization" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectingOrganization')">InspectingOrganization</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_InspectionEnd" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionEnd')">InspectionEnd</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_InspectionMode" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionMode')">InspectionMode</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_InspectionOperator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionOperator')">InspectionOperator</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_InspectionProgram" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionProgram')">InspectionProgram</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_InspectionScope" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionScope')">InspectionScope</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_InspectionSoftwareItems" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionSoftwareItems')">InspectionSoftwareItems</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_InspectionStart" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component InspectionStart')">InspectionStart</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_NotableEvents" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NotableEvents')">NotableEvents</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_NotedEvents" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NotedEvents')">NotedEvents</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_OrderNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OrderNumber')">OrderNumber</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_PartialInspection" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PartialInspection')">PartialInspection</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_PlantLocation" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PlantLocation')">PlantLocation</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_PurchaseOrderNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PurchaseOrderNumber')">PurchaseOrderNumber</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_ReferencedQIFPlan" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReferencedQIFPlan')">ReferencedQIFPlan</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_ReferencedQIFPlanInstance" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReferencedQIFPlanInstance')">ReferencedQIFPlanInstance</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_ReportNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReportNumber')">ReportNumber</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_ReportPreparationDate" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReportPreparationDate')">ReportPreparationDate</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_ReportPreparer" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReportPreparer')">ReportPreparer</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_ReportType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ReportType')">ReportType</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_SecurityClassification" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SecurityClassification')">SecurityClassification</a></b>, <b><a href="Traceability_xsd_Complex_Type_InspectionTraceabilityType.html#InspectionTraceabilityType_SupplierCode" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SupplierCode')">SupplierCode</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_StudyIssueType_Traceability" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_StudyIssueType_Traceability');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_StudyIssueType_Traceability" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Traceability</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;InspectingOrganization</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/InspectingOrganization&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;CustomerOrganization</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/CustomerOrganization&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SupplierCode</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SupplierCode&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;PurchaseOrderNumber</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/PurchaseOrderNumber&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;OrderNumber</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/OrderNumber&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ReportNumber</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ReportNumber&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;InspectionScope</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/InspectionScope&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;InspectionMode</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/InspectionMode&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;PartialInspection</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/PartialInspection&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NotableEvents</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NotableEvents&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NotedEvents</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NotedEvents&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;InspectionStart</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/InspectionStart&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;InspectionEnd</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/InspectionEnd&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;InspectionSoftwareItems</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/InspectionSoftwareItems&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;InspectionProgram</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/InspectionProgram&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;InspectionOperator</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/InspectionOperator&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ReportPreparer</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ReportPreparer&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ReportPreparationDate</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ReportPreparationDate&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ReportType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ReportType&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SecurityClassification</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SecurityClassification&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;PlantLocation</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/PlantLocation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ReferencedQIFPlanInstance</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ReferencedQIFPlanInstance&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ReferencedQIFPlan</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/ReferencedQIFPlan&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Errors</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Errors&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Traceability&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StudyIssueType_Traceability" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StudyIssueType_Traceability');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StudyIssueType_Traceability" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Traceability"</span><span class="tAN"> type=</span><span class="tAV">"InspectionTraceabilityType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Traceability element is traceability information associated with the statistical study issue.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Statistics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="StudyIssueType_AssignableCauseIds"></a><div class="componentTitle">Element <span class="qname"><b><a href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StudyIssueType')">StudyIssueType</a></b> / AssignableCauseIds</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StudyIssueType_AssignableCauseIds" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StudyIssueType_AssignableCauseIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StudyIssueType_AssignableCauseIds" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional AssignableCauseIds element contains the ids of assignable causes associated with this issue.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_StudyIssueType_AssignableCauseIds" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_StudyIssueType_AssignableCauseIds');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_StudyIssueType_AssignableCauseIds" style="display:block"><img alt="Diagram" border="0" src="img/Statistics_xsd_Element_AssignableCauseIds.jpeg" usemap="#Statistics_xsd_Element_AssignableCauseIds" /><map name="Statistics_xsd_Element_AssignableCauseIds" id="Statistics_xsd_Element_AssignableCauseIds">
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_n" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" coords="242,90,323,119" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_Id" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" coords="336,194,394,223" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" coords="213,3,393,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayReferenceType')">ArrayReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_StudyIssueType_AssignableCauseIds" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_StudyIssueType_AssignableCauseIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_StudyIssueType_AssignableCauseIds" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_StudyIssueType_AssignableCauseIds" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_StudyIssueType_AssignableCauseIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_StudyIssueType_AssignableCauseIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;AssignableCauseIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/AssignableCauseIds&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_StudyIssueType_AssignableCauseIds" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_StudyIssueType_AssignableCauseIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_StudyIssueType_AssignableCauseIds" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of Id elements in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StudyIssueType_AssignableCauseIds" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StudyIssueType_AssignableCauseIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StudyIssueType_AssignableCauseIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"AssignableCauseIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional AssignableCauseIds element contains the ids of assignable causes associated with this issue.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Statistics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="StudyIssueType_CorrectiveActionIds"></a><div class="componentTitle">Element <span class="qname"><b><a href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StudyIssueType')">StudyIssueType</a></b> / CorrectiveActionIds</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StudyIssueType_CorrectiveActionIds" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StudyIssueType_CorrectiveActionIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StudyIssueType_CorrectiveActionIds" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional CorrectiveActionIds element contains the ids of corrective actions taken in the resolution of this issue.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_StudyIssueType_CorrectiveActionIds" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_StudyIssueType_CorrectiveActionIds');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_StudyIssueType_CorrectiveActionIds" style="display:block"><img alt="Diagram" border="0" src="img/Statistics_xsd_Element_CorrectiveActionIds.jpeg" usemap="#Statistics_xsd_Element_CorrectiveActionIds" /><map name="Statistics_xsd_Element_CorrectiveActionIds" id="Statistics_xsd_Element_CorrectiveActionIds">
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_n" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" coords="235,90,316,119" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_Id" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" coords="329,194,387,223" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" coords="206,3,386,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayReferenceType')">ArrayReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_StudyIssueType_CorrectiveActionIds" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_StudyIssueType_CorrectiveActionIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_StudyIssueType_CorrectiveActionIds" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_StudyIssueType_CorrectiveActionIds" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_StudyIssueType_CorrectiveActionIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_StudyIssueType_CorrectiveActionIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;CorrectiveActionIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/CorrectiveActionIds&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_StudyIssueType_CorrectiveActionIds" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_StudyIssueType_CorrectiveActionIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_StudyIssueType_CorrectiveActionIds" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of Id elements in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StudyIssueType_CorrectiveActionIds" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StudyIssueType_CorrectiveActionIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StudyIssueType_CorrectiveActionIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CorrectiveActionIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional CorrectiveActionIds element contains the ids of corrective actions taken in the resolution of this issue.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Statistics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="StudyIssueType_Resolution"></a><div class="componentTitle">Element <span class="qname"><b><a href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StudyIssueType')">StudyIssueType</a></b> / Resolution</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StudyIssueType_Resolution" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StudyIssueType_Resolution');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StudyIssueType_Resolution" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The optional Resolution element contains additional notes about the resolution of the issue.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_StudyIssueType_Resolution" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_StudyIssueType_Resolution');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_StudyIssueType_Resolution" style="display:block"><img alt="Diagram" border="0" src="img/Statistics_xsd_Element_Resolution.jpeg" /></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_StudyIssueType_Resolution" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_StudyIssueType_Resolution');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_StudyIssueType_Resolution" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">minOccurs</td>
+                                    <td><b>0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StudyIssueType_Resolution" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StudyIssueType_Resolution');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StudyIssueType_Resolution" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Resolution"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Resolution element contains additional notes about the resolution of the issue.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Statistics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="StudyIssueType_CharacteristicMeasurementIds"></a><div class="componentTitle">Element <span class="qname"><b><a href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StudyIssueType')">StudyIssueType</a></b> / CharacteristicMeasurementIds</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StudyIssueType_CharacteristicMeasurementIds" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StudyIssueType_CharacteristicMeasurementIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StudyIssueType_CharacteristicMeasurementIds" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The CharacteristicMeasurementIds element is a list of one or more characteristic measurement ids identifying the particular observations that caused an issue in the study.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_StudyIssueType_CharacteristicMeasurementIds" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_StudyIssueType_CharacteristicMeasurementIds');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_StudyIssueType_CharacteristicMeasurementIds" style="display:block"><img alt="Diagram" border="0" src="img/Statistics_xsd_Element_CharacteristicMeasurementIds.jpeg" usemap="#Statistics_xsd_Element_CharacteristicMeasurementIds" /><map name="Statistics_xsd_Element_CharacteristicMeasurementIds" id="Statistics_xsd_Element_CharacteristicMeasurementIds">
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_n" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" coords="300,90,381,119" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_Id" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" coords="394,194,452,223" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" coords="271,3,451,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayReferenceType')">ArrayReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_StudyIssueType_CharacteristicMeasurementIds" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_StudyIssueType_CharacteristicMeasurementIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_StudyIssueType_CharacteristicMeasurementIds" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_StudyIssueType_CharacteristicMeasurementIds" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_StudyIssueType_CharacteristicMeasurementIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_StudyIssueType_CharacteristicMeasurementIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;CharacteristicMeasurementIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/CharacteristicMeasurementIds&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_StudyIssueType_CharacteristicMeasurementIds" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_StudyIssueType_CharacteristicMeasurementIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_StudyIssueType_CharacteristicMeasurementIds" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of Id elements in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StudyIssueType_CharacteristicMeasurementIds" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StudyIssueType_CharacteristicMeasurementIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StudyIssueType_CharacteristicMeasurementIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CharacteristicMeasurementIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The CharacteristicMeasurementIds element is a list of one or more characteristic measurement ids identifying the particular observations that caused an issue in the study.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Statistics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="StudyIssueType_SubgroupIds"></a><div class="componentTitle">Element <span class="qname"><b><a href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StudyIssueType')">StudyIssueType</a></b> / SubgroupIds</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StudyIssueType_SubgroupIds" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StudyIssueType_SubgroupIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StudyIssueType_SubgroupIds" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The SubgroupIds element is a list of one or more subgroup measurement ids identifying the particular observations that caused an issue in the study.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_StudyIssueType_SubgroupIds" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_StudyIssueType_SubgroupIds');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_StudyIssueType_SubgroupIds" style="display:block"><img alt="Diagram" border="0" src="img/Statistics_xsd_Element_SubgroupIds.jpeg" usemap="#Statistics_xsd_Element_SubgroupIds" /><map name="Statistics_xsd_Element_SubgroupIds" id="Statistics_xsd_Element_SubgroupIds">
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_n" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" coords="196,90,277,119" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType_Id" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" coords="290,194,348,223" />
+                                 <area alt="Primitives_xsd_Complex_Type_ArrayReferenceType.tmp#ArrayReferenceType" href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" coords="167,3,347,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ArrayReferenceType')">ArrayReferenceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_StudyIssueType_SubgroupIds" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_StudyIssueType_SubgroupIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_StudyIssueType_SubgroupIds" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_Id" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Id')">Id</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_StudyIssueType_SubgroupIds" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_StudyIssueType_SubgroupIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_StudyIssueType_SubgroupIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;SubgroupIds</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Id</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/Id&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/SubgroupIds&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_StudyIssueType_SubgroupIds" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_StudyIssueType_SubgroupIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_StudyIssueType_SubgroupIds" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Primitives_xsd_Complex_Type_ArrayReferenceType.html#ArrayReferenceType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of Id elements in this array.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StudyIssueType_SubgroupIds" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StudyIssueType_SubgroupIds');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StudyIssueType_SubgroupIds" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SubgroupIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The SubgroupIds element is a list of one or more subgroup measurement ids identifying the particular observations that caused an issue in the study.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Statistics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="StudyIssueType"></a><div class="componentTitle">Complex Type <span class="qname">StudyIssueType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StudyIssueType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StudyIssueType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StudyIssueType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The StudyIssueType defines the details of a statistical study issue.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_StudyIssueType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_StudyIssueType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_StudyIssueType" style="display:block"><img alt="Diagram" border="0" src="img/Statistics_xsd_Complex_Type_StudyIssueType.jpeg" usemap="#Statistics_xsd_Complex_Type_StudyIssueType" /><map name="Statistics_xsd_Complex_Type_StudyIssueType" id="Statistics_xsd_Complex_Type_StudyIssueType">
+                                 <area alt="Statistics_xsd_Complex_Type_StudyIssueType.tmp#StudyIssueType_id" href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType_id" coords="231,44,312,73" />
+                                 <area alt="Statistics_xsd_Complex_Type_StudyIssueType.tmp#StudyIssueType_Traceability" href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType_Traceability" coords="300,144,404,173" />
+                                 <area alt="Statistics_xsd_Complex_Type_StudyIssueType.tmp#StudyIssueType_AssignableCauseIds" href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType_AssignableCauseIds" coords="300,251,456,280" />
+                                 <area alt="Statistics_xsd_Complex_Type_StudyIssueType.tmp#StudyIssueType_CorrectiveActionIds" href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType_CorrectiveActionIds" coords="300,342,449,371" />
+                                 <area alt="Statistics_xsd_Complex_Type_StudyIssueType.tmp#StudyIssueType_Resolution" href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType_Resolution" coords="300,433,399,462" />
+                                 <area alt="Statistics_xsd_Complex_Type_StudyIssueType.tmp#StudyIssueType_CharacteristicMeasurementIds" href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType_CharacteristicMeasurementIds" coords="405,524,619,553" />
+                                 <area alt="Statistics_xsd_Complex_Type_StudyIssueType.tmp#StudyIssueType_SubgroupIds" href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType_SubgroupIds" coords="405,615,515,644" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_StudyIssueType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_StudyIssueType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_StudyIssueType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Statistics_xsd_Complex_Type_StudyIssuesType.html#StudyIssuesType_StudyIssue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StudyIssuesType/StudyIssue')">StudyIssuesType/StudyIssue</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType_AssignableCauseIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AssignableCauseIds')">AssignableCauseIds</a></b>, <b><a href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType_CharacteristicMeasurementIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicMeasurementIds')">CharacteristicMeasurementIds</a></b>, <b><a href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType_CorrectiveActionIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CorrectiveActionIds')">CorrectiveActionIds</a></b>, <b><a href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType_Resolution" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Resolution')">Resolution</a></b>, <b><a href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType_SubgroupIds" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SubgroupIds')">SubgroupIds</a></b>, <b><a href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType_Traceability" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Traceability')">Traceability</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_StudyIssueType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_StudyIssueType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_StudyIssueType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required id attribute is the QIF id of the study issue, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StudyIssueType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StudyIssueType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StudyIssueType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"StudyIssueType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The StudyIssueType defines the details of a statistical study issue.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Traceability"</span><span class="tAN"> type=</span><span class="tAV">"InspectionTraceabilityType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Traceability element is traceability information associated with the statistical study issue.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"AssignableCauseIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional AssignableCauseIds element contains the ids of assignable causes associated with this issue.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CorrectiveActionIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional CorrectiveActionIds element contains the ids of corrective actions taken in the resolution of this issue.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Resolution"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The optional Resolution element contains additional notes about the resolution of the issue.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This optional compositor provides a choice between a list of characteristic measurement ids or subgroup ids identifying the measurements at fault in a study.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"CharacteristicMeasurementIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The CharacteristicMeasurementIds element is a list of one or more characteristic measurement ids identifying the particular observations that caused an issue in the study.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SubgroupIds"</span><span class="tAN"> type=</span><span class="tAV">"ArrayReferenceType"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The SubgroupIds element is a list of one or more subgroup measurement ids identifying the particular observations that caused an issue in the study.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"QIFIdType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The required id attribute is the QIF id of the study issue, used for referencing.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Statistics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="StudyIssueType_id"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StudyIssueType')">StudyIssueType</a></b> / @id</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_StudyIssueType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_StudyIssueType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_StudyIssueType_id" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The required id attribute is the QIF id of the study issue, used for referencing.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_StudyIssueType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_StudyIssueType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_StudyIssueType_id" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">use</td>
+                                    <td><b>required</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_StudyIssueType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_StudyIssueType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_StudyIssueType_id" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">pattern</td>
+                                    <td width="30%"><b>([\-+]?[0-9]+) &amp; ([1-9][0-9]*)</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_StudyIssueType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_StudyIssueType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_StudyIssueType_id" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="Statistics_xsd_Complex_Type_StudyIssueType.html#StudyIssueType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StudyIssueType')">StudyIssueType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_StudyIssueType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_StudyIssueType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_StudyIssueType_id" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"QIFIdType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The required id attribute is the QIF id of the study issue, used for referencing.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Statistics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

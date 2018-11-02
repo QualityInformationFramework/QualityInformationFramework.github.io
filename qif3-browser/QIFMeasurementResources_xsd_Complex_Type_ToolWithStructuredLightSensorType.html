@@ -1,0 +1,717 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component StructuredLightSensor</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_ToolWithStructuredLightSensorType_StructuredLightSensor');
+var usedByBoxes= new Array('usedBy_ToolWithStructuredLightSensorType');
+var sourceBoxes= new Array('source_ToolWithStructuredLightSensorType_StructuredLightSensor', 
+				'source_ToolWithStructuredLightSensorType');
+var instanceBoxes= new Array('instance_ToolWithStructuredLightSensorType_StructuredLightSensor');
+var diagramBoxes= new Array('diagram_ToolWithStructuredLightSensorType_StructuredLightSensor', 
+				'diagram_ToolWithStructuredLightSensorType');
+var annotationBoxes= new Array('annotations_ToolWithStructuredLightSensorType_StructuredLightSensor', 
+				'annotations_ToolWithStructuredLightSensorType');
+var attributesBoxes= new Array('attributes_ToolWithStructuredLightSensorType_StructuredLightSensor', 
+				'attributes_ToolWithStructuredLightSensorType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="ToolWithStructuredLightSensorType_StructuredLightSensor"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFMeasurementResources_xsd_Complex_Type_ToolWithStructuredLightSensorType.html#ToolWithStructuredLightSensorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToolWithStructuredLightSensorType')">ToolWithStructuredLightSensorType</a></b> / StructuredLightSensor</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ToolWithStructuredLightSensorType_StructuredLightSensor" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ToolWithStructuredLightSensorType_StructuredLightSensor');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ToolWithStructuredLightSensorType_StructuredLightSensor" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The StructuredLightSensor element is a structured light sensor integrated into the tool.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ToolWithStructuredLightSensorType_StructuredLightSensor" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ToolWithStructuredLightSensorType_StructuredLightSensor');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ToolWithStructuredLightSensorType_StructuredLightSensor" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Element_StructuredLightSensor.jpeg" usemap="#QIFMeasurementResources_xsd_Element_StructuredLightSensor" /><map name="QIFMeasurementResources_xsd_Element_StructuredLightSensor" id="QIFMeasurementResources_xsd_Element_StructuredLightSensor">
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_id" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_id" coords="285,182,366,211" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Name" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Name" coords="354,282,426,311" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Description" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Description" coords="354,373,457,402" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Manufacturer" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Manufacturer" coords="354,464,467,493" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_ModelNumber" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_ModelNumber" coords="354,555,472,584" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_SerialNumber" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_SerialNumber" coords="354,662,470,691" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Mass" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Mass" coords="354,769,424,798" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Size" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Size" coords="354,860,418,889" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_LocationId" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_LocationId" coords="459,967,556,996" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Location" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Location" coords="459,1074,546,1103" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="354,1260,448,1289" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType" coords="256,95,611,121" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_SensorType.tmp#SensorType_ProtectionClass" href="QIFMeasurementResources_xsd_Complex_Type_SensorType.html#SensorType_ProtectionClass" coords="338,1426,468,1455" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_SensorType.tmp#SensorType_LinearityError" href="QIFMeasurementResources_xsd_Complex_Type_SensorType.html#SensorType_LinearityError" coords="338,1517,453,1546" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_SensorType.tmp#SensorType_Repeatability" href="QIFMeasurementResources_xsd_Complex_Type_SensorType.html#SensorType_Repeatability" coords="338,1624,451,1653" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_SensorType.tmp#SensorType_Sensitivity" href="QIFMeasurementResources_xsd_Complex_Type_SensorType.html#SensorType_Sensitivity" coords="338,1715,435,1744" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_SensorType.tmp#SensorType_Resolution" href="QIFMeasurementResources_xsd_Complex_Type_SensorType.html#SensorType_Resolution" coords="338,1806,437,1835" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_SensorType.tmp#SensorType_EnvironmentalRange" href="QIFMeasurementResources_xsd_Complex_Type_SensorType.html#SensorType_EnvironmentalRange" coords="338,1897,494,1926" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_SensorType.tmp#SensorType" href="QIFMeasurementResources_xsd_Complex_Type_SensorType.html#SensorType" coords="240,49,472,75" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.tmp#StructuredLightSensorType_OutputFileFormat" href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType_OutputFileFormat" coords="322,2031,461,2060" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.tmp#StructuredLightSensorType_MeasurementFieldSize" href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType_MeasurementFieldSize" coords="322,2122,493,2151" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.tmp#StructuredLightSensorType_NumberOfCameraPixels" href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType_NumberOfCameraPixels" coords="322,2213,499,2242" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.tmp#StructuredLightSensorType_LightSource" href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType_LightSource" coords="322,2304,429,2333" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.tmp#StructuredLightSensorType_MeasurementRate" href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType_MeasurementRate" coords="322,2395,466,2424" />
+                                 <area alt="QIFMeasurementResources_xsd_Element_WorkingVolume.tmp#WorkingVolume" href="QIFMeasurementResources_xsd_Element_WorkingVolume.html#WorkingVolume" coords="322,2486,452,2515" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.tmp#StructuredLightSensorType_StandOffDistance" href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType_StandOffDistance" coords="322,2577,461,2606" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.tmp#StructuredLightSensorType_MaxPermissibleProbingError" href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType_MaxPermissibleProbingError" coords="322,2668,525,2697" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.tmp#StructuredLightSensorType_Laser" href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType_Laser" coords="322,2759,392,2788" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.tmp#StructuredLightSensorType" href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType" coords="224,3,444,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StructuredLightSensorType')">StructuredLightSensorType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementResourceBaseType')">MeasurementResourceBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_SensorType.html#SensorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SensorType')">SensorType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StructuredLightSensorType')">StructuredLightSensorType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_ToolWithStructuredLightSensorType_StructuredLightSensor" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_ToolWithStructuredLightSensorType_StructuredLightSensor');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_ToolWithStructuredLightSensorType_StructuredLightSensor" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_SensorType.html#SensorType_EnvironmentalRange" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EnvironmentalRange')">EnvironmentalRange</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType_Laser" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Laser')">Laser</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType_LightSource" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LightSource')">LightSource</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_SensorType.html#SensorType_LinearityError" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearityError')">LinearityError</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Location" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Location')">Location</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_LocationId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LocationId')">LocationId</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Manufacturer" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Manufacturer')">Manufacturer</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Mass" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Mass')">Mass</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType_MaxPermissibleProbingError" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MaxPermissibleProbingError')">MaxPermissibleProbingError</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType_MeasurementFieldSize" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementFieldSize')">MeasurementFieldSize</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType_MeasurementRate" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementRate')">MeasurementRate</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_ModelNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ModelNumber')">ModelNumber</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType_NumberOfCameraPixels" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NumberOfCameraPixels')">NumberOfCameraPixels</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType_OutputFileFormat" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component OutputFileFormat')">OutputFileFormat</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_SensorType.html#SensorType_ProtectionClass" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ProtectionClass')">ProtectionClass</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_SensorType.html#SensorType_Repeatability" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Repeatability')">Repeatability</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_SensorType.html#SensorType_Resolution" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Resolution')">Resolution</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_SensorType.html#SensorType_Sensitivity" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Sensitivity')">Sensitivity</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_SerialNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SerialNumber')">SerialNumber</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Size" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Size')">Size</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_StructuredLightSensorType.html#StructuredLightSensorType_StandOffDistance" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StandOffDistance')">StandOffDistance</a></b>, <b><a href="QIFMeasurementResources_xsd_Element_WorkingVolume.html#WorkingVolume" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component WorkingVolume')">WorkingVolume</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_ToolWithStructuredLightSensorType_StructuredLightSensor" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_ToolWithStructuredLightSensorType_StructuredLightSensor');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_ToolWithStructuredLightSensorType_StructuredLightSensor" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;StructuredLightSensor</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Name&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Description</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Description&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Manufacturer</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Manufacturer&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ModelNumber</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ModelNumber&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;SerialNumber</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/SerialNumber&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Mass</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">massUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Mass&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Size</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Size&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;LocationId</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/LocationId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Location</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Location&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ProtectionClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ProtectionClass&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;LinearityError</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/LinearityError&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Repeatability</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Repeatability&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Sensitivity</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Sensitivity&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Resolution</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Resolution&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;EnvironmentalRange</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/EnvironmentalRange&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;OutputFileFormat</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/OutputFileFormat&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MeasurementFieldSize</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MeasurementFieldSize&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;NumberOfCameraPixels</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/NumberOfCameraPixels&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;LightSource</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/LightSource&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MeasurementRate</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">unitName=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MeasurementRate&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;WorkingVolume</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/WorkingVolume&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;StandOffDistance</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/StandOffDistance&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MaxPermissibleProbingError</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MaxPermissibleProbingError&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Laser</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Laser&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/StructuredLightSensor&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ToolWithStructuredLightSensorType_StructuredLightSensor" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ToolWithStructuredLightSensorType_StructuredLightSensor');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ToolWithStructuredLightSensorType_StructuredLightSensor" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required id attribute is the QIF id of the measurement resource, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ToolWithStructuredLightSensorType_StructuredLightSensor" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ToolWithStructuredLightSensorType_StructuredLightSensor');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ToolWithStructuredLightSensorType_StructuredLightSensor" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"StructuredLightSensor"</span><span class="tAN"> type=</span><span class="tAV">"StructuredLightSensorType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The StructuredLightSensor element is a structured light sensor integrated into the tool.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ToolWithStructuredLightSensorType"></a><div class="componentTitle">Complex Type <span class="qname">ToolWithStructuredLightSensorType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ToolWithStructuredLightSensorType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ToolWithStructuredLightSensorType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ToolWithStructuredLightSensorType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The ToolWithStructuredLightSensorType defines a tool with an integrated structured light sensor.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ToolWithStructuredLightSensorType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ToolWithStructuredLightSensorType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ToolWithStructuredLightSensorType" style="display:block"><img alt="Diagram" border="0" src="img/QIFMeasurementResources_xsd_Complex_Type_ToolWithStructuredLightSensorType.jpeg" usemap="#QIFMeasurementResources_xsd_Complex_Type_ToolWithStructuredLightSensorType" /><map name="QIFMeasurementResources_xsd_Complex_Type_ToolWithStructuredLightSensorType" id="QIFMeasurementResources_xsd_Complex_Type_ToolWithStructuredLightSensorType">
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_id" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_id" coords="394,182,475,211" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Name" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Name" coords="463,282,535,311" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Description" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Description" coords="463,373,566,402" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Manufacturer" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Manufacturer" coords="463,464,576,493" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_ModelNumber" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_ModelNumber" coords="463,555,581,584" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_SerialNumber" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_SerialNumber" coords="463,662,579,691" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Mass" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Mass" coords="463,769,533,798" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Size" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Size" coords="463,860,527,889" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_LocationId" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_LocationId" coords="568,967,665,996" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType_Location" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Location" coords="568,1074,655,1103" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="463,1260,557,1289" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.tmp#MeasurementResourceBaseType" href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType" coords="365,95,720,121" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_ToolBaseType.tmp#ToolBaseType" href="QIFMeasurementResources_xsd_Complex_Type_ToolBaseType.html#ToolBaseType" coords="349,49,594,75" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_ToolWithIntegratedSensorBaseType.tmp#ToolWithIntegratedSensorBaseType" href="QIFMeasurementResources_xsd_Complex_Type_ToolWithIntegratedSensorBaseType.html#ToolWithIntegratedSensorBaseType" coords="333,3,703,29" />
+                                 <area alt="QIFMeasurementResources_xsd_Complex_Type_ToolWithStructuredLightSensorType.tmp#ToolWithStructuredLightSensorType_StructuredLightSensor" href="QIFMeasurementResources_xsd_Complex_Type_ToolWithStructuredLightSensorType.html#ToolWithStructuredLightSensorType_StructuredLightSensor" coords="415,1548,582,1577" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="QIFMeasurementResources_xsd_Complex_Type_ToolWithIntegratedSensorBaseType.html#ToolWithIntegratedSensorBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToolWithIntegratedSensorBaseType')">ToolWithIntegratedSensorBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MeasurementResourceBaseType')">MeasurementResourceBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_ToolBaseType.html#ToolBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToolBaseType')">ToolBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_ToolWithIntegratedSensorBaseType.html#ToolWithIntegratedSensorBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToolWithIntegratedSensorBaseType')">ToolWithIntegratedSensorBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="QIFMeasurementResources_xsd_Complex_Type_ToolWithStructuredLightSensorType.html#ToolWithStructuredLightSensorType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToolWithStructuredLightSensorType')">ToolWithStructuredLightSensorType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_ToolWithStructuredLightSensorType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ToolWithStructuredLightSensorType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_ToolWithStructuredLightSensorType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="QIFMeasurementResources_xsd_Element_ToolWithStructuredLightSensor.html#ToolWithStructuredLightSensor" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ToolWithStructuredLightSensor')">ToolWithStructuredLightSensor</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Location" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Location')">Location</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_LocationId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LocationId')">LocationId</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Manufacturer" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Manufacturer')">Manufacturer</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Mass" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Mass')">Mass</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_ModelNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ModelNumber')">ModelNumber</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_SerialNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SerialNumber')">SerialNumber</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_Size" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Size')">Size</a></b>, <b><a href="QIFMeasurementResources_xsd_Complex_Type_ToolWithStructuredLightSensorType.html#ToolWithStructuredLightSensorType_StructuredLightSensor" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StructuredLightSensor')">StructuredLightSensor</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ToolWithStructuredLightSensorType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ToolWithStructuredLightSensorType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ToolWithStructuredLightSensorType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFMeasurementResources_xsd_Complex_Type_MeasurementResourceBaseType.html#MeasurementResourceBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required id attribute is the QIF id of the measurement resource, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ToolWithStructuredLightSensorType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ToolWithStructuredLightSensorType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ToolWithStructuredLightSensorType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ToolWithStructuredLightSensorType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The ToolWithStructuredLightSensorType defines a tool with an integrated structured light sensor.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"ToolWithIntegratedSensorBaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"StructuredLightSensor"</span><span class="tAN"> type=</span><span class="tAV">"StructuredLightSensorType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The StructuredLightSensor element is a structured light sensor integrated into the tool.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFMeasurementResources.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

@@ -1,0 +1,805 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component SphericalZone</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_PositionZoneShapeType_SphericalZone', 
+				'properties_PositionZoneShapeType_DiametricalZone', 
+				'properties_PositionZoneShapeType_NonDiametricalZone');
+var usedByBoxes= new Array('usedBy_PositionZoneShapeType');
+var sourceBoxes= new Array('source_PositionZoneShapeType_SphericalZone', 
+				'source_PositionZoneShapeType_DiametricalZone', 
+				'source_PositionZoneShapeType_NonDiametricalZone', 
+				'source_PositionZoneShapeType');
+var instanceBoxes= new Array('instance_PositionZoneShapeType_SphericalZone', 
+				'instance_PositionZoneShapeType_DiametricalZone', 
+				'instance_PositionZoneShapeType_NonDiametricalZone');
+var diagramBoxes= new Array('diagram_PositionZoneShapeType_SphericalZone', 
+				'diagram_PositionZoneShapeType_DiametricalZone', 
+				'diagram_PositionZoneShapeType_NonDiametricalZone', 
+				'diagram_PositionZoneShapeType');
+var annotationBoxes= new Array('annotations_PositionZoneShapeType_SphericalZone', 
+				'annotations_PositionZoneShapeType_DiametricalZone', 
+				'annotations_PositionZoneShapeType_NonDiametricalZone', 
+				'annotations_PositionZoneShapeType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="PositionZoneShapeType_SphericalZone"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionZoneShapeType')">PositionZoneShapeType</a></b> / SphericalZone</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PositionZoneShapeType_SphericalZone" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PositionZoneShapeType_SphericalZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PositionZoneShapeType_SphericalZone" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The SphericalZone element is present when the position characteristic feature control frame contains a spherical diameter symbol modifying the tolerance value.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PositionZoneShapeType_SphericalZone" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PositionZoneShapeType_SphericalZone');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PositionZoneShapeType_SphericalZone" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_SphericalZone.jpeg" usemap="#Characteristics_xsd_Element_SphericalZone" /><map name="Characteristics_xsd_Element_SphericalZone" id="Characteristics_xsd_Element_SphericalZone">
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionSphericalZoneType.tmp#PositionSphericalZoneType_Dimensionality" href="Characteristics_xsd_Complex_Type_PositionSphericalZoneType.html#PositionSphericalZoneType_Dimensionality" coords="275,50,398,79" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionSphericalZoneType.tmp#PositionSphericalZoneType" href="Characteristics_xsd_Complex_Type_PositionSphericalZoneType.html#PositionSphericalZoneType" coords="177,3,397,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_PositionSphericalZoneType.html#PositionSphericalZoneType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionSphericalZoneType')">PositionSphericalZoneType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PositionZoneShapeType_SphericalZone" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PositionZoneShapeType_SphericalZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PositionZoneShapeType_SphericalZone" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_PositionSphericalZoneType.html#PositionSphericalZoneType_Dimensionality" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Dimensionality')">Dimensionality</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_PositionZoneShapeType_SphericalZone" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_PositionZoneShapeType_SphericalZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_PositionZoneShapeType_SphericalZone" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;SphericalZone</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Dimensionality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Dimensionality&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/SphericalZone&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PositionZoneShapeType_SphericalZone" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PositionZoneShapeType_SphericalZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PositionZoneShapeType_SphericalZone" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SphericalZone"</span><span class="tAN"> type=</span><span class="tAV">"PositionSphericalZoneType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The SphericalZone element is present when the position characteristic feature control frame contains a spherical diameter symbol modifying the tolerance value.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PositionZoneShapeType_DiametricalZone"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionZoneShapeType')">PositionZoneShapeType</a></b> / DiametricalZone</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PositionZoneShapeType_DiametricalZone" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PositionZoneShapeType_DiametricalZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PositionZoneShapeType_DiametricalZone" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The DiametricalZone element is present when the position characteristic feature control frame contains a diameter symbol modifying the tolerance value.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PositionZoneShapeType_DiametricalZone" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PositionZoneShapeType_DiametricalZone');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PositionZoneShapeType_DiametricalZone" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_DiametricalZone.jpeg" usemap="#Characteristics_xsd_Element_DiametricalZone" /><map name="Characteristics_xsd_Element_DiametricalZone" id="Characteristics_xsd_Element_DiametricalZone">
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionDiametricalZoneType.tmp#PositionDiametricalZoneType_Dimensionality" href="Characteristics_xsd_Complex_Type_PositionDiametricalZoneType.html#PositionDiametricalZoneType_Dimensionality" coords="286,46,409,75" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionDiametricalZoneType.tmp#PositionDiametricalZoneType_ZoneOrientationVector" href="Characteristics_xsd_Complex_Type_PositionDiametricalZoneType.html#PositionDiametricalZoneType_ZoneOrientationVector" coords="286,153,453,182" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionDiametricalZoneType.tmp#PositionDiametricalZoneType_ElongatedZone" href="Characteristics_xsd_Complex_Type_PositionDiametricalZoneType.html#PositionDiametricalZoneType_ElongatedZone" coords="286,244,410,273" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionDiametricalZoneType.tmp#PositionDiametricalZoneType" href="Characteristics_xsd_Complex_Type_PositionDiametricalZoneType.html#PositionDiametricalZoneType" coords="188,3,419,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_PositionDiametricalZoneType.html#PositionDiametricalZoneType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionDiametricalZoneType')">PositionDiametricalZoneType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PositionZoneShapeType_DiametricalZone" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PositionZoneShapeType_DiametricalZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PositionZoneShapeType_DiametricalZone" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_PositionDiametricalZoneType.html#PositionDiametricalZoneType_Dimensionality" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Dimensionality')">Dimensionality</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionDiametricalZoneType.html#PositionDiametricalZoneType_ElongatedZone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ElongatedZone')">ElongatedZone</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionDiametricalZoneType.html#PositionDiametricalZoneType_ZoneOrientationVector" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ZoneOrientationVector')">ZoneOrientationVector</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_PositionZoneShapeType_DiametricalZone" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_PositionZoneShapeType_DiametricalZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_PositionZoneShapeType_DiametricalZone" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;DiametricalZone</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Dimensionality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Dimensionality&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ZoneOrientationVector</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">validity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">ySignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zValidity=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ZoneOrientationVector&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ElongatedZone</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ElongatedZone&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/DiametricalZone&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PositionZoneShapeType_DiametricalZone" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PositionZoneShapeType_DiametricalZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PositionZoneShapeType_DiametricalZone" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DiametricalZone"</span><span class="tAN"> type=</span><span class="tAV">"PositionDiametricalZoneType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The DiametricalZone element is present when the position characteristic feature control frame contains a diameter symbol modifying the tolerance value.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PositionZoneShapeType_NonDiametricalZone"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionZoneShapeType')">PositionZoneShapeType</a></b> / NonDiametricalZone</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PositionZoneShapeType_NonDiametricalZone" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PositionZoneShapeType_NonDiametricalZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PositionZoneShapeType_NonDiametricalZone" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The NonDiametricalZone element is present when the position characteristic feature control frame does not contain a diameter symbol modifying the tolerance value.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PositionZoneShapeType_NonDiametricalZone" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PositionZoneShapeType_NonDiametricalZone');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PositionZoneShapeType_NonDiametricalZone" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_NonDiametricalZone.jpeg" usemap="#Characteristics_xsd_Element_NonDiametricalZone" /><map name="Characteristics_xsd_Element_NonDiametricalZone" id="Characteristics_xsd_Element_NonDiametricalZone">
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.tmp#PositionNonDiametricalZoneType_Dimensionality" href="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.html#PositionNonDiametricalZoneType_Dimensionality" coords="309,46,432,75" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.tmp#PositionNonDiametricalZoneType_ZoneOrientationVector" href="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.html#PositionNonDiametricalZoneType_ZoneOrientationVector" coords="309,153,476,182" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.tmp#PositionNonDiametricalZoneType_BoundaryZone" href="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.html#PositionNonDiametricalZoneType_BoundaryZone" coords="309,244,430,273" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.tmp#PositionNonDiametricalZoneType_ZoneOrientationEnum" href="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.html#PositionNonDiametricalZoneType_ZoneOrientationEnum" coords="309,351,472,380" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.tmp#PositionNonDiametricalZoneType_CoordinateSystemId" href="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.html#PositionNonDiametricalZoneType_CoordinateSystemId" coords="309,458,464,487" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.tmp#PositionNonDiametricalZoneType" href="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.html#PositionNonDiametricalZoneType" coords="211,3,465,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.html#PositionNonDiametricalZoneType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionNonDiametricalZoneType')">PositionNonDiametricalZoneType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_PositionZoneShapeType_NonDiametricalZone" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_PositionZoneShapeType_NonDiametricalZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_PositionZoneShapeType_NonDiametricalZone" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.html#PositionNonDiametricalZoneType_BoundaryZone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component BoundaryZone')">BoundaryZone</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.html#PositionNonDiametricalZoneType_CoordinateSystemId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CoordinateSystemId')">CoordinateSystemId</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.html#PositionNonDiametricalZoneType_Dimensionality" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Dimensionality')">Dimensionality</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.html#PositionNonDiametricalZoneType_ZoneOrientationEnum" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ZoneOrientationEnum')">ZoneOrientationEnum</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionNonDiametricalZoneType.html#PositionNonDiametricalZoneType_ZoneOrientationVector" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ZoneOrientationVector')">ZoneOrientationVector</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_PositionZoneShapeType_NonDiametricalZone" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_PositionZoneShapeType_NonDiametricalZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_PositionZoneShapeType_NonDiametricalZone" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;NonDiametricalZone</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Dimensionality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Dimensionality&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ZoneOrientationVector</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">validity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">ySignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">yValidity=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zDecimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zSignificantFigures=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">zValidity=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ZoneOrientationVector&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;BoundaryZone</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/BoundaryZone&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ZoneOrientationEnum</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ZoneOrientationEnum&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;CoordinateSystemId</span><span class="tT"> </span><span class="tAN">asmPathId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">asmPathXId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/CoordinateSystemId&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/NonDiametricalZone&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PositionZoneShapeType_NonDiametricalZone" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PositionZoneShapeType_NonDiametricalZone');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PositionZoneShapeType_NonDiametricalZone" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"NonDiametricalZone"</span><span class="tAN"> type=</span><span class="tAV">"PositionNonDiametricalZoneType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The NonDiametricalZone element is present when the position characteristic feature control frame does not contain a diameter symbol modifying the tolerance value.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="PositionZoneShapeType"></a><div class="componentTitle">Complex Type <span class="qname">PositionZoneShapeType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_PositionZoneShapeType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_PositionZoneShapeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_PositionZoneShapeType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The PositionZoneShapeType defines the shape of the tolerance zone for a position characteristic.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_PositionZoneShapeType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_PositionZoneShapeType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_PositionZoneShapeType" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Complex_Type_PositionZoneShapeType.jpeg" usemap="#Characteristics_xsd_Complex_Type_PositionZoneShapeType" /><map name="Characteristics_xsd_Complex_Type_PositionZoneShapeType" id="Characteristics_xsd_Complex_Type_PositionZoneShapeType">
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionZoneShapeType.tmp#PositionZoneShapeType_SphericalZone" href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType_SphericalZone" coords="367,0,487,29" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionZoneShapeType.tmp#PositionZoneShapeType_DiametricalZone" href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType_DiametricalZone" coords="367,107,498,136" />
+                                 <area alt="Characteristics_xsd_Complex_Type_PositionZoneShapeType.tmp#PositionZoneShapeType_NonDiametricalZone" href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType_NonDiametricalZone" coords="367,214,521,243" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_PositionZoneShapeType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_PositionZoneShapeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_PositionZoneShapeType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Elements </td>
+                                    <td><b><a href="Characteristics_xsd_Complex_Type_CompositeSegmentPositionDefinitionType.html#CompositeSegmentPositionDefinitionType_ZoneShape" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CompositeSegmentPositionDefinitionType/ZoneShape')">CompositeSegmentPositionDefinitionType/ZoneShape</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionCharacteristicDefinitionType.html#PositionCharacteristicDefinitionType_ZoneShape" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PositionCharacteristicDefinitionType/ZoneShape')">PositionCharacteristicDefinitionType/ZoneShape</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType_DiametricalZone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DiametricalZone')">DiametricalZone</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType_NonDiametricalZone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonDiametricalZone')">NonDiametricalZone</a></b>, <b><a href="Characteristics_xsd_Complex_Type_PositionZoneShapeType.html#PositionZoneShapeType_SphericalZone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SphericalZone')">SphericalZone</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_PositionZoneShapeType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_PositionZoneShapeType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_PositionZoneShapeType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"PositionZoneShapeType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The PositionZoneShapeType defines the shape of the tolerance zone for a position characteristic.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This compositor provides a choice among spherical diametrical, diametrical, and non-diametrical tolerance zone shapes.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"SphericalZone"</span><span class="tAN"> type=</span><span class="tAV">"PositionSphericalZoneType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The SphericalZone element is present when the position characteristic feature control frame contains a spherical diameter symbol modifying the tolerance value.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DiametricalZone"</span><span class="tAN"> type=</span><span class="tAV">"PositionDiametricalZoneType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The DiametricalZone element is present when the position characteristic feature control frame contains a diameter symbol modifying the tolerance value.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"NonDiametricalZone"</span><span class="tAN"> type=</span><span class="tAV">"PositionNonDiametricalZoneType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The NonDiametricalZone element is present when the position characteristic feature control frame does not contain a diameter symbol modifying the tolerance value.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

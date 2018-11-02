@@ -1,0 +1,946 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component Tolerance</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_DiameterCharacteristicDefinitionType_Tolerance', 
+				'properties_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification', 
+				'properties_DiameterCharacteristicDefinitionType_NonTolerance');
+var facetsBoxes= new Array('facets_DiameterCharacteristicDefinitionType_NonTolerance');
+var usedByBoxes= new Array('usedBy_DiameterCharacteristicDefinitionType');
+var sourceBoxes= new Array('source_DiameterCharacteristicDefinitionType_Tolerance', 
+				'source_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification', 
+				'source_DiameterCharacteristicDefinitionType_NonTolerance', 
+				'source_DiameterCharacteristicDefinitionType');
+var instanceBoxes= new Array('instance_DiameterCharacteristicDefinitionType_Tolerance', 
+				'instance_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification');
+var diagramBoxes= new Array('diagram_DiameterCharacteristicDefinitionType_Tolerance', 
+				'diagram_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification', 
+				'diagram_DiameterCharacteristicDefinitionType_NonTolerance', 
+				'diagram_DiameterCharacteristicDefinitionType');
+var annotationBoxes= new Array('annotations_DiameterCharacteristicDefinitionType_Tolerance', 
+				'annotations_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification', 
+				'annotations_DiameterCharacteristicDefinitionType_NonTolerance', 
+				'annotations_DiameterCharacteristicDefinitionType');
+var attributesBoxes= new Array('attributes_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification', 
+				'attributes_DiameterCharacteristicDefinitionType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="DiameterCharacteristicDefinitionType_Tolerance"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType.html#DiameterCharacteristicDefinitionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DiameterCharacteristicDefinitionType')">DiameterCharacteristicDefinitionType</a></b> / Tolerance</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DiameterCharacteristicDefinitionType_Tolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DiameterCharacteristicDefinitionType_Tolerance');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DiameterCharacteristicDefinitionType_Tolerance" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The Tolerance element is the tolerance value for the linear characteristic.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_DiameterCharacteristicDefinitionType_Tolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DiameterCharacteristicDefinitionType_Tolerance');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_DiameterCharacteristicDefinitionType_Tolerance" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_Tolerance_11.jpeg" usemap="#Characteristics_xsd_Element_Tolerance_11" /><map name="Characteristics_xsd_Element_Tolerance_11" id="Characteristics_xsd_Element_Tolerance_11">
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.tmp#LinearToleranceType_MaxValue" href="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.html#LinearToleranceType_MaxValue" coords="439,46,535,75" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.tmp#LinearToleranceType_MaxDualValue" href="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.html#LinearToleranceType_MaxDualValue" coords="439,137,561,166" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.tmp#LinearToleranceType_MinValue" href="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.html#LinearToleranceType_MinValue" coords="524,244,616,273" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.tmp#LinearToleranceType_MinDualValue" href="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.html#LinearToleranceType_MinDualValue" coords="524,335,642,364" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.tmp#LinearToleranceType_DefinitionId" href="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.html#LinearToleranceType_DefinitionId" coords="354,640,455,669" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.tmp#LinearToleranceType_DefinedAsLimit" href="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.html#LinearToleranceType_DefinedAsLimit" coords="249,731,374,760" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="249,838,343,867" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.tmp#LinearToleranceType" href="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.html#LinearToleranceType" coords="151,3,333,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.html#LinearToleranceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LinearToleranceType')">LinearToleranceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_DiameterCharacteristicDefinitionType_Tolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_DiameterCharacteristicDefinitionType_Tolerance');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_DiameterCharacteristicDefinitionType_Tolerance" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.html#LinearToleranceType_DefinedAsLimit" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DefinedAsLimit')">DefinedAsLimit</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.html#LinearToleranceType_DefinitionId" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DefinitionId')">DefinitionId</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.html#LinearToleranceType_MaxDualValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MaxDualValue')">MaxDualValue</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.html#LinearToleranceType_MaxValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MaxValue')">MaxValue</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.html#LinearToleranceType_MinDualValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MinDualValue')">MinDualValue</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_LinearToleranceType.html#LinearToleranceType_MinValue" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MinValue')">MinValue</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_DiameterCharacteristicDefinitionType_Tolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_DiameterCharacteristicDefinitionType_Tolerance');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_DiameterCharacteristicDefinitionType_Tolerance" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Tolerance</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MaxValue</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/MaxValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MaxDualValue</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MaxDualValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MinValue</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/MinValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MinDualValue</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MinDualValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MinValue</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/MinValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;MinDualValue</span><span class="tT"> </span><span class="tAN">decimalPlaces=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">linearUnit=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">significantFigures=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/MinDualValue&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DefinitionId</span><span class="tT"> </span><span class="tAN">asmPathId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">asmPathXId=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xId=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/DefinitionId&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DefinedAsLimit</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/DefinedAsLimit&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Attributes</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Attributes&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Tolerance&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DiameterCharacteristicDefinitionType_Tolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DiameterCharacteristicDefinitionType_Tolerance');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DiameterCharacteristicDefinitionType_Tolerance" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Tolerance"</span><span class="tAN"> type=</span><span class="tAV">"LinearToleranceType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Tolerance element is the tolerance value for the linear characteristic.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType.html#DiameterCharacteristicDefinitionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DiameterCharacteristicDefinitionType')">DiameterCharacteristicDefinitionType</a></b> / LimitsAndFitsSpecification</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The LimitsAndFitsSpecification element defines the tolerance value for the diameter characteristic by a limits and fits specification.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_LimitsAndFitsSpecification.jpeg" usemap="#Characteristics_xsd_Element_LimitsAndFitsSpecification" /><map name="Characteristics_xsd_Element_LimitsAndFitsSpecification" id="Characteristics_xsd_Element_LimitsAndFitsSpecification">
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_LimitsAndFitsSpecificationType.tmp#LimitsAndFitsSpecificationType_zoneVariance" href="IntermediatesPMI_xsd_Complex_Type_LimitsAndFitsSpecificationType.html#LimitsAndFitsSpecificationType_zoneVariance" coords="278,90,418,119" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_LimitsAndFitsSpecificationType.tmp#LimitsAndFitsSpecificationType_FormVariance" href="IntermediatesPMI_xsd_Complex_Type_LimitsAndFitsSpecificationType.html#LimitsAndFitsSpecificationType_FormVariance" coords="347,190,466,219" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_LimitsAndFitsSpecificationType.tmp#LimitsAndFitsSpecificationType_Grade" href="IntermediatesPMI_xsd_Complex_Type_LimitsAndFitsSpecificationType.html#LimitsAndFitsSpecificationType_Grade" coords="347,281,420,310" />
+                                 <area alt="IntermediatesPMI_xsd_Complex_Type_LimitsAndFitsSpecificationType.tmp#LimitsAndFitsSpecificationType" href="IntermediatesPMI_xsd_Complex_Type_LimitsAndFitsSpecificationType.html#LimitsAndFitsSpecificationType" coords="249,3,494,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_LimitsAndFitsSpecificationType.html#LimitsAndFitsSpecificationType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LimitsAndFitsSpecificationType')">LimitsAndFitsSpecificationType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Complex_Type_LimitsAndFitsSpecificationType.html#LimitsAndFitsSpecificationType_FormVariance" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FormVariance')">FormVariance</a></b>, <b><a href="IntermediatesPMI_xsd_Complex_Type_LimitsAndFitsSpecificationType.html#LimitsAndFitsSpecificationType_Grade" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Grade')">Grade</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;LimitsAndFitsSpecification</span><span class="tT"> </span><span class="tAN">zoneVariance=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;FormVariance</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/FormVariance&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Grade</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Grade&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/LimitsAndFitsSpecification&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="IntermediatesPMI_xsd_Complex_Type_LimitsAndFitsSpecificationType.html#LimitsAndFitsSpecificationType_zoneVariance" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component zoneVariance')">zoneVariance</a></b></td>
+                                    <td><b><a href="IntermediatesPMI_xsd_Simple_Type_LimitsAndFitsZoneVarianceType.html#LimitsAndFitsZoneVarianceType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LimitsAndFitsZoneVarianceType')">LimitsAndFitsZoneVarianceType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required zoneVariance attribute is the zone variance type for the limits and fits specification.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"LimitsAndFitsSpecification"</span><span class="tAN"> type=</span><span class="tAV">"LimitsAndFitsSpecificationType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The LimitsAndFitsSpecification element defines the tolerance value for the diameter characteristic by a limits and fits specification.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="DiameterCharacteristicDefinitionType_NonTolerance"></a><div class="componentTitle">Element <span class="qname"><b><a href="Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType.html#DiameterCharacteristicDefinitionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DiameterCharacteristicDefinitionType')">DiameterCharacteristicDefinitionType</a></b> / NonTolerance</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DiameterCharacteristicDefinitionType_NonTolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DiameterCharacteristicDefinitionType_NonTolerance');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DiameterCharacteristicDefinitionType_NonTolerance" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The NonTolerance element indicates the characteristic is not toleranced but needs to be tracked and/or reported.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_DiameterCharacteristicDefinitionType_NonTolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DiameterCharacteristicDefinitionType_NonTolerance');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_DiameterCharacteristicDefinitionType_NonTolerance" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Element_NonTolerance_11.jpeg" usemap="#Characteristics_xsd_Element_NonTolerance_11" /><map name="Characteristics_xsd_Element_NonTolerance_11" id="Characteristics_xsd_Element_NonTolerance_11">
+                                 <area alt="IntermediatesPMI_xsd_Simple_Type_NonToleranceEnumType.tmp#NonToleranceEnumType" href="IntermediatesPMI_xsd_Simple_Type_NonToleranceEnumType.html#NonToleranceEnumType" coords="171,0,380,31" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="IntermediatesPMI_xsd_Simple_Type_NonToleranceEnumType.html#NonToleranceEnumType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonToleranceEnumType')">NonToleranceEnumType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_DiameterCharacteristicDefinitionType_NonTolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_DiameterCharacteristicDefinitionType_NonTolerance');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_DiameterCharacteristicDefinitionType_NonTolerance" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_DiameterCharacteristicDefinitionType_NonTolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_DiameterCharacteristicDefinitionType_NonTolerance');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_DiameterCharacteristicDefinitionType_NonTolerance" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>MEASURED</b></td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The MEASURED enumeration defines a characteristic as being a basic dimension which can be measured and therefore a valid measured value may exist.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">enumeration</td>
+                                    <td width="30%"><b>SET</b></td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The SET enumeration defines a characteristic as being a dimension which cannot be measured and therefore no valid measured value exists and the measured value is set to the nominal value for reporting purposes.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DiameterCharacteristicDefinitionType_NonTolerance" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DiameterCharacteristicDefinitionType_NonTolerance');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DiameterCharacteristicDefinitionType_NonTolerance" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"NonTolerance"</span><span class="tAN"> type=</span><span class="tAV">"NonToleranceEnumType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The NonTolerance element indicates the characteristic is not toleranced but needs to be tracked and/or reported.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="DiameterCharacteristicDefinitionType"></a><div class="componentTitle">Complex Type <span class="qname">DiameterCharacteristicDefinitionType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DiameterCharacteristicDefinitionType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DiameterCharacteristicDefinitionType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DiameterCharacteristicDefinitionType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The DiameterCharacteristicDefinitionType defines information that can be common to more than one diameter characteristic.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_DiameterCharacteristicDefinitionType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DiameterCharacteristicDefinitionType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_DiameterCharacteristicDefinitionType" style="display:block"><img alt="Diagram" border="0" src="img/Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType.jpeg" usemap="#Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType" /><map name="Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType" id="Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType">
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType_id" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_id" coords="399,182,480,211" />
+                                 <area alt="Primitives_xsd_Element_Attributes.tmp#Attributes" href="Primitives_xsd_Element_Attributes.html#Attributes" coords="468,282,562,311" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType_Description" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_Description" coords="468,389,571,418" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicBaseType.tmp#CharacteristicBaseType" href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType" coords="370,95,671,121" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_Name" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_Name" coords="452,539,524,568" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_CharacteristicDesignator" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CharacteristicDesignator" coords="452,630,632,659" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_FreeState" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_FreeState" coords="452,721,547,750" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_StatisticalCharacteristic" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_StatisticalCharacteristic" coords="452,828,628,857" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_CommonZone" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CommonZone" coords="452,919,570,948" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_CommonTolerance" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CommonTolerance" coords="452,1026,598,1055" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_MedianFeature" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_MedianFeature" coords="452,1133,576,1162" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_EnvelopeRequirement" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_EnvelopeRequirement" coords="452,1240,615,1269" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_Independency" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_Independency" coords="452,1347,570,1376" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" coords="452,1454,650,1483" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType_SeparateZone" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_SeparateZone" coords="452,1561,570,1590" />
+                                 <area alt="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.tmp#CharacteristicDefinitionBaseType" href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType" coords="354,49,708,75" />
+                                 <area alt="Characteristics_xsd_Complex_Type_DimensionalCharacteristicDefinitionBaseType.tmp#DimensionalCharacteristicDefinitionBaseType_DimensionType" href="Characteristics_xsd_Complex_Type_DimensionalCharacteristicDefinitionBaseType.html#DimensionalCharacteristicDefinitionBaseType_DimensionType" coords="436,1727,563,1756" />
+                                 <area alt="Characteristics_xsd_Complex_Type_DimensionalCharacteristicDefinitionBaseType.tmp#DimensionalCharacteristicDefinitionBaseType_DimensionModifiers" href="Characteristics_xsd_Complex_Type_DimensionalCharacteristicDefinitionBaseType.html#DimensionalCharacteristicDefinitionBaseType_DimensionModifiers" coords="436,1834,587,1863" />
+                                 <area alt="Characteristics_xsd_Complex_Type_DimensionalCharacteristicDefinitionBaseType.tmp#DimensionalCharacteristicDefinitionBaseType" href="Characteristics_xsd_Complex_Type_DimensionalCharacteristicDefinitionBaseType.html#DimensionalCharacteristicDefinitionBaseType" coords="338,3,763,29" />
+                                 <area alt="Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType.tmp#DiameterCharacteristicDefinitionType_Tolerance" href="Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType.html#DiameterCharacteristicDefinitionType_Tolerance" coords="440,1984,534,2013" />
+                                 <area alt="Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType.tmp#DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification" href="Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType.html#DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification" coords="440,2075,632,2104" />
+                                 <area alt="Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType.tmp#DiameterCharacteristicDefinitionType_NonTolerance" href="Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType.html#DiameterCharacteristicDefinitionType_NonTolerance" coords="440,2166,557,2195" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="Characteristics_xsd_Complex_Type_DimensionalCharacteristicDefinitionBaseType.html#DimensionalCharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DimensionalCharacteristicDefinitionBaseType')">DimensionalCharacteristicDefinitionBaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicBaseType')">CharacteristicBaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDefinitionBaseType')">CharacteristicDefinitionBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_DimensionalCharacteristicDefinitionBaseType.html#DimensionalCharacteristicDefinitionBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DimensionalCharacteristicDefinitionBaseType')">DimensionalCharacteristicDefinitionBaseType</a></b><ul class="internal">
+                                                <li class="internal"><b><a href="Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType.html#DiameterCharacteristicDefinitionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DiameterCharacteristicDefinitionType')">DiameterCharacteristicDefinitionType</a></b></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_DiameterCharacteristicDefinitionType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_DiameterCharacteristicDefinitionType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_DiameterCharacteristicDefinitionType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="Characteristics_xsd_Element_DiameterCharacteristicDefinition.html#DiameterCharacteristicDefinition" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DiameterCharacteristicDefinition')">DiameterCharacteristicDefinition</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="Primitives_xsd_Element_Attributes.html#Attributes" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Attributes')">Attributes</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CharacteristicDesignator" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CharacteristicDesignator')">CharacteristicDesignator</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CommonTolerance" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CommonTolerance')">CommonTolerance</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_CommonZone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component CommonZone')">CommonZone</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="Characteristics_xsd_Complex_Type_DimensionalCharacteristicDefinitionBaseType.html#DimensionalCharacteristicDefinitionBaseType_DimensionModifiers" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DimensionModifiers')">DimensionModifiers</a></b>, <b><a href="Characteristics_xsd_Complex_Type_DimensionalCharacteristicDefinitionBaseType.html#DimensionalCharacteristicDefinitionBaseType_DimensionType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DimensionType')">DimensionType</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_EnvelopeRequirement" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component EnvelopeRequirement')">EnvelopeRequirement</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_FreeState" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component FreeState')">FreeState</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_Independency" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Independency')">Independency</a></b>, <b><a href="Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType.html#DiameterCharacteristicDefinitionType_LimitsAndFitsSpecification" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component LimitsAndFitsSpecification')">LimitsAndFitsSpecification</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_MedianFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component MedianFeature')">MedianFeature</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType.html#DiameterCharacteristicDefinitionType_NonTolerance" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NonTolerance')">NonTolerance</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_SeparateZone" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component SeparateZone')">SeparateZone</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_StatisticalCharacteristic" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component StatisticalCharacteristic')">StatisticalCharacteristic</a></b>, <b><a href="Characteristics_xsd_Complex_Type_DiameterCharacteristicDefinitionType.html#DiameterCharacteristicDefinitionType_Tolerance" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Tolerance')">Tolerance</a></b>, <b><a href="Characteristics_xsd_Complex_Type_CharacteristicDefinitionBaseType.html#CharacteristicDefinitionBaseType_UnitedOrContinuousFeature" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component UnitedOrContinuousFeature')">UnitedOrContinuousFeature</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_DiameterCharacteristicDefinitionType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_DiameterCharacteristicDefinitionType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_DiameterCharacteristicDefinitionType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="Characteristics_xsd_Complex_Type_CharacteristicBaseType.html#CharacteristicBaseType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The id attribute is the QIF id of the characteristic, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DiameterCharacteristicDefinitionType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DiameterCharacteristicDefinitionType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DiameterCharacteristicDefinitionType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"DiameterCharacteristicDefinitionType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The DiameterCharacteristicDefinitionType defines information that can be common to more than one diameter characteristic.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"DimensionalCharacteristicDefinitionBaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:choice</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This compositor provides a choice among a simple toleranced characteristic, a toleranced characteristic defined by a limits and fits specification, and a non-toleranced characteristic that still needs to be tracked and/or reported.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"Tolerance"</span><span class="tAN"> type=</span><span class="tAV">"LinearToleranceType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The Tolerance element is the tolerance value for the linear characteristic.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"LimitsAndFitsSpecification"</span><span class="tAN"> type=</span><span class="tAV">"LimitsAndFitsSpecificationType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The LimitsAndFitsSpecification element defines the tolerance value for the diameter characteristic by a limits and fits specification.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"NonTolerance"</span><span class="tAN"> type=</span><span class="tAV">"NonToleranceEnumType"</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The NonTolerance element indicates the characteristic is not toleranced but needs to be tracked and/or reported.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFLibrary/Characteristics.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>

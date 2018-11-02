@@ -1,0 +1,1439 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for component PrintedDrawing</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_DefinitionExternalType_PrintedDrawing', 
+				'properties_DefinitionExternalType_DigitalDrawing', 
+				'properties_DefinitionExternalType_DigitalModel', 
+				'properties_DefinitionExternalType_PhysicalModel', 
+				'properties_DefinitionExternalType_n', 
+				'properties_DefinitionExternalType_id');
+var facetsBoxes= new Array('facets_DefinitionExternalType_n', 
+				'facets_DefinitionExternalType_id');
+var usedByBoxes= new Array('usedBy_DefinitionExternalType', 
+				'usedBy_DefinitionExternalType_n', 
+				'usedBy_DefinitionExternalType_id');
+var sourceBoxes= new Array('source_DefinitionExternalType_PrintedDrawing', 
+				'source_DefinitionExternalType_DigitalDrawing', 
+				'source_DefinitionExternalType_DigitalModel', 
+				'source_DefinitionExternalType_PhysicalModel', 
+				'source_DefinitionExternalType', 
+				'source_DefinitionExternalType_n', 
+				'source_DefinitionExternalType_id');
+var instanceBoxes= new Array('instance_DefinitionExternalType_PrintedDrawing', 
+				'instance_DefinitionExternalType_DigitalDrawing', 
+				'instance_DefinitionExternalType_DigitalModel', 
+				'instance_DefinitionExternalType_PhysicalModel');
+var diagramBoxes= new Array('diagram_DefinitionExternalType_PrintedDrawing', 
+				'diagram_DefinitionExternalType_DigitalDrawing', 
+				'diagram_DefinitionExternalType_DigitalModel', 
+				'diagram_DefinitionExternalType_PhysicalModel', 
+				'diagram_DefinitionExternalType');
+var annotationBoxes= new Array('annotations_DefinitionExternalType_PrintedDrawing', 
+				'annotations_DefinitionExternalType_DigitalDrawing', 
+				'annotations_DefinitionExternalType_DigitalModel', 
+				'annotations_DefinitionExternalType_PhysicalModel', 
+				'annotations_DefinitionExternalType', 
+				'annotations_DefinitionExternalType_n', 
+				'annotations_DefinitionExternalType_id');
+var attributesBoxes= new Array('attributes_DefinitionExternalType_PrintedDrawing', 
+				'attributes_DefinitionExternalType_DigitalDrawing', 
+				'attributes_DefinitionExternalType_DigitalModel', 
+				'attributes_DefinitionExternalType_PhysicalModel', 
+				'attributes_DefinitionExternalType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="DefinitionExternalType_PrintedDrawing"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DefinitionExternalType')">DefinitionExternalType</a></b> / PrintedDrawing</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DefinitionExternalType_PrintedDrawing" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DefinitionExternalType_PrintedDrawing');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DefinitionExternalType_PrintedDrawing" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The PrintedDrawing element gives information about a printed part drawing. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_DefinitionExternalType_PrintedDrawing" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DefinitionExternalType_PrintedDrawing');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_DefinitionExternalType_PrintedDrawing" style="display:block"><img alt="Diagram" border="0" src="img/QIFProduct_xsd_Element_PrintedDrawing.jpeg" usemap="#QIFProduct_xsd_Element_PrintedDrawing" /><map name="QIFProduct_xsd_Element_PrintedDrawing" id="QIFProduct_xsd_Element_PrintedDrawing">
+                                 <area alt="QIFProduct_xsd_Complex_Type_PrintedDrawingType.tmp#PrintedDrawingType_id" href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_id" coords="211,90,292,119" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_PrintedDrawingType.tmp#PrintedDrawingType_Name" href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_Name" coords="280,190,352,219" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_PrintedDrawingType.tmp#PrintedDrawingType_Version" href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_Version" coords="280,281,362,310" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_PrintedDrawingType.tmp#PrintedDrawingType_Description" href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_Description" coords="280,388,383,417" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_PrintedDrawingType.tmp#PrintedDrawingType_Author" href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_Author" coords="280,479,356,508" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_PrintedDrawingType.tmp#PrintedDrawingType_DrawingNumber" href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_DrawingNumber" coords="280,570,409,599" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_PrintedDrawingType.tmp#PrintedDrawingType_AdditionalChanges" href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_AdditionalChanges" coords="280,677,426,706" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_PrintedDrawingType.tmp#PrintedDrawingType_Location" href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_Location" coords="280,784,367,813" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_PrintedDrawingType.tmp#PrintedDrawingType" href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType" coords="182,3,360,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PrintedDrawingType')">PrintedDrawingType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_DefinitionExternalType_PrintedDrawing" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_DefinitionExternalType_PrintedDrawing');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_DefinitionExternalType_PrintedDrawing" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_AdditionalChanges" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AdditionalChanges')">AdditionalChanges</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_Author" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Author')">Author</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_DrawingNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DrawingNumber')">DrawingNumber</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_Location" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Location')">Location</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_Version" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Version')">Version</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_DefinitionExternalType_PrintedDrawing" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_DefinitionExternalType_PrintedDrawing');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_DefinitionExternalType_PrintedDrawing" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;PrintedDrawing</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Name&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Version</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Version&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Description</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Description&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Author</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Author&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;DrawingNumber</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/DrawingNumber&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;AdditionalChanges</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/AdditionalChanges&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Location</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Location&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/PrintedDrawing&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_DefinitionExternalType_PrintedDrawing" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_DefinitionExternalType_PrintedDrawing');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_DefinitionExternalType_PrintedDrawing" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFProduct_xsd_Complex_Type_PrintedDrawingType.html#PrintedDrawingType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required id attribute is the QIF id of the printed drawing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DefinitionExternalType_PrintedDrawing" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DefinitionExternalType_PrintedDrawing');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DefinitionExternalType_PrintedDrawing" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PrintedDrawing"</span><span class="tAN"> type=</span><span class="tAV">"PrintedDrawingType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The PrintedDrawing element gives information about a printed part drawing. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFProduct.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="DefinitionExternalType_DigitalDrawing"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DefinitionExternalType')">DefinitionExternalType</a></b> / DigitalDrawing</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DefinitionExternalType_DigitalDrawing" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DefinitionExternalType_DigitalDrawing');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DefinitionExternalType_DigitalDrawing" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The DigitalDrawing element gives information about a digital part drawing. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_DefinitionExternalType_DigitalDrawing" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DefinitionExternalType_DigitalDrawing');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_DefinitionExternalType_DigitalDrawing" style="display:block"><img alt="Diagram" border="0" src="img/QIFProduct_xsd_Element_DigitalDrawing.jpeg" usemap="#QIFProduct_xsd_Element_DigitalDrawing" /><map name="QIFProduct_xsd_Element_DigitalDrawing" id="QIFProduct_xsd_Element_DigitalDrawing">
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalDrawingType.tmp#DigitalDrawingType_id" href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_id" coords="206,90,287,119" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalDrawingType.tmp#DigitalDrawingType_Name" href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_Name" coords="275,190,347,219" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalDrawingType.tmp#DigitalDrawingType_File" href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_File" coords="275,281,334,310" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalDrawingType.tmp#DigitalDrawingType_Application" href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_Application" coords="275,372,377,401" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalDrawingType.tmp#DigitalDrawingType_Author" href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_Author" coords="275,479,351,508" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalDrawingType.tmp#DigitalDrawingType_ApplicationSource" href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_ApplicationSource" coords="275,570,418,599" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalDrawingType.tmp#DigitalDrawingType_Description" href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_Description" coords="275,661,378,690" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalDrawingType.tmp#DigitalDrawingType_Entities" href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_Entities" coords="275,752,357,781" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalDrawingType.tmp#DigitalDrawingType" href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType" coords="177,3,350,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DigitalDrawingType')">DigitalDrawingType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_DefinitionExternalType_DigitalDrawing" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_DefinitionExternalType_DigitalDrawing');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_DefinitionExternalType_DigitalDrawing" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_Application" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Application')">Application</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_ApplicationSource" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ApplicationSource')">ApplicationSource</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_Author" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Author')">Author</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_Entities" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Entities')">Entities</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_File" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component File')">File</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_DefinitionExternalType_DigitalDrawing" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_DefinitionExternalType_DigitalDrawing');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_DefinitionExternalType_DigitalDrawing" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;DigitalDrawing</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Name&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;File</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/File&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Application</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Application&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Author</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Author&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ApplicationSource</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ApplicationSource&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Description</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Description&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Entities</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Entities&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/DigitalDrawing&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_DefinitionExternalType_DigitalDrawing" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_DefinitionExternalType_DigitalDrawing');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_DefinitionExternalType_DigitalDrawing" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFProduct_xsd_Complex_Type_DigitalDrawingType.html#DigitalDrawingType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required id attribute is the QIF id of the digital drawing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DefinitionExternalType_DigitalDrawing" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DefinitionExternalType_DigitalDrawing');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DefinitionExternalType_DigitalDrawing" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DigitalDrawing"</span><span class="tAN"> type=</span><span class="tAV">"DigitalDrawingType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The DigitalDrawing element gives information about a digital part drawing. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFProduct.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="DefinitionExternalType_DigitalModel"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DefinitionExternalType')">DefinitionExternalType</a></b> / DigitalModel</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DefinitionExternalType_DigitalModel" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DefinitionExternalType_DigitalModel');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DefinitionExternalType_DigitalModel" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The DigitalModel element gives information about a digital part design model. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_DefinitionExternalType_DigitalModel" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DefinitionExternalType_DigitalModel');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_DefinitionExternalType_DigitalModel" style="display:block"><img alt="Diagram" border="0" src="img/QIFProduct_xsd_Element_DigitalModel.jpeg" usemap="#QIFProduct_xsd_Element_DigitalModel" /><map name="QIFProduct_xsd_Element_DigitalModel" id="QIFProduct_xsd_Element_DigitalModel">
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalModelType.tmp#DigitalModelType_id" href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_id" coords="195,90,276,119" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalModelType.tmp#DigitalModelType_Name" href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_Name" coords="264,190,336,219" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalModelType.tmp#DigitalModelType_File" href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_File" coords="264,281,323,310" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalModelType.tmp#DigitalModelType_Application" href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_Application" coords="264,372,366,401" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalModelType.tmp#DigitalModelType_Author" href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_Author" coords="264,479,340,508" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalModelType.tmp#DigitalModelType_ApplicationSource" href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_ApplicationSource" coords="264,570,407,599" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalModelType.tmp#DigitalModelType_Description" href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_Description" coords="264,661,367,690" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalModelType.tmp#DigitalModelType_Units" href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_Units" coords="264,752,332,781" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalModelType.tmp#DigitalModelType_GDT" href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_GDT" coords="264,843,328,872" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalModelType.tmp#DigitalModelType_Topology" href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_Topology" coords="264,950,354,979" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalModelType.tmp#DigitalModelType_Entities" href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_Entities" coords="264,1041,346,1070" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DigitalModelType.tmp#DigitalModelType" href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType" coords="166,3,328,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DigitalModelType')">DigitalModelType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_DefinitionExternalType_DigitalModel" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_DefinitionExternalType_DigitalModel');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_DefinitionExternalType_DigitalModel" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_Application" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Application')">Application</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_ApplicationSource" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ApplicationSource')">ApplicationSource</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_Author" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Author')">Author</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_Entities" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Entities')">Entities</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_File" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component File')">File</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_GDT" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component GDT')">GDT</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_Topology" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Topology')">Topology</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_Units" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Units')">Units</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_DefinitionExternalType_DigitalModel" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_DefinitionExternalType_DigitalModel');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_DefinitionExternalType_DigitalModel" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;DigitalModel</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Name&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;File</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/File&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Application</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Application&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Author</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Author&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ApplicationSource</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ApplicationSource&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Description</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Description&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Units</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Units&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;GDT</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/GDT&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Topology</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Topology&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Entities</span><span class="tT"> </span><span class="tAN">n=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Entities&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/DigitalModel&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_DefinitionExternalType_DigitalModel" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_DefinitionExternalType_DigitalModel');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_DefinitionExternalType_DigitalModel" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFProduct_xsd_Complex_Type_DigitalModelType.html#DigitalModelType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required id attribute is the QIF id of the digital design model.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DefinitionExternalType_DigitalModel" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DefinitionExternalType_DigitalModel');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DefinitionExternalType_DigitalModel" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DigitalModel"</span><span class="tAN"> type=</span><span class="tAV">"DigitalModelType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The DigitalModel element gives information about a digital part design model. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFProduct.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="DefinitionExternalType_PhysicalModel"></a><div class="componentTitle">Element <span class="qname"><b><a href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DefinitionExternalType')">DefinitionExternalType</a></b> / PhysicalModel</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DefinitionExternalType_PhysicalModel" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DefinitionExternalType_PhysicalModel');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DefinitionExternalType_PhysicalModel" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The PhysicalModel element is an actual, hands-on, physical, 3D model or prototype of a part that is used to communicate features, datum reference frames, characteristics, or other information. Examples of physical models include actual part instances, part instances made from other materials, and 3D printing and stereolithography models. This element is in an optional choice.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_DefinitionExternalType_PhysicalModel" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DefinitionExternalType_PhysicalModel');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_DefinitionExternalType_PhysicalModel" style="display:block"><img alt="Diagram" border="0" src="img/QIFProduct_xsd_Element_PhysicalModel.jpeg" usemap="#QIFProduct_xsd_Element_PhysicalModel" /><map name="QIFProduct_xsd_Element_PhysicalModel" id="QIFProduct_xsd_Element_PhysicalModel">
+                                 <area alt="QIFProduct_xsd_Complex_Type_PhysicalModelType.tmp#PhysicalModelType_id" href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType_id" coords="209,90,290,119" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_PhysicalModelType.tmp#PhysicalModelType_Name" href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType_Name" coords="278,190,350,219" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_PhysicalModelType.tmp#PhysicalModelType_Version" href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType_Version" coords="278,281,360,310" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_PhysicalModelType.tmp#PhysicalModelType_Description" href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType_Description" coords="278,388,381,417" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_PhysicalModelType.tmp#PhysicalModelType_Author" href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType_Author" coords="278,479,354,508" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_PhysicalModelType.tmp#PhysicalModelType_Location" href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType_Location" coords="278,570,365,599" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_PhysicalModelType.tmp#PhysicalModelType_ModelNumber" href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType_ModelNumber" coords="278,661,396,690" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_PhysicalModelType.tmp#PhysicalModelType" href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType" coords="180,3,356,29" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PhysicalModelType')">PhysicalModelType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_DefinitionExternalType_PhysicalModel" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_DefinitionExternalType_PhysicalModel');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_DefinitionExternalType_PhysicalModel" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType_Author" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Author')">Author</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType_Description" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Description')">Description</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType_Location" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Location')">Location</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType_ModelNumber" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component ModelNumber')">ModelNumber</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType_Name" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Name')">Name</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType_Version" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component Version')">Version</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_DefinitionExternalType_PhysicalModel" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_DefinitionExternalType_PhysicalModel');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_DefinitionExternalType_PhysicalModel" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;PhysicalModel</span><span class="tT"> </span><span class="tAN">id=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"http://qifstandards.org/xsd/qif3"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Name</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/Name&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Version</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Version&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Description</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Description&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Author</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Author&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;Location</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/Location&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ModelNumber</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ModelNumber&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/PhysicalModel&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_DefinitionExternalType_PhysicalModel" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_DefinitionExternalType_PhysicalModel');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_DefinitionExternalType_PhysicalModel" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFProduct_xsd_Complex_Type_PhysicalModelType.html#PhysicalModelType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required id attribute is the QIF id of the physical model.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DefinitionExternalType_PhysicalModel" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DefinitionExternalType_PhysicalModel');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DefinitionExternalType_PhysicalModel" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PhysicalModel"</span><span class="tAN"> type=</span><span class="tAV">"PhysicalModelType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The PhysicalModel element is an actual, hands-on, physical, 3D model or prototype of a part that is used to communicate features, datum reference frames, characteristics, or other information. Examples of physical models include actual part instances, part instances made from other materials, and 3D printing and stereolithography models. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFProduct.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="DefinitionExternalType"></a><div class="componentTitle">Complex Type <span class="qname">DefinitionExternalType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DefinitionExternalType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DefinitionExternalType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DefinitionExternalType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The DefinitionExternalType defines the geometry of a product (a part or an assembly) in various degrees of detail.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_DefinitionExternalType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_DefinitionExternalType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_DefinitionExternalType" style="display:block"><img alt="Diagram" border="0" src="img/QIFProduct_xsd_Complex_Type_DefinitionExternalType.jpeg" usemap="#QIFProduct_xsd_Complex_Type_DefinitionExternalType" /><map name="QIFProduct_xsd_Complex_Type_DefinitionExternalType" id="QIFProduct_xsd_Complex_Type_DefinitionExternalType">
+                                 <area alt="QIFProduct_xsd_Complex_Type_DefinitionExternalType.tmp#DefinitionExternalType_n" href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType_n" coords="292,44,373,73" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DefinitionExternalType.tmp#DefinitionExternalType_id" href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType_id" coords="292,135,373,164" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DefinitionExternalType.tmp#DefinitionExternalType_PrintedDrawing" href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType_PrintedDrawing" coords="381,251,506,280" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DefinitionExternalType.tmp#DefinitionExternalType_DigitalDrawing" href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType_DigitalDrawing" coords="381,358,501,387" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DefinitionExternalType.tmp#DefinitionExternalType_DigitalModel" href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType_DigitalModel" coords="381,465,490,494" />
+                                 <area alt="QIFProduct_xsd_Complex_Type_DefinitionExternalType.tmp#DefinitionExternalType_PhysicalModel" href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType_PhysicalModel" coords="381,572,504,601" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_DefinitionExternalType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_DefinitionExternalType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_DefinitionExternalType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Elements </td>
+                                    <td><b><a href="QIFProduct_xsd_Complex_Type_AssemblyType.html#AssemblyType_DefinitionExternal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component AssemblyType/DefinitionExternal')">AssemblyType/DefinitionExternal</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_PartType.html#PartType_DefinitionExternal" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PartType/DefinitionExternal')">PartType/DefinitionExternal</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType_DigitalDrawing" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DigitalDrawing')">DigitalDrawing</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType_DigitalModel" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DigitalModel')">DigitalModel</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType_PhysicalModel" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PhysicalModel')">PhysicalModel</a></b>, <b><a href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType_PrintedDrawing" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component PrintedDrawing')">PrintedDrawing</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_DefinitionExternalType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_DefinitionExternalType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_DefinitionExternalType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType_id" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component id')">id</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required id attribute is the QIF id of the product geometry definitions, used for referencing.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType_n" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for component n')">n</a></b></td>
+                                    <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                                    <td>required</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The required n attribute is the number of external product definitions in this list.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DefinitionExternalType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DefinitionExternalType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DefinitionExternalType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"DefinitionExternalType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The DefinitionExternalType defines the geometry of a product (a part or an assembly) in various degrees of detail.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:choice</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This compositor provides a choice among types of drawing and types of model.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PrintedDrawing"</span><span class="tAN"> type=</span><span class="tAV">"PrintedDrawingType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The PrintedDrawing element gives information about a printed part drawing. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DigitalDrawing"</span><span class="tAN"> type=</span><span class="tAV">"DigitalDrawingType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The DigitalDrawing element gives information about a digital part drawing. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"DigitalModel"</span><span class="tAN"> type=</span><span class="tAV">"DigitalModelType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The DigitalModel element gives information about a digital part design model. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:element</span><span class="tAN"> name=</span><span class="tAV">"PhysicalModel"</span><span class="tAN"> type=</span><span class="tAV">"PhysicalModelType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The PhysicalModel element is an actual, hands-on, physical, 3D model or prototype of a part that is used to communicate features, datum reference frames, characteristics, or other information. Examples of physical models include actual part instances, part instances made from other materials, and 3D printing and stereolithography models. This element is in an optional choice.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:choice&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"n"</span><span class="tAN"> type=</span><span class="tAV">"NaturalType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The required n attribute is the number of external product definitions in this list.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"QIFIdType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The required id attribute is the QIF id of the product geometry definitions, used for referencing.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFProduct.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="DefinitionExternalType_n"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DefinitionExternalType')">DefinitionExternalType</a></b> / @n</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DefinitionExternalType_n" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DefinitionExternalType_n');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DefinitionExternalType_n" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The required n attribute is the number of external product definitions in this list.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Simple_Type_NaturalType.html#NaturalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component NaturalType')">NaturalType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_DefinitionExternalType_n" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_DefinitionExternalType_n');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_DefinitionExternalType_n" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">use</td>
+                                    <td><b>required</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_DefinitionExternalType_n" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_DefinitionExternalType_n');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_DefinitionExternalType_n" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">minInclusive</td>
+                                    <td width="30%"><b>1</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_DefinitionExternalType_n" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_DefinitionExternalType_n');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_DefinitionExternalType_n" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DefinitionExternalType')">DefinitionExternalType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DefinitionExternalType_n" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DefinitionExternalType_n');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DefinitionExternalType_n" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"n"</span><span class="tAN"> type=</span><span class="tAV">"NaturalType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The required n attribute is the number of external product definitions in this list.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFProduct.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="DefinitionExternalType_id"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DefinitionExternalType')">DefinitionExternalType</a></b> / @id</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_DefinitionExternalType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_DefinitionExternalType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_DefinitionExternalType_id" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The required id attribute is the QIF id of the product geometry definitions, used for referencing.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b>xs:unsignedInt</b><ul class="internal">
+                                    <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdAndReferenceBaseType.html#QIFIdAndReferenceBaseType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdAndReferenceBaseType')">QIFIdAndReferenceBaseType</a></b><ul class="internal">
+                                          <li class="internal"><b><a href="Primitives_xsd_Simple_Type_QIFIdType.html#QIFIdType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component QIFIdType')">QIFIdType</a></b></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_DefinitionExternalType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_DefinitionExternalType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_DefinitionExternalType_id" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">use</td>
+                                    <td><b>required</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_DefinitionExternalType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_DefinitionExternalType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_DefinitionExternalType_id" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">pattern</td>
+                                    <td width="30%"><b>([\-+]?[0-9]+) &amp; ([1-9][0-9]*)</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_DefinitionExternalType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_DefinitionExternalType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_DefinitionExternalType_id" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="QIFProduct_xsd_Complex_Type_DefinitionExternalType.html#DefinitionExternalType" target="mainFrame" title="http://qifstandards.org/xsd/qif3" onclick="updatePageTitle('Schema documentation for component DefinitionExternalType')">DefinitionExternalType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_DefinitionExternalType_id" type="image" src="img/btM.gif" value="-" onclick="switchState('source_DefinitionExternalType_id');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_DefinitionExternalType_id" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"id"</span><span class="tAN"> type=</span><span class="tAV">"QIFIdType"</span><span class="tAN"> use=</span><span class="tAV">"required"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The required id attribute is the QIF id of the product geometry definitions, used for referencing.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Schema location</b></td>
+                        <td>file:////Q:/kramer/qif3.0/model/QIFforHTMLxsd/QIFApplications/QIFProduct.xsd</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>
