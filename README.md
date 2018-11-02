@@ -1,37 +1,37 @@
-## Welcome to GitHub Pages
+# qif-community
 
-You can use the [editor on GitHub](https://github.com/QualityInformationFramework/QualityInformationFramework.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+### The online hub for the QIF community :+1:
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+As our community continues to grow, we will adding more information to this area. Please follow us! 
 
-### Markdown
+Here are a few quick links:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### [QIF Website](http://www.qifstandards.org):
 
-```markdown
-Syntax highlighted code block
+The main QIF website. This is where you can download the standard, including the schemas and the documentation. It's free, [go and get it](http://qifstandards.org/download/)!
 
-# Header 1
-## Header 2
-### Header 3
+### [QIF Community Wiki](https://github.com/QualityInformationFramework/qif-community/wiki):
 
-- Bulleted
-- List
+Here you'll find some general information about QIF and the QIF community.
 
-1. Numbered
-2. List
+### [qif-community Repository](https://github.com/QualityInformationFramework/qif-community/tree/master/):
 
-**Bold** and _Italic_ and `Code` text
+Here is where you can find all the source code for supporting tools for QIF.
 
-[Link](url) and ![Image](src)
-```
+[![QIF for Beginners](https://img.youtube.com/vi/EyUumtOc-f4/0.jpg)](https://www.youtube.com/watch?v=EyUumtOc-f4)
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+[Here is a presentation which can show just how easy it is to get started with QIF!](https://www.youtube.com/watch?v=EyUumtOc-f4)
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/QualityInformationFramework/QualityInformationFramework.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### [Our "Issues" List](https://github.com/QualityInformationFramework/qif-community/issues): 
 
-### Support or Contact
+This is for more than just flagging issues with the QIF standard. Here is where you can interact with the rest of the community: 
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+ * Ask questions about your implementation
+ * Submit enhancements requests to QIF for future versions
+ * Ask general questions about QIF 
+
+
+---
+  
+Thanks for dropping by! [If you have any questions, get in touch with us here!](http://qifstandards.org/contact-us/)
