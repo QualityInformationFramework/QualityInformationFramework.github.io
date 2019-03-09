@@ -8,6 +8,8 @@
 | [**QIF3 "Issues" List**](https://github.com/QualityInformationFramework/qif-community/issues)  <br> This is for more than just flagging issues with the QIF standard. Here is where you can interact with the rest of the community: ask questions about your implementation, submit enhancements requests, and ask general questions about QIF.   | [![](img/issues.png?raw=true)](https://github.com/QualityInformationFramework/qif-community/issues) |
 | [![](img/website.png?raw=true)](http://qifstandards.org/)   | [**QIF Standard Website**](http://qifstandards.org/) <br> The main QIF website. This is where you can download the standard, including the schemas and the documentation. It's free, [go and get it](http://qifstandards.org/download/)! |
 
+### [What's New in QIF 3](https://qualityinformationframework.github.io/QIF3.0ChangesFrom2.1.pdf)
+
 Curious about what, specifically, is new in QIF 3? [Click here for a detailed set of changes](https://qualityinformationframework.github.io/QIF3.0ChangesFrom2.1.pdf) from QIF 2.1 to QIF 3, courtesy of [Dr. Tom Kramer](https://www.nist.gov/people/thomas-kramer). 
 
 --- 
