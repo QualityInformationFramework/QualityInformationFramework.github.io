@@ -14,6 +14,8 @@ Curious about what, specifically, is new in QIF 3? [Click here for a detailed se
 
 --- 
 
+### [Getting Started with QIF Hacking](https://www.youtube.com/watch?v=EyUumtOc-f4)
+
 [Here is a presentation which can show just how easy it is to get started with QIF!](https://www.youtube.com/watch?v=EyUumtOc-f4)
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=EyUumtOc-f4
