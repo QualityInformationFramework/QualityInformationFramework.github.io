@@ -10,8 +10,6 @@
 
 ### [Getting Started with QIF](https://qifstandards.org/qif-implementation-tutorials/)
 
-[![](img/qif101-coverslide.png?raw=true)](https://qifstandards.org/qif-implementation-tutorials/)
-
 During April and May of 2020, the DMSC hosted a series of webinars on how to get started with QIF. The 3 webinars were titled: 
 
 * QIF 101: Understanding QIF Basics
