@@ -26,4 +26,4 @@ Curious about what, specifically, is new in QIF 3? [Click here for a detailed se
 
 ---
   
-Thanks for dropping by! [If you have any questions, get in touch with us here!](http://qifstandards.org/contact-us/)
+Thanks for dropping by! [If you have any questions, get in touch with us here!](https://qifstandards.org/contact/)
